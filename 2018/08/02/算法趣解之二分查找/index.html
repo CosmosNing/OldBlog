@@ -108,28 +108,27 @@
 
 
 
-  <meta name="description" content="当今是一个互联网时代，很多人为了赶上时代的步伐，开始自学编程。其数量之多，夸张到让人不禁感叹“这真是一个全民编程的时代”。 如果你到大街上，随便找几个人问问“你是否会编程”，他们大多数都会回答“我会，我会xx语言、xx语言”等。他们可以很快地给你写出一个“Hello World”或是对数据简单的处理程序。 但是，他们真的会编程吗？你试试让他们编一个链表、或是一些排序、查找算法，他们或许会变得力不">
+  <meta name="description" content="在正式开始之前，我们先尝试来玩一个猜数游戏。游戏规则如下：  游戏裁判会指定一个从小到大的数字范围，并从中抽取一个作为猜数的正确结果。参与游戏者在分隔的状态下开始猜数。他们的每一次猜数，游戏裁判会分别告知其所猜之数是大了还是小了。最终猜数次数少者获胜。  为了获胜你会采取什么样的猜数策略呢？ 第一种，随缘猜数。在脑中随便想一个数，猜中了都是缘分。 第二种，顺序猜数。从第一个数开始，一个数一个数地">
 <meta name="keywords" content="算法,Grokking Algorithms">
 <meta property="og:type" content="article">
-<meta property="og:title" content="你真的会编程吗">
-<meta property="og:url" content="https://cosmosning.github.io/2018/07/30/你真的会编程吗/index.html">
+<meta property="og:title" content="算法趣解之二分查找">
+<meta property="og:url" content="https://cosmosning.github.io/2018/08/02/算法趣解之二分查找/index.html">
 <meta property="og:site_name" content="CosmosNing的个人博客">
-<meta property="og:description" content="当今是一个互联网时代，很多人为了赶上时代的步伐，开始自学编程。其数量之多，夸张到让人不禁感叹“这真是一个全民编程的时代”。 如果你到大街上，随便找几个人问问“你是否会编程”，他们大多数都会回答“我会，我会xx语言、xx语言”等。他们可以很快地给你写出一个“Hello World”或是对数据简单的处理程序。 但是，他们真的会编程吗？你试试让他们编一个链表、或是一些排序、查找算法，他们或许会变得力不">
+<meta property="og:description" content="在正式开始之前，我们先尝试来玩一个猜数游戏。游戏规则如下：  游戏裁判会指定一个从小到大的数字范围，并从中抽取一个作为猜数的正确结果。参与游戏者在分隔的状态下开始猜数。他们的每一次猜数，游戏裁判会分别告知其所猜之数是大了还是小了。最终猜数次数少者获胜。  为了获胜你会采取什么样的猜数策略呢？ 第一种，随缘猜数。在脑中随便想一个数，猜中了都是缘分。 第二种，顺序猜数。从第一个数开始，一个数一个数地">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/image/01.%E4%BD%A0%E7%9C%9F%E7%9A%84%E4%BC%9A%E7%BC%96%E7%A8%8B%E5%90%97/cover.jpg?raw=true">
-<meta property="og:image" content="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/image/01.%E4%BD%A0%E7%9C%9F%E7%9A%84%E4%BC%9A%E7%BC%96%E7%A8%8B%E5%90%97/book.jpg?raw=true">
-<meta property="og:updated_time" content="2018-09-24T14:49:05.633Z">
+<meta property="og:image" content="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/image/02.%E4%B8%80%E8%B5%B7%E8%AF%BB%E7%AE%97%E6%B3%95%E8%B6%A3%E8%A7%A3%E4%B9%8B%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/cover.jpg?raw=true">
+<meta property="og:updated_time" content="2018-09-24T15:19:23.964Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="你真的会编程吗">
-<meta name="twitter:description" content="当今是一个互联网时代，很多人为了赶上时代的步伐，开始自学编程。其数量之多，夸张到让人不禁感叹“这真是一个全民编程的时代”。 如果你到大街上，随便找几个人问问“你是否会编程”，他们大多数都会回答“我会，我会xx语言、xx语言”等。他们可以很快地给你写出一个“Hello World”或是对数据简单的处理程序。 但是，他们真的会编程吗？你试试让他们编一个链表、或是一些排序、查找算法，他们或许会变得力不">
-<meta name="twitter:image" content="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/image/01.%E4%BD%A0%E7%9C%9F%E7%9A%84%E4%BC%9A%E7%BC%96%E7%A8%8B%E5%90%97/cover.jpg?raw=true">
+<meta name="twitter:title" content="算法趣解之二分查找">
+<meta name="twitter:description" content="在正式开始之前，我们先尝试来玩一个猜数游戏。游戏规则如下：  游戏裁判会指定一个从小到大的数字范围，并从中抽取一个作为猜数的正确结果。参与游戏者在分隔的状态下开始猜数。他们的每一次猜数，游戏裁判会分别告知其所猜之数是大了还是小了。最终猜数次数少者获胜。  为了获胜你会采取什么样的猜数策略呢？ 第一种，随缘猜数。在脑中随便想一个数，猜中了都是缘分。 第二种，顺序猜数。从第一个数开始，一个数一个数地">
+<meta name="twitter:image" content="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/image/02.%E4%B8%80%E8%B5%B7%E8%AF%BB%E7%AE%97%E6%B3%95%E8%B6%A3%E8%A7%A3%E4%B9%8B%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/cover.jpg?raw=true">
 
 
 
 
 
 
-  <link rel="canonical" href="https://cosmosning.github.io/2018/07/30/你真的会编程吗/"/>
+  <link rel="canonical" href="https://cosmosning.github.io/2018/08/02/算法趣解之二分查找/"/>
 
 
 
@@ -139,7 +138,7 @@
   };
 </script>
 
-  <title>你真的会编程吗 | CosmosNing的个人博客</title>
+  <title>算法趣解之二分查找 | CosmosNing的个人博客</title>
   
 
 
@@ -323,7 +322,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://cosmosning.github.io/2018/07/30/你真的会编程吗/">
+    <link itemprop="mainEntityOfPage" href="https://cosmosning.github.io/2018/08/02/算法趣解之二分查找/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="CosmosNing">
@@ -340,7 +339,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">你真的会编程吗
+          <h2 class="post-title" itemprop="name headline">算法趣解之二分查找
               
             
           </h2>
@@ -365,7 +364,7 @@
                 
               
 
-              <time title="创建时间：2018-07-30 22:49:31" itemprop="dateCreated datePublished" datetime="2018-07-30T22:49:31+08:00">2018-07-30</time>
+              <time title="创建时间：2018-08-02 22:35:46" itemprop="dateCreated datePublished" datetime="2018-08-02T22:35:46+08:00">2018-08-02</time>
             
 
             
@@ -382,7 +381,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-09-24 22:49:05" itemprop="dateModified" datetime="2018-09-24T22:49:05+08:00">2018-09-24</time>
+                <time title="修改时间：2018-09-24 23:19:23" itemprop="dateModified" datetime="2018-09-24T23:19:23+08:00">2018-09-24</time>
               
             
           </span>
@@ -433,26 +432,52 @@
       
 
       
-        <p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/image/01.%E4%BD%A0%E7%9C%9F%E7%9A%84%E4%BC%9A%E7%BC%96%E7%A8%8B%E5%90%97/cover.jpg?raw=true" alt="cover"></p>
-<p>当今是一个互联网时代，很多人为了赶上时代的步伐，开始自学编程。其数量之多，夸张到让人不禁感叹“这真是一个全民编程的时代”。</p>
-<p>如果你到大街上，随便找几个人问问“你是否会编程”，他们大多数都会回答“我会，我会xx语言、xx语言”等。他们可以很快地给你写出一个“Hello World”或是对数据简单的处理程序。</p>
-<p>但是，他们真的会编程吗？你试试让他们编一个链表、或是一些排序、查找算法，他们或许会变得力不从心了。</p>
-<p>当下，大多数人对编程的理解便是这样：将编程的学习简化为语言的学习，将掌握语言与掌握编程对等。这种拘泥于语言形式的编程学习，在短时间内确实可以提高个人的编程水平，但从长期来看，容易遇到个人思维的瓶颈。</p>
-<p>在我看来，编程并不应该只局限于某一种或是某几种语言的具体形式，而更应该关注逻辑思维的培养。逻辑思维，说得简单一点，其实就是一种思考问题和解决问题的一些套路。如果你掌握了这些套路，并能够将他们组合应用，那么我恭喜你，你已经比大多数人强了。这些套路，在编程中，我们给了它一个比较高端的名字，便是“算法”。</p>
-<p>说到这里，一定有很多同学对算法产生了兴趣。这很棒！接下来的一段时间里，我会以《Grokking Algorithms －An illustrated guide for programmers and other curious people》这本书为参考，给大家分享一些常见的算法原理，以及它对应的实现。</p>
-<p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/image/01.%E4%BD%A0%E7%9C%9F%E7%9A%84%E4%BC%9A%E7%BC%96%E7%A8%8B%E5%90%97/book.jpg?raw=true" alt="book"></p>
-<p>看到这儿，你肯定会有个疑问：为什么选择这本书呢？</p>
-<p>当今市面上有很多算法书，但是它们的侧重点不尽相同。</p>
-<p>比如，《算法导论》这本书比较侧重严谨性和全面性，说白了就是会劝退一些新手和小白。</p>
-<p>又如，《算法设计与分析基础》这本书侧重于课堂教学，是一本不错的算法入门教材。但是，课堂教学书籍却免不了会对一些问题和知识进行一些留白。为了鼓励学生自行探索研究，这样的教材编写目的的初衷是好的，但是没有对应的老师进行答疑，这对于一些没有解决相关问题经验或者缺少前置知识的人会很头疼。我想，如果是你，你也不会希望利用自己宝贵的“碎片化”时间来和这种书较劲。</p>
-<p>除此以外，还有一些算法书，专注于一些竞赛，主要涉及一些竞赛技巧。这对于竞赛来说，是一剂速成药水；但对于长远的逻辑思维培养来说，会使自己的知识体系不够全面，思维逻辑存在漏洞。</p>
-<p>我所推荐的这本书，即《Grokking Algorithms －An illustrated guide for programmers and other curious people》，在文字方面，没有使用过多的专业术语，而是结合大量的实际例子来引出并解释算法的原理。就我个人而言，读起来很轻松。轻松的阅读体验仅仅依靠文字可不够，因而作者在本书中，利用手绘的方式绘制了大量的算法原理图。我想，在你阅读这本书，绞尽脑汁理解算法原理的时候，突然蹦出一个手绘原理图，想必会扑哧一笑吧。:)</p>
-<p>这本书除了有趣，易于阅读，在内容安排上也非常用心。</p>
-<p>在第一章，作者会做一个简单的引入，解释一下有关算法的一些基础概念。（比如对算法含义的描述、用于评价算法效率的大O理论解释等）</p>
-<p>随后会介绍一些基础的数据结构（数组、链表等）、常见的排序算法（选择排序、快速排序等）、查找算法（二分查找、哈希查找等）、递归编程思想。</p>
-<p>在这些基础数据结构和算法之后，会有一些更复杂一点的数据结构（图等）、配套的算法（宽度优先搜索、Dijkstra’s 算法等）和它的经典应用。</p>
-<p>最后本书会进一步深入，介绍一些有趣并且有用的算法（贪婪算法、动态编程【Dynamic programming】、K-近邻算法、并行算法、SHA算法等）</p>
-<p>各位同学们，准备好了吗？准备好了的话，请关注，点赞，时刻关注我的更新。:)</p>
+        <p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/image/02.%E4%B8%80%E8%B5%B7%E8%AF%BB%E7%AE%97%E6%B3%95%E8%B6%A3%E8%A7%A3%E4%B9%8B%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/cover.jpg?raw=true" alt="cover"></p>
+<p>在正式开始之前，我们先尝试来玩一个猜数游戏。游戏规则如下：</p>
+<blockquote>
+<p>游戏裁判会指定一个从小到大的数字范围，并从中抽取一个作为猜数的正确结果。参与游戏者在分隔的状态下开始猜数。他们的每一次猜数，游戏裁判会分别告知其所猜之数是大了还是小了。最终猜数次数少者获胜。</p>
+</blockquote>
+<p>为了获胜你会采取什么样的猜数策略呢？</p>
+<p>第一种，随缘猜数。在脑中随便想一个数，猜中了都是缘分。</p>
+<p>第二种，顺序猜数。从第一个数开始，一个数一个数地尝试，直到猜到最终结果。</p>
+<p>第三种，折半猜数。每次猜数，都从数据范围的中间开始猜，依据裁判给出的反馈，丢掉不满足要求的一半。剩下的范围便作为下次猜数的参考。</p>
+<p>我想，你看了这三种方法，应该会觉得第三种方法相较于另外两种算法靠谱一点，会选择第三种猜数策略。</p>
+<p>拥有这种感觉，这非常棒！但是，个人感觉这种东西有时候不太好描述和形容，同时在与他人交流时也没有说服力。那么有什么好的方法来明确这种感受和并且证明你这种正确的感受呢？</p>
+<p>让我们回到游戏本身，再此仔细阅读一下游戏规则：</p>
+<p>游戏裁判会指定一个从小到大的数字范围，并从中抽取一个作为猜数的正确结果。参与游戏者在分隔的状态下开始猜数。他们的每一次猜数，游戏裁判会分别告知其所猜之数是大了还是小了。最终猜数次数少者获胜。</p>
+<p>你会注意到，游戏本身已经给出来了评价的具体方式，这便是对比每一个人的猜数次数。</p>
+<p>我们依照这种标准对三种策略来分析一下。</p>
+<p>第一种，欧皇方式的猜数，含有大量的随机因素，猜数的次数不稳定。（这样猜数一点都不靠谱！）</p>
+<p>第二种，如果正确答案是给定范围的第一个数，那么猜数次数只需一次；但如果正确答案是最后一个数，那么要遍历整个数据范围，才能猜到正确的数。平均下来，也要猜数次数也需要数据范围的一半的数据个数。（这多累啊···）</p>
+<p>第三种，如果正确答案是给定范围的中间的数，那么很幸运，只需一次便可；如果正确答案是第一个或是最后一个数，那可能就会就会需要很多次。这里的很多次究竟是几次呢？这里我们一起研究一个具体的例子，来找找规律。</p>
+<p>比如有一组数为从 1 开始，一直到 10 的 10 个整数，假定猜数的正确答案是 1 ，我们利用折半猜数的策略来分析一下：</p>
+<p>第一次猜数，猜 5 ，</p>
+<p>答案大了，数据范围切掉一半，剩下 1 ~ 4 ；</p>
+<p>第二次猜数，猜 2，</p>
+<p>答案大了，数据切掉一半，只剩下 1 ；</p>
+<p>第三次猜数，猜 1 ，</p>
+<p>答案正确，游戏结束。</p>
+<p>如果将正确答案换作 10 ，上述过程又会怎样？推荐大家自己动手尝试一下，这里我不再讨论。在这种情况下，猜数次数为 4 次。</p>
+<p>上述分析，我们很容易看到，10 个数据中猜一个数最多需要 3 ~ 4 次。这 3 和 4 究竟和 10 有什么关系呢？如果对数字敏感的同学一定会发现：log2(10) 约为 3.32 ，而这个数在 3 和 4 之间！</p>
+<p>恭喜！这个发现是正确的！</p>
+<p>这样想究竟有没有它的道理呢？在这里，不妨回顾一下log函数的含义。不用担心，这里不会提及太多数学上枯燥的定义，还请你耐心的看下去。结合本篇中的猜数游戏，我分享一下我对log的理解。</p>
+<p>log2(10) 约为 3.32 ，也就是说连续的 2 相乘，需要 3.32 次，才能得到 10（前 3 个 2 相乘得到 8 ，最后一次相乘并不是乘的 2，而是比 2 小一点的数）。那么结合我们的猜数策略，每次折半猜数，以 2 为底数的 log 函数的含义便是将数据范围每次截取一半（截取到只剩一个数为止），最多能截取的次数。（脱离这个问题本身，我也推荐大家以此为引子，思考如果是以 3 为底数，log 函数又是什么意思。 4 、 5 或是其他数作为底数是否会呈现类似的规律。欢迎大家在公众号主页给我留言、和我一起探讨）</p>
+<p>让我们再次回到之前对第三种猜数策略的分析，假设数据量为 N ，那么最多的猜数次数为 log2(N) 。结合只需猜 1 次就猜中的最好的情况，平均的猜数次数为 (1+ log2(N))/2 。</p>
+<p>经过对三种情况的分析，仔细的你会发现，分析的时候，都会考虑到猜数次数的最好情况、最坏情况和平均情况，这对于一个思维策略来说是一个全方位的评价，他们之间的优劣也显而易见了。</p>
+<p>其实，这样的表述还存在一点小瑕疵，就是书写不简洁。因而，那些追求简洁的理论家提出了“大O理论”来简化这里的书写。比如之前的顺序猜数，其简化写法为 O（N）；折半猜数，其简化写法为 O(log N) 。细心观察，你会发现，这里的“大O”都是在描述最坏情况下的次数，而且不计较一些常数（为什么常数会被丢弃？因为当数据量十分巨大时，这些常数对原式的影响非常少）。此外，还要注意一点，这里的“大O”只在讨论处理时间（我们称之为“时间复杂度”），用于存储数据的空间也可以类似的讨论（“空间复杂度”了解一下？）。</p>
+<p>在这个具体的游戏中，我们一起探索并且找到了比较优异策略。这种策略能否迁移运用到其他方面？这就需要一点抽象的思维方式。迁移运用的第一步，需要我们找到各个问题的相同点，抽象出策略运用的问题场景。第二步，就是将解决问题的策略分解为一步一步切实可行的流程步骤（算法就是一系列为了完成某一任务的步骤序列），并通过某种形式表达（比如将它写成程序，从而让机器借人的智慧自动的处理某一具体问题）。</p>
+<p>比如，本篇提到的游戏，就可以抽象为一个给定一个数据序列和待搜索的对象，进行查找的问题。在策略到流程步骤的转化中，我们就需要考虑如何存储数据、如何用三种基本的程序结构（顺序、分支、循环）去描述该策略。在查找问题中，可以利用数组存储数据，折半查找策略则可以利用循环、分支在不同的情况，对数组下标进行处理，从而完成对该策略的描述。</p>
+<p>说了这么多，终于到了代码实现的环节。这里的代码实现，我遵循原书中的Python实现（因为这真的是一个非常简单易学的语言，并且十分适合算法的表达）。</p>
+<p>具体代码如下（Python3.6.1测试通过）：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">binary_search</span><span class="params">(list, item)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    二分查找：</span></span><br><span class="line"><span class="string">      在一个从小到大排序的数据列表list中，</span></span><br><span class="line"><span class="string">      搜索是否存在数据item</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    参数：</span></span><br><span class="line"><span class="string">      list： 保存从小到大排序的数字列表</span></span><br><span class="line"><span class="string">      item： 待查找的数字</span></span><br><span class="line"><span class="string">    返回：</span></span><br><span class="line"><span class="string">      如果list中存在item，</span></span><br><span class="line"><span class="string">      那么返回item在list中的下标，</span></span><br><span class="line"><span class="string">      否则返回None</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="comment"># 列表的开始的下标</span></span><br><span class="line">    low = <span class="number">0</span></span><br><span class="line">    <span class="comment"># 计算列表最后一个元素的下标</span></span><br><span class="line">    high = len(list) <span class="number">-1</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span> low &lt;= high:</span><br><span class="line">        <span class="comment"># 计算介于low和high范围中间元素的下标</span></span><br><span class="line">        mid = (int)((low + high)/<span class="number">2</span>)</span><br><span class="line">        <span class="comment">#取列表中间的元素</span></span><br><span class="line">        guess = list[mid]</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 以下依据不同情况对下标进行处理</span></span><br><span class="line">        <span class="keyword">if</span> guess == item:</span><br><span class="line">            <span class="keyword">return</span> mid</span><br><span class="line">        <span class="keyword">elif</span> guess &gt; item:</span><br><span class="line">            high = mid - <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            low = mid + <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">None</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 测试例程</span></span><br><span class="line">lst = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">10</span>]</span><br><span class="line">print(binary_search(lst,<span class="number">1</span>))</span><br><span class="line"><span class="comment"># 输出：0</span></span><br></pre></td></tr></table></figure>
+<p>在文章的最后，我们简单回顾一下本篇文章的要点。</p>
+<ol>
+<li><strong>算法是一系列为了完成某一任务的步骤序列</strong></li>
+<li><strong>对比算法的优劣可以从最好情况、最坏情况、平均情况三个方面入手</strong></li>
+<li><strong>大O可以简洁地描述算法的时间性能和存储数据的空间占用（分别称为算法的“时间复杂度”和“空间复杂度”），并且其所描述的通常是最坏情况</strong></li>
+<li><strong>二分查找算法可以很快的从一个有序的序列中，查找到待查找的元素。其时间复杂度为 O (log N )。而顺序查找却要慢很多，其时间复杂度为为 O( N )。</strong></li>
+<li><strong>科学探索的一种方式：从一个简单的具体问题入手，探索发现它的规律，并尝试验证这些规律的正确性。随后，考虑将具体问题和它对应的规律（或者解决方案）抽象推广，最终获得一个具有一般意义的规律（或是解决方案）。</strong></li>
+</ol>
 
       
     </div>
@@ -482,7 +507,7 @@
     <strong>本文作者： </strong>CosmosNing</li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://cosmosning.github.io/2018/07/30/你真的会编程吗/" title="你真的会编程吗">https://cosmosning.github.io/2018/07/30/你真的会编程吗/</a>
+    <a href="https://cosmosning.github.io/2018/08/02/算法趣解之二分查找/" title="算法趣解之二分查找">https://cosmosning.github.io/2018/08/02/算法趣解之二分查找/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！</li>
@@ -510,15 +535,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/07/30/你真的会编程吗/" rel="next" title="你真的会编程吗">
+                <i class="fa fa-chevron-left"></i> 你真的会编程吗
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/08/02/算法趣解之二分查找/" rel="prev" title="算法趣解之二分查找">
-                算法趣解之二分查找 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -825,7 +850,7 @@
   
     <script type="text/javascript">
       window.livereOptions = {
-        refer: '2018/07/30/你真的会编程吗/'
+        refer: '2018/08/02/算法趣解之二分查找/'
       };
       (function(d, s) {
         var j, e = d.getElementsByTagName(s)[0];
