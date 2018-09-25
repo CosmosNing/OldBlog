@@ -108,28 +108,31 @@
 
 
 
-  <meta name="description" content="当今是一个互联网时代，很多人为了赶上时代的步伐，开始自学编程。其数量之多，夸张到让人不禁感叹“这真是一个全民编程的时代”。 如果你到大街上，随便找几个人问问“你是否会编程”，他们大多数都会回答“我会，我会xx语言、xx语言”等。他们可以很快地给你写出一个“Hello World”或是对数据简单的处理程序。 但是，他们真的会编程吗？你试试让他们编一个链表、或是一些排序、查找算法，他们或许会变得力不">
+  <meta name="description" content="当今时代，随着交通越来越发达，我们更加愿意选择公共交通出行。然而在去往目的地的时，公共交通有时并不能直达，需要中转。中转有时候会非常浪费时间，因而我们希望在去往目的地的过程中，中转的次数越少越好。以往，我们需要自己记忆繁杂的交通网络人为判断；而现在，我们可以很方便地从手机中的地图app中获取最少中转的方案。你有没有想过，这些最少中转方案是怎么生成的呢？ 面对这个问题感觉无从下手？那我们一起来看看">
 <meta name="keywords" content="算法,Grokking Algorithms">
 <meta property="og:type" content="article">
-<meta property="og:title" content="你真的会编程吗">
-<meta property="og:url" content="https://cosmosning.github.io/2018/07/30/你真的会编程吗/index.html">
+<meta property="og:title" content="去目的地最少中转方案怎么算?">
+<meta property="og:url" content="https://cosmosning.github.io/2018/09/17/去目的地最少中转方案怎么算/index.html">
 <meta property="og:site_name" content="CosmosNing的个人博客">
-<meta property="og:description" content="当今是一个互联网时代，很多人为了赶上时代的步伐，开始自学编程。其数量之多，夸张到让人不禁感叹“这真是一个全民编程的时代”。 如果你到大街上，随便找几个人问问“你是否会编程”，他们大多数都会回答“我会，我会xx语言、xx语言”等。他们可以很快地给你写出一个“Hello World”或是对数据简单的处理程序。 但是，他们真的会编程吗？你试试让他们编一个链表、或是一些排序、查找算法，他们或许会变得力不">
+<meta property="og:description" content="当今时代，随着交通越来越发达，我们更加愿意选择公共交通出行。然而在去往目的地的时，公共交通有时并不能直达，需要中转。中转有时候会非常浪费时间，因而我们希望在去往目的地的过程中，中转的次数越少越好。以往，我们需要自己记忆繁杂的交通网络人为判断；而现在，我们可以很方便地从手机中的地图app中获取最少中转的方案。你有没有想过，这些最少中转方案是怎么生成的呢？ 面对这个问题感觉无从下手？那我们一起来看看">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2018/07/30/cover.jpg?raw=true">
-<meta property="og:image" content="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2018/07/30/book.jpg?raw=true">
-<meta property="og:updated_time" content="2018-09-25T04:31:14.985Z">
+<meta property="og:image" content="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2018/09/17/cover.jpg?raw=true">
+<meta property="og:image" content="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2018/09/17/%E5%9B%BE%E7%BB%93%E6%9E%84%E4%B8%BE%E4%BE%8B.png?raw=true">
+<meta property="og:image" content="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2018/09/17/%E5%9B%BE%E7%BB%93%E6%9E%84%E4%B8%BE%E4%BE%8B.png?raw=true">
+<meta property="og:image" content="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2018/09/17/%E5%9B%BE%E7%BB%93%E6%9E%84%E4%B8%BE%E4%BE%8B.png?raw=true">
+<meta property="og:image" content="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2018/09/17/%E9%82%BB%E6%8E%A5%E8%A1%A8%E5%AD%98%E5%82%A8%E4%B8%BE%E4%BE%8B.png?raw=true">
+<meta property="og:updated_time" content="2018-09-25T12:26:20.352Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="你真的会编程吗">
-<meta name="twitter:description" content="当今是一个互联网时代，很多人为了赶上时代的步伐，开始自学编程。其数量之多，夸张到让人不禁感叹“这真是一个全民编程的时代”。 如果你到大街上，随便找几个人问问“你是否会编程”，他们大多数都会回答“我会，我会xx语言、xx语言”等。他们可以很快地给你写出一个“Hello World”或是对数据简单的处理程序。 但是，他们真的会编程吗？你试试让他们编一个链表、或是一些排序、查找算法，他们或许会变得力不">
-<meta name="twitter:image" content="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2018/07/30/cover.jpg?raw=true">
+<meta name="twitter:title" content="去目的地最少中转方案怎么算?">
+<meta name="twitter:description" content="当今时代，随着交通越来越发达，我们更加愿意选择公共交通出行。然而在去往目的地的时，公共交通有时并不能直达，需要中转。中转有时候会非常浪费时间，因而我们希望在去往目的地的过程中，中转的次数越少越好。以往，我们需要自己记忆繁杂的交通网络人为判断；而现在，我们可以很方便地从手机中的地图app中获取最少中转的方案。你有没有想过，这些最少中转方案是怎么生成的呢？ 面对这个问题感觉无从下手？那我们一起来看看">
+<meta name="twitter:image" content="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2018/09/17/cover.jpg?raw=true">
 
 
 
 
 
 
-  <link rel="canonical" href="https://cosmosning.github.io/2018/07/30/你真的会编程吗/"/>
+  <link rel="canonical" href="https://cosmosning.github.io/2018/09/17/去目的地最少中转方案怎么算/"/>
 
 
 
@@ -139,7 +142,7 @@
   };
 </script>
 
-  <title>你真的会编程吗 | CosmosNing的个人博客</title>
+  <title>去目的地最少中转方案怎么算? | CosmosNing的个人博客</title>
   
 
 
@@ -323,7 +326,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://cosmosning.github.io/2018/07/30/你真的会编程吗/">
+    <link itemprop="mainEntityOfPage" href="https://cosmosning.github.io/2018/09/17/去目的地最少中转方案怎么算/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="CosmosNing">
@@ -340,7 +343,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">你真的会编程吗
+          <h2 class="post-title" itemprop="name headline">去目的地最少中转方案怎么算?
               
             
           </h2>
@@ -365,7 +368,7 @@
                 
               
 
-              <time title="创建时间：2018-07-30 22:49:31" itemprop="dateCreated datePublished" datetime="2018-07-30T22:49:31+08:00">2018-07-30</time>
+              <time title="创建时间：2018-09-17 19:53:22" itemprop="dateCreated datePublished" datetime="2018-09-17T19:53:22+08:00">2018-09-17</time>
             
 
             
@@ -382,7 +385,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-09-25 12:31:14" itemprop="dateModified" datetime="2018-09-25T12:31:14+08:00">2018-09-25</time>
+                <time title="修改时间：2018-09-25 20:26:20" itemprop="dateModified" datetime="2018-09-25T20:26:20+08:00">2018-09-25</time>
               
             
           </span>
@@ -433,26 +436,112 @@
       
 
       
-        <p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2018/07/30/cover.jpg?raw=true" alt="cover"></p>
-<p>当今是一个互联网时代，很多人为了赶上时代的步伐，开始自学编程。其数量之多，夸张到让人不禁感叹“这真是一个全民编程的时代”。</p>
-<p>如果你到大街上，随便找几个人问问“你是否会编程”，他们大多数都会回答“我会，我会xx语言、xx语言”等。他们可以很快地给你写出一个“Hello World”或是对数据简单的处理程序。</p>
-<p>但是，他们真的会编程吗？你试试让他们编一个链表、或是一些排序、查找算法，他们或许会变得力不从心了。</p>
-<p>当下，大多数人对编程的理解便是这样：将编程的学习简化为语言的学习，将掌握语言与掌握编程对等。这种拘泥于语言形式的编程学习，在短时间内确实可以提高个人的编程水平，但从长期来看，容易遇到个人思维的瓶颈。</p>
-<p>在我看来，编程并不应该只局限于某一种或是某几种语言的具体形式，而更应该关注逻辑思维的培养。逻辑思维，说得简单一点，其实就是一种思考问题和解决问题的一些套路。如果你掌握了这些套路，并能够将他们组合应用，那么我恭喜你，你已经比大多数人强了。这些套路，在编程中，我们给了它一个比较高端的名字，便是“算法”。</p>
-<p>说到这里，一定有很多同学对算法产生了兴趣。这很棒！接下来的一段时间里，我会以《Grokking Algorithms －An illustrated guide for programmers and other curious people》这本书为参考，给大家分享一些常见的算法原理，以及它对应的实现。</p>
-<p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2018/07/30/book.jpg?raw=true" alt="book"></p>
-<p>看到这儿，你肯定会有个疑问：为什么选择这本书呢？</p>
-<p>当今市面上有很多算法书，但是它们的侧重点不尽相同。</p>
-<p>比如，《算法导论》这本书比较侧重严谨性和全面性，说白了就是会劝退一些新手和小白。</p>
-<p>又如，《算法设计与分析基础》这本书侧重于课堂教学，是一本不错的算法入门教材。但是，课堂教学书籍却免不了会对一些问题和知识进行一些留白。为了鼓励学生自行探索研究，这样的教材编写目的的初衷是好的，但是没有对应的老师进行答疑，这对于一些没有解决相关问题经验或者缺少前置知识的人会很头疼。我想，如果是你，你也不会希望利用自己宝贵的“碎片化”时间来和这种书较劲。</p>
-<p>除此以外，还有一些算法书，专注于一些竞赛，主要涉及一些竞赛技巧。这对于竞赛来说，是一剂速成药水；但对于长远的逻辑思维培养来说，会使自己的知识体系不够全面，思维逻辑存在漏洞。</p>
-<p>我所推荐的这本书，即《Grokking Algorithms －An illustrated guide for programmers and other curious people》，在文字方面，没有使用过多的专业术语，而是结合大量的实际例子来引出并解释算法的原理。就我个人而言，读起来很轻松。轻松的阅读体验仅仅依靠文字可不够，因而作者在本书中，利用手绘的方式绘制了大量的算法原理图。我想，在你阅读这本书，绞尽脑汁理解算法原理的时候，突然蹦出一个手绘原理图，想必会扑哧一笑吧。:)</p>
-<p>这本书除了有趣，易于阅读，在内容安排上也非常用心。</p>
-<p>在第一章，作者会做一个简单的引入，解释一下有关算法的一些基础概念。（比如对算法含义的描述、用于评价算法效率的大O理论解释等）</p>
-<p>随后会介绍一些基础的数据结构（数组、链表等）、常见的排序算法（选择排序、快速排序等）、查找算法（二分查找、哈希查找等）、递归编程思想。</p>
-<p>在这些基础数据结构和算法之后，会有一些更复杂一点的数据结构（图等）、配套的算法（宽度优先搜索、Dijkstra’s 算法等）和它的经典应用。</p>
-<p>最后本书会进一步深入，介绍一些有趣并且有用的算法（贪婪算法、动态编程【Dynamic programming】、K-近邻算法、并行算法、SHA算法等）</p>
-<p>各位同学们，准备好了吗？准备好了的话，请关注，点赞，时刻关注我的更新。:)</p>
+        <p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2018/09/17/cover.jpg?raw=true" alt="cover"></p>
+<p>当今时代，随着交通越来越发达，我们更加愿意选择公共交通出行。然而在去往目的地的时，公共交通有时并不能直达，需要中转。中转有时候会非常浪费时间，因而我们希望在去往目的地的过程中，中转的次数越少越好。以往，我们需要自己记忆繁杂的交通网络人为判断；而现在，我们可以很方便地从手机中的地图app中获取最少中转的方案。你有没有想过，这些最少中转方案是怎么生成的呢？</p>
+<p>面对这个问题感觉无从下手？那我们一起来看看地图导航app中是如何简化这个问题的。</p>
+<p>地图上，我们自己的位置和目的地的位置被简化为两个不同的点，各个公共交通站台也被简化成一个个点；一条条线连接着不同的点，这意味着这两点可以通过一种公共交通直达。这种由点和线连接起来的结构，在数据结构中叫做“图”。其中的点叫做“顶点”（ $Vertex$ ），线则叫做“边”（ $Edge$ ）。</p>
+<p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2018/09/17/%E5%9B%BE%E7%BB%93%E6%9E%84%E4%B8%BE%E4%BE%8B.png?raw=true" alt="图的结构距离"></p>
+<p>有了“图”这种结构，我们就可以构建出一个简易的交通网络。以此为基础，让我们回到文章开始提出的问题：如何利用这样的信息来寻找最少中转方案呢？</p>
+<p>在了解这个算法之前，我们先来了解一下图这个数据结构中的“邻居”的概念。</p>
+<p>比如上图中，假设你在 $C$ 点，那么 $A$ 、 $B$ 、 $E$  是与你直接相连的，这些顶点也叫做 $C$  的“邻居”（ $Neighbour$ ）。</p>
+<p>利用“邻居”的概念，该算法可以描述如下：</p>
+<p>计算机会先寻找你周围的“邻居”，检查这些地点是否是你的目的地。如果是，那么就可以返回结果了；如果不是，那么再依次检查你“邻居”的“邻居”···依次类推，直到找到目的地。</p>
+<p>从“邻居”到其自身“邻居”依次遍历，保证自己的位置到目的地是一条可行的通路；按照距离你位置由近到远的“邻居”为顺序依次检查，保证了路径是最短中转。因此，这个算法是有效的。</p>
+<p>上述求最少中转方案的算法，其实是图算法中一种遍历算法的具体应用。这种遍历图的算法称作“宽度优先搜索”（ $Breadth-First Search$ ）。它从一个点出发，先遍历起点周围的未被访问过的“邻居”顶点，再遍历“邻居”顶点的未被访问过的“邻居”顶点···依次类推，直到所有能够被访问到的顶点（也就是该点与起点之间存在一条路径）都被访问过。如果在此过程中，还有未被访问的顶点，那么重新选择一个未被访问的顶点作为新起点，并重复上述操作。</p>
+<p>那么这个算法如何实现呢？</p>
+<p>在此之前，我们要考虑如何利用编程语言来描述图这种结构。</p>
+<p>图在计算机中的存储结构通常有三个，分别是数组表示法(有时候也叫邻接矩阵表示法)、邻接表表示法、十字链表表示法。限于篇幅。我这里只讨论前两种，第三种大家自己找相关书籍阅读吧。 :)</p>
+<p>从“数组表示法”的命名，我们很自然地想到利用数组来存储顶点信息；从“邻接矩阵表示法”的命名，我们也可以很自然的想到这种方式是利用矩阵来存储顶点与顶点之间的关联。</p>
+<p>假设图中有 $N$ 个顶点，那么建立一个大小为 $N$ 的数组存储顶点信息；接下来再创建一个大小为 $N × N$ 的矩阵存储顶点之间的联系。假设存储在顶点数组下标为 $i$ 和 $j$ 的两个顶点直接相连，如果这种相连关系是单向的（比如从 $i$ 到 $j$ ），那么矩阵 $( i, j )$ 位置存储 1 （表示它们是相邻的，而 0 自然是表示它们不相邻）；如果这种相连关系是双向的，那么矩阵 $( j, i )$ 位置上的值也得是 1 。</p>
+<p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2018/09/17/%E5%9B%BE%E7%BB%93%E6%9E%84%E4%B8%BE%E4%BE%8B.png?raw=true" alt="图的结构距离"></p>
+<p>把我们上面用于举例的图的结构拿过来，我们发现顶点之间的联系是双向的。换句话说，方向在这种图中，是没有意义的。这样顶点双向联系的图叫做“无向图”。依据这点分析，顶点单向联系的图便叫做“有向图”。</p>
+<p>面对这个无向图，我们可以很容易得到它的顶点数组和其邻接矩阵。具体如下：</p>
+<p>顶点数组：$\{A，B，C，D，E\}$</p>
+<p>邻接矩阵：</p>
+<script type="math/tex; mode=display">
+\left[\begin{array}{ccc}
+0 & 0 & 1 & 0 & 0\\
+0 & 0 & 1 & 1 & 0\\
+1 & 1 & 0 & 0 & 1\\
+0 & 1 & 0 & 0 & 1\\
+0 & 0 & 1 & 1 & 0\\
+\end{array}
+\right]</script><p>对应的表格如下：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">·</th>
+<th style="text-align:center">A</th>
+<th style="text-align:center">B</th>
+<th style="text-align:center">C</th>
+<th style="text-align:center">D</th>
+<th style="text-align:center">E</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">A</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+</tr>
+<tr>
+<td style="text-align:center">B</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0</td>
+</tr>
+<tr>
+<td style="text-align:center">C</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">D</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">E</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>仔细观察，我们发现，无向图的邻接矩阵是以主对角线对称的。根据这点特性，对于无向图，我们可以只存储一个上三角区域（或者是下三角区域）来节省存储空间。</p>
+<p>上述图的存储方式十分简单，但是如果图中的边非常少，那么邻接矩阵中大部分存储的都是零，造成了极大的空间浪费。怎么解决这个问题呢？</p>
+<p>邻接表的存储方式就是来解决这一问题的。邻接表的存储结构有点像我们之前介绍过的数组链表的混合结构。每个链表的表头存储顶点信息，这些链表构成一个链表数组。每个链表表头后续的链表元素存储与表头所存顶点直接相连顶点在链表数组中的下标。</p>
+<p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2018/09/17/%E5%9B%BE%E7%BB%93%E6%9E%84%E4%B8%BE%E4%BE%8B.png?raw=true" alt="图的结构距离"></p>
+<p>那么上图就可以利用邻接表表示为 </p>
+<p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2018/09/17/%E9%82%BB%E6%8E%A5%E8%A1%A8%E5%AD%98%E5%82%A8%E4%B8%BE%E4%BE%8B.png?raw=true" alt="邻接表存储举例"></p>
+<p>我们对比两者图的存储结构，可以发现，邻接表可以很快获取一个顶点的“邻居”顶点。因而，对于求最短路径算法，我们选择邻接表存储图的信息。</p>
+<p>为了图中的顶点能够按照宽度优先搜索时的顺序遍历，我们这里还要利用另一个叫做“队列”数据结构。“队列”，和生活中的排队十分相似，数据在队列中“先进先出”【 $FIFO$ 】（与之相反，数据在栈中“先进后出”【 $FILO$ 】）。队列只支持两种操作，一种为 $EnQueue$ （入队，将元素加入队尾），另一种为 $DeQueue$ （出队，从队首移除元素，并返回该元素的值）。</p>
+<p>从起点开始，依次将其“邻居”顶点加入队列；在遍历“邻居”顶点时，先将该顶点出队，再将“邻居”顶点的“邻居”顶点依次入队···直到找到目的地顶点。如果这个过程结束后，队列为空，那么已知的图上不存在相关路径。</p>
+<p>好了，今天就到这里。算法的实现留给大家思考。也许，我之后会补上一篇文章介绍该算法的实现。</p>
+<p>最后是本文的总结：</p>
+<ol>
+<li><strong>利用图这种数据结构可以很全面地描述多个点之间相互关联的信息（比如地图）。</strong></li>
+<li><strong>利用图的广度优先搜索，我们可以遍历图中的每一个顶点、判断一个顶点到另一个顶点是否存在路径、计算乘坐公交去目的地的最少中转方案等问题。</strong></li>
+<li><strong>图的存储结构有三种，分别是邻接矩阵表示法、邻接表表示法、十字链表表示法。</strong></li>
+<li><strong>广度优先搜索中利用到“队列”的数据结构。</strong></li>
+<li><strong>数据在队列中“先进先出”【 $FIFO$ 】。队列只支持两种操作，一种为 $EnQueue$  （入队，将元素加入队尾），另一种为 $DeQueue$（出队，从队首移除元素，并返回该元素的值）</strong></li>
+<li><strong>对比第5点，数据在栈中“先进后出”【 $FILO$ 】</strong></li>
+</ol>
 
       
     </div>
@@ -482,7 +571,7 @@
     <strong>本文作者： </strong>CosmosNing</li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://cosmosning.github.io/2018/07/30/你真的会编程吗/" title="你真的会编程吗">https://cosmosning.github.io/2018/07/30/你真的会编程吗/</a>
+    <a href="https://cosmosning.github.io/2018/09/17/去目的地最少中转方案怎么算/" title="去目的地最少中转方案怎么算?">https://cosmosning.github.io/2018/09/17/去目的地最少中转方案怎么算/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！</li>
@@ -510,14 +599,18 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/09/07/高效的数据结构——哈希表/" rel="next" title="高效的数据结构——哈希表">
+                <i class="fa fa-chevron-left"></i> 高效的数据结构——哈希表
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/08/02/算法趣解之二分查找/" rel="prev" title="算法趣解之二分查找">
-                算法趣解之二分查找 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/09/22/去目的地最少中转方案怎么实现/" rel="prev" title="去目的地最少中转方案怎么实现?">
+                去目的地最少中转方案怎么实现? <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -825,7 +918,7 @@
   
     <script type="text/javascript">
       window.livereOptions = {
-        refer: '2018/07/30/你真的会编程吗/'
+        refer: '2018/09/17/去目的地最少中转方案怎么算/'
       };
       (function(d, s) {
         var j, e = d.getElementsByTagName(s)[0];
@@ -865,6 +958,30 @@
   
   
 
+  
+    
+      <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      },
+      TeX: {equationNumbers: { autoNumber: "AMS" }}
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
   
 
 
