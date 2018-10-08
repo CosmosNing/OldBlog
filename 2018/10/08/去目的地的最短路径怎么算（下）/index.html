@@ -118,7 +118,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2018/10/08/cover.jpg?raw=true">
 <meta property="og:image" content="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2018/10/08/graph.png?raw=true">
-<meta property="og:updated_time" content="2018-10-08T16:34:37.576Z">
+<meta property="og:updated_time" content="2018-10-08T16:54:29.595Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="去目的地的最短路径怎么算（下）">
 <meta name="twitter:description" content="Dijkstra 算法的局限性 上一篇文章中，我给你留下一个思考题：  Dijkstra 算法可以处理所有情况下的最短路径问题吗？  你的答案是什么呢？如果是不是，那么恭喜你，你答对了。 那么在什么情况下， Dijkstra 算法不再适用呢？我们一起来看一个具体的例子。  假设有6个人，分别是 A 、B 、C 、D 、E 、F 。他们每个人都有一个十分珍爱的东西，除非用他们自己所认为的等价的东西交">
@@ -382,7 +382,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-10-09 00:34:37" itemprop="dateModified" datetime="2018-10-09T00:34:37+08:00">2018-10-09</time>
+                <time title="修改时间：2018-10-09 00:54:29" itemprop="dateModified" datetime="2018-10-09T00:54:29+08:00">2018-10-09</time>
               
             
           </span>
@@ -451,7 +451,7 @@
 <p>仔细分析题目中抽象出的交换网以及问题，这不就是在求有权图（或者是网）中，从某一点到另一点的最短路径方案嘛，直接用 <em>Dijkstra</em> 算法就能解决！</p>
 <p>我们把这里的网输入交给 <em>Dijkstra</em> 算法计算一下，它的输出又是什么呢？</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 输出结果</span></span><br><span class="line">最短路径：</span><br><span class="line">A-&gt;B-&gt;C-&gt;F</span><br><span class="line">路径长度：</span><br><span class="line"><span class="number">3</span></span><br></pre></td></tr></table></figure>
-<p>惊了！该算法怎么没走含有负数的路径，原本代价可以更小的！那这个算法究竟哪里存在不足呢？仔细分析一下， <em>Dijkstra</em> 算法在寻找最短路径时，是存在一些“短见”的。它考虑最短路径是依据起点到当前点的最短距离加上该点到其邻居节点的距离。依据这个和，找到和最小的邻居结点，并选择这个点作为下一个点。在这种情况下，它并不会考虑到下几个结点的和会出现更小的情况。以上面的例子来说，在到达B时，算法在选择 <em>C</em> 或者 <em>E</em> 作为下一个最短路径的结点时，更倾向于贪心地选择下一个结点代价更小的 <em>C</em> ，而不会选择 下两个结点和会更小的 <em>E</em> 。</p>
+<p>惊了！该算法怎么没走含有负数的路径，原本代价可以更小的！那这个算法究竟哪里存在不足呢？仔细分析一下， <em>Dijkstra</em> 算法在寻找最短路径时，是存在一些“短见”的。它考虑最短路径是依据起点到当前点的最短距离加上该点到其邻居节点的距离。依据这个和，找到和最小的邻居结点，并选择这个点作为下一个点。在这种情况下，它并不会考虑到下几个结点的和会出现更小的情况。以上面的例子来说，在到达B时，算法在选择 <em>C</em> 或者 <em>E</em> 作为下一个最短路径的结点时，更倾向于贪心地选择下一个结点代价更小的 <em>C</em> ，而不会选择下两个结点和会更小的 <em>E</em> 。</p>
 <p>那为什么上次在计算最短路径时， <em>Dijkstra</em> 算法表现的十分出色呢？原来在所有边的权值都为正数时，是不会出现上述情况的。所以 <em>Dijkstra</em> 算法在边权值为负数的时候，可能会出现错误。</p>
 <p>那么还有负数边的图，怎样计算其中的最短路径呢？这就要用到 <em>Floyd</em> 算法。</p>
 <h2 id="Floyd-算法1"><a href="#Floyd-算法1" class="headerlink" title="Floyd 算法1"></a><em>Floyd</em> 算法<sup><a href="#fn_1" id="reffn_1">1</a></sup></h2><p>试想有一个图，它有 <em>N</em> 个顶点，编号从 1 到 N 。我们设 <em>shortestPath(i,  j, k)</em> 为一条最短路径，这条最短路径从 <em>i</em> 出发 到 <em>j</em> 为止，并且中间只经过 <em>{1, 2, ···, k}</em> 这些点。那么图上的最短路径问题即可描述为，对于每一个 <em>i</em> 、 <em>j</em> 对， 寻找它们之间的最短路径，其中间路径只通过  <em>{1, 2, ···, N}</em> ，也就是对每一组 <em>i</em>,  <em>j</em> ,求 <em>shortestPath(i,  j, N)</em>  。</p>
