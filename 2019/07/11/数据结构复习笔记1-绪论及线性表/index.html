@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.4.1" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/avatar-180.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/avatar-32.ico?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/avatar-16.ico?v=6.4.1">
+
+
+  <link rel="mask-icon" href="/images/avatar.svg?v=6.4.1" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.4.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="数据结构1. 数据结构基本概念及简单的算法分析 数据结构的基本概念 数据：数据是信息的载体，是描述客观事物属性的数、字符及所有能输入到计算机中并被计算机程序识别和处理的符号的集合。 数据元素：数据元素是数据的基本单位，通常作为一个整体进行思考和处理。一个数据元素可由若干 数据项 组成，数据项是构成数据元素的不可分割的最小单位。 数据对象：数据对象是具有相同性质的数据元素的集合，是数据的一个子集。">
+<meta name="keywords" content="数据结构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构复习笔记1-绪论及线性表">
+<meta property="og:url" content="https://cosmosning.github.io/2019/07/11/数据结构复习笔记1-绪论及线性表/index.html">
+<meta property="og:site_name" content="CosmosNing的个人博客">
+<meta property="og:description" content="数据结构1. 数据结构基本概念及简单的算法分析 数据结构的基本概念 数据：数据是信息的载体，是描述客观事物属性的数、字符及所有能输入到计算机中并被计算机程序识别和处理的符号的集合。 数据元素：数据元素是数据的基本单位，通常作为一个整体进行思考和处理。一个数据元素可由若干 数据项 组成，数据项是构成数据元素的不可分割的最小单位。 数据对象：数据对象是具有相同性质的数据元素的集合，是数据的一个子集。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/07/11/2.17.png?raw=true">
+<meta property="og:image" content="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/07/11/2.23.png?raw=true">
+<meta property="og:updated_time" content="2019-07-12T05:09:26.182Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数据结构复习笔记1-绪论及线性表">
+<meta name="twitter:description" content="数据结构1. 数据结构基本概念及简单的算法分析 数据结构的基本概念 数据：数据是信息的载体，是描述客观事物属性的数、字符及所有能输入到计算机中并被计算机程序识别和处理的符号的集合。 数据元素：数据元素是数据的基本单位，通常作为一个整体进行思考和处理。一个数据元素可由若干 数据项 组成，数据项是构成数据元素的不可分割的最小单位。 数据对象：数据对象是具有相同性质的数据元素的集合，是数据的一个子集。">
+<meta name="twitter:image" content="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/07/11/2.17.png?raw=true">
+
+
+
+  <link rel="alternate" href="https://node2.feed43.com/cosmosning.xml" title="CosmosNing的个人博客" type="application/atom+xml">
+
+
+
+
+  <link rel="canonical" href="https://cosmosning.github.io/2019/07/11/数据结构复习笔记1-绪论及线性表/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>数据结构复习笔记1-绪论及线性表 | CosmosNing的个人博客</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">CosmosNing的个人博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">探索·好奇</h1>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>归档</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+  
+  
+  
+    
+      
+    
+    <a href="https://github.com/CosmosNing" class="github-corner" target="_blank" title="Follow me on GitHub" aria-label="Follow me on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#222; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg>
+    
+      </a>
+    
+
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://cosmosning.github.io/2019/07/11/数据结构复习笔记1-绪论及线性表/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CosmosNing">
+      <meta itemprop="description" content="编程·学习·生活">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CosmosNing的个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">数据结构复习笔记1-绪论及线性表
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-07-11 23:29:16" itemprop="dateCreated datePublished" datetime="2019-07-11T23:29:16+08:00">2019-07-11</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-07-12 13:09:26" itemprop="dateModified" datetime="2019-07-12T13:09:26+08:00">2019-07-12</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/笔记/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h1><h2 id="1-数据结构基本概念及简单的算法分析"><a href="#1-数据结构基本概念及简单的算法分析" class="headerlink" title="1. 数据结构基本概念及简单的算法分析"></a>1. 数据结构基本概念及简单的算法分析</h2><ol>
+<li>数据结构的基本概念<ol>
+<li>数据：数据是信息的载体，是描述客观事物属性的数、字符及所有能输入到计算机中并被计算机程序识别和处理的符号的集合。</li>
+<li>数据元素：数据元素是数据的基本单位，通常作为一个整体进行思考和处理。一个数据元素可由若干 数据项 组成，数据项是构成数据元素的不可分割的最小单位。</li>
+<li>数据对象：数据对象是具有相同性质的数据元素的集合，是数据的一个子集。</li>
+<li>数据类型：数据类型是一个值的集合和定义在此集合上的一组操作的总称。<ol>
+<li>原子类型。其值不可再分的数据类型。</li>
+<li>结构类型：其值可以再分解为若干成分（分量）的数据类型</li>
+<li>抽象数据类型：抽象数据组织及与之相关的操作。</li>
+</ol>
+</li>
+<li>抽象数据类型：抽象数据类型（ ADT ）是指一个数学模型及定义在该模型上的一组操作。抽象数据类型的定义仅取决于它的一组逻辑特性，而与其其在计算机内部如何表示和实现无关，即不论其内部结构如何变化，只要它的数学特性不变，都不影响其外部使用。通常用 （数据对象，数据关系，基本操作集） 这样的三元组来表示抽象数据类型。</li>
+<li>数据结构：在任何问题中，数据元素都不是孤立存在的，它们之间存在某种关系，这种数据元素相互之间的关系称为 结构 。数据结构 是相互之间存在一种或多种特定关系的数据元素的集合。数据结构包括以下三方面的内容：<ol>
+<li>逻辑结构<ul>
+<li>是指数据元素之间的逻辑关系，即从逻辑关系描述数据。</li>
+<li>与数据的存储无关，是独立于计算机的。</li>
+<li>分为线性结构和非线性结构</li>
+<li>4 种基本结构<ol>
+<li>集合</li>
+<li>线性结构</li>
+<li>树形结构</li>
+<li>图状结构或网状结构</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>存储结构<ul>
+<li>是指数据结构在计算机中的表示（又称映像），也称物理结构。</li>
+<li>包括数据的表示和关系的表示。</li>
+<li>依赖于计算机语言</li>
+<li>4 种存储结构<ol>
+<li>顺序存储</li>
+<li>链式存储</li>
+<li>索引存储</li>
+<li>散列存储</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>数据运算<ul>
+<li>包括定义和实现</li>
+<li>定义：针对逻辑结构，指出运算的功能</li>
+<li>实现：针对存储结构，指出运算的具体操作步骤。</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>算法的定义、特性<ol>
+<li>算法的定义<ul>
+<li>算法是对特定问题求解步骤的一种描述，它是指令的有限序列，其中每条指令表示一个或多个操作。</li>
+</ul>
+</li>
+<li>算法的特性<ol>
+<li>有穷性</li>
+<li>确定性</li>
+<li>可行性</li>
+<li>输入</li>
+<li>输出</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>简单的算法分析：时间复杂度、空间复杂度<ol>
+<li>时间复杂度分析技巧<ul>
+<li>非递归：分析循环次数和问题规模 n 的关系，根据循环条件列出两者的不等式，取解中增长最快的一项作为时间复杂度。</li>
+<li>递归：根据代码中的递推公式，求出通项公式，取增长最快的一项作为时间复杂度。</li>
+</ul>
+</li>
+<li>空间复杂度<ul>
+<li>算法原地工作是指所需的辅助空间为常量（而非不需要），即 O(1) 。</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="线性表"><a href="#线性表" class="headerlink" title="线性表"></a>线性表</h2><p><iframe src="https://carbon.now.sh/embed/?bg=rgba(171%2C%20184%2C%20195%2C%201)&t=seti&wt=none&l=text%2Fx-c%2B%2Bsrc&ds=true&dsyoff=20px&dsblur=68px&wc=true&wa=true&pv=56px&ph=56px&ln=false&fm=Hack&fs=14px&lh=133%25&si=false&es=2x&wm=false&code=%252F%252F%2520%25E7%25AE%2597%25E6%25B3%2595%25202.1%250A%252F%252F%2520%25E5%25B0%2586%25E6%2589%2580%25E6%259C%2589%25E5%259C%25A8%25E7%25BA%25BF%25E6%2580%25A7%25E8%25A1%25A8%2520Lb%2520%25E4%25B8%25AD%25E4%25BD%2586%25E4%25B8%258D%25E5%259C%25A8%2520La%2520%25E4%25B8%25AD%25E7%259A%2584%25E6%2595%25B0%25E6%258D%25AE%25E5%2585%2583%25E7%25B4%25A0%25E6%258F%2592%25E5%2585%25A5%25E5%2588%25B0%2520La%2520%25E4%25B8%25AD%250A%250A%252F*%250A%25E7%25AE%2597%25E6%25B3%2595%25E6%25B5%2581%25E7%25A8%258B%25EF%25BC%259A%250A1.%2520%25E5%2588%2586%25E5%2588%25AB%25E6%25B1%2582%25E7%25BA%25BF%25E6%2580%25A7%25E8%25A1%25A8%25E7%259A%2584%25E9%2595%25BF%25E5%25BA%25A6%250A2.%2520%25E9%2581%258D%25E5%258E%2586%2520Lb%2520%25EF%25BC%258C%25E5%258F%2596%25E5%2587%25BA%25E5%2585%2583%25E7%25B4%25A0%25EF%25BC%258C%25E5%259C%25A8%2520La%2520%25E4%25B8%25AD%25E5%25AF%25BB%25E6%2589%25BE%25E5%258C%25B9%25E9%2585%258D%25E3%2580%2582%25E5%25A6%2582%25E6%259E%259C%25E6%25B2%25A1%25E6%2589%25BE%25E5%2588%25B0%25EF%25BC%258C%25E5%2585%2588%25E5%25B0%2586La%25E9%2595%25BF%25E5%25BA%25A6%25E5%258A%25A0%25E4%25B8%2580%252C%25E7%2584%25B6%25E5%2590%258E%25E6%258F%2592%25E5%2585%25A5%25E5%2588%25B0%2520La%2520%25E6%259C%25AB%25E5%25B0%25BE%250A*%252F%250A%250Avoid%2520Union(List%2520%2526La%252C%2520List%2520Lb)%250A%257B%250A%2520%2520%2520%2520La_Len%2520%253D%2520ListLength(La)%253B%250A%2520%2520%2520%2520Lb_Len%2520%253D%2520ListLength(Lb)%253B%250A%2520%2520%2520%2520for(i%2520%253D%25200%253B%2520i%2520%253C%2520Lb_Len%253B%2520i%252B%252B)%250A%2520%2520%2520%2520%257B%250A%2520%2520%2520%2520%2520%2520%2520%2520GetElem(Lb%252C%2520i%252C%2520e)%253B%250A%2520%2520%2520%2520%2520%2520%2520%2520if(!%2520LocateElem(La%252C%2520e%2520equal)%2520)%250A%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520ListInsert(La%252C%252B%252BLa_Len%252C%2520e)%253B%250A%2520%2520%2520%2520%257D%250A%257D" sandbox="allow-scripts allow-same-origin"></iframe></p>
+
+
+
+<p><iframe src="https://carbon.now.sh/embed/?bg=rgba(171%2C184%2C195%2C100)&t=seti&wt=none&l=text%2Fx-csrc&ds=true&dsyoff=20px&dsblur=68px&wc=true&wa=true&pv=48px&ph=32px&ln=false&fm=Hack&fs=13px&lh=133%25&si=false&es=2x&wm=false&code=%252F%252F%2520%25E7%25AE%2597%25E6%25B3%2595%25202.2%250A%252F%252F%2520%25E5%25B7%25B2%25E7%259F%25A5%25E7%25BA%25BF%25E6%2580%25A7%25E8%25A1%25A8%2520La%2520%25E5%2592%258C%2520Lb%2520%25E4%25B8%25AD%25E7%259A%2584%25E6%2595%25B0%25E6%258D%25AE%25E5%2585%2583%25E7%25B4%25A0%25E6%258C%2589%25E5%2580%25BC%25E9%259D%259E%25E9%2580%2592%25E5%2587%258F%25E6%258E%2592%25E5%2588%2597%250A%252F%252F%2520%25E5%25BD%2592%25E5%25B9%25B6%2520La%2520%25E5%2592%258C%2520Lb%2520%25E5%25BE%2597%25E5%2588%25B0%25E6%2596%25B0%25E7%259A%2584%25E7%25BA%25BF%25E6%2580%25A7%25E8%25A1%25A8%2520Lc%2520%25EF%25BC%258CLc%2520%25E7%259A%2584%25E6%2595%25B0%25E6%258D%25AE%25E5%2585%2583%25E7%25B4%25A0%25E4%25B9%259F%25E6%258C%2589%25E5%2580%25BC%25E9%259D%259E%25E9%2580%2592%25E5%2587%258F%25E6%258E%2592%25E5%2588%2597%250A%250A%252F*%250A%25E7%25AE%2597%25E6%25B3%2595%25E6%25B5%2581%25E7%25A8%258B%25EF%25BC%259A%250A1.%2520%25E5%2588%259D%25E5%25A7%258B%25E5%258C%2596%2520Lc%250A2.%2520%25E8%258E%25B7%25E5%258F%2596%2520La%2520%25E5%2592%258C%2520Lb%2520%25E7%259A%2584%25E9%2595%25BF%25E5%25BA%25A6%250A3.%2520%25E8%25AE%25BE%25E7%25BD%25AE%25E5%25BE%25AA%25E7%258E%25AF%25E5%258F%2598%25E9%2587%258F%2520i%25EF%25BC%2588La%25EF%25BC%2589%25E3%2580%2581j%25EF%25BC%2588Lb%25EF%25BC%2589%25E3%2580%2581k%25EF%25BC%2588Lc%25EF%25BC%2589%250A4.%2520%25E5%25BE%25AA%25E7%258E%25AF%25EF%25BC%2588while%25EF%25BC%2589%25E6%25AF%2594%25E8%25BE%2583%2520La%2520%25E5%2592%258C%2520Lb%2520%25E6%2595%25B0%25E6%258D%25AE%25E5%2585%2583%25E7%25B4%25A0%25E7%259A%2584%25E5%25A4%25A7%25E5%25B0%258F%25EF%25BC%258C%25E9%2580%2589%25E6%258B%25A9%25E5%25B0%258F%25E7%259A%2584%25E6%258F%2592%25E5%2585%25A5Lc%25EF%25BC%258C%25E5%25BE%25AA%25E7%258E%25AF%25E5%258F%2598%25E9%2587%258F%25E5%25AF%25B9%25E5%25BA%2594%25E5%25A2%259E%25E5%258A%25A0%250A5.%2520%25E9%2581%258D%25E5%258E%2586%2520La%2520%25E7%259A%2584%25E5%2589%25A9%25E4%25BD%2599%25E5%2585%2583%25E7%25B4%25A0%25EF%25BC%258C%25E6%258F%2592%25E5%2585%25A5%25E5%2588%25B0%2520Lc%2520%25E4%25B8%25AD%250A6.%2520%25E9%2581%258D%25E5%258E%2586%2520Lb%2520%25E7%259A%2584%25E5%2589%25A9%25E4%25BD%2599%25E5%2585%2583%25E7%25B4%25A0%25EF%25BC%258C%25E6%258F%2592%25E5%2585%25A5%25E5%2588%25B0%2520Lc%2520%25E4%25B8%25AD%250AP.S.%25205%25E3%2580%25816%2520%25E5%258F%25AA%25E5%258F%25AF%25E8%2583%25BD%25E6%2589%25A7%25E8%25A1%258C%25E5%2585%25B6%25E4%25B8%25AD%25E4%25B8%2580%25E4%25B8%25AA%25E3%2580%2582%250A*%252F%250A%250Avoid%2520MergeList(List%2520La%252C%2520List%2520Lb%252C%2520List%2520%2526%2520Lc)%250A%257B%250A%2520%2520%2520%2520InitList(Lc)%253B%250A%2520%2520%2520%2520La_Len%2520%253D%2520ListLength(La)%253B%250A%2520%2520%2520%2520Lb_Len%2520%253D%2520ListLength(Lb)%253B%250A%2520%2520%2520%2520%250A%2520%2520%2520%2520i%2520%253D%25201%253B%250A%2520%2520%2520%2520j%2520%253D%25201%253B%250A%2520%2520%2520%2520k%2520%253D%25200%253B%250A%2520%2520%2520%2520%250A%2520%2520%2520%2520while(i%2520%253C%253D%2520La_Len%2520%2526%2526%2520j%2520%253C%253D%2520Lb_Len)%250A%2520%2520%2520%2520%257B%250A%2520%2520%2520%2520%2520%2520%2520%2520GetElem(La%252C%2520i%252C%2520a)%253B%250A%2520%2520%2520%2520%2520%2520%2520%2520GetElem(Lb%252C%2520j%252C%2520b)%253B%250A%2520%2520%2520%2520%2520%2520%2520%2520%250A%2520%2520%2520%2520%2520%2520%2520%2520if(a%2520%253C%2520b)%250A%2520%2520%2520%2520%2520%2520%2520%2520%257B%250A%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520ListInsert(Lc%252C%2520%252B%252Bk%252C%2520a)%253B%250A%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520i%252B%252B%253B%250A%2520%2520%2520%2520%2520%2520%2520%2520%257D%250A%2520%2520%2520%2520%2520%2520%2520%2520else%250A%2520%2520%2520%2520%2520%2520%2520%2520%257B%250A%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520ListInsert(Lc%252C%2520%252B%252Bk%252C%2520b)%253B%250A%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520j%252B%252B%253B%250A%2520%2520%2520%2520%2520%2520%2520%2520%257D%250A%2520%2520%2520%2520%257D%250A%2520%2520%2520%2520%250A%2520%2520%2520%2520while(i%2520%253C%253D%2520La_Len)%250A%2520%2520%2520%2520%257B%250A%2520%2520%2520%2520%2520%2520%2520%2520GetElem(La%252C%2520i%252C%2520a)%253B%250A%2520%2520%2520%2520%2520%2520%2520%2520ListInsert(Lc%252C%2520%252B%252Bk%252C%2520a)%253B%250A%2520%2520%2520%2520%2520%2520%2520%2520i%252B%252B%253B%250A%2520%2520%2520%2520%257D%250A%2520%2520%2520%2520%250A%2520%2520%2520%2520while(i%2520%253C%253D%2520Lb_Len)%250A%2520%2520%2520%2520%257B%250A%2520%2520%2520%2520%2520%2520%2520%2520GetElem(Lb%252C%2520i%252C%2520b)%253B%250A%2520%2520%2520%2520%2520%2520%2520%2520ListInsert(Lc%252C%2520%252B%252Bk%252C%2520b)%253B%250A%2520%2520%2520%2520%2520%2520%2520%2520j%252B%252B%253B%250A%2520%2520%2520%2520%257D%250A%257D" sandbox="allow-scripts allow-same-origin"></iframe></p>
+
+
+
+<h3 id="1-顺序表和链表的存储与基本操作；"><a href="#1-顺序表和链表的存储与基本操作；" class="headerlink" title="1. 顺序表和链表的存储与基本操作；"></a>1. 顺序表和链表的存储与基本操作；</h3><h4 id="1-顺序表"><a href="#1-顺序表" class="headerlink" title="1. 顺序表"></a>1. 顺序表</h4><p><iframe src="https://carbon.now.sh/embed/?bg=rgba(171%2C184%2C195%2C100)&t=seti&wt=none&l=text%2Fx-csrc&ds=true&dsyoff=20px&dsblur=68px&wc=true&wa=true&pv=48px&ph=32px&ln=false&fm=Hack&fs=13px&lh=133%25&si=false&es=2x&wm=false&code=%252F%252F%2520%25E7%25BA%25BF%25E6%2580%25A7%25E8%25A1%25A8%25E7%259A%2584%2520%25E5%258A%25A8%25E6%2580%2581%25E5%2588%2586%25E9%2585%258D%2520%25E5%25AD%2598%25E5%2582%25A8%25E7%25BB%2593%25E6%259E%2584%25E5%25AE%259A%25E4%25B9%2589%250A%2520%2520%2520%2520%2520%2520%250A%2523define%2520LIST_INIT_SIZE%2520100%250A%2523define%2520LIST_INCREMENT%252010%250Atypedef%2520struct%257B%250A%2520%2520%2520%2520ElemType%2520*%2520elem%253B%250A%2520%2520%2520%2520int%2520length%253B%2520%2520%2520%2520%2520%252F%252F%2520%25E8%258B%25A5%25E6%25B2%25A1%25E6%259C%2589%25EF%25BC%258C%25E5%2588%2599%25E4%25B8%25BA%25E9%259D%2599%25E6%2580%2581%250A%2520%2520%2520%2520int%2520listsize%253B%250A%257DSqList%253B" sandbox="allow-scripts allow-same-origin"></iframe></p>
+
+
+   <p><iframe src="https://carbon.now.sh/embed/?bg=rgba(171%2C184%2C195%2C100)&t=seti&wt=none&l=text%2Fx-csrc&ds=true&dsyoff=20px&dsblur=68px&wc=true&wa=true&pv=48px&ph=32px&ln=false&fm=Hack&fs=13px&lh=133%25&si=false&es=2x&wm=false&code=%252F%252F%2520%25E7%25AE%2597%25E6%25B3%2595%25202.3%250A%252F%252F%2520%25E6%259E%2584%25E9%2580%25A0%25E4%25B8%2580%25E4%25B8%25AA%25E7%25A9%25BA%25E7%259A%2584%25E7%25BA%25BF%25E6%2580%25A7%25E8%25A1%25A8%2520L%250A%2520%2520%2520%2520%2520%2520%250A%252F*%250A%25E7%25AE%2597%25E6%25B3%2595%25E6%25B5%2581%25E7%25A8%258B%25EF%25BC%259A%250A1.%2520%25E7%2594%25B3%25E8%25AF%25B7%25E5%2588%259D%25E5%25A7%258B%25E5%25A4%25A7%25E5%25B0%258F%25E7%259A%2584%25E7%25A9%25BA%25E9%2597%25B4%250A2.%2520%25E5%2588%25A4%25E6%2596%25AD%25E6%2598%25AF%25E5%2590%25A6%25E7%2594%25B3%25E8%25AF%25B7%25E6%2588%2590%25E5%258A%259F%25E3%2580%2582%25E5%25A6%2582%25E6%259E%259C%25E4%25B8%258D%25E6%2588%2590%25E5%258A%259F%25EF%25BC%258C%25E6%258A%25A5%25E9%2594%2599%25E9%2580%2580%25E5%2587%25BA%25EF%25BC%259B%25E5%2590%25A6%25E5%2588%2599%25EF%25BC%258Clength%25E5%2592%258Clistsize%25E5%2588%2586%25E5%2588%25AB%25E8%25B5%258B%25E4%25BA%2588%25E5%2590%2588%25E7%2590%2586%25E7%259A%2584%25E5%2588%259D%25E5%2580%25BC%25E3%2580%2582%250A*%252F%250A%2520%2520%2520%2520%2520%2520%250AStatus%2520InitList_Sq(SqList%2520%2526%2520L)%250A%257B%250A%2520%2520%2520%2520L.elem%2520%253D%2520(ElemType%2520*)%2520malloc(sizeof(ElemType)%2520*%2520LIST_INIT_SIZE)%253B%250A%2520%2520%2520%2520%2520%2520%250A%2520%2520%2520%2520if(!%2520L.elem%2520)%250A%2520%2520%2520%2520%2520%2520%2520%2520exit(OVERFLOW)%253B%250A%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520%250A%2520%2520%2520%2520L.listsize%2520%253D%2520LIST_INIT_SIZE%253B%250A%2520%2520%2520%2520L.length%2520%253D%25200%253B%250A%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520%250A%2520%2520%2520%2520return%2520OK%253B%250A%257D" sandbox="allow-scripts allow-same-origin">
+</iframe></p>
+
+
+
+<p><iframe src="https://carbon.now.sh/embed/?bg=rgba(171%2C184%2C195%2C100)&t=seti&wt=none&l=text%2Fx-csrc&ds=true&dsyoff=20px&dsblur=68px&wc=true&wa=true&pv=48px&ph=32px&ln=false&fm=Hack&fs=13px&lh=133%25&si=false&es=2x&wm=false&code=%252F%252F%2520%25E7%25AE%2597%25E6%25B3%2595%25202.4%250A%252F%252F%2520%25E5%259C%25A8%25E9%25A1%25BA%25E5%25BA%258F%25E8%25A1%25A8%25E7%25BA%25BF%25E6%2580%25A7%25E8%25A1%25A8%2520L%2520%25E4%25B8%25AD%25E7%25AC%25AC%2520i%2520%25E4%25B8%25AA%2520%25E4%25BD%258D%25E7%25BD%25AE%25E4%25B9%258B%25E5%2589%258D%25E6%258F%2592%25E5%2585%25A5%25E6%2596%25B0%25E7%259A%2584%25E5%2585%2583%25E7%25B4%25A0%2520e%250A%252F%252F%2520i%2520%25E7%259A%2584%25E5%2590%2588%25E6%25B3%2595%25E5%2580%25BC%25E4%25B8%25BA%25201%2520%253C%253D%2520i%2520%253C%253D%2520ListLength(L)%2520%252B%25201%250A%2520%2520%250A%252F*%250A%25E7%25AE%2597%25E6%25B3%2595%25E6%25B5%2581%25E7%25A8%258B%25EF%25BC%259A%250A1.%2520i%2520%25E7%259A%2584%25E9%259D%259E%25E6%25B3%2595%25E6%2580%25A7%25E6%25A3%2580%25E6%259F%25A5%250A2.%2520%25E5%25AD%2598%25E5%2582%25A8%25E7%25A9%25BA%25E9%2597%25B4%25E5%25B7%25B2%25E6%25BB%25A1%25E6%25A3%2580%25E6%259F%25A5%250A3.%2520%25E5%25BE%25AA%25E7%258E%25AF%25E7%25A7%25BB%25E5%258A%25A8%25E5%2585%2583%25E7%25B4%25A0%25EF%25BC%258C%25E5%259C%25A8%25E7%259B%25AE%25E6%25A0%2587%25E4%25BD%258D%25E7%25BD%25AE%25E6%258F%2592%25E5%2585%25A5%25E5%2585%2583%25E7%25B4%25A0%250A4.%2520%25E8%25A1%25A8%25E9%2595%25BF%25E5%258A%25A0%25E4%25B8%2580%250A*%252F%250A%2520%2520%250AStatus%2520ListInsert_Sq(SqList%2520%2526%2520L%252C%2520int%2520i%252C%2520ElemType%2520e)%250A%257B%250A%2520%2520%2520%2520if(i%2520%253C%25201%2520%257C%257C%2520i%2520%253E%2520L.length%2520%252B%25201)%2520%252F%252F%2520i%2520%25E7%259A%2584%25E9%259D%259E%25E6%25B3%2595%25E6%25A3%2580%25E6%259F%25A5%250A%2520%2520%2520%2520%2520%2520%2520%2520return%2520ERROR%253B%250A%2520%2520%2520%2520if(L.length%2520%252B%25201%2520%253E%2520L.listsize)%252F%252F%2520%25E5%25AD%2598%25E5%2582%25A8%25E7%25A9%25BA%25E9%2597%25B4%25E5%25B7%25B2%25E6%25BB%25A1%25E6%25A3%2580%25E6%259F%25A5%250A%2520%2520%2520%2520%257B%250A%2520%2520%2520%2520%2520%2520%2520%2520newbase%2520%253D%2520(ElemType%2520*)realloc(L.elem%252C%2520sizeof(ElemType)%2520*%2520(L.listsize%2520%252B%2520LIST_INCREMENT))%253B%250A%2520%2520%2520%2520%2520%2520%2520%2520%250A%2520%2520%2520%2520%2520%2520%2520%2520if(!%2520newbase%2520)%250A%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520exit(OVERFLOW)%253B%250A%2520%2520%2520%2520%2520%2520%2520%2520%250A%2520%2520%2520%2520%2520%2520%2520%2520L.elem%2520%253D%2520newbase%253B%250A%2520%2520%2520%2520%2520%2520%2520%2520L.listsize%2520%253D%2520L.listsize%2520%252B%2520LIST_INCREMENT%253B%250A%2520%2520%2520%2520%257D%250A%2520%2520%2520%2520%250A%2520%2520%2520%2520q%2520%253D%2520L.elem%2520%252B%2520i%2520-%25201%253B%252F%252F%2520%25E7%25AC%25ACi%25E4%25B8%25AA%25E4%25BD%258D%25E7%25BD%25AE%25E5%2589%258D%25E6%258F%2592%25E5%2585%25A5%250A%2520%2520%2520%2520%250A%2520%2520%2520%2520for(p%2520%253D%2520L.elem%2520%252B%2520L.length%2520-%25201%253B%2520p%2520%253E%253D%2520q%253B%2520p--)%250A%2520%2520%2520%2520%2520%2520%2520%2520*(p%252B1)%2520%253D%2520*p%253B%250A%2520%2520%2520%2520%250A%2520%2520%2520%2520*q%2520%253D%2520e%253B%250A%2520%2520%2520%2520%252B%252B%2520L.length%253B%252F%252F%25E5%258B%25BF%25E5%25BF%2598%25EF%25BC%2581%250A%2520%2520%2520%2520return%2520OK%253B%250A%257D" sandbox="allow-scripts allow-same-origin"></iframe></p>
+
+
+
+
+
+<p><iframe src="https://carbon.now.sh/embed/?bg=rgba(171%2C184%2C195%2C100)&t=seti&wt=none&l=text%2Fx-csrc&ds=true&dsyoff=20px&dsblur=68px&wc=true&wa=true&pv=48px&ph=32px&ln=false&fm=Hack&fs=13px&lh=133%25&si=false&es=2x&wm=false&code=%252F%252F%2520%25E7%25AE%2597%25E6%25B3%2595%25202.5%250A%252F%252F%2520%25E5%259C%25A8%25E9%25A1%25BA%25E5%25BA%258F%25E7%25BA%25BF%25E6%2580%25A7%25E8%25A1%25A8%2520L%2520%25E4%25B8%25AD%25E5%2588%25A0%25E9%2599%25A4%25E7%25AC%25AC%2520i%2520%25E4%25B8%25AA%25E5%2585%2583%25E7%25B4%25A0%25EF%25BC%258C%25E5%25B9%25B6%25E7%2594%25A8%2520e%2520%25E8%25BF%2594%25E5%259B%259E%25E5%2585%25B6%25E5%2580%25BC%250A%252F%252F%2520i%2520%25E7%259A%2584%25E5%2590%2588%25E6%25B3%2595%25E5%2580%25BC%25E4%25B8%25BA%25201%2520%253C%253D%2520i%2520%253C%253D%2520ListLength(L)%250A%250A%252F*%250A%25E7%25AE%2597%25E6%25B3%2595%25E6%25B5%2581%25E7%25A8%258B%25EF%25BC%259A%250A1.%2520i%2520%25E7%259A%2584%25E5%2590%2588%25E6%25B3%2595%25E6%2580%25A7%25E6%25A3%2580%25E6%259F%25A5%250A2.%2520%25E5%258F%2596%25E5%2587%25BA%25E7%25AC%25AC%2520i%2520%25E4%25B8%25AA%25E4%25BD%258D%25E7%25BD%25AE%25E7%259A%2584%25E5%2585%2583%25E7%25B4%25A0%250A3.%2520%25E7%25A7%25BB%25E5%258A%25A8%25E5%2585%2583%25E7%25B4%25A0%250A4.%2520%25E8%25A1%25A8%25E9%2595%25BF%25E5%2587%258F%25E4%25B8%2580%250A*%252F%250AStatus%2520ListDelete_Sq(SqList%2520%2526%2520L%252C%2520int%2520i%252C%2520ElemType%2520%2526%2520e)%250A%257B%250A%2520%2520%2520%2520if(i%2520%253C%25201%2520%257C%257C%2520i%2520%253E%2520L.length)%250A%2520%2520%2520%2520%2520%2520%2520%2520return%2520ERROR%253B%250A%2520%2520%2520%2520%250A%2520%2520%2520%2520q%2520%253D%2520L.elem%2520%252B%2520i%2520-%25201%253B%250A%2520%2520%2520%2520e%2520%253D%2520*q%253B%250A%2520%2520%2520%2520%250A%2520%2520%2520%2520for(p%2520%253D%2520q%253B%2520p%2520%253C%2520p%2520%252B%2520L.length%2520-%25201%253B%2520p%252B%252B)%250A%2520%2520%2520%2520%2520%2520%2520%2520*p%2520%253D%2520*(p%252B1)%253B%250A%2520%2520%2520%2520%250A%2520%2520%2520%2520L.length--%253B%250A%2520%2520%2520%2520%250A%2520%2520%2520%2520return%2520OK%253B%250A%257D" sandbox="allow-scripts allow-same-origin"></iframe></p>
+
+
+
+
+
+<p><iframe src="https://carbon.now.sh/embed/?bg=rgba(171%2C184%2C195%2C100)&t=seti&wt=none&l=text%2Fx-csrc&ds=true&dsyoff=20px&dsblur=68px&wc=true&wa=true&pv=48px&ph=32px&ln=false&fm=Hack&fs=13px&lh=133%25&si=false&es=2x&wm=false&code=%252F%252F%2520%25E7%25AE%2597%25E6%25B3%2595%25202.6%250A%252F%252F%2520%25E5%259C%25A8%25E9%25A1%25BA%25E5%25BA%258F%25E7%25BA%25BF%25E6%2580%25A7%25E8%25A1%25A8%2520L%2520%25E4%25B8%25AD%25E6%259F%25A5%25E6%2589%25BE%25E7%25AC%25AC%25201%2520%25E4%25B8%25AA%25E5%2580%25BC%25E4%25B8%258E%2520e%2520%25E6%25BB%25A1%25E8%25B6%25B3%2520compare()%2520%25E7%259A%2584%25E5%2585%2583%25E7%25B4%25A0%25E7%259A%2584%25E4%25BD%258D%25E5%25BA%258F%250A%252F%252F%2520%25E8%258B%25A5%25E6%2589%25BE%25E5%2588%25B0%25EF%25BC%258C%25E5%2588%2599%25E8%25BF%2594%25E5%259B%259E%25E5%2585%25B6%25E5%259C%25A8%2520L%2520%25E4%25B8%25AD%25E7%259A%2584%25E4%25BD%258D%25E5%25BA%258F%25EF%25BC%258C%25E5%2590%25A6%25E5%2588%2599%25E8%25BF%2594%25E5%259B%259E%25200%250A%250A%252F*%250A%25E7%25AE%2597%25E6%25B3%2595%25E6%25B5%2581%25E7%25A8%258B%25EF%25BC%259A%250A%25E9%2581%258D%25E5%258E%2586L%2520%25E6%25AF%2594%25E8%25BE%2583%25E6%25AF%258F%25E4%25B8%25AA%25E5%2585%2583%25E7%25B4%25A0%25E4%25B8%258Ee%25E7%259A%2584%25E5%25A4%25A7%25E5%25B0%258F%25E5%2585%25B3%25E7%25B3%25BB%25EF%25BC%258C%25E5%25A6%2582%25E6%259E%259C%25E6%25BB%25A1%25E8%25B6%25B3%25EF%25BC%258C%25E5%2588%2599%25E8%25AE%25B0%25E5%25BD%2595%25E4%25B8%258B%25E4%25BD%258D%25E7%25BD%25AE%25EF%25BC%258C%25E7%25BB%2588%25E6%25AD%25A2%25E5%25BE%25AA%25E7%258E%25AF%25EF%25BC%258C%25E8%25BF%2594%25E5%259B%259E%25E7%25AD%2594%25E6%25A1%2588%25E3%2580%2582%250A*%252F%250A%250Aint%2520LocateElem_Sq(SqList%2520L%252C%2520ElemType%2520e%252C%2520Status(*%2520compare)(ElemType%252C%2520ElemType))%250A%257B%250A%2520%2520%2520%2520place%2520%253D%25200%253B%250A%2520%2520%2520%2520%250A%2520%2520%2520%2520for(i%2520%253D%25200%253B%2520i%2520%253C%2520L.length%253B%2520i%252B%252B)%250A%2520%2520%2520%2520%257B%250A%2520%2520%2520%2520%2520%2520%2520%2520if(compare(e%252CL.elem%255Bi%255D))%250A%2520%2520%2520%2520%2520%2520%2520%2520%257B%250A%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520place%2520%253D%2520i%2520%252B%25201%253B%250A%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520break%253B%250A%2520%2520%2520%2520%2520%2520%2520%2520%257D%250A%2520%2520%2520%2520%257D%250A%2520%2520%2520%2520%250A%2520%2520%2520%2520return%2520place%253B%250A%257D" sandbox="allow-scripts allow-same-origin"></iframe></p>
+
+
+
+<p><iframe src="https://carbon.now.sh/embed/?bg=rgba(171%2C184%2C195%2C100)&t=seti&wt=none&l=text%2Fx-csrc&ds=true&dsyoff=20px&dsblur=68px&wc=true&wa=true&pv=48px&ph=32px&ln=false&fm=Hack&fs=13px&lh=133%25&si=false&es=2x&wm=false&code=%252F%252F%2520%25E7%25AE%2597%25E6%25B3%2595%25202.7%250A%252F%252F%2520%25E5%25B7%25B2%25E7%259F%25A5%25E9%25A1%25BA%25E5%25BA%258F%25E7%25BA%25BF%25E6%2580%25A7%25E8%25A1%25A8%2520La%2520%25E5%2592%258C%2520Lb%2520%25E7%259A%2584%25E5%2585%2583%25E7%25B4%25A0%25E6%258C%2589%25E5%2580%25BC%25E9%259D%259E%25E9%2580%2592%25E5%2587%258F%25E6%258E%2592%25E5%2588%2597%250A%252F%252F%2520%25E5%25BD%2592%25E5%25B9%25B6%2520La%2520%25E5%2592%258C%2520Lb%2520%25E5%25BE%2597%25E5%2588%25B0%25E6%2596%25B0%25E7%259A%2584%25E9%25A1%25BA%25E5%25BA%258F%25E7%25BA%25BF%25E6%2580%25A7%25E8%25A1%25A8%2520Lc%2520%25EF%25BC%258CLc%25E7%259A%2584%25E5%2585%2583%25E7%25B4%25A0%25E4%25B9%259F%25E6%258C%2589%25E5%2580%25BC%25E9%259D%259E%25E9%2580%2592%25E5%2587%258F%25E6%258E%2592%25E5%2588%2597%250A%250A%252F*%250A%25E7%25AE%2597%25E6%25B3%2595%25E6%25B5%2581%25E7%25A8%258B%25EF%25BC%259A%250A1.%2520%25E5%2588%259D%25E5%25A7%258B%25E5%258C%2596%2520Lc%25EF%25BC%258C%2520%25E5%258C%2585%25E6%258B%25AC%25E7%2594%25B3%25E8%25AF%25B7%25E7%25A9%25BA%25E9%2597%25B4%25EF%25BC%258C%25E5%2588%259D%25E5%25A7%258B%25E5%258C%2596%2520listsize%2520%25E5%2592%258C%2520length%2520%25E7%259A%2584%25E5%2580%25BC%250A2.%2520%25E8%25AE%25BE%25E7%25BD%25AE%25E5%25BE%25AA%25E7%258E%25AF%25E5%258F%2598%25E9%2587%258F%25EF%25BC%2588%25E6%258C%2587%25E9%2592%2588%25EF%25BC%2589%2520pa%25EF%25BC%258Cpb%25EF%25BC%258Cpc%250A3.%2520while%2520%25E5%25BE%25AA%25E7%258E%25AF%25E6%25AF%2594%25E8%25BE%2583%25EF%25BC%258C%25E6%258F%2592%25E5%2585%25A5%2520Lc%250A4.%2520%25E5%25B0%2586%2520La%2520%25E6%2588%2596%25E8%2580%2585%2520Lb%2520%25E7%259A%2584%25E5%2589%25A9%25E4%25BD%2599%25E9%2583%25A8%25E5%2588%2586%25E6%258F%2592%25E5%2585%25A5%2520Lc%250A*%252F%250Avoid%2520MergeList_Sq(SqList%2520La%252C%2520SqList%2520Lb%252C%2520SqList%2520%2526%2520Lc)%250A%257B%250A%2520%2520%2520%2520Lc.length%2520%253D%2520La.length%2520%252B%2520Lb.length%253B%250A%2520%2520%2520%2520Lc.listsize%2520%253D%2520Lc.length%253B%250A%2520%2520%2520%2520Lc.elem%2520%253D%2520(ElemType%2520*)malloc(sizeof(ElemType)%2520*%2520Lc.listsize)%253B%250A%2520%2520%2520%2520if(!%2520Lc.elem%2520)%250A%2520%2520%2520%2520%2520%2520%2520%2520exit(OVERFLOW)%253B%250A%2520%2520%2520%2520%250A%2520%2520%2520%2520pa%2520%253D%2520La.elem%253B%250A%2520%2520%2520%2520pb%2520%253D%2520Lb.elem%253B%250A%2520%2520%2520%2520pc%2520%253D%2520Lc.elem%253B%250A%2520%2520%2520%2520pa_last%2520%253D%2520La.elem%2520%252B%2520La.length%2520-%25201%253B%250A%2520%2520%2520%2520pb_last%2520%253D%2520Lb.elem%2520%252B%2520Lb.length%2520-%25201%253B%250A%2520%2520%2520%2520%250A%2520%2520%2520%2520while(pa%2520%253C%253D%2520pa_last%2520%2526%2526%2520pb%2520%253C%253D%2520pb_last)%250A%2520%2520%2520%2520%257B%250A%2520%2520%2520%2520%2520%2520%2520%2520if(*pa%2520%253C%2520*pb)%250A%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520*pc%252B%252B%2520%253D%2520*pa%252B%252B%253B%250A%2520%2520%2520%2520%2520%2520%2520%2520else%250A%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520*pc%252B%252B%2520%253D%2520*pb%252B%252B%253B%250A%2520%2520%2520%2520%257D%250A%2520%2520%2520%2520%250A%2520%2520%2520%2520while(pa%2520%253C%253D%2520pa_last)%250A%2520%2520%2520%2520%2520%2520%2520%2520*pc%252B%252B%2520%253D%2520*pa%252B%252B%253B%250A%2520%2520%2520%2520%250A%2520%2520%2520%2520while(pb%2520%253C%253D%2520pb_last)%250A%2520%2520%2520%2520%2520%2520%2520%2520*pc%252B%252B%2520%253D%2520*pb%252B%252B%253B%250A%257D" sandbox="allow-scripts allow-same-origin"></iframe></p>
+
+<h4 id="2-链表"><a href="#2-链表" class="headerlink" title="2. 链表"></a>2. 链表</h4> <p><iframe src="https://carbon.now.sh/embed/?bg=rgba(171%2C184%2C195%2C100)&t=seti&wt=none&l=text%2Fx-csrc&ds=true&dsyoff=20px&dsblur=68px&wc=true&wa=true&pv=48px&ph=32px&ln=false&fm=Hack&fs=13px&lh=133%25&si=false&es=2x&wm=false&code=%252F%252F%2520%25E7%25BA%25BF%25E6%2580%25A7%25E8%25A1%25A8%25E7%259A%2584%25E5%258D%2595%25E9%2593%25BE%25E8%25A1%25A8%25E5%25AD%2598%25E5%2582%25A8%25E7%25BB%2593%25E6%259E%2584%250A%250Atypedef%2520struct%2520LNode%257B%250A%2520%2520%2520%2520ElemType%2520data%253B%250A%2520%2520%2520%2520struct%2520LNode%2520*%2520next%253B%250A%257DLNode%252C%2520*LinkList%253B" sandbox="allow-scripts allow-same-origin"></iframe></p>
+
+
+<p><iframe src="https://carbon.now.sh/embed/?bg=rgba(171%2C184%2C195%2C100)&t=seti&wt=none&l=text%2Fx-csrc&ds=true&dsyoff=20px&dsblur=68px&wc=true&wa=true&pv=48px&ph=32px&ln=false&fm=Hack&fs=13px&lh=133%25&si=false&es=2x&wm=false&code=%252F%252F%2520%25E7%25AE%2597%25E6%25B3%2595%25202.8%250A%252F%252F%2520L%2520%25E4%25B8%25BA%25E5%25B8%25A6%25E5%25A4%25B4%25E8%258A%2582%25E7%2582%25B9%25E7%259A%2584%25E5%258D%2595%25E9%2593%25BE%25E8%25A1%25A8%25E7%259A%2584%25E5%25A4%25B4%25E6%258C%2587%25E9%2592%2588%25E3%2580%2582%250A%252F%252F%2520%25E5%25BD%2593%25E7%25AC%25AC%2520i%2520%25E4%25B8%25AA%25E5%2585%2583%25E7%25B4%25A0%25E5%25AD%2598%25E5%259C%25A8%25E6%2597%25B6%25EF%25BC%258C%25E5%2585%25B6%25E5%2580%25BC%25E8%25B5%258B%25E7%25BB%2599%2520e%2520%25E5%25B9%25B6%25E8%25BF%2594%25E5%259B%259E%2520OK%25EF%25BC%258C%2520%25E5%2590%25A6%25E5%2588%2599%25E8%25BF%2594%25E5%259B%259E%2520ERROR%250A%250A%252F*%250A%25E7%25AE%2597%25E6%25B3%2595%25E6%25B5%2581%25E7%25A8%258B%25EF%25BC%259A%250A1.%2520%25E8%25AE%25BE%25E7%25BD%25AE%25E7%2594%25A8%25E4%25BA%258E%25E8%25AE%25B0%25E5%25BD%2595%25E5%25BE%25AA%25E7%258E%25AF%25E7%258A%25B6%25E6%2580%2581%25E7%259A%2584%25E5%258F%2598%25E9%2587%258F%2520j%2520%25E5%2592%258C%2520%25E6%258C%2587%25E9%2592%2588%2520p%250A2.%2520%25E5%25BE%25AA%25E7%258E%25AF%25EF%25BC%258C%25E6%2589%25BE%25E7%25AC%25AC%2520i%2520%25E4%25B8%25AA%25E5%2585%2583%25E7%25B4%25A0%25E7%259A%2584%25E4%25BD%258D%25E7%25BD%25AE%250A3.%2520%25E5%2587%25BA%25E9%2594%2599%25E6%25A3%2580%25E6%259F%25A5%2520%250A4.%2520%25E5%258F%2596%25E5%2587%25BA%25E5%2580%25BC%25EF%25BC%258C%25E8%25BF%2594%25E5%259B%259E%25E6%2588%2590%25E5%258A%259F%250A*%252F%250A%250AStatus%2520GetElem_L(LinkList%2520L%252C%2520int%2520i%252C%2520ElemType%2520%2526%2520e)%250A%257B%250A%2520%2520%2520%2520p%2520%253D%2520L-%253Enext%253B%250A%2520%2520%2520%2520j%2520%253D%25201%253B%250A%2520%2520%2520%2520while(p%2520%2526%2526%2520j%2520%253C%2520i)%250A%2520%2520%2520%2520%257B%250A%2520%2520%2520%2520%2520%2520%2520%2520p%2520%253D%2520p-%253Enext%253B%250A%2520%2520%2520%2520%2520%2520%2520%2520%252B%252Bj%253B%250A%2520%2520%2520%2520%257D%250A%2520%2520%2520%2520%250A%2520%2520%2520%2520if(!p%2520%257C%257C%2520j%2520%253E%2520i)%252F%252F%25E6%25B3%25A8%25E6%2584%258F%25E9%2594%2599%25E8%25AF%25AF%25E6%259D%25A1%25E4%25BB%25B6%250A%2520%2520%2520%2520%2520%2520%2520%2520return%2520ERROR%253B%250A%2520%2520%2520%2520%250A%2520%2520%2520%2520e%2520%253D%2520p-%253Edata%253B%250A%2520%2520%2520%2520return%2520OK%253B%250A%2520%2520%2520%2520%250A%2520%2520%2520%2520%252F*%250A%2520%2520%2520%2520if(i%2520%253C%253D%25200)%250A%2520%2520%2520%2520%2520%2520%2520%2520return%2520ERROR%253B%250A%2520%2520%2520%2520%250A%2520%2520%2520%2520p%2520%253D%2520L%253B%250A%2520%2520%2520%2520count%2520%253D%25200%253B%250A%2520%2520%2520%2520while(p-%253Enext%2520!%253D%2520NuLL)%250A%2520%2520%2520%2520%257B%250A%2520%2520%2520%2520%2520%2520%2520%2520if(count%2520%253D%253D%2520i)%250A%2520%2520%2520%2520%2520%2520%2520%2520%257B%250A%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520e%2520%253D%2520p-%253Edata%253B%250A%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520return%2520OK%253B%250A%2520%2520%2520%2520%2520%2520%2520%2520%257D%250A%2520%2520%2520%2520%2520%2520%2520%2520count%252B%252B%253B%250A%2520%2520%2520%2520%2520%2520%2520%2520p%2520%253D%2520p-%253Enext%253B%250A%2520%2520%2520%2520%257D%250A%2520%2520%2520%2520%250A%2520%2520%2520%2520return%2520ERROR%253B%250A%2520%2520%2520%2520*%252F%250A%257D" sandbox="allow-scripts allow-same-origin"></iframe></p>
+
+
+<p><iframe src="https://carbon.now.sh/embed/?bg=rgba(171%2C184%2C195%2C100)&t=seti&wt=none&l=text%2Fx-csrc&ds=true&dsyoff=20px&dsblur=68px&wc=true&wa=true&pv=48px&ph=32px&ln=false&fm=Hack&fs=13px&lh=133%25&si=false&es=2x&wm=false&code=%252F%252F%2520%25E7%25AE%2597%25E6%25B3%2595%25202.9%250A%252F%252F%2520%25E5%259C%25A8%25E5%25A4%25B4%25E8%258A%2582%25E7%2582%25B9%25E7%259A%2584%25E5%258D%2595%25E9%2593%25BE%25E7%25BA%25BF%25E6%2580%25A7%25E8%25A1%25A8%2520L%2520%25E4%25B8%25AD%25E7%25AC%25AC%2520i%2520%25E4%25B8%25AA%25E4%25BD%258D%25E7%25BD%25AE%25E4%25B9%258B%25E5%2589%258D%25E6%258F%2592%25E5%2585%25A5%25E5%2585%2583%25E7%25B4%25A0%2520e%250A%250A%252F*%250A%25E7%25AE%2597%25E6%25B3%2595%25E6%25B5%2581%25E7%25A8%258B%25EF%25BC%259A%250A1.%2520%25E8%25AE%25BE%25E7%25BD%25AE%2520j%25EF%25BC%2588%25E5%25BE%25AA%25E7%258E%25AF%25E5%258F%2598%25E9%2587%258F%25EF%25BC%2589%25E3%2580%2581p%25EF%25BC%2588%25E6%258C%2587%25E9%2592%2588%25EF%25BC%2589%250A2.%2520%25E5%25BE%25AA%25E7%258E%25AF%25EF%25BC%258C%25E6%2589%25BE%25E7%25AC%25AC%2520i-1%2520%25E4%25B8%25AA%25E5%2585%2583%25E7%25B4%25A0%25E7%259A%2584%25E4%25BD%258D%25E7%25BD%25AE%250A3.%2520%25E5%2587%25BA%25E9%2594%2599%25E6%25A3%2580%25E6%259F%25A5%2520%250A4.%2520%25E6%258F%2592%25E5%2585%25A5%25E6%2593%258D%25E4%25BD%259C%25EF%25BC%258C%25E8%25BF%2594%25E5%259B%259E%25E6%2588%2590%25E5%258A%259F%250A*%252F%250A%250AStatus%2520ListInsert_L(LinkList%2520%2526%2520L%252C%2520int%2520i%252C%2520ElemType%2520e)%250A%257B%250A%2520%2520%2520%2520j%2520%253D%25200%253B%250A%2520%2520%2520%2520p%2520%253D%2520L%253B%250A%2520%2520%2520%2520%250A%2520%2520%2520%2520while(p%2520%2526%2526%2520j%2520%253C%2520i%2520-%25201)%250A%2520%2520%2520%2520%257B%250A%2520%2520%2520%2520%2520%2520%2520%2520j%252B%252B%253B%250A%2520%2520%2520%2520%2520%2520%2520%2520p%2520%253D%2520p-%253Enext%253B%250A%2520%2520%2520%2520%257D%250A%2520%2520%2520%2520%250A%2520%2520%2520%2520if(!p%2520%257C%257C%2520j%2520%253E%2520i%2520-%25201)%252F%252F%25E6%25B3%25A8%25E6%2584%258F%25E9%2594%2599%25E8%25AF%25AF%25E6%259D%25A1%25E4%25BB%25B6%250A%2520%2520%2520%2520%2520%2520%2520%2520return%2520ERROR%253B%250A%2520%2520%2520%2520%250A%2520%2520%2520%2520s%2520%253D%2520(LNode%2520*)malloc(sizeof(LNode))%253B%250A%2520%2520%2520%2520s-%253Edata%2520%253D%2520e%253B%250A%2520%2520%2520%2520s-%253Enext%2520%253D%2520p-%253Enext%253B%250A%2520%2520%2520%2520p-%253Enext%2520%253D%2520s%253B%250A%2520%2520%2520%2520%250A%2520%2520%2520%2520return%2520OK%253B%250A%257D" sandbox="allow-scripts allow-same-origin"></iframe></p>
+
+
+
+
+<p><iframe src="https://carbon.now.sh/embed/?bg=rgba(171%2C184%2C195%2C100)&t=seti&wt=none&l=text%2Fx-csrc&ds=true&dsyoff=20px&dsblur=68px&wc=true&wa=true&pv=48px&ph=32px&ln=false&fm=Hack&fs=13px&lh=133%25&si=false&es=2x&wm=false&code=%252F%252F%2520%25E7%25AE%2597%25E6%25B3%2595%25202.10%250A%252F%252F%2520%25E5%259C%25A8%25E5%25B8%25A6%25E5%25A4%25B4%25E7%25BB%2593%25E7%2582%25B9%25E7%259A%2584%25E5%258D%2595%25E9%2593%25BE%25E7%25BA%25BF%25E6%2580%25A7%25E8%25A1%25A8%2520L%2520%25E4%25B8%25AD%25EF%25BC%258C%2520%25E5%2588%25A0%25E9%2599%25A4%25E7%25AC%25AC%2520i%2520%25E4%25B8%25AA%25E5%2585%2583%25E7%25B4%25A0%25EF%25BC%258C%25E5%25B9%25B6%25E7%2594%25B1%2520e%2520%25E8%25BF%2594%25E5%259B%259E%25E5%2585%25B6%25E5%2580%25BC%250A%250A%252F*%250A%25E7%25AE%2597%25E6%25B3%2595%25E6%25B5%2581%25E7%25A8%258B%25EF%25BC%259A%250A1.%2520%25E8%25AE%25BE%25E7%25BD%25AE%2520j%25EF%25BC%2588%25E5%25BE%25AA%25E7%258E%25AF%25E5%258F%2598%25E9%2587%258F%25EF%25BC%2589%25E3%2580%2581p%25EF%25BC%2588%25E6%258C%2587%25E9%2592%2588%25EF%25BC%2589%250A2.%2520%25E5%25BE%25AA%25E7%258E%25AF%25EF%25BC%258C%25E6%2589%25BE%25E7%25AC%25AC%2520i-1%2520%25E4%25B8%25AA%25E5%2585%2583%25E7%25B4%25A0%25E7%259A%2584%25E4%25BD%258D%25E7%25BD%25AE%250A3.%2520%25E5%2587%25BA%25E9%2594%2599%25E6%25A3%2580%25E6%259F%25A5%2520%250A4.%2520%25E5%2588%25A0%25E9%2599%25A4%25E6%2593%258D%25E4%25BD%259C%25EF%25BC%258C%25E8%25BF%2594%25E5%259B%259E%25E6%2588%2590%25E5%258A%259F%250A*%252F%250A%250AStatus%2520ListDelete_L(LinkList%2520%2526%2520L%252C%2520int%2520i%252C%2520ElemType%2520%2526%2520e)%250A%257B%250A%2520%2520%2520%2520p%2520%253D%2520L%253B%250A%2520%2520%2520%2520j%2520%253D%25200%253B%250A%2520%2520%2520%2520%250A%2520%2520%2520%2520while(p%2520%2526%2526%2520j%2520%253C%2520i-1)%250A%2520%2520%2520%2520%257B%250A%2520%2520%2520%2520%2520%2520%2520%2520%252B%252Bj%253B%250A%2520%2520%2520%2520%2520%2520%2520%2520p%2520%253D%2520p-%253Enext%253B%250A%2520%2520%2520%2520%257D%250A%2520%2520%2520%2520%250A%2520%2520%2520%2520if(!p%2520%2526%2526%2520j%2520%253E%2520i-1)%250A%2520%2520%2520%2520%2520%2520%2520%2520return%2520ERROR%253B%250A%2520%2520%2520%2520%250A%2520%2520%2520%2520s%2520%253D%2520p-%253Enext%253B%250A%2520%2520%2520%2520e%2520%253D%2520s-%253Edata%253B%250A%2520%2520%2520%2520p-%253Enext%2520%253D%2520s-%253Enext%253B%250A%2520%2520%2520%2520free(s)%253B%250A%2520%2520%2520%2520return%2520OK%253B%250A%257D" sandbox="allow-scripts allow-same-origin"></iframe></p>
+
+
+
+<p><iframe src="https://carbon.now.sh/embed/?bg=rgba(171%2C184%2C195%2C100)&t=seti&wt=none&l=text%2Fx-csrc&ds=true&dsyoff=20px&dsblur=68px&wc=true&wa=true&pv=48px&ph=32px&ln=false&fm=Hack&fs=13px&lh=133%25&si=false&es=2x&wm=false&code=%252F%252F%2520%25E7%25AE%2597%25E6%25B3%2595%25202.11%250A%252F%252F%2520%25E9%2580%2586%25E4%25BD%258D%25E5%25BA%258F%25E8%25BE%2593%25E5%2585%25A5%2520n%2520%25E4%25B8%25AA%25E5%2585%2583%25E7%25B4%25A0%25E7%259A%2584%25E5%2580%25BC%25EF%25BC%258C%25E5%25BB%25BA%25E7%25AB%258B%25E5%25B8%25A6%25E8%25A1%25A8%25E5%25A4%25B4%25E7%25BB%2593%25E7%2582%25B9%25E7%259A%2584%25E5%258D%2595%25E9%2593%25BE%25E7%25BA%25BF%25E6%2580%25A7%25E8%25A1%25A8%2520L%250A%250A%252F*%250A%25E7%25AE%2597%25E6%25B3%2595%25E6%25B5%2581%25E7%25A8%258B%25EF%25BC%259A%250A1.%2520%25E7%2594%25B3%25E8%25AF%25B7%25E5%25A4%25B4%25E8%258A%2582%25E7%2582%25B9%2520L%25EF%25BC%258C%25E5%25B9%25B6%25E5%2588%259D%25E5%25A7%258B%25E5%258C%2596%2520L-%253Enext%2520%25E4%25B8%25BA%2520NULL%250A2.%2520%25E5%25BE%25AA%25E7%258E%25AF%25EF%25BC%259A%25E7%2594%25B3%25E8%25AF%25B7%25E6%2596%25B0%25E8%258A%2582%25E7%2582%25B9%25EF%25BC%258C%25E8%25B5%258B%25E5%2580%25BC%25EF%25BC%258C%25E6%258F%2592%25E5%2585%25A5%25E5%2588%25B0%2520L%2520%25E7%259A%2584%25E5%25A4%25B4%25E9%2583%25A8%250A*%252F%250A%250Avoid%2520CreateList_L(LinkeList%2520%2526%2520L%252C%2520int%2520n)%250A%257B%250A%2520%2520%2520%2520L%2520%253D%2520(LinkList)malloc(sizeof(LNode))%253B%250A%2520%2520%2520%2520L-%253Enext%2520%253D%2520NULL%253B%250A%2520%2520%2520%2520%250A%2520%2520%2520%2520while(n--)%250A%2520%2520%2520%2520%257B%250A%2520%2520%2520%2520%2520%2520%2520%2520s%2520%253D%2520(LinkList)malloc(sizeof(LNode))%253B%250A%2520%2520%2520%2520%2520%2520%2520%2520scanf(%2526%2520s-%253Edata)%253B%250A%2520%2520%2520%2520%2520%2520%2520%2520%250A%2520%2520%2520%2520%2520%2520%2520%2520s-%253Enext%2520%253D%2520L-%253Enext%253B%250A%2520%2520%2520%2520%2520%2520%2520%2520L-%253Enext%2520%253D%2520s%253B%250A%2520%2520%2520%2520%257D%250A%257D" sandbox="allow-scripts allow-same-origin"></iframe></p>
+
+
+
+
+ <p><iframe src="https://carbon.now.sh/embed/?bg=rgba(171%2C184%2C195%2C100)&t=seti&wt=none&l=text%2Fx-csrc&ds=true&dsyoff=20px&dsblur=68px&wc=true&wa=true&pv=48px&ph=32px&ln=false&fm=Hack&fs=13px&lh=133%25&si=false&es=2x&wm=false&code=%252F%252F%2520%25E7%25AE%2597%25E6%25B3%2595%25202.12%250A%252F%252F%2520%25E5%25B7%25B2%25E7%259F%25A5%25E5%258D%2595%25E9%2593%25BE%25E7%25BA%25BF%25E6%2580%25A7%25E8%25A1%25A8%2520La%2520%25E5%2592%258C%2520Lb%2520%25E7%259A%2584%25E5%2585%2583%25E7%25B4%25A0%25E6%258C%2589%25E5%2580%25BC%25E9%259D%259E%25E9%2580%2592%25E5%2587%258F%25E6%258E%2592%25E5%2588%2597%250A%252F%252F%2520%25E5%25BD%2592%25E5%25B9%25B6%2520La%2520%25E5%2592%258C%2520Lb%2520%25E5%25BE%2597%25E5%2588%25B0%25E6%2596%25B0%25E7%259A%2584%25E5%258D%2595%25E9%2593%25BE%25E7%25BA%25BF%25E6%2580%25A7%25E8%25A1%25A8%2520Lc%2520%25EF%25BC%258CLc%2520%25E7%259A%2584%25E5%2585%2583%25E7%25B4%25A0%25E4%25B9%259F%25E6%258C%2589%25E5%2580%25BC%25E9%259D%259E%25E9%2580%2592%25E5%2587%258F%25E6%258E%2592%25E5%2588%2597%250A%250A%252F*%250A%25E7%25AE%2597%25E6%25B3%2595%25E6%25B5%2581%25E7%25A8%258B%25EF%25BC%259A%250A%25EF%25BC%2588%25E7%25B1%25BB%25E4%25BC%25BC%2520%25E7%25AE%2597%25E6%25B3%2595%25202.7%25EF%25BC%2589%250A*%252F%250A%250Avoid%2520MergeList_L(LinkeList%2520%2526%2520La%252C%2520LinkList%2520%2526%2520Lb%252C%2520LinkList%2520%2526%2520Lc)%250A%257B%250A%2520%2520%2520%2520pa%2520%253D%2520La-%253Enext%253B%250A%2520%2520%2520%2520pb%2520%253D%2520Lb-%253Enext%253B%250A%2520%2520%2520%2520Lc%2520%253D%2520pc%2520%253D%2520La%253B%252F%252F%2520%25E7%2594%25A8%2520La%2520%25E5%2581%259A%2520Lc%2520%25E7%259A%2584%25E5%25A4%25B4%25E8%258A%2582%25E7%2582%25B9%250A%2520%2520%2520%2520%250A%2520%2520%2520%2520while(pa%2520%2526%2526%2520pb)%250A%2520%2520%2520%2520%257B%250A%2520%2520%2520%2520%2520%2520%2520%2520if(pa-%253Edata%2520%253C%2520pb-%253Edata)%250A%2520%2520%2520%2520%2520%2520%2520%2520%257B%250A%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520%252F%252F%2520%25E4%25B8%258D%25E9%259C%2580%25E8%25A6%2581%25E7%2594%25B3%25E8%25AF%25B7%25E9%25A2%259D%25E5%25A4%2596%25E7%25A9%25BA%25E9%2597%25B4%250A%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520pc-%253Enext%2520%253D%2520pa%253B%252F%252F%2520%25E4%25B9%258B%25E9%2597%25B4%25E5%25B0%2586%25E7%25BB%2593%25E7%2582%25B9%25E8%25BF%259E%25E6%258E%25A5%25E5%2588%25B0%2520Lc%2520%25E5%25AF%25B9%25E5%25BA%2594%25E7%259A%2584%25E4%25BD%258D%25E7%25BD%25AE%250A%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520%250A%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520%252F%252F%25E6%2594%25B9%25E5%258F%2598%25E4%25BD%258D%25E7%25BD%25AE%25E6%258C%2587%25E9%2592%2588%250A%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520pc%2520%253D%2520pa%250A%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520pa%2520%253D%2520pa-%253Enext%253B%250A%2520%2520%2520%2520%2520%2520%2520%2520%257D%250A%2520%2520%2520%2520%2520%2520%2520%2520else%250A%2520%2520%2520%2520%2520%2520%2520%2520%257B%250A%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520pc-%253Enext%2520%253D%2520pb%253B%250A%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520%250A%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520pc%2520%253D%2520pb%253B%250A%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520pb%2520%253D%2520pb-%253Enext%253B%250A%2520%2520%2520%2520%2520%2520%2520%2520%257D%250A%2520%2520%2520%2520%257D%250A%2520%2520%2520%2520%250A%2520%2520%2520%2520if(pa)%250A%2520%2520%2520%2520%2520%2520%2520%2520pc-%253Enext%2520%253D%2520pa%253B%250A%2520%2520%2520%2520else%250A%2520%2520%2520%2520%2520%2520%2520%2520pc-%253Enext%2520%253D%2520pb%253B%250A%2520%2520%2520%2520%250A%2520%2520%2520%2520free(Lb)%253B%250A%257D" sandbox="allow-scripts allow-same-origin"></iframe></p>
+
+
+
+<p><iframe src="https://carbon.now.sh/embed/?bg=rgba(171%2C184%2C195%2C100)&t=seti&wt=none&l=text%2Fx-csrc&ds=true&dsyoff=20px&dsblur=68px&wc=true&wa=true&pv=48px&ph=32px&ln=false&fm=Hack&fs=13px&lh=133%25&si=false&es=2x&wm=false&code=%252F%252F%2520%25E7%25BA%25BF%25E6%2580%25A7%25E8%25A1%25A8%25E7%259A%2584%25E9%259D%2599%25E6%2580%2581%25E5%258D%2595%25E9%2593%25BE%25E8%25A1%25A8%25E5%25AD%2598%25E5%2582%25A8%25E7%25BB%2593%25E6%259E%2584%250A%250A%2523define%2520MAXSIZE%25201000%250Atypedef%2520struct%257B%250A%2520%2520%2520%2520ElemType%2520data%253B%250A%2520%2520%2520%2520int%2520cur%253B%250A%2520%2520%2520%2520%250A%257Dcomponent%252C%2520SLinkList%255BMAXSIZE%255D%253B" sandbox="allow-scripts allow-same-origin"></iframe></p>
+
+
+
+<p><iframe src="https://carbon.now.sh/embed/?bg=rgba(171%2C184%2C195%2C100)&t=seti&wt=none&l=text%2Fx-csrc&ds=true&dsyoff=20px&dsblur=68px&wc=true&wa=true&pv=48px&ph=32px&ln=false&fm=Hack&fs=13px&lh=133%25&si=false&es=2x&wm=false&code=%252F%252F%2520%25E7%25AE%2597%25E6%25B3%2595%25202.13%250A%252F%252F%2520%25E5%259C%25A8%25E9%259D%2599%25E6%2580%2581%25E5%258D%2595%25E9%2593%25BE%25E7%25BA%25BF%25E6%2580%25A7%25E8%25A1%25A8%2520L%2520%25E4%25B8%25AD%25E6%259F%25A5%25E6%2589%25BE%25E5%2588%25B0%25E7%25AC%25AC%25201%2520%25E4%25B8%25AA%25E5%2580%25BC%25E4%25B8%25BA%2520e%2520%25E7%259A%2584%25E5%2585%2583%25E7%25B4%25A0%250A%252F%252F%2520%25E8%258B%25A5%25E6%2589%25BE%25E5%2588%25B0%25EF%25BC%258C%25E5%2588%2599%25E8%25BF%2594%25E5%259B%259E%25E5%25AE%2583%25E5%259C%25A8%2520L%2520%25E4%25B8%25AD%25E7%259A%2584%25E4%25BD%258D%25E5%25BA%258F%25EF%25BC%258C%25E5%2590%25A6%25E5%2588%2599%25E8%25BF%2594%25E5%259B%259E%25200%2520%25E3%2580%2582%250A%250A%252F*%250A%25E7%25AE%2597%25E6%25B3%2595%25E6%25B5%2581%25E7%25A8%258B%25EF%25BC%259A%250A1.%2520i%2520%25E5%2588%259D%25E5%25A7%258B%25E5%258C%2596%25E4%25B8%25BA%2520S%255B0%255D.cur%2520%252F%252F%2520%25E7%25AC%25AC%25201%2520%25E4%25B8%25AA%2520%25E5%2585%2583%25E7%25B4%25A0%25E7%259A%2584%25E4%25BD%258D%25E7%25BD%25AE%250A2.%2520%25E5%25BE%25AA%25E7%258E%25AF%25E6%25AF%2594%25E8%25BE%2583%25EF%25BC%258C%25E8%258B%25A5%2520i%2520%25E4%25B8%258D%25E4%25B8%25BA%25200%2520%25E5%25B9%25B6%25E4%25B8%2594%2520i%2520%25E4%25BD%258D%25E7%25BD%25AE%25E7%259A%2584%25E5%2585%2583%25E7%25B4%25A0%25E4%25B8%258D%25E7%25AD%2589%25E4%25BA%258E%2520e%25EF%25BC%258C%25E9%2582%25A3%25E4%25B9%2588%2520i%2520%25E6%258C%2587%25E5%2590%2591%25E4%25B8%258B%25E4%25B8%2580%25E4%25B8%25AA%25E5%2585%2583%25E7%25B4%25A0%25E4%25BD%258D%25E7%25BD%25AE%25EF%25BC%2588%2520%25E5%258D%25B3%2520i%2520%253D%2520S%255Bi%255D.cur%2520%25EF%25BC%2589%25EF%25BC%259B%25E5%2590%25A6%25E5%2588%2599%25E8%25B7%25B3%25E5%2587%25BA%25E5%25BE%25AA%25E7%258E%25AF%25E3%2580%2582%250A3.%2520%25E8%25BF%2594%25E5%259B%259E%25E7%25BB%2593%25E6%259E%259C%250A%250A*%252F%250A%250Aint%2520LocateElem_SL(SLinkList%2520S%252C%2520ElemType%2520e)%250A%257B%250A%2520%2520%2520%2520i%2520%253D%2520S%255B0%255D.cur%253B%250A%2520%2520%2520%2520%250A%2520%2520%2520%2520while(i%2520%2526%2526%2520S%255Bi%255D.data%2520!%253D%2520e)%252F%252F%2520%25E6%25B3%25A8%25E6%2584%258F%25EF%25BC%259A%25E5%25BD%2593%2520i%2520%25E4%25B8%25BA%25200%2520%25E6%2597%25B6%25EF%25BC%258C%25E4%25B8%25BA%25E9%2593%25BE%25E8%25A1%25A8%25E6%259C%25AB%25E5%25B0%25BE%250A%2520%2520%2520%2520%2520%2520%2520%2520i%2520%253D%2520S%255Bi%255D.cur%253B%250A%2520%2520%2520%2520%250A%2520%2520%2520%2520return%2520i%253B%250A%257D" sandbox="allow-scripts allow-same-origin">
+</iframe></p>
+
+
+<p><iframe src="https://carbon.now.sh/embed/?bg=rgba(171%2C184%2C195%2C100)&t=seti&wt=none&l=text%2Fx-csrc&ds=true&dsyoff=20px&dsblur=68px&wc=true&wa=true&pv=48px&ph=32px&ln=false&fm=Hack&fs=13px&lh=133%25&si=false&es=2x&wm=false&code=%252F%252F%2520%25E7%25AE%2597%25E6%25B3%2595%25202.14%250A%252F%252F%2520%25E5%25B0%2586%25E4%25B8%2580%25E7%25BB%25B4%25E6%2595%25B0%25E7%25BB%2584%2520space%2520%25E4%25B8%25AD%25E5%2590%2584%25E5%2588%2586%25E9%2587%258F%25E9%2593%25BE%25E6%2588%2590%25E4%25B8%2580%25E4%25B8%25AA%25E5%25A4%2587%25E7%2594%25A8%25E9%2593%25BE%25E8%25A1%25A8%25EF%25BC%258Cspace%255B0%255D.cur%25E4%25B8%25BA%25E5%25A4%25B4%25E6%258C%2587%25E9%2592%2588%250A%252F%252F%2520%25E2%2580%259C0%25E2%2580%259D%2520%25E8%25A1%25A8%25E7%25A4%25BA%25E7%25A9%25BA%25E6%258C%2587%25E9%2592%2588%250A%250Avoid%2520InitSpace_SL(SLinkList%2520%2526space)%250A%257B%250A%2520%2520%2520%2520for(i%2520%253D%25200%253B%2520i%2520%253C%2520MAXSIZE%2520-%25201%253B%2520%252B%252Bi)%250A%2520%2520%2520%2520%2520%2520%2520%2520space%255Bi%255D.cur%2520%253D%2520i%2520%252B%25201%253B%2520%252F%252F%2520%25E5%2588%259D%25E5%25A7%258B%25E5%258C%2596%25E6%2597%25B6%25EF%25BC%258C%25E9%25BB%2598%25E8%25AE%25A4%25E6%258C%2587%25E5%2590%2591%25E5%25AD%2598%25E5%2582%25A8%25E7%25A9%25BA%25E9%2597%25B4%25E4%25B8%258A%25E7%259A%2584%25E4%25B8%258B%25E4%25B8%2580%25E4%25B8%25AA%25E4%25BD%258D%25E7%25BD%25AE%250A%2520%2520%2520%2520%250A%2520%2520%2520%2520space%255BMAXSIZE%2520-%25201%255D.cur%2520%253D%25200%253B%2520%252F%252F%2520%25E6%259C%2580%25E5%2590%258E%25E4%25B8%2580%25E4%25B8%25AA%25E5%2585%2583%25E7%25B4%25A0%25E6%258C%2587%25E5%2590%2591%25E7%25A9%25BA%25E6%258C%2587%25E9%2592%2588%250A%257D" sandbox="allow-scripts allow-same-origin">
+</iframe></p>
+
+
+<p><iframe src="https://carbon.now.sh/embed/?bg=rgba(171%2C184%2C195%2C100)&t=seti&wt=none&l=text%2Fx-csrc&ds=true&dsyoff=20px&dsblur=68px&wc=true&wa=true&pv=48px&ph=32px&ln=false&fm=Hack&fs=13px&lh=133%25&si=false&es=2x&wm=false&code=%252F%252F%2520%25E7%25AE%2597%25E6%25B3%2595%25202.15%250A%252F%252F%2520%25E8%258B%25A5%25E5%25A4%2587%25E7%2594%25A8%25E7%25A9%25BA%25E9%2597%25B4%25E9%2593%25BE%25E8%25A1%25A8%25E4%25B8%25BA%25E9%259D%259E%25E7%25A9%25BA%25EF%25BC%258C%25E5%2588%2599%25E8%25BF%2594%25E5%259B%259E%25E5%2588%2586%25E9%2585%258D%25E7%259A%2584%25E7%25BB%2593%25E7%2582%25B9%25E4%25B8%258B%25E6%25A0%2587%25EF%25BC%258C%25E5%2590%25A6%25E5%2588%2599%25E8%25BF%2594%25E5%259B%259E%25200%250A%250Aint%2520Malloc_SL(SLinkList%2520%2526%2520space)%250A%257B%250A%2520%2520%2520%2520i%2520%253D%2520space%255B0%255D.cur%253B%2520%252F%252F%2520%25E5%258F%2596%25E5%25A4%2587%25E7%2594%25A8%25E9%2593%25BE%25E8%25A1%25A8%25E7%259A%2584%25E7%25AC%25AC%25E4%25B8%2580%25E4%25B8%25AA%25E5%2585%2583%25E7%25B4%25A0%25E7%259A%2584%25E4%25B8%258B%25E6%25A0%2587%250A%2520%2520%2520%2520%250A%2520%2520%2520%2520if(space%255B0%255D.cur)%2520%252F%252F%2520%25E5%25A4%2587%25E7%2594%25A8%25E9%2593%25BE%25E8%25A1%25A8%25E9%259D%259E%25E7%25A9%25BA%250A%2520%2520%2520%2520%2520%2520%2520%2520space%255B0%255D.cur%2520%253D%2520space%255Bi%255D.cur%253B%252F%252F%2520%25E5%2588%25A0%25E9%2599%25A4%25E7%25AC%25AC%25E4%25B8%2580%25E4%25B8%25AA%25E8%258A%2582%25E7%2582%25B9%25EF%25BC%258C%25E5%25B9%25B6%25E4%25BD%25BF%25E5%25A4%25B4%25E6%258C%2587%25E9%2592%2588%25E6%258C%2587%25E5%2590%2591%25E4%25B8%258B%25E4%25B8%2580%25E4%25B8%25AA%25E5%2585%2583%25E7%25B4%25A0%250A%2520%2520%2520%2520%250A%2520%2520%2520%2520return%2520i%253B%250A%257D" sandbox="allow-scripts allow-same-origin">
+</iframe></p>
+
+
+<p><iframe src="https://carbon.now.sh/embed/?bg=rgba(171%2C184%2C195%2C100)&t=seti&wt=none&l=text%2Fx-csrc&ds=true&dsyoff=20px&dsblur=68px&wc=true&wa=true&pv=48px&ph=32px&ln=false&fm=Hack&fs=13px&lh=133%25&si=false&es=2x&wm=false&code=%252F%252F%2520%25E7%25AE%2597%25E6%25B3%2595%25202.16%250A%252F%252F%2520%25E5%25B0%2586%25E4%25B8%258B%25E6%25A0%2587%25E4%25B8%25BA%2520k%2520%25E7%259A%2584%25E7%25A9%25BA%25E9%2597%25B2%25E7%25BB%2593%25E7%2582%25B9%25E5%259B%259E%25E6%2594%25B6%25E5%2588%25B0%25E5%25A4%2587%25E7%2594%25A8%25E9%2593%25BE%25E8%25A1%25A8%250A%250Avoid%2520Free_SL(SLinkList%2520%2526space%252C%2520int%2520k)%250A%257B%250A%2520%2520%2520%2520space%255Bk%255D.cur%2520%253D%2520space%255B0%255D.cur%253B%2520%252F%252F%2520k%2520%25E7%25BB%2593%25E7%2582%25B9%25E7%259A%2584%2520%25E4%25B8%258B%25E4%25B8%2580%25E4%25B8%25AA%25E4%25BD%258D%25E7%25BD%25AE%25E6%258C%2587%25E5%2590%2591%25200%2520%25E7%25BB%2593%25E7%2582%25B9%25E6%258C%2587%25E5%2590%2591%25E7%259A%2584%25E4%25B8%258B%25E4%25B8%2580%25E4%25B8%25AA%25E4%25BD%258D%25E7%25BD%25AE%250A%2520%2520%2520%2520%250A%2520%2520%2520%2520space%255B0%255D.cur%2520%253D%2520k%253B%2520%252F%252F%25200%2520%25E7%25BB%2593%25E7%2582%25B9%25E7%259A%2584%25E4%25B8%258B%25E4%25B8%2580%25E4%25B8%25AA%25E4%25BD%258D%25E7%25BD%25AE%25E6%258C%2587%25E5%2590%2591%2520k%250A%257D" sandbox="allow-scripts allow-same-origin"></iframe></p>
+
+<p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/07/11/2.17.png?raw=true" alt="算法2.17"></p>
+<h3 id="2-顺序表和链表的应用；"><a href="#2-顺序表和链表的应用；" class="headerlink" title="2. 顺序表和链表的应用；"></a>2. 顺序表和链表的应用；</h3><ul>
+<li>一元多项式的表示及相加</li>
+</ul>
+<p><iframe src="https://carbon.now.sh/embed/?bg=rgba(171%2C184%2C195%2C100)&t=seti&wt=none&l=text%2Fx-csrc&ds=true&dsyoff=20px&dsblur=68px&wc=true&wa=true&pv=48px&ph=32px&ln=false&fm=Hack&fs=13px&lh=133%25&si=false&es=2x&wm=false&code=%252F%252F%2520%25E9%25A1%25B9%25E7%259A%2584%25E7%25BB%2593%25E6%259E%2584%250A%250Atypedef%2520struct%257B%2520%2520%252F%252F%2520%25E9%25A1%25B9%25E7%259A%2584%25E8%25A1%25A8%25E7%25A4%25BA%25EF%25BC%258C%25E5%25A4%259A%25E9%25A1%25B9%25E5%25BC%258F%25E7%259A%2584%25E9%25A1%25B9%25E4%25BD%259C%25E4%25B8%25BA%2520LinkList%2520%25E7%259A%2584%25E6%2595%25B0%25E6%258D%25AE%25E5%2585%2583%25E7%25B4%25A0%250A%2520%2520%2520%2520float%2520coef%253B%2520%2520%252F%252F%2520%25E7%25B3%25BB%25E6%2595%25B0%2520%250A%2520%2520%2520%2520float%2520expn%253B%2520%2520%252F%252F%2520%25E6%258C%2587%25E6%2595%25B0%250A%257Dterm%252C%2520ElemType%253B%2520%252F%252F%2520term%2520%25E7%2594%25A8%25E4%25BA%258E%25E6%259C%25AC%2520ADT%2520%25EF%25BC%258CElemType%2520%25E4%25B8%25BA%2520LinkList%2520%25E7%259A%2584%25E6%2595%25B0%25E6%258D%25AE%25E5%25AF%25B9%25E8%25B1%25A1%25E5%2590%258D%250A%250Atypedef%2520LinkList%2520polynomial%253B%2520%252F%252F%25E7%2594%25A8%25E5%25B8%25A6%25E8%25A1%25A8%25E5%25A4%25B4%25E7%25BB%2593%25E7%2582%25B9%25E7%259A%2584%25E6%259C%2589%25E5%25BA%258F%25E9%2593%25BE%25E8%25A1%25A8%25E8%25A1%25A8%25E7%25A4%25BA%25E5%25A4%259A%25E9%25A1%25B9%25E5%25BC%258F" sandbox="allow-scripts allow-same-origin">
+</iframe></p>
+
+
+<p><iframe src="https://carbon.now.sh/embed/?bg=rgba(171%2C184%2C195%2C100)&t=seti&wt=none&l=text%2Fx-csrc&ds=true&dsyoff=20px&dsblur=68px&wc=true&wa=true&pv=48px&ph=32px&ln=false&fm=Hack&fs=13px&lh=133%25&si=false&es=2x&wm=false&code=%252F%252F%2520%25E7%25AE%2597%25E6%25B3%2595%25202.22%250A%252F%252F%2520%25E8%25BE%2593%25E5%2585%25A5%2520m%2520%25E9%25A1%25B9%25E7%259A%2584%25E7%25B3%25BB%25E6%2595%25B0%25E5%2592%258C%25E6%258C%2587%25E6%2595%25B0%25EF%25BC%258C%25E5%25BB%25BA%25E7%25AB%258B%25E8%25A1%25A8%25E7%25A4%25BA%25E4%25B8%2580%25E5%2585%2583%25E5%25A4%259A%25E9%25A1%25B9%25E5%25BC%258F%25E7%259A%2584%25E6%259C%2589%25E5%25BA%258F%25E9%2593%25BE%25E8%25A1%25A8%2520P%250A%250A%252F*%250A%25E7%25AE%2597%25E6%25B3%2595%25E6%25B5%2581%25E7%25A8%258B%25EF%25BC%259A%250A1.%2520%25E5%2588%259D%25E5%25A7%258B%25E5%258C%2596%25E7%25BA%25BF%25E6%2580%25A7%25E8%25A1%25A8%250A2.%2520%25E8%25AE%25BE%25E7%25BD%25AE%25E5%25A4%25B4%25E8%258A%2582%25E7%2582%25B9%25E6%2595%25B0%25E6%258D%25AE%250A3.%2520%25E8%25AF%25BB%25E5%2585%25A5%25E6%2595%25B0%25E6%258D%25AE%25EF%25BC%258C%2520%25E5%2588%25A4%25E6%2596%25AD%25E6%258F%2592%25E5%2585%25A5%250A*%252F%250A%250Avoid%2520CreatPolyn(polynomail%2520%2526P%252C%2520int%2520m)%250A%257B%250A%2520%2520%2520%2520InitList(P)%253B%2509h%2520%253D%2520GetHead(P)%253B%250A%2520%2520%2520%2520%252F%252F%2520%25E8%25AE%25BE%25E7%25BD%25AE%25E5%25A4%25B4%25E8%258A%2582%25E7%2582%25B9%25E7%259A%2584%25E6%2595%25B0%25E6%258D%25AE%25E5%2585%2583%25E7%25B4%25A0%250A%2520%2520%2520%2520e.coef%2520%253D%25200.0%253B%2509e.expn%2520%253D%2520-1%253B%2509SetCurElem(h%252C%2520e)%253B%250A%2520%2520%2520%2520%250A%2520%2520%2520%2520for(i%2520%253D%25201%253B%2520i%2520%253C%253D%2520m%253B%2520%252B%252Bi)%250A%2520%2520%2520%2520%257B%250A%2520%2520%2520%2520%2520%2520%2520%2520scanf(e.coef%252C%2520e.expn)%253B%250A%2520%2520%2520%2520%2520%2520%2520%2520if(!%2520LocateElem(P%252C%2520e%252C%2520q%252C%2520(*cmp)()))%250A%2520%2520%2520%2520%2520%2520%2520%2520%257B%250A%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520if(MakeNode(s%252Ce))%250A%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520InsFirst(q%252C%2520s)%253B%250A%2520%2520%2520%2520%2520%2520%2520%2520%257D%250A%2520%2520%2520%2520%257D%250A%257D" sandbox="allow-scripts allow-same-origin"></iframe></p>
+
+<p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/07/11/2.23.png?raw=true" alt="算法2.23"></p>
+<h3 id="3-循环链表；双向链表；"><a href="#3-循环链表；双向链表；" class="headerlink" title="3. 循环链表；双向链表；"></a>3. 循环链表；双向链表；</h3><ol>
+<li>循环链表<ul>
+<li>最后一个结点的指针域指向头节点。</li>
+<li>遍历循环结束条件是<strong>p == 头指针</strong>或者<strong>p-&gt;next == 头指针</strong></li>
+<li>基本操作与线性链表类似</li>
+</ul>
+</li>
+<li>双向链表</li>
+</ol>
+<p><iframe src="https://carbon.now.sh/embed/?bg=rgba(171%2C184%2C195%2C100)&t=seti&wt=none&l=text%2Fx-csrc&ds=true&dsyoff=20px&dsblur=68px&wc=true&wa=true&pv=48px&ph=32px&ln=false&fm=Hack&fs=13px&lh=133%25&si=false&es=2x&wm=false&code=%252F%252F%2520%25E7%25BA%25BF%25E6%2580%25A7%25E8%25A1%25A8%25E7%259A%2584%25E5%258F%258C%25E5%2590%2591%25E9%2593%25BE%25E8%25A1%25A8%25E5%25AD%2598%25E5%2582%25A8%25E7%25BB%2593%25E6%259E%2584%250A%250Atypedef%2520struct%2520DuLNode%257B%250A%2520%2520%2520%2520ElemType%2520data%253B%250A%2520%2520%2520%2520struct%2520DuLNode%2520*prior%253B%250A%2520%2520%2520%2520struct%2520DuLNode%2520*next%253B%250A%257DDuLNode%2520*DuLinkList%253B" sandbox="allow-scripts allow-same-origin"></iframe></p>
+
+<p><iframe src="https://carbon.now.sh/embed/?bg=rgba(171%2C184%2C195%2C100)&t=seti&wt=none&l=text%2Fx-csrc&ds=true&dsyoff=20px&dsblur=68px&wc=true&wa=true&pv=48px&ph=32px&ln=false&fm=Hack&fs=13px&lh=133%25&si=false&es=2x&wm=false&code=%252F%252F%2520%25E7%25AE%2597%25E6%25B3%2595%25202.18%250A%252F%252F%2520%25E5%259C%25A8%25E5%25B8%25A6%25E5%25A4%25B4%25E7%25BB%2593%25E7%2582%25B9%25E7%259A%2584%25E5%258F%258C%25E9%2593%25BE%25E5%25BE%25AA%25E7%258E%25AF%25E7%25BA%25BF%25E6%2580%25A7%25E8%25A1%25A8%2520L%2520%25E4%25B8%25AD%25E7%25AC%25AC%2520i%2520%25E4%25B8%25AA%25E4%25BD%258D%25E7%25BD%25AE%25E4%25B9%258B%25E5%2589%258D%25E6%258F%2592%25E5%2585%25A5%25E5%2585%2583%25E7%25B4%25A0%2520e%250A%252F%252F%2520i%2520%25E7%259A%2584%25E5%2590%2588%25E6%25B3%2595%25E5%2580%25BC%25E4%25B8%25BA%25201%2520%25E2%2589%25A4%2520i%2520%25E2%2589%25A4%2520%25E8%25A1%25A8%25E9%2595%25BF%2520%252B%25201%250A%250A%252F*%250A%25E7%25AE%2597%25E6%25B3%2595%25E6%25B5%2581%25E7%25A8%258B%25EF%25BC%259A%250A1.%2520%25E4%25BB%258E%25E5%25A4%25B4%25E7%25BB%2593%25E7%2582%25B9%25E5%25BC%2580%25E5%25A7%258B%25E9%2581%258D%25E5%258E%2586%25EF%25BC%258C%25E6%2589%25BE%25E5%2588%25B0%25E6%258F%2592%25E5%2585%25A5%25E4%25BD%258D%25E7%25BD%25AE%250A%25EF%25BC%2588%25E5%25A6%2582%25E6%259E%259C%25E4%25B8%25BA%25E7%25A9%25BA%25EF%25BC%258C%25E5%2588%2599%25E6%258F%2592%25E5%2585%25A5%25E4%25BD%258D%25E7%25BD%25AE%25E4%25B8%258D%25E5%2590%2588%25E7%2590%2586%25EF%25BC%258C%25E8%25BF%2594%25E5%259B%259E%25E9%2594%2599%25E8%25AF%25AF%25EF%25BC%2589%250A2.%2520%25E7%2594%25B3%25E8%25AF%25B7%25E6%2596%25B0%25E7%259A%2584%25E7%25BB%2593%25E7%2582%25B9%25E7%25A9%25BA%25E9%2597%25B4%25EF%25BC%2588%25E5%25A6%2582%25E6%259E%259C%25E7%2594%25B3%25E8%25AF%25B7%25E5%25A4%25B1%25E8%25B4%25A5%25EF%25BC%258C%25E8%25BF%2594%25E5%259B%259E%25E9%2594%2599%25E8%25AF%25AF%25EF%25BC%2589%250A3.%2520%25E6%258A%258A%25E6%2596%25B0%25E7%25BB%2593%25E7%2582%25B9%25E7%259A%2584%2520elem%2520%25E5%259F%259F%25E8%25AE%25BE%25E7%25BD%25AE%25E6%2588%2590%25E6%258C%2587%25E5%25AE%259A%25E5%2580%25BC%25EF%25BC%258C%25E6%258F%2592%25E5%2585%25A5%25E5%2588%25B0%25E5%258F%258C%25E9%2593%25BE%25E5%25BE%25AA%25E7%258E%25AF%25E7%25BA%25BF%25E6%2580%25A7%25E8%25A1%25A8%25E4%25B8%25AD%250A%25EF%25BC%25884%25E5%25A4%2584%25E6%258C%2587%25E9%2592%2588%25E4%25BF%25AE%25E6%2594%25B9%25EF%25BC%2581%25EF%25BC%2581%25EF%25BC%2581%25EF%25BC%2589%250A*%252F%250A%250AStatus%2520ListInsert_DuL(DuLinkList%2520%2526L%252C%2520ElemType%2520e)%250A%257B%250A%2520%2520%2520%2520if(!(p%2520%253D%2520GetElemP_DuL(L%252C%2520i)))%250A%2520%2520%2520%2520%2520%2520%2520%2520return%2520ERROR%253B%250A%2520%2520%2520%2520if(!(s%2520%253D%2520(DuLinkList)malloc(sizeof(DuLNode))))%250A%2520%2520%2520%2520%2520%2520%2520%2520return%2520ERROR%253B%250A%2520%2520%2520%2520%250A%2520%2520%2520%2520s-%253Edata%2520%253D%2520e%253B%250A%2520%2520%2520%2520%252F%252F%25204%2520%25E5%25A4%2584%25E6%258C%2587%25E9%2592%2588%25E4%25BF%25AE%25E6%2594%25B9%250A%2520%2520%2520%2520s-%253Eprior%2520%253D%2520p-%253Eprior%253B%2520%2520%2520%2520%252F%252F%2520s%2520%25E7%259A%2584%2520prior%250A%2520%2520%2520%2520p-%253Eprior-%253Enext%2520%253D%2520s%253B%2520%2520%2520%2520%2520%252F%252F%2520p%2520%25E7%259A%2584%2520prior%2520%25E7%259A%2584%2520next%250A%2520%2520%2520%2520s-%253Enext%2520%253D%2520p%253B%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520%252F%252F%2520s%2520%25E7%259A%2584%2520next%250A%2520%2520%2520%2520p-%253Eprior%2520%253D%2520s%253B%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520%2520%252F%252F%2520p%2520%25E7%259A%2584%2520prior%250A%2520%2520%2520%2520%250A%2520%2520%2520%2520return%2520OK%253B%250A%2520%2520%2520%2520%250A%257D" sandbox="allow-scripts allow-same-origin"></iframe></p>
+
+
+
+<p><iframe src="https://carbon.now.sh/embed/?bg=rgba(171%2C184%2C195%2C100)&t=seti&wt=none&l=text%2Fx-csrc&ds=true&dsyoff=20px&dsblur=68px&wc=true&wa=true&pv=48px&ph=32px&ln=false&fm=Hack&fs=13px&lh=133%25&si=false&es=2x&wm=false&code=%252F%252F%2520%25E7%25AE%2597%25E6%25B3%2595%25202.19%250A%252F%252F%2520%25E5%2588%25A0%25E9%2599%25A4%25E5%25B8%25A6%25E5%25A4%25B4%25E7%25BB%2593%25E7%2582%25B9%25E7%259A%2584%25E5%258F%258C%25E9%2593%25BE%25E5%25BE%25AA%25E7%258E%25AF%25E7%25BA%25BF%25E6%2580%25A7%25E8%25A1%25A8%2520L%2520%25E7%259A%2584%2520%25E7%25AC%25AC%2520i%2520%25E4%25B8%25AA%25E5%2585%2583%25E7%25B4%25A0%250A%252F%252F%2520i%2520%25E7%259A%2584%25E5%2590%2588%25E6%25B3%2595%25E5%2580%25BC%25E4%25B8%25BA%25201%2520%25E2%2589%25A4%2520i%2520%25E2%2589%25A4%2520%25E8%25A1%25A8%25E9%2595%25BF%250A%250A%252F*%250A%25E7%25AE%2597%25E6%25B3%2595%25E6%25B5%2581%25E7%25A8%258B%25EF%25BC%259A%250A1.%2520%25E4%25BB%258E%25E5%25A4%25B4%25E7%25BB%2593%25E7%2582%25B9%25E5%25BC%2580%25E5%25A7%258B%25E9%2581%258D%25E5%258E%2586%25EF%25BC%258C%25E6%2589%25BE%25E5%2588%25B0%25E5%2588%25A0%25E9%2599%25A4%25E4%25BD%258D%25E7%25BD%25AE%250A%25EF%25BC%2588%25E5%25A6%2582%25E6%259E%259C%25E4%25B8%25BA%25E7%25A9%25BA%25EF%25BC%258C%25E5%2588%2599%25E6%258F%2592%25E5%2585%25A5%25E4%25BD%258D%25E7%25BD%25AE%25E4%25B8%258D%25E5%2590%2588%25E7%2590%2586%25EF%25BC%258C%25E8%25BF%2594%25E5%259B%259E%25E9%2594%2599%25E8%25AF%25AF%25EF%25BC%2589%250A2.%2520%25E5%25B0%2586%25E5%2588%25A0%25E9%2599%25A4%25E7%25BB%2593%25E7%2582%25B9%25E7%259A%2584%2520elem%2520%25E5%259F%259F%25E7%259A%2584%25E5%2580%25BC%25E8%25B5%258B%25E7%25BB%2599%25E5%2588%25B6%25E5%25AE%259A%25E8%25BE%2593%25E5%2587%25BA%25E5%258F%2582%25E6%2595%25B0%25EF%25BC%258C%25E5%2586%258D%25E4%25BB%258E%25E9%2593%25BE%25E8%25A1%25A8%25E4%25B8%25AD%25E5%2588%25A0%25E9%2599%25A4%25E8%25AF%25A5%25E7%25BB%2593%25E7%2582%25B9%250A%25E5%25B9%25B6%25E9%2587%258A%25E6%2594%25BE%25E7%259B%25B8%25E5%25BA%2594%25E5%25AD%2598%25E5%2582%25A8%25E7%25A9%25BA%25E9%2597%25B4%25E3%2580%2582%250A%25EF%25BC%25882%2520%25E5%25A4%2584%25E6%258C%2587%25E9%2592%2588%25E4%25BF%25AE%25E6%2594%25B9%25EF%25BC%2589%250A*%252F%250A%250AStatus%2520ListDelete_DuL(DuLinkList%2520%2526L%252C%2520int%2520i%252C%2520ElemType%2520%2526e)%250A%257B%250A%2520%2520%2520%2520if(!(p%2520%253D%2520GetElemP_DuL(L%252C%2520i)))%250A%2520%2520%2520%2520%2520%2520%2520%2520return%2520ERROR%253B%250A%2520%2520%2520%2520%250A%2520%2520%2520%2520e%2520%253D%2520p-%253Edata%253B%250A%2520%2520%2520%2520%250A%2520%2520%2520%2520p-%253Eprior-%253Enext%2520%253D%2520p-%253Enext%253B%250A%2520%2520%2520%2520p-%253Enext-%253Eprior%2520%253D%2520p-%253Eprior%253B%250A%2520%2520%2520%2520%250A%2520%2520%2520%2520free(p)%253B%250A%2520%2520%2520%2520%250A%2520%2520%2520%2520return%2520OK%25EF%25BC%259B%250A%257D" sandbox="allow-scripts allow-same-origin"></iframe></p>
+
+
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ol>
+<li>数据结构（C语言版）.严蔚敏</li>
+<li>2020年数据结构考研复习指导.王道论坛</li>
+</ol>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/qrcode.jpg" alt="CosmosNing wechat" style="width: 200px; max-width: 100%;">
+    <div>打开微信扫一扫，关注我的微信公众号。</div>
+</div>
+
+      </div>
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>CosmosNing</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://cosmosning.github.io/2019/07/11/数据结构复习笔记1-绪论及线性表/" title="数据结构复习笔记1-绪论及线性表">https://cosmosning.github.io/2019/07/11/数据结构复习笔记1-绪论及线性表/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/数据结构/" rel="tag"># 数据结构</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/11/16/机器真的有智能吗/" rel="next" title="机器真的有智能吗">
+                <i class="fa fa-chevron-left"></i> 机器真的有智能吗
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zOTkzMi8xNjQ1OQ=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="CosmosNing">
+            
+              <p class="site-author-name" itemprop="name">CosmosNing</p>
+              <p class="site-description motion-element" itemprop="description">编程·学习·生活</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">18</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="https://node2.feed43.com/cosmosning.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/CosmosNing" target="_blank" title="GitHub" rel="external nofollow"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.linkedin.com/in/%E5%AE%81%E5%81%A5-%E6%9D%8E-86a45b135/" target="_blank" title="Linkedin" rel="external nofollow"><i class="fa fa-fw fa-linkedin"></i>Linkedin</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:llnnjjxxx@gmail.com" target="_blank" title="E-Mail" rel="external nofollow"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://node2.feed43.com/cosmosning.xml" target="_blank" title="Rss" rel="external nofollow"><i class="fa fa-fw fa-rss"></i>Rss</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#数据结构"><span class="nav-number">1.</span> <span class="nav-text">数据结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-数据结构基本概念及简单的算法分析"><span class="nav-number">1.1.</span> <span class="nav-text">1. 数据结构基本概念及简单的算法分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线性表"><span class="nav-number">1.2.</span> <span class="nav-text">线性表</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-顺序表和链表的存储与基本操作；"><span class="nav-number">1.2.1.</span> <span class="nav-text">1. 顺序表和链表的存储与基本操作；</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-顺序表"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">1. 顺序表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-链表"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">2. 链表</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-顺序表和链表的应用；"><span class="nav-number">1.2.2.</span> <span class="nav-text">2. 顺序表和链表的应用；</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-循环链表；双向链表；"><span class="nav-number">1.2.3.</span> <span class="nav-text">3. 循环链表；双向链表；</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">1.3.</span> <span class="nav-text">参考资料</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CosmosNing</span>
+
+  
+
+  
+</div>
+
+
+  
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" rel="external nofollow" href="https://theme-next.org">NexT.Gemini</a> v6.4.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.4.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.4.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.1"></script>
+
+
+
+  
+
+
+
+  
+    <script type="text/javascript">
+      window.livereOptions = {
+        refer: '2019/07/11/数据结构复习笔记1-绪论及线性表/'
+      };
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      },
+      TeX: {equationNumbers: { autoNumber: "AMS" }}
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+  
+
+
+  
+  
+
+  
+
+  
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=6.4.1"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=6.4.1"></script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
