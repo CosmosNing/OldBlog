@@ -1403,6 +1403,15 @@ pre .javascript .function {
     word-break: break-word;
   }
 }
+iframe {
+  margin: 0 auto 25px;
+  box-sizing: border-box;
+  padding: initial !important;
+  display: block;
+  min-width: 100%;
+  min-height: 500px;
+  border: 0;
+}
 .post-body .fancybox img {
   display: block !important;
   margin: 0 auto;
@@ -2016,7 +2025,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #d5ffff;
+  background: #ac4f40;
 }
 .links-of-blogroll {
   font-size: 13px;
