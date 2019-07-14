@@ -15,10 +15,10 @@
 
 
 <html class="theme-next gemini use-motion" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.9.0">
-  <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
 <meta name="theme-color" content="#222">
 
 
@@ -32,8 +32,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
 
 
 
@@ -56,9 +56,9 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=6.4.1" rel="stylesheet" type="text/css">
+<link href="/css/main.css?v=6.4.1" rel="stylesheet" type="text/css" />
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/avatar-180.png?v=6.4.1">
@@ -108,30 +108,30 @@
 
 
 
-  <meta name="description" content="在之前的一篇文章中，我们具体讨论了计算去目的地的最少中转方案的算法，但是限于篇幅，没有介绍实现。今天，我们就来看看这个算法如何实现。 在那篇文章中我们提到，为了更快速地获取某一顶点的邻居顶点，采用图的邻接表存储信息比较合适。那么邻接表如何用Python来表达呢？ 邻接表兼具数组和链表的特点。我们可以利用哈希表将表头元素和其后续的链表联系起来。在Python中，可以直接使用其内置的字典和列表数据结">
+  <meta name="description" content="在之前的一篇文章中，我们具体讨论了计算去目的地的最少中转方案的算法，但是限于篇幅，没有介绍实现。今天，我们就来看看这个算法如何实现。">
 <meta name="keywords" content="算法,Grokking Algorithms">
 <meta property="og:type" content="article">
 <meta property="og:title" content="去目的地最少中转方案怎么实现?">
 <meta property="og:url" content="https://cosmosning.github.io/2018/09/22/去目的地最少中转方案怎么实现/index.html">
 <meta property="og:site_name" content="CosmosNing的个人博客">
-<meta property="og:description" content="在之前的一篇文章中，我们具体讨论了计算去目的地的最少中转方案的算法，但是限于篇幅，没有介绍实现。今天，我们就来看看这个算法如何实现。 在那篇文章中我们提到，为了更快速地获取某一顶点的邻居顶点，采用图的邻接表存储信息比较合适。那么邻接表如何用Python来表达呢？ 邻接表兼具数组和链表的特点。我们可以利用哈希表将表头元素和其后续的链表联系起来。在Python中，可以直接使用其内置的字典和列表数据结">
+<meta property="og:description" content="在之前的一篇文章中，我们具体讨论了计算去目的地的最少中转方案的算法，但是限于篇幅，没有介绍实现。今天，我们就来看看这个算法如何实现。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2018/09/22/cover.jpg?raw=true">
 <meta property="og:image" content="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2018/09/17/%E5%9B%BE%E7%BB%93%E6%9E%84%E4%B8%BE%E4%BE%8B.png?raw=true">
-<meta property="og:updated_time" content="2018-09-25T12:44:59.697Z">
+<meta property="og:updated_time" content="2019-07-14T15:56:03.377Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="去目的地最少中转方案怎么实现?">
-<meta name="twitter:description" content="在之前的一篇文章中，我们具体讨论了计算去目的地的最少中转方案的算法，但是限于篇幅，没有介绍实现。今天，我们就来看看这个算法如何实现。 在那篇文章中我们提到，为了更快速地获取某一顶点的邻居顶点，采用图的邻接表存储信息比较合适。那么邻接表如何用Python来表达呢？ 邻接表兼具数组和链表的特点。我们可以利用哈希表将表头元素和其后续的链表联系起来。在Python中，可以直接使用其内置的字典和列表数据结">
+<meta name="twitter:description" content="在之前的一篇文章中，我们具体讨论了计算去目的地的最少中转方案的算法，但是限于篇幅，没有介绍实现。今天，我们就来看看这个算法如何实现。">
 <meta name="twitter:image" content="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2018/09/22/cover.jpg?raw=true">
 
 
 
-  <link rel="alternate" href="https://node2.feed43.com/cosmosning.xml" title="CosmosNing的个人博客" type="application/atom+xml">
+  <link rel="alternate" href="/atom.xml" title="CosmosNing的个人博客" type="application/atom+xml" />
 
 
 
 
-  <link rel="canonical" href="https://cosmosning.github.io/2018/09/22/去目的地最少中转方案怎么实现/">
+  <link rel="canonical" href="https://cosmosning.github.io/2018/09/22/去目的地最少中转方案怎么实现/"/>
 
 
 
@@ -231,7 +231,7 @@
           
           <li class="menu-item menu-item-home">
     <a href="/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
   </li>
         
         
@@ -239,7 +239,7 @@
           
           <li class="menu-item menu-item-about">
     <a href="/about/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
   </li>
         
         
@@ -247,7 +247,7 @@
           
           <li class="menu-item menu-item-tags">
     <a href="/tags/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签<span class="badge">6</span></a>
   </li>
         
         
@@ -255,7 +255,7 @@
           
           <li class="menu-item menu-item-categories">
     <a href="/categories/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类<span class="badge">2</span></a>
   </li>
         
         
@@ -263,7 +263,7 @@
           
           <li class="menu-item menu-item-archives">
     <a href="/archives/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>归档</a>
+      <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />归档<span class="badge">19</span></a>
   </li>
 
       
@@ -292,7 +292,7 @@
     
       
     
-    <a href="https://github.com/CosmosNing" class="github-corner" target="_blank" title="Follow me on GitHub" aria-label="Follow me on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#222; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg>
+    <a href="https://github.com/CosmosNing" class="github-corner" target="_blank" title="Follow me on GitHub" aria-label="Follow me on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#222; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg>
     
       </a>
     
@@ -384,13 +384,13 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-09-25 20:44:59" itemprop="dateModified" datetime="2018-09-25T20:44:59+08:00">2018-09-25</time>
+                <time title="修改时间：2019-07-14 23:56:03" itemprop="dateModified" datetime="2019-07-14T23:56:03+08:00">2019-07-14</time>
               
             
           </span>
 
           
-            <span class="post-category">
+            <span class="post-category" >
             
               <span class="post-meta-divider">|</span>
             
@@ -420,6 +420,8 @@
 
           
 
+          
+              <div class="post-description">在之前的一篇文章中，我们具体讨论了计算去目的地的最少中转方案的算法，但是限于篇幅，没有介绍实现。今天，我们就来看看这个算法如何实现。</div>
           
 
         </div>
@@ -458,10 +460,10 @@
 <p>寻找这个路径的顶点的顺序和最终输出的顺序是相反的，怎么描述方便呢？如果你还记得之前介绍过的栈，你肯定会选择栈来暂存路径数据，在输出时依次弹出即可。（栈的特点是先进后出的，因而可以利用栈把一些对象序列逆序）</p>
 <p>为了保证最终得到的方案是最少中转，还需引入中转数。在某些情况下，更新中转数和parents哈希表中的值。中转数的存储可以另外开设哈希表存储，也可以嵌入现有的graph哈希表中。这里，我们选择第二种方案实现。</p>
 <p>这样的话，上述 $graph$ 就变为如下的形式</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">graph = &#123;&#125;</span><br><span class="line">graph[<span class="string">'A'</span>] = &#123;<span class="string">'C'</span>: <span class="literal">None</span>&#125;</span><br><span class="line">graph[<span class="string">'B'</span>] = &#123;<span class="string">'C'</span>: <span class="literal">None</span>, <span class="string">'D'</span>: <span class="literal">None</span>&#125;</span><br><span class="line">graph[<span class="string">'C'</span>] = &#123;<span class="string">'A'</span>: <span class="literal">None</span>, <span class="string">'B'</span>: <span class="literal">None</span>, <span class="string">'E'</span>: <span class="literal">None</span>&#125;</span><br><span class="line">graph[<span class="string">'D'</span>] = &#123;<span class="string">'B'</span>: <span class="literal">None</span>, <span class="string">'E'</span>: <span class="literal">None</span>&#125;</span><br><span class="line">graph[<span class="string">'E'</span>] = &#123;<span class="string">'C'</span>: <span class="literal">None</span>, <span class="string">'D'</span>: <span class="literal">None</span>&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">graph = &#123;&#125;</span><br><span class="line">graph[<span class="string">'A'</span>] = &#123;<span class="string">'C'</span>: <span class="keyword">None</span>&#125;</span><br><span class="line">graph[<span class="string">'B'</span>] = &#123;<span class="string">'C'</span>: <span class="keyword">None</span>, <span class="string">'D'</span>: <span class="keyword">None</span>&#125;</span><br><span class="line">graph[<span class="string">'C'</span>] = &#123;<span class="string">'A'</span>: <span class="keyword">None</span>, <span class="string">'B'</span>: <span class="keyword">None</span>, <span class="string">'E'</span>: <span class="keyword">None</span>&#125;</span><br><span class="line">graph[<span class="string">'D'</span>] = &#123;<span class="string">'B'</span>: <span class="keyword">None</span>, <span class="string">'E'</span>: <span class="keyword">None</span>&#125;</span><br><span class="line">graph[<span class="string">'E'</span>] = &#123;<span class="string">'C'</span>: <span class="keyword">None</span>, <span class="string">'D'</span>: <span class="keyword">None</span>&#125;</span><br></pre></td></tr></table></figure>
 <p>在这种 $graph$ 的结构下，广度优先遍历也需要做一点简单的修改。</p>
 <p>全部的代码如下所示：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> deque</span><br><span class="line"></span><br><span class="line">graph = &#123;&#125;</span><br><span class="line">graph[<span class="string">'A'</span>] = &#123;<span class="string">'C'</span>: <span class="literal">None</span>&#125;</span><br><span class="line">graph[<span class="string">'B'</span>] = &#123;<span class="string">'C'</span>: <span class="literal">None</span>, <span class="string">'D'</span>: <span class="literal">None</span>&#125;</span><br><span class="line">graph[<span class="string">'C'</span>] = &#123;<span class="string">'A'</span>: <span class="literal">None</span>, <span class="string">'B'</span>: <span class="literal">None</span>, <span class="string">'E'</span>: <span class="literal">None</span>&#125;</span><br><span class="line">graph[<span class="string">'D'</span>] = &#123;<span class="string">'B'</span>: <span class="literal">None</span>, <span class="string">'E'</span>: <span class="literal">None</span>&#125;</span><br><span class="line">graph[<span class="string">'E'</span>] = &#123;<span class="string">'C'</span>: <span class="literal">None</span>, <span class="string">'D'</span>: <span class="literal">None</span>&#125;</span><br><span class="line"></span><br><span class="line">parents = &#123;&#125;</span><br><span class="line">parents[<span class="string">'A'</span>] = <span class="literal">None</span></span><br><span class="line">parents[<span class="string">'B'</span>] = <span class="literal">None</span></span><br><span class="line">parents[<span class="string">'C'</span>] = <span class="literal">None</span></span><br><span class="line">parents[<span class="string">'D'</span>] = <span class="literal">None</span></span><br><span class="line">parents[<span class="string">'E'</span>] = <span class="literal">None</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">search</span><span class="params">(src, des)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    寻找从src到des之间的最短中转方案</span></span><br><span class="line"><span class="string">    :param src: 起点</span></span><br><span class="line"><span class="string">    :param des: 终点</span></span><br><span class="line"><span class="string">    :return: 路径（列表），中转数（整型）</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    search_queue = deque()</span><br><span class="line">    searched = []</span><br><span class="line">    level = <span class="number">0</span></span><br><span class="line">    <span class="keyword">if</span> src <span class="keyword">not</span> <span class="keyword">in</span> searched:</span><br><span class="line">        searched.append(src)</span><br><span class="line">        search_queue.append(src)</span><br><span class="line">        <span class="keyword">while</span> search_queue:</span><br><span class="line">            vex = search_queue.popleft()</span><br><span class="line">            level += <span class="number">1</span></span><br><span class="line">            <span class="keyword">for</span> v <span class="keyword">in</span> graph[vex].keys():</span><br><span class="line">                <span class="keyword">if</span> v <span class="keyword">not</span> <span class="keyword">in</span> searched:</span><br><span class="line">                    searched.append(v)</span><br><span class="line">                    search_queue.append(v)</span><br><span class="line">                    <span class="keyword">if</span> graph[vex][v] <span class="keyword">is</span> <span class="literal">None</span> <span class="keyword">or</span> graph[vex][v] &lt; level:</span><br><span class="line">                        parents[v] = vex</span><br><span class="line">                        graph[vex][v] = level</span><br><span class="line">        <span class="comment">#print(parents)</span></span><br><span class="line">        stack = []</span><br><span class="line">        road = []</span><br><span class="line">        stack.append(des)</span><br><span class="line">        child = des</span><br><span class="line">        <span class="keyword">while</span> <span class="keyword">not</span> parents[child] <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">            stack.append(parents[child])</span><br><span class="line">            child = parents[child]</span><br><span class="line">        <span class="keyword">while</span> stack:</span><br><span class="line">            road.append(stack.pop())</span><br><span class="line"></span><br><span class="line">        node = src</span><br><span class="line">        i = <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> des <span class="keyword">not</span> <span class="keyword">in</span> graph[node].keys():</span><br><span class="line">            node = road[i]</span><br><span class="line">            i += <span class="number">1</span></span><br><span class="line">        cost = graph[node][des]</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> road, cost</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">bfs_traverse</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    广度优先遍历图中的顶点</span></span><br><span class="line"><span class="string">    :return:无</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    search_queue = deque()</span><br><span class="line">    searched = []</span><br><span class="line">    vexs = list(graph.keys())</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(graph)):</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> vexs[i] <span class="keyword">in</span> searched:</span><br><span class="line">            searched.append(vexs[i])</span><br><span class="line">            search_queue.append(vexs[i])</span><br><span class="line">            <span class="keyword">while</span> search_queue:</span><br><span class="line">                vex = search_queue.popleft()</span><br><span class="line">                print(vex)</span><br><span class="line">                <span class="keyword">for</span> v <span class="keyword">in</span> graph[vex].keys(): <span class="comment"># 修改！！！</span></span><br><span class="line">                    <span class="keyword">if</span> v <span class="keyword">not</span> <span class="keyword">in</span> searched:</span><br><span class="line">                        searched.append(v)</span><br><span class="line">                        search_queue.append(v)</span><br><span class="line"></span><br><span class="line"><span class="comment"># bfs_traverse()</span></span><br><span class="line"></span><br><span class="line">r, c = search(<span class="string">"A"</span>, <span class="string">'E'</span>)</span><br><span class="line">print(<span class="string">"最少中转次数为&#123;&#125;,路径为&#123;&#125;"</span>.format(c, <span class="string">','</span>.join(r)))</span><br><span class="line"></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">输出结果：</span></span><br><span class="line"><span class="string">最少中转次数为2,路径为A,C,E</span></span><br><span class="line"><span class="string">"""</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> deque</span><br><span class="line"></span><br><span class="line">graph = &#123;&#125;</span><br><span class="line">graph[<span class="string">'A'</span>] = &#123;<span class="string">'C'</span>: <span class="keyword">None</span>&#125;</span><br><span class="line">graph[<span class="string">'B'</span>] = &#123;<span class="string">'C'</span>: <span class="keyword">None</span>, <span class="string">'D'</span>: <span class="keyword">None</span>&#125;</span><br><span class="line">graph[<span class="string">'C'</span>] = &#123;<span class="string">'A'</span>: <span class="keyword">None</span>, <span class="string">'B'</span>: <span class="keyword">None</span>, <span class="string">'E'</span>: <span class="keyword">None</span>&#125;</span><br><span class="line">graph[<span class="string">'D'</span>] = &#123;<span class="string">'B'</span>: <span class="keyword">None</span>, <span class="string">'E'</span>: <span class="keyword">None</span>&#125;</span><br><span class="line">graph[<span class="string">'E'</span>] = &#123;<span class="string">'C'</span>: <span class="keyword">None</span>, <span class="string">'D'</span>: <span class="keyword">None</span>&#125;</span><br><span class="line"></span><br><span class="line">parents = &#123;&#125;</span><br><span class="line">parents[<span class="string">'A'</span>] = <span class="keyword">None</span></span><br><span class="line">parents[<span class="string">'B'</span>] = <span class="keyword">None</span></span><br><span class="line">parents[<span class="string">'C'</span>] = <span class="keyword">None</span></span><br><span class="line">parents[<span class="string">'D'</span>] = <span class="keyword">None</span></span><br><span class="line">parents[<span class="string">'E'</span>] = <span class="keyword">None</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">search</span><span class="params">(src, des)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    寻找从src到des之间的最短中转方案</span></span><br><span class="line"><span class="string">    :param src: 起点</span></span><br><span class="line"><span class="string">    :param des: 终点</span></span><br><span class="line"><span class="string">    :return: 路径（列表），中转数（整型）</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    search_queue = deque()</span><br><span class="line">    searched = []</span><br><span class="line">    level = <span class="number">0</span></span><br><span class="line">    <span class="keyword">if</span> src <span class="keyword">not</span> <span class="keyword">in</span> searched:</span><br><span class="line">        searched.append(src)</span><br><span class="line">        search_queue.append(src)</span><br><span class="line">        <span class="keyword">while</span> search_queue:</span><br><span class="line">            vex = search_queue.popleft()</span><br><span class="line">            level += <span class="number">1</span></span><br><span class="line">            <span class="keyword">for</span> v <span class="keyword">in</span> graph[vex].keys():</span><br><span class="line">                <span class="keyword">if</span> v <span class="keyword">not</span> <span class="keyword">in</span> searched:</span><br><span class="line">                    searched.append(v)</span><br><span class="line">                    search_queue.append(v)</span><br><span class="line">                    <span class="keyword">if</span> graph[vex][v] <span class="keyword">is</span> <span class="keyword">None</span> <span class="keyword">or</span> graph[vex][v] &lt; level:</span><br><span class="line">                        parents[v] = vex</span><br><span class="line">                        graph[vex][v] = level</span><br><span class="line">        <span class="comment">#print(parents)</span></span><br><span class="line">        stack = []</span><br><span class="line">        road = []</span><br><span class="line">        stack.append(des)</span><br><span class="line">        child = des</span><br><span class="line">        <span class="keyword">while</span> <span class="keyword">not</span> parents[child] <span class="keyword">is</span> <span class="keyword">None</span>:</span><br><span class="line">            stack.append(parents[child])</span><br><span class="line">            child = parents[child]</span><br><span class="line">        <span class="keyword">while</span> stack:</span><br><span class="line">            road.append(stack.pop())</span><br><span class="line"></span><br><span class="line">        node = src</span><br><span class="line">        i = <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> des <span class="keyword">not</span> <span class="keyword">in</span> graph[node].keys():</span><br><span class="line">            node = road[i]</span><br><span class="line">            i += <span class="number">1</span></span><br><span class="line">        cost = graph[node][des]</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> road, cost</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">bfs_traverse</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    广度优先遍历图中的顶点</span></span><br><span class="line"><span class="string">    :return:无</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    search_queue = deque()</span><br><span class="line">    searched = []</span><br><span class="line">    vexs = list(graph.keys())</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(graph)):</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> vexs[i] <span class="keyword">in</span> searched:</span><br><span class="line">            searched.append(vexs[i])</span><br><span class="line">            search_queue.append(vexs[i])</span><br><span class="line">            <span class="keyword">while</span> search_queue:</span><br><span class="line">                vex = search_queue.popleft()</span><br><span class="line">                print(vex)</span><br><span class="line">                <span class="keyword">for</span> v <span class="keyword">in</span> graph[vex].keys(): <span class="comment"># 修改！！！</span></span><br><span class="line">                    <span class="keyword">if</span> v <span class="keyword">not</span> <span class="keyword">in</span> searched:</span><br><span class="line">                        searched.append(v)</span><br><span class="line">                        search_queue.append(v)</span><br><span class="line"></span><br><span class="line"><span class="comment"># bfs_traverse()</span></span><br><span class="line"></span><br><span class="line">r, c = search(<span class="string">"A"</span>, <span class="string">'E'</span>)</span><br><span class="line">print(<span class="string">"最少中转次数为&#123;&#125;,路径为&#123;&#125;"</span>.format(c, <span class="string">','</span>.join(r)))</span><br><span class="line"></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">输出结果：</span></span><br><span class="line"><span class="string">最少中转次数为2,路径为A,C,E</span></span><br><span class="line"><span class="string">"""</span></span><br></pre></td></tr></table></figure>
 <p>上述输出的结果符合我们的心理预期。这样实现就能满足所有情况了吗？答案显然是否定的，因为这种实现并没有考虑两点之间没有路径的极端情况（当然如果在现实中，这种情况出现的概率非常小）。这个函数的进一步改进留给你自己思考。</p>
 <p>好了，本篇文章的主要内容结束了。最后是本篇的重点内容回顾。</p>
 <ol>
@@ -481,7 +483,7 @@
     
       <div>
         <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
-    <img id="wechat_subscriber_qcode" src="/images/qrcode.jpg" alt="CosmosNing wechat" style="width: 200px; max-width: 100%;">
+    <img id="wechat_subscriber_qcode" src="/images/qrcode.jpg" alt="CosmosNing wechat" style="width: 200px; max-width: 100%;"/>
     <div>打开微信扫一扫，关注我的微信公众号。</div>
 </div>
 
@@ -592,7 +594,9 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="CosmosNing">
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="CosmosNing" />
             
               <p class="site-author-name" itemprop="name">CosmosNing</p>
               <p class="site-description motion-element" itemprop="description">编程·学习·生活</p>
@@ -657,7 +661,7 @@
 
           
             <div class="feed-link motion-element">
-              <a href="https://node2.feed43.com/cosmosning.xml" rel="alternate">
+              <a href="/atom.xml" rel="alternate">
                 <i class="fa fa-rss"></i>
                 RSS
               </a>
@@ -683,7 +687,7 @@
                 </span>
               
                 <span class="links-of-author-item">
-                  <a href="https://node2.feed43.com/cosmosning.xml" target="_blank" title="Rss" rel="external nofollow"><i class="fa fa-fw fa-rss"></i>Rss</a>
+                  <a href="/atom.xml" target="_blank" title="Rss" rel="external nofollow"><i class="fa fa-fw fa-rss"></i>Rss</a>
                   
                 </span>
               
@@ -741,7 +745,7 @@
 
 
 
-  <div class="powered-by">由 <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a> 强力驱动 v3.9.0</div>
+  <div class="powered-by">由 <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
 
 
 

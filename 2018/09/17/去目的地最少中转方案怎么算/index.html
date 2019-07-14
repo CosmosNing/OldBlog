@@ -15,10 +15,10 @@
 
 
 <html class="theme-next gemini use-motion" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.9.0">
-  <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
 <meta name="theme-color" content="#222">
 
 
@@ -32,8 +32,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
 
 
 
@@ -56,9 +56,9 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=6.4.1" rel="stylesheet" type="text/css">
+<link href="/css/main.css?v=6.4.1" rel="stylesheet" type="text/css" />
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/avatar-180.png?v=6.4.1">
@@ -108,33 +108,33 @@
 
 
 
-  <meta name="description" content="当今时代，随着交通越来越发达，我们更加愿意选择公共交通出行。然而在去往目的地的时，公共交通有时并不能直达，需要中转。中转有时候会非常浪费时间，因而我们希望在去往目的地的过程中，中转的次数越少越好。以往，我们需要自己记忆繁杂的交通网络人为判断；而现在，我们可以很方便地从手机中的地图app中获取最少中转的方案。你有没有想过，这些最少中转方案是怎么生成的呢？ 面对这个问题感觉无从下手？那我们一起来看看">
+  <meta name="description" content="地图app告诉你！">
 <meta name="keywords" content="算法,Grokking Algorithms">
 <meta property="og:type" content="article">
 <meta property="og:title" content="去目的地最少中转方案怎么算?">
 <meta property="og:url" content="https://cosmosning.github.io/2018/09/17/去目的地最少中转方案怎么算/index.html">
 <meta property="og:site_name" content="CosmosNing的个人博客">
-<meta property="og:description" content="当今时代，随着交通越来越发达，我们更加愿意选择公共交通出行。然而在去往目的地的时，公共交通有时并不能直达，需要中转。中转有时候会非常浪费时间，因而我们希望在去往目的地的过程中，中转的次数越少越好。以往，我们需要自己记忆繁杂的交通网络人为判断；而现在，我们可以很方便地从手机中的地图app中获取最少中转的方案。你有没有想过，这些最少中转方案是怎么生成的呢？ 面对这个问题感觉无从下手？那我们一起来看看">
+<meta property="og:description" content="地图app告诉你！">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2018/09/17/cover.jpg?raw=true">
 <meta property="og:image" content="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2018/09/17/%E5%9B%BE%E7%BB%93%E6%9E%84%E4%B8%BE%E4%BE%8B.png?raw=true">
 <meta property="og:image" content="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2018/09/17/%E5%9B%BE%E7%BB%93%E6%9E%84%E4%B8%BE%E4%BE%8B.png?raw=true">
 <meta property="og:image" content="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2018/09/17/%E5%9B%BE%E7%BB%93%E6%9E%84%E4%B8%BE%E4%BE%8B.png?raw=true">
 <meta property="og:image" content="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2018/09/17/%E9%82%BB%E6%8E%A5%E8%A1%A8%E5%AD%98%E5%82%A8%E4%B8%BE%E4%BE%8B.png?raw=true">
-<meta property="og:updated_time" content="2018-10-02T10:31:56.622Z">
+<meta property="og:updated_time" content="2019-07-14T16:00:24.445Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="去目的地最少中转方案怎么算?">
-<meta name="twitter:description" content="当今时代，随着交通越来越发达，我们更加愿意选择公共交通出行。然而在去往目的地的时，公共交通有时并不能直达，需要中转。中转有时候会非常浪费时间，因而我们希望在去往目的地的过程中，中转的次数越少越好。以往，我们需要自己记忆繁杂的交通网络人为判断；而现在，我们可以很方便地从手机中的地图app中获取最少中转的方案。你有没有想过，这些最少中转方案是怎么生成的呢？ 面对这个问题感觉无从下手？那我们一起来看看">
+<meta name="twitter:description" content="地图app告诉你！">
 <meta name="twitter:image" content="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2018/09/17/cover.jpg?raw=true">
 
 
 
-  <link rel="alternate" href="https://node2.feed43.com/cosmosning.xml" title="CosmosNing的个人博客" type="application/atom+xml">
+  <link rel="alternate" href="/atom.xml" title="CosmosNing的个人博客" type="application/atom+xml" />
 
 
 
 
-  <link rel="canonical" href="https://cosmosning.github.io/2018/09/17/去目的地最少中转方案怎么算/">
+  <link rel="canonical" href="https://cosmosning.github.io/2018/09/17/去目的地最少中转方案怎么算/"/>
 
 
 
@@ -234,7 +234,7 @@
           
           <li class="menu-item menu-item-home">
     <a href="/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
   </li>
         
         
@@ -242,7 +242,7 @@
           
           <li class="menu-item menu-item-about">
     <a href="/about/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
   </li>
         
         
@@ -250,7 +250,7 @@
           
           <li class="menu-item menu-item-tags">
     <a href="/tags/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签<span class="badge">6</span></a>
   </li>
         
         
@@ -258,7 +258,7 @@
           
           <li class="menu-item menu-item-categories">
     <a href="/categories/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类<span class="badge">2</span></a>
   </li>
         
         
@@ -266,7 +266,7 @@
           
           <li class="menu-item menu-item-archives">
     <a href="/archives/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>归档</a>
+      <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />归档<span class="badge">19</span></a>
   </li>
 
       
@@ -295,7 +295,7 @@
     
       
     
-    <a href="https://github.com/CosmosNing" class="github-corner" target="_blank" title="Follow me on GitHub" aria-label="Follow me on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#222; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg>
+    <a href="https://github.com/CosmosNing" class="github-corner" target="_blank" title="Follow me on GitHub" aria-label="Follow me on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#222; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg>
     
       </a>
     
@@ -387,13 +387,13 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-10-02 18:31:56" itemprop="dateModified" datetime="2018-10-02T18:31:56+08:00">2018-10-02</time>
+                <time title="修改时间：2019-07-15 00:00:24" itemprop="dateModified" datetime="2019-07-15T00:00:24+08:00">2019-07-15</time>
               
             
           </span>
 
           
-            <span class="post-category">
+            <span class="post-category" >
             
               <span class="post-meta-divider">|</span>
             
@@ -423,6 +423,8 @@
 
           
 
+          
+              <div class="post-description">地图app告诉你！</div>
           
 
         </div>
@@ -557,7 +559,7 @@
     
       <div>
         <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
-    <img id="wechat_subscriber_qcode" src="/images/qrcode.jpg" alt="CosmosNing wechat" style="width: 200px; max-width: 100%;">
+    <img id="wechat_subscriber_qcode" src="/images/qrcode.jpg" alt="CosmosNing wechat" style="width: 200px; max-width: 100%;"/>
     <div>打开微信扫一扫，关注我的微信公众号。</div>
 </div>
 
@@ -668,7 +670,9 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="CosmosNing">
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="CosmosNing" />
             
               <p class="site-author-name" itemprop="name">CosmosNing</p>
               <p class="site-description motion-element" itemprop="description">编程·学习·生活</p>
@@ -733,7 +737,7 @@
 
           
             <div class="feed-link motion-element">
-              <a href="https://node2.feed43.com/cosmosning.xml" rel="alternate">
+              <a href="/atom.xml" rel="alternate">
                 <i class="fa fa-rss"></i>
                 RSS
               </a>
@@ -759,7 +763,7 @@
                 </span>
               
                 <span class="links-of-author-item">
-                  <a href="https://node2.feed43.com/cosmosning.xml" target="_blank" title="Rss" rel="external nofollow"><i class="fa fa-fw fa-rss"></i>Rss</a>
+                  <a href="/atom.xml" target="_blank" title="Rss" rel="external nofollow"><i class="fa fa-fw fa-rss"></i>Rss</a>
                   
                 </span>
               
@@ -817,7 +821,7 @@
 
 
 
-  <div class="powered-by">由 <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a> 强力驱动 v3.9.0</div>
+  <div class="powered-by">由 <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
 
 
 
