@@ -1886,7 +1886,7 @@ iframe {
 .sidebar-inner {
   position: relative;
   padding: 20px 10px;
-  color: #fff;
+  color: #999;
   text-align: center;
 }
 .site-overview-wrap {
@@ -2025,7 +2025,7 @@ iframe {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #18ff06;
+  background: #9cbbff;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3265,4 +3265,10 @@ ul.breadcrumb li+li:last-child {
   .pagination {
     margin: 8px 0 0;
   }
+}
+.sidebar-inner {
+  color: #fff;
+}
+.footer a {
+  color: #fff;
 }
