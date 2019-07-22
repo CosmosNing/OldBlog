@@ -189,7 +189,7 @@ body {
   font-size: 14px;
   line-height: 2;
   color: #555;
-  background: #666;
+  background: #eee;
 }
 @media (max-width: 767px) {
   body {
@@ -1132,7 +1132,7 @@ pre .javascript .function {
 .back-to-top {
   display: none;
   margin: 20px -10px -20px;
-  background: #666;
+  background: #eee;
   font-size: 12px;
   opacity: 0.6;
   cursor: pointer;
@@ -1946,14 +1946,14 @@ iframe {
 .site-author-name {
   margin: 0;
   text-align: center;
-  color: #555;
+  color: #222;
   font-weight: 600;
 }
 .site-description {
   margin-top: 0;
   text-align: center;
   font-size: 13px;
-  color: #555;
+  color: #999;
 }
 .site-state {
   overflow: hidden;
@@ -1981,7 +1981,7 @@ iframe {
 }
 .site-state-item-name {
   font-size: 13px;
-  color: #555;
+  color: #999;
 }
 .feed-link {
   margin-top: 20px;
@@ -2025,7 +2025,7 @@ iframe {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #8aff75;
+  background: #34211c;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2777,7 +2777,7 @@ ul.breadcrumb li+li:last-child {
   float: left;
   margin-top: 300px;
   width: 240px;
-  background: #666;
+  background: #eee;
   box-shadow: none;
 }
 @media (min-width: 768px) and (max-width: 991px) {
@@ -3190,19 +3190,19 @@ ul.breadcrumb li+li:last-child {
 }
 .post-body h1 {
   font-size: 1.6em;
-  border-bottom: 1px solid #666;
+  border-bottom: 1px solid #eee;
 }
 .post-body h2 {
   font-size: 1.45em;
-  border-bottom: 1px solid #666;
+  border-bottom: 1px solid #eee;
 }
 .post-body h3 {
   font-size: 1.3em;
-  border-bottom: 1px solid #666;
+  border-bottom: 1px solid #eee;
 }
 .post-body h4 {
   font-size: 1.2em;
-  border-bottom: 1px dotted #666;
+  border-bottom: 1px dotted #eee;
 }
 .post-body h5 {
   font-size: 1.07em;
@@ -3268,12 +3268,9 @@ ul.breadcrumb li+li:last-child {
 }
 body {
   background: url("/images/bg.gif");
-  background-repeat: no-repeat;
+/*background-repeat: no-repeat;*/
   background-attachment: fixed;
-  background-size: 100% 100%;
-}
-.sidebar-inner {
-  color: #fff;
+/*background-size: 100% 100%*/
 }
 .footer a {
   color: #fff;
