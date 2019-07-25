@@ -116,7 +116,7 @@
 <meta property="og:site_name" content="CosmosNing的个人博客">
 <meta property="og:description" content="整理一下树和二叉树的知识">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-07-25T15:28:10.618Z">
+<meta property="og:updated_time" content="2019-07-25T15:34:08.683Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据结构复习笔记5-树与二叉树">
 <meta name="twitter:description" content="整理一下树和二叉树的知识">
@@ -364,7 +364,7 @@
                 
               
 
-              <time title="创建时间：2019-07-25 22:50:23 / 修改时间：23:28:10" itemprop="dateCreated datePublished" datetime="2019-07-25T22:50:23+08:00">2019-07-25</time>
+              <time title="创建时间：2019-07-25 22:50:23 / 修改时间：23:34:08" itemprop="dateCreated datePublished" datetime="2019-07-25T22:50:23+08:00">2019-07-25</time>
             
 
             
@@ -428,9 +428,9 @@
 </li>
 <li><p>深度为 $k$ ，至多 $2^{k} - 1$ 个结点</p>
 </li>
-<li><p>设 $n<em>{0}$ 为终端（叶子）结点个数， $n</em>{2}$ 为度为 2 的结点个数，则 $n<em>{0} = n</em>{2} +1$</p>
+<li><p>设 $n_0$ 为终端（叶子）结点个数， $n_2$ 为度为 2 的结点个数，则 $n_0 = n_2 +1$</p>
 </li>
-<li><p>具有 $n$ 个结点的完全二叉树（每一个结点都与深度为 $k$ 的满二叉树中的编号从 1 至 $n$ 的结点一一对应）的深度为 $\lfloor log_{2}n\rfloor + 1​$</p>
+<li><p>具有 $n$ 个结点的完全二叉树（每一个结点都与深度为 $k$ 的满二叉树中的编号从 1 至 $n$ 的结点一一对应）的深度为 $\lfloor log_{2}n\rfloor + 1$</p>
 </li>
 <li><p>具有 $n$ 个结点的完全二叉树，按层序编号，对任意结点 $i$ ，有</p>
 </li>
@@ -448,17 +448,17 @@
 <tr>
 <td style="text-align:center">$i = 1$</td>
 <td style="text-align:center">$i$ 是二叉树的根，无双亲</td>
-<td style="text-align:center">PARENT(i) = $\lfloor i/2\rfloor$($i&gt;1$)</td>
+<td style="text-align:center">PARENT( $i$ ) = $\lfloor i/2\rfloor$($i&gt;1$)</td>
 </tr>
 <tr>
 <td style="text-align:center">$2i&gt;n$</td>
 <td style="text-align:center">结点 $i$ 无左孩子（为叶子节点）</td>
-<td style="text-align:center">LCHILD(i) = $2i$</td>
+<td style="text-align:center">LCHILD( $i$ ) = $2i$</td>
 </tr>
 <tr>
 <td style="text-align:center">$2i+1&gt;n$</td>
 <td style="text-align:center">结点 $i$ 无右孩子</td>
-<td style="text-align:center">RCHILD(i) = $2i+1$</td>
+<td style="text-align:center">RCHILD( $i$ ) = $2i+1$</td>
 </tr>
 </tbody>
 </table>
