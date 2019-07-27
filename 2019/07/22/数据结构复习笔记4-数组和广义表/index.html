@@ -116,7 +116,7 @@
 <meta property="og:site_name" content="CosmosNing的个人博客">
 <meta property="og:description" content="整理一下数组和广义表的知识">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-07-24T14:20:55.355Z">
+<meta property="og:updated_time" content="2019-07-27T16:11:38.422Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据结构复习笔记4-数组和广义表">
 <meta name="twitter:description" content="整理一下数组和广义表的知识">
@@ -381,7 +381,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-07-24 22:20:55" itemprop="dateModified" datetime="2019-07-24T22:20:55+08:00">2019-07-24</time>
+                <time title="修改时间：2019-07-28 00:11:38" itemprop="dateModified" datetime="2019-07-28T00:11:38+08:00">2019-07-28</time>
               
             
           </span>
@@ -455,6 +455,7 @@
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 给指定下标的元素赋值</span></span><br><span class="line"><span class="comment">// A 是 n 维数组，e 为元素变量，随后是 n 个下标值</span></span><br><span class="line"><span class="comment">// 若各下标不越界，则将 e 赋给所指定 A 的元素值，并返回 OK</span></span><br><span class="line"></span><br><span class="line"><span class="function">Status <span class="title">Assign</span><span class="params">(Array &amp; A, Elemtype e, ...)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    va_start(ap, e);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>((result = Locate(A, ap, off)) &lt;= <span class="number">0</span>)	<span class="keyword">return</span> result;</span><br><span class="line">    </span><br><span class="line">    *(A.base + off) = e;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> OK;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <hr>
 <h2 id="矩阵的压缩存储：特殊矩阵、稀疏矩阵"><a href="#矩阵的压缩存储：特殊矩阵、稀疏矩阵" class="headerlink" title="矩阵的压缩存储：特殊矩阵、稀疏矩阵"></a>矩阵的压缩存储：特殊矩阵、稀疏矩阵</h2><h3 id="特殊矩阵"><a href="#特殊矩阵" class="headerlink" title="特殊矩阵"></a>特殊矩阵</h3><p>（以下推导请见王道 3.4.3 节）</p>
+<p><strong>注意下标</strong>（以下推导基于矩阵元素 a 从 <strong>(1, 1)</strong> 开始，但存储从 <strong>0</strong> 号开始）（题目会以此设置陷阱）</p>
 <h4 id="对称矩阵"><a href="#对称矩阵" class="headerlink" title="对称矩阵"></a>对称矩阵</h4><ul>
 <li><p>存储结构：一维数组 <code>sa[n*(n+1)/2]</code>，（行序为主序，仅仅存储下三角）</p>
 </li>
