@@ -126,7 +126,7 @@
 <meta property="og:image" content="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/08/21/Divide.jpg?raw=true">
 <meta property="og:image" content="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/08/21/Merge.jpg?raw=true">
 <meta property="og:image" content="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/08/21/EndPoint.jpg?raw=true">
-<meta property="og:updated_time" content="2019-08-26T15:23:38.162Z">
+<meta property="og:updated_time" content="2019-08-29T15:09:52.040Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据结构复习笔记7-查找">
 <meta name="twitter:description" content="整理一下查找的知识">
@@ -392,7 +392,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-08-26 23:23:38" itemprop="dateModified" datetime="2019-08-26T23:23:38+08:00">2019-08-26</time>
+                <time title="修改时间：2019-08-29 23:09:52" itemprop="dateModified" datetime="2019-08-29T23:09:52+08:00">2019-08-29</time>
               
             
           </span>
@@ -508,19 +508,19 @@
 </ul>
 <h4 id="查找-1"><a href="#查找-1" class="headerlink" title="查找"></a>查找</h4><ul>
 <li>查找过程与排序查找树类似</li>
-<li>重要结论 1 ：假设以 $n_h$ 表示深度为 $h$ 的平衡树中含有的<strong>最少结点数</strong>，则有</li>
+<li>（★★★★★）重要结论 1 ：假设以 $n_h$ 表示深度为 $h$ 的平衡树中含有的<strong>最少结点数</strong>，则有</li>
 </ul>
 <script type="math/tex; mode=display">
 n_0 = 0,n_1 = 1,n_2 =2</script><p>并且</p>
 <script type="math/tex; mode=display">
 n_h=n_{h-1}+n_{h-2}+1</script><ul>
-<li>重要结论 2 ：含有 $n$ 个结点的平衡二叉树的最大深度为 $O(log_2n)$ </li>
+<li>（★★★★★）重要结论 2 ：含有 $n$ 个结点的平衡二叉树的最大深度为 $O(log_2n)$ </li>
 </ul>
 <h3 id="B-树（部分书上写成-B-树）"><a href="#B-树（部分书上写成-B-树）" class="headerlink" title="B-树（部分书上写成 B 树）"></a>B-树（部分书上写成 B 树）</h3><h4 id="定义-2"><a href="#定义-2" class="headerlink" title="定义"></a>定义</h4><ul>
 <li>一棵 m 阶 B 树或为空树，或为满足如下特性的 m 叉树<ol>
 <li>树的每个结点至多有 m 棵子树（即<strong>至多有 m-1 个关键字</strong>）</li>
-<li>若<strong>根</strong>结点不是终端结点，则<strong>至少有两棵子树</strong></li>
-<li>除根结点外的所有非叶子结点至少有 $\lceil \frac{m}{2}\rceil​$ 棵子树（即<strong>至少有 $\lceil \frac{m}{2}\rceil -1​$ 个关键字</strong>）</li>
+<li>若<strong>根</strong>结点不是终端结点，则<strong>至少有两棵子树</strong>（即<strong>至少有 1 个关键字</strong>）</li>
+<li>除<strong>根结点</strong>外的所有非叶子结点至少有 $\lceil \frac{m}{2}\rceil$ 棵子树（即<strong>至少有 $\lceil \frac{m}{2}\rceil -1$ 个关键字</strong>）</li>
 <li>所有非叶子结点结构如下：</li>
 </ol>
 </li>
@@ -558,7 +558,7 @@ n_h=n_{h-1}+n_{h-2}+1</script><ul>
 <p>其中 $K_i&lt;K_j, 当i&lt;j​$ </p>
 <p>$P_{i-1}$ 所指子树中的所有结点的关键字均<strong>小于</strong> $K_i$ </p>
 <p>$P_i​$ 所指子树中的所有结点的关键字均<strong>大于</strong> $K_i​$ </p>
-<p>（★★★★★）$\lceil \frac{m}{2}\rceil -1\le n\le  m-1$</p>
+<p>（★★★★★）$\lceil \frac{m}{2}\rceil -1\le n\le  m-1​$</p>
 <h4 id="高度"><a href="#高度" class="headerlink" title="高度"></a>高度</h4><ul>
 <li><strong>不包括</strong>最后的不带任何信息的叶结点所处的那一层</li>
 <li>（★★★★★）取值范围</li>
@@ -587,7 +587,23 @@ log_m(n+1)\le h \le log_{\lceil \frac{m}{2}\rceil}(\frac{n+1}{2})+1</script><h4 
 </li>
 </ul>
 <p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/08/21/Divide.jpg?raw=true" alt="分裂"></p>
-<h4 id="（★★★★★）删除（TBD）"><a href="#（★★★★★）删除（TBD）" class="headerlink" title="（★★★★★）删除（TBD）"></a>（★★★★★）删除（TBD）</h4><p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/08/21/Merge.jpg?raw=true" alt="非终端合并"></p>
+<h4 id="（★★★★★）删除"><a href="#（★★★★★）删除" class="headerlink" title="（★★★★★）删除"></a>（★★★★★）删除</h4><ul>
+<li>当所删除的关键字 <em>k</em> 不在终端结点（这里的终端结点指最底层非叶子结点，下同）<ol>
+<li>若<strong>小于</strong> <em>k</em> 的子树中关键字个数 &gt; $\lceil \frac{m}{2}\rceil -1​$ ，则找出（中序）<strong>前驱值</strong> <em>k’</em> ，并用 <em>k’</em> 取代 <em>k</em> ，再递归地删除 <em>k’</em> 即可</li>
+<li>若<strong>大于</strong> <em>k</em> 的子树中关键字个数 &gt; $\lceil \frac{m}{2}\rceil -1$ ，则找出（中序）<strong>后继值</strong> <em>k’</em> ，并用 <em>k’</em> 取代 <em>k</em> ，再递归地删除 <em>k’</em> 即可（前两点貌似与二叉排序树中的删除类似）</li>
+<li>若前后两个子树中关键字个数 均为 $\lceil \frac{m}{2}\rceil -1$ ，则直接将两个子结点合并，再直接删除 <em>k</em> 即可（如下图）</li>
+</ol>
+</li>
+</ul>
+<p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/08/21/Merge.jpg?raw=true" alt="非终端合并"></p>
+<ul>
+<li>当所删除的关键字 <em>k</em> 在终端结点<ol>
+<li>若被删除关键字所在结点的关键字个数 &gt; $\lceil \frac{m}{2}\rceil -1$ ，则直接删除</li>
+<li>兄弟够借（如下图）</li>
+<li>兄弟不够借（如下图）</li>
+</ol>
+</li>
+</ul>
 <p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/08/21/EndPoint.jpg?raw=true" alt="终端兄弟借"></p>
 <h2 id="哈希表的构造和冲突处理方法"><a href="#哈希表的构造和冲突处理方法" class="headerlink" title="哈希表的构造和冲突处理方法"></a>哈希表的构造和冲突处理方法</h2><h3 id="哈希表的构造"><a href="#哈希表的构造" class="headerlink" title="哈希表的构造"></a>哈希表的构造</h3><ul>
 <li>这里的构造通常指哈希函数的构造。下面是几种构造方法<ol>
@@ -613,6 +629,44 @@ log_m(n+1)\le h \le log_{\lceil \frac{m}{2}\rceil}(\frac{n+1}{2})+1</script><h4 
 </ul>
 </li>
 </ol>
+<h1 id="解题技巧小结及结论补充"><a href="#解题技巧小结及结论补充" class="headerlink" title="解题技巧小结及结论补充"></a>解题技巧小结及结论补充</h1><ul>
+<li>折半查找<strong>在查找不成功</strong>和<strong>给定值进行关键字的比较次数最多</strong>这两种情况，都是在求<strong>树的高度</strong>，即$\lceil log_2(n+1)\rceil$ </li>
+<li>折半查找中平局查找长度的计算（画<strong>判定树</strong>求解）<ul>
+<li>查找<strong>成功</strong>的平均查找长度<ul>
+<li>$ASL=\frac{\sum每层结点数\times 当前层数(从1取)}{总判定树结点数}​$</li>
+</ul>
+</li>
+<li>查找<strong>失败</strong>的平均查找长度<ul>
+<li>$ASL=\frac{\sum 判定失败的结点数\times 当前层数}{总判定失败结点数}​$</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>（★★★★★）顺序查找<strong>成功</strong>的平均查找长度公式<ul>
+<li>$ASL=\frac{n+1}{2}$ ，其中 <em>n</em> 为元素个数</li>
+</ul>
+</li>
+<li><em>n</em> 个记录的索引顺序表最理想的块长为 $\sqrt{n}$ </li>
+<li>索引顺序表的平均查找长度的计算<ul>
+<li>$ASL= 块间顺序查找+快内顺序查找$ </li>
+<li>根据上述公式，将对应部分的元素个数带入公式即可</li>
+</ul>
+</li>
+<li>如何判定序列满足<strong>折半查找</strong>或者<strong>二叉排序树</strong>序列？<ul>
+<li>注意到两者的序列都可以表示成对一棵树的从根结点沿着某一路径一直访问到叶子结点。</li>
+<li>其中，这棵树满足<strong>任一节点大于</strong>其<strong>左子树</strong>的任意一个结点，<strong>小于</strong>其<strong>右子树</strong>的任意一个结点。</li>
+<li>根据序列<strong>第一个元素</strong>，确定<strong>根结点</strong>；根据下一个元素和当前位置的<strong>大小关系</strong>，确定下一个元素相对于当前元素的位置（<strong>左子树</strong>还是<strong>右子树</strong>）。确定位置后，注意检查，是否满足树的要求（即上述第二点的性质）</li>
+</ul>
+</li>
+<li>对 <em>B-</em> 树的正确理解<ul>
+<li>5 阶 <em>B-</em> 树中各个结点包含的关键字为 2 时，也满足要求（不要误以为要至少存在一个含关键字 4 [ $5-1$ ] 个的结点才满足）。也就是每个结点的个数在 $\lceil \frac{m}{2}\rceil -1\le n\le  m-1$ 范围内即可（其中，<em>m</em> 为阶数）</li>
+</ul>
+</li>
+<li>在开址法中散列到同一地址二引起的“堆积”问题是由于<strong>同义词之间或非同义词之间发生冲突</strong>引起的（<strong>非同义词</strong>！！！）</li>
+<li>在开放定址法解决冲突的散列表查找中，发生聚集的原因主要是<strong>解决冲突的方法选择不当</strong></li>
+<li>在散列表中，<strong>平局查找长度</strong>与<strong>装填因子</strong> $\alpha$ 直接相关，不依赖于已有表项数或表长。若散列表中存放的都是某个地址的同义词，则平均查找长度为 $O(n)$ </li>
+<li>用逐点法插入构造二叉树时，若先后插入的关键字<strong>有序</strong>，则二叉排序树<strong>深度最大</strong>。</li>
+</ul>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ol>
 <li>数据结构（C语言版）.严蔚敏等</li>
 <li>2020年数据结构考研复习指导.王道论坛</li>
@@ -873,7 +927,7 @@ log_m(n+1)\le h \le log_{\lceil \frac{m}{2}\rceil}(\frac{n+1}{2})+1</script><h4 
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#8．查找"><span class="nav-number">1.</span> <span class="nav-text">8．查找</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#顺序表查找；有序表查找；索引顺序表查找"><span class="nav-number">1.1.</span> <span class="nav-text">顺序表查找；有序表查找；索引顺序表查找</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#顺序表查找"><span class="nav-number">1.1.1.</span> <span class="nav-text">顺序表查找</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#有序表查找"><span class="nav-number">1.1.2.</span> <span class="nav-text">有序表查找</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#索引顺序表查找"><span class="nav-number">1.1.3.</span> <span class="nav-text">索引顺序表查找</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二叉排序树；平衡二叉树；B-树"><span class="nav-number">1.2.</span> <span class="nav-text">二叉排序树；平衡二叉树；B-树</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#二叉排序树"><span class="nav-number">1.2.1.</span> <span class="nav-text">二叉排序树</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#定义"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查找"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">查找</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#插入"><span class="nav-number">1.2.1.3.</span> <span class="nav-text">插入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除"><span class="nav-number">1.2.1.4.</span> <span class="nav-text">删除</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#平衡二叉树（AVL）"><span class="nav-number">1.2.2.</span> <span class="nav-text">平衡二叉树（AVL）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#定义-1"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#插入-1"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">插入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查找-1"><span class="nav-number">1.2.2.3.</span> <span class="nav-text">查找</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#B-树（部分书上写成-B-树）"><span class="nav-number">1.2.3.</span> <span class="nav-text">B-树（部分书上写成 B 树）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#定义-2"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#高度"><span class="nav-number">1.2.3.2.</span> <span class="nav-text">高度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查找-2"><span class="nav-number">1.2.3.3.</span> <span class="nav-text">查找</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#（★★★★★）插入"><span class="nav-number">1.2.3.4.</span> <span class="nav-text">（★★★★★）插入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#（★★★★★）删除（TBD）"><span class="nav-number">1.2.3.5.</span> <span class="nav-text">（★★★★★）删除（TBD）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#哈希表的构造和冲突处理方法"><span class="nav-number">1.3.</span> <span class="nav-text">哈希表的构造和冲突处理方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#哈希表的构造"><span class="nav-number">1.3.1.</span> <span class="nav-text">哈希表的构造</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#哈希冲突处理方法"><span class="nav-number">1.3.2.</span> <span class="nav-text">哈希冲突处理方法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">2.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#8．查找"><span class="nav-number">1.</span> <span class="nav-text">8．查找</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#顺序表查找；有序表查找；索引顺序表查找"><span class="nav-number">1.1.</span> <span class="nav-text">顺序表查找；有序表查找；索引顺序表查找</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#顺序表查找"><span class="nav-number">1.1.1.</span> <span class="nav-text">顺序表查找</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#有序表查找"><span class="nav-number">1.1.2.</span> <span class="nav-text">有序表查找</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#索引顺序表查找"><span class="nav-number">1.1.3.</span> <span class="nav-text">索引顺序表查找</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二叉排序树；平衡二叉树；B-树"><span class="nav-number">1.2.</span> <span class="nav-text">二叉排序树；平衡二叉树；B-树</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#二叉排序树"><span class="nav-number">1.2.1.</span> <span class="nav-text">二叉排序树</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#定义"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查找"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">查找</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#插入"><span class="nav-number">1.2.1.3.</span> <span class="nav-text">插入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除"><span class="nav-number">1.2.1.4.</span> <span class="nav-text">删除</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#平衡二叉树（AVL）"><span class="nav-number">1.2.2.</span> <span class="nav-text">平衡二叉树（AVL）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#定义-1"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#插入-1"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">插入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查找-1"><span class="nav-number">1.2.2.3.</span> <span class="nav-text">查找</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#B-树（部分书上写成-B-树）"><span class="nav-number">1.2.3.</span> <span class="nav-text">B-树（部分书上写成 B 树）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#定义-2"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#高度"><span class="nav-number">1.2.3.2.</span> <span class="nav-text">高度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查找-2"><span class="nav-number">1.2.3.3.</span> <span class="nav-text">查找</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#（★★★★★）插入"><span class="nav-number">1.2.3.4.</span> <span class="nav-text">（★★★★★）插入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#（★★★★★）删除"><span class="nav-number">1.2.3.5.</span> <span class="nav-text">（★★★★★）删除</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#哈希表的构造和冲突处理方法"><span class="nav-number">1.3.</span> <span class="nav-text">哈希表的构造和冲突处理方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#哈希表的构造"><span class="nav-number">1.3.1.</span> <span class="nav-text">哈希表的构造</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#哈希冲突处理方法"><span class="nav-number">1.3.2.</span> <span class="nav-text">哈希冲突处理方法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#解题技巧小结及结论补充"><span class="nav-number">2.</span> <span class="nav-text">解题技巧小结及结论补充</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">3.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
             
 
           </div>
