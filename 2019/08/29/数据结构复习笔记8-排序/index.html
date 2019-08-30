@@ -116,7 +116,7 @@
 <meta property="og:site_name" content="CosmosNing的个人博客">
 <meta property="og:description" content="整理一下排序的知识">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-29T15:26:44.007Z">
+<meta property="og:updated_time" content="2019-08-30T14:29:21.819Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据结构复习笔记8-排序">
 <meta name="twitter:description" content="整理一下排序的知识">
@@ -364,12 +364,24 @@
                 
               
 
-              <time title="创建时间：2019-08-29 23:11:14 / 修改时间：23:26:44" itemprop="dateCreated datePublished" datetime="2019-08-29T23:11:14+08:00">2019-08-29</time>
+              <time title="创建时间：2019-08-29 23:11:14" itemprop="dateCreated datePublished" datetime="2019-08-29T23:11:14+08:00">2019-08-29</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-08-30 22:29:21" itemprop="dateModified" datetime="2019-08-30T22:29:21+08:00">2019-08-30</time>
               
             
           </span>
@@ -422,7 +434,24 @@
       
 
       
-        <h1 id="9．内部排序"><a href="#9．内部排序" class="headerlink" title="9．内部排序"></a>9．内部排序</h1><h2 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h2><h3 id="直接插入"><a href="#直接插入" class="headerlink" title="直接插入"></a>直接插入</h3><h3 id="折半插入"><a href="#折半插入" class="headerlink" title="折半插入"></a>折半插入</h3><h3 id="希尔排序"><a href="#希尔排序" class="headerlink" title="希尔排序"></a>希尔排序</h3><h2 id="交换排序"><a href="#交换排序" class="headerlink" title="交换排序"></a>交换排序</h2><h3 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h3><h3 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h3><h2 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h2><h3 id="简单选择"><a href="#简单选择" class="headerlink" title="简单选择"></a>简单选择</h3><h3 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h3><h2 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h2><h2 id="基数排序"><a href="#基数排序" class="headerlink" title="基数排序"></a>基数排序</h2><h2 id="内部排序算法的比较和应用"><a href="#内部排序算法的比较和应用" class="headerlink" title="内部排序算法的比较和应用"></a>内部排序算法的比较和应用</h2><div class="table-container">
+        <h1 id="9．内部排序"><a href="#9．内部排序" class="headerlink" title="9．内部排序"></a>9．内部排序</h1><h2 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h2><h3 id="直接插入"><a href="#直接插入" class="headerlink" title="直接插入"></a>直接插入</h3><hr>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 算法 10.1</span></span><br><span class="line"><span class="comment">// 对顺序表 L 作直接插入</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">InsertSort</span><span class="params">(SqList &amp;L)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">2</span>; i &lt;= L,length; ++i)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(LT(L.r[i].key, L.r[i<span class="number">-1</span>].key))<span class="comment">// “小于”，需将L.r[i]插入到有序表（若大于，则无需以下操作，注意这个判定条件）</span></span><br><span class="line">        &#123;</span><br><span class="line">            L.r[<span class="number">0</span>] = L.r[i];            <span class="comment">// 复制为“哨兵”</span></span><br><span class="line">            L.r[i] = L.r[i<span class="number">-1</span>];</span><br><span class="line">            <span class="keyword">for</span>(j = i - <span class="number">2</span>; LT(L.r[<span class="number">0</span>].key, L.r[j].key); --j)</span><br><span class="line">                L.r[j + <span class="number">1</span>] = L.r[j];    <span class="comment">// 记录后移</span></span><br><span class="line">            L.r[j + <span class="number">1</span>] = L.r[<span class="number">0</span>];        <span class="comment">// 插入到正确的位置</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="折半插入"><a href="#折半插入" class="headerlink" title="折半插入"></a>折半插入</h3><hr>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 算法 10.2</span></span><br><span class="line"><span class="comment">// 对顺序表 L 作折半插入排序</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">BInsertSort</span><span class="params">(SqList &amp;L)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">2</span>; i &lt;= L.length; ++i)</span><br><span class="line">    &#123;</span><br><span class="line">        L.r[<span class="number">0</span>] = L.r[i];         <span class="comment">// 哨兵</span></span><br><span class="line">        low = <span class="number">1</span>;    high = i - <span class="number">1</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span>(low &lt;= high)       <span class="comment">// 在r[low...high]中折半查找有序插入的位置</span></span><br><span class="line">        &#123;</span><br><span class="line">            m = (low + high) / <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span>(LT(L.r[<span class="number">0</span>].key, L.r[m].key))</span><br><span class="line">                high = m - <span class="number">1</span>;              <span class="comment">// 插入点在低半区</span></span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                low = m + <span class="number">1</span>;               <span class="comment">// 插入点在高半区</span></span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(j = i - <span class="number">1</span>; j &gt;= high + <span class="number">1</span>; --j)</span><br><span class="line">            L.r[j + <span class="number">1</span>] = L.r[j];           <span class="comment">// 记录后移</span></span><br><span class="line">        </span><br><span class="line">        L.r[high + <span class="number">1</span>] = L.r[<span class="number">0</span>];            <span class="comment">// 插入</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<ul>
+<li>性能分析<ul>
+<li>空间复杂度：$O(1)$</li>
+<li>时间复杂度：$O(n)$</li>
+</ul>
+</li>
+</ul>
+<h3 id="希尔排序"><a href="#希尔排序" class="headerlink" title="希尔排序"></a>希尔排序</h3><hr>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 算法 10.4</span></span><br><span class="line"><span class="comment">// 对顺序表 L 做一趟希尔插入排序。本算法和一趟直接插入排序相比，</span></span><br><span class="line"><span class="comment">// 做了如下修改</span></span><br><span class="line"><span class="comment">// 1. 前后记录位置的增量是 dk，而不是 1</span></span><br><span class="line"><span class="comment">// 2. r[0] 知识暂存单元，不是哨兵。当 j &lt;= 0 时，插入位置已找到</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ShellInsert</span><span class="params">(SqList &amp;L, <span class="keyword">int</span> dk)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(i = dk + <span class="number">1</span>; i &lt;= L.length; ++i)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(LT(L.r[i],key, L.r[i - dk],key))  <span class="comment">// 需将 L.r[i] 插入到有序表</span></span><br><span class="line">        &#123;</span><br><span class="line">            L.r[<span class="number">0</span>] = L.r[i];             <span class="comment">// 暂存在 L,r[0]</span></span><br><span class="line">            </span><br><span class="line">            <span class="keyword">for</span>(j = i - dk; j &gt; <span class="number">0</span> &amp;&amp; LT(L.r[<span class="number">0</span>].key, L.r[j].key); j -= dk)</span><br><span class="line">                L.r[j + dk] = L.r[j];    <span class="comment">// 记录后移，查找插入位置</span></span><br><span class="line">            </span><br><span class="line">            L.r[j+dk] = L.r[<span class="number">0</span>];          <span class="comment">// 插入</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 算法 10.5</span></span><br><span class="line"><span class="comment">// 按增量序列 dlta[0...t-1]对顺序表 L 做希尔排序</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ShellSort</span><span class="params">(SqList &amp;L. <span class="keyword">int</span> dlta[], <span class="keyword">int</span> t)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(k = <span class="number">0</span>; k &lt; t; ++k)</span><br><span class="line">    &#123;</span><br><span class="line">        ShellInsert(L, dlta[k]);    <span class="comment">// 一趟增量为 dlta[k]的插入排序</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="交换排序"><a href="#交换排序" class="headerlink" title="交换排序"></a>交换排序</h2><h3 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h3><h3 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h3><h2 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h2><h3 id="简单选择"><a href="#简单选择" class="headerlink" title="简单选择"></a>简单选择</h3><h3 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h3><h2 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h2><h2 id="基数排序"><a href="#基数排序" class="headerlink" title="基数排序"></a>基数排序</h2><h2 id="内部排序算法的比较和应用"><a href="#内部排序算法的比较和应用" class="headerlink" title="内部排序算法的比较和应用"></a>内部排序算法的比较和应用</h2><div class="table-container">
 <table>
 <thead>
 <tr>
@@ -437,9 +466,9 @@
 <tbody>
 <tr>
 <td style="text-align:center">直接插入</td>
-<td style="text-align:center">$O(n)$</td>
+<td style="text-align:center">$O(n)$（待排序序列为<strong>正序</strong>）</td>
 <td style="text-align:center">$O(n^2)$</td>
-<td style="text-align:center">$O(n^2)$</td>
+<td style="text-align:center">$O(n^2)$（待排序序列为<strong>逆序</strong>）</td>
 <td style="text-align:center">$O(1)$</td>
 <td style="text-align:center">是</td>
 </tr>
