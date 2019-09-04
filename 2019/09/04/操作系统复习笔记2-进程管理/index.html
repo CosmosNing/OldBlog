@@ -1,0 +1,1141 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.1" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/avatar-180.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/avatar-32.ico?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/avatar-16.ico?v=6.4.1">
+
+
+  <link rel="mask-icon" href="/images/avatar.svg?v=6.4.1" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.4.1',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="整理一下操作系统中进程管理的知识">
+<meta name="keywords" content="操作系统">
+<meta property="og:type" content="article">
+<meta property="og:title" content="操作系统复习笔记2-进程管理">
+<meta property="og:url" content="https://cosmosning.github.io/2019/09/04/操作系统复习笔记2-进程管理/index.html">
+<meta property="og:site_name" content="CosmosNing的个人博客">
+<meta property="og:description" content="整理一下操作系统中进程管理的知识">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-09-04T16:53:23.613Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="操作系统复习笔记2-进程管理">
+<meta name="twitter:description" content="整理一下操作系统中进程管理的知识">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="CosmosNing的个人博客" type="application/atom+xml" />
+
+
+
+
+  <link rel="canonical" href="https://cosmosning.github.io/2019/09/04/操作系统复习笔记2-进程管理/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>操作系统复习笔记2-进程管理 | CosmosNing的个人博客</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">CosmosNing的个人博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">探索·好奇</h1>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签<span class="badge">7</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类<span class="badge">2</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />归档<span class="badge">27</span></a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+  
+  
+  
+    
+      
+    
+    <a href="https://github.com/CosmosNing" class="github-corner" target="_blank" title="Follow me on GitHub" aria-label="Follow me on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#222; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg>
+    
+      </a>
+    
+
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://cosmosning.github.io/2019/09/04/操作系统复习笔记2-进程管理/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CosmosNing">
+      <meta itemprop="description" content="编程·学习·生活">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CosmosNing的个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">操作系统复习笔记2-进程管理
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-09-04 22:48:57" itemprop="dateCreated datePublished" datetime="2019-09-04T22:48:57+08:00">2019-09-04</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-09-05 00:53:23" itemprop="dateModified" datetime="2019-09-05T00:53:23+08:00">2019-09-05</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/笔记/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+              <div class="post-description">整理一下操作系统中进程管理的知识</div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="2．进程管理"><a href="#2．进程管理" class="headerlink" title="2．进程管理"></a>2．进程管理</h1><h2 id="前驱图以及程序顺序执行和并发执行的特点"><a href="#前驱图以及程序顺序执行和并发执行的特点" class="headerlink" title="前驱图以及程序顺序执行和并发执行的特点"></a>前驱图以及程序顺序执行和并发执行的特点</h2><h3 id="前驱图"><a href="#前驱图" class="headerlink" title="前驱图"></a>前驱图</h3><p>（详见教材）</p>
+<h3 id="顺序执行的特点"><a href="#顺序执行的特点" class="headerlink" title="顺序执行的特点"></a>顺序执行的特点</h3><ul>
+<li>顺序性</li>
+<li>封闭性<ul>
+<li>程序运行时<strong>独占全机资源</strong></li>
+<li>执行结果<strong>不受外界因素影响</strong></li>
+</ul>
+</li>
+<li>可再现性<ul>
+<li>执行环境和初始条件相同，程序程序重复执行，最终结果相同。</li>
+</ul>
+</li>
+</ul>
+<h3 id="并发执行的特点"><a href="#并发执行的特点" class="headerlink" title="并发执行的特点"></a>并发执行的特点</h3><ul>
+<li>间断性</li>
+<li>失去封闭性</li>
+<li>不可再现性</li>
+</ul>
+<p>（★）重要结论：程序在<strong>并发执行</strong>时，<strong>其计算结果和并发执行速度有关</strong></p>
+<h2 id="进程的基本概念和思想"><a href="#进程的基本概念和思想" class="headerlink" title="进程的基本概念和思想"></a>进程的基本概念和思想</h2><p>（详见教材）</p>
+<h2 id="进程的状态与转换"><a href="#进程的状态与转换" class="headerlink" title="进程的状态与转换"></a>进程的状态与转换</h2><p>（详见教材）</p>
+<h2 id="进程控制块及其作用"><a href="#进程控制块及其作用" class="headerlink" title="进程控制块及其作用"></a>进程控制块及其作用</h2><p>（详见教材）</p>
+<h2 id="进程组织"><a href="#进程组织" class="headerlink" title="进程组织"></a>进程组织</h2><ul>
+<li>进程控制块（PCB）</li>
+<li>程序段</li>
+<li>数据段</li>
+</ul>
+<h2 id="进程同步（★★★★★★★★）"><a href="#进程同步（★★★★★★★★）" class="headerlink" title="进程同步（★★★★★★★★）"></a>进程同步（★★★★★★★★）</h2><h3 id="进程同步的概念和同步原则"><a href="#进程同步的概念和同步原则" class="headerlink" title="进程同步的概念和同步原则"></a>进程同步的概念和同步原则</h3><h4 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h4><p>（详见教材）</p>
+<h4 id="原则（★★★）"><a href="#原则（★★★）" class="headerlink" title="原则（★★★）"></a>原则（★★★）</h4><ul>
+<li>空闲让进<ul>
+<li>临界资源空闲，有人需要，给它。</li>
+</ul>
+</li>
+<li>忙则等待<ul>
+<li>临界资源正忙（被进程访问中），其他要使用临界资源的进程需要等待临界资源被释放，才能使用</li>
+</ul>
+</li>
+<li>有限等待<ul>
+<li>对待对临界资源有需求的进程，应该保证其在有限的时间内得到。以免陷入“死等”（“饥饿”）</li>
+</ul>
+</li>
+<li>让权等待<ul>
+<li>自己拿不到临界资源，就放弃处理机。以免陷入“忙等”</li>
+</ul>
+</li>
+</ul>
+<h3 id="临街资源和临界区的概念"><a href="#临街资源和临界区的概念" class="headerlink" title="临街资源和临界区的概念"></a>临街资源和临界区的概念</h3><p>（详见教材）</p>
+<h3 id="信号量及其应用（★★★★★★）"><a href="#信号量及其应用（★★★★★★）" class="headerlink" title="信号量及其应用（★★★★★★）"></a>信号量及其应用（★★★★★★）</h3><h4 id="常见信号量的描述"><a href="#常见信号量的描述" class="headerlink" title="常见信号量的描述"></a>常见信号量的描述</h4><h5 id="整型"><a href="#整型" class="headerlink" title="整型"></a>整型</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// P操作（或者称 wait(S) 原语）</span></span><br><span class="line"></span><br><span class="line">wait(S)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">while</span>(S &lt;= <span class="number">0</span>)   <span class="comment">// 未遵循“让权等待”。当 S &lt;= 0 时，使得进程一直“忙等”</span></span><br><span class="line">        ;           <span class="comment">// 空操作</span></span><br><span class="line">    </span><br><span class="line">    S--;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// V 操作（或者称 signal(S) 原语）</span></span><br><span class="line"></span><br><span class="line">signal(S)</span><br><span class="line">&#123;</span><br><span class="line">    S++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="记录型"><a href="#记录型" class="headerlink" title="记录型"></a>记录型</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 类型定义</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> value;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">process_control_block</span> *<span class="title">list</span>;</span></span><br><span class="line">&#125;semaphore;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// P操作（或者称 wait(S) 原语）</span></span><br><span class="line"></span><br><span class="line">wait(semaphore *S)    <span class="comment">// 相当于申请资源</span></span><br><span class="line">&#123;</span><br><span class="line">    S-&gt;value--;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>(S-&gt;value &lt; <span class="number">0</span>)</span><br><span class="line">        block(S-&gt;<span class="built_in">list</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// V 操作（或者称 signal(S) 原语）</span></span><br><span class="line"></span><br><span class="line">signal(semaphore *S)  <span class="comment">// 相当于释放资源</span></span><br><span class="line">&#123;</span><br><span class="line">    S-&gt;value++;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>(S-&gt;value &lt;= <span class="number">0</span>)</span><br><span class="line">        wakeup(S-&gt;<span class="built_in">list</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h4><h5 id="实现同步"><a href="#实现同步" class="headerlink" title="实现同步"></a>实现同步</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// P2 的 y 要调用 P1 的 x 的结果，所以需要先执行 P1 的 x 后再执行 P2 的 y</span></span><br><span class="line"></span><br><span class="line">semaphore S = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">P1()</span><br><span class="line">&#123;</span><br><span class="line">    ...;</span><br><span class="line">    </span><br><span class="line">    x;               <span class="comment">// x 语句</span></span><br><span class="line">    V(S);            <span class="comment">// 通知 P2，x 语句已完成</span></span><br><span class="line">    </span><br><span class="line">    ...;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">P2()</span><br><span class="line">&#123;</span><br><span class="line">    ...;</span><br><span class="line">    </span><br><span class="line">    P(S);            <span class="comment">// 检查语句 x 是否完成</span></span><br><span class="line">    y;               <span class="comment">// 检查无误，运行 y</span></span><br><span class="line">    </span><br><span class="line">    ...;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="实现互斥"><a href="#实现互斥" class="headerlink" title="实现互斥"></a>实现互斥</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">semaphore S = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">P1()</span><br><span class="line">&#123;</span><br><span class="line">    ...;</span><br><span class="line">    </span><br><span class="line">    P(S);            <span class="comment">// 准备访问前，对临界资源加锁</span></span><br><span class="line">    进入 P1 临界区;</span><br><span class="line">    V(S);            <span class="comment">// 访问结束，释放临界资源的锁</span></span><br><span class="line">    </span><br><span class="line">    ...;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">P2()</span><br><span class="line">&#123;</span><br><span class="line">    ...;</span><br><span class="line">    </span><br><span class="line">    P(S);</span><br><span class="line">    进入 P2 临界区;</span><br><span class="line">    V(S);</span><br><span class="line">    </span><br><span class="line">    ...;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="实现前驱图关系"><a href="#实现前驱图关系" class="headerlink" title="实现前驱图关系"></a>实现前驱图关系</h5><ul>
+<li><p>总思路</p>
+<ul>
+<li>进程<strong>前半段</strong>包含对<strong>前驱结点资源</strong>的 <strong>P</strong> 操作（想要前驱完成，才能继续本进程的继续向下运行）</li>
+<li>进程<strong>后半段</strong>包含对<strong>自身结点资源</strong>的 <strong>V</strong> 操作（释放自身，通知其后继结点，我已完成）</li>
+</ul>
+</li>
+</ul>
+<h3 id="【TBD】问题：信号量如何初始化？？？？？"><a href="#【TBD】问题：信号量如何初始化？？？？？" class="headerlink" title="【TBD】问题：信号量如何初始化？？？？？"></a>【TBD】问题：信号量如何初始化？？？？？</h3><h3 id="【TBD】经典进程同步问题（★★★★★★★★）"><a href="#【TBD】经典进程同步问题（★★★★★★★★）" class="headerlink" title="【TBD】经典进程同步问题（★★★★★★★★）"></a>【TBD】经典进程同步问题（★★★★★★★★）</h3><h2 id="进程通信的基本概念和方法"><a href="#进程通信的基本概念和方法" class="headerlink" title="进程通信的基本概念和方法"></a>进程通信的基本概念和方法</h2><h3 id="概念-1"><a href="#概念-1" class="headerlink" title="概念"></a>概念</h3><ul>
+<li>指进程之间的<strong>信息交换</strong></li>
+</ul>
+<h3 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h3><h4 id="低级"><a href="#低级" class="headerlink" title="低级"></a>低级</h4><ul>
+<li>PV 操作</li>
+</ul>
+<h4 id="高级"><a href="#高级" class="headerlink" title="高级"></a>高级</h4><ul>
+<li>共享存储<ul>
+<li>基于共享<strong>数据结构</strong></li>
+<li>基于共享<strong>存储区</strong></li>
+</ul>
+</li>
+<li>管道通信<ul>
+<li><strong>半双工通信</strong>（某一时刻只能<strong>单向传输</strong>）</li>
+</ul>
+</li>
+<li>消息传递<ul>
+<li><strong>直接</strong>通信<ul>
+<li>通过<strong>原语</strong>，发送端直接到接受端</li>
+</ul>
+</li>
+<li><strong>间接</strong>通信<ul>
+<li>通过共享中间实体（称作邮箱）进行消息收发</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>客户机-服务器系统<ul>
+<li>套接字</li>
+<li>远程过程调用和远程方法调用</li>
+</ul>
+</li>
+</ul>
+<h2 id="线程的概念和多线程模型"><a href="#线程的概念和多线程模型" class="headerlink" title="线程的概念和多线程模型"></a>线程的概念和多线程模型</h2><h3 id="线程概念"><a href="#线程概念" class="headerlink" title="线程概念"></a>线程概念</h3><p>（详见教材）</p>
+<h3 id="多线程模型"><a href="#多线程模型" class="headerlink" title="多线程模型"></a>多线程模型</h3><h4 id="多对一"><a href="#多对一" class="headerlink" title="多对一"></a>多对一</h4><ul>
+<li><strong>多个用户级</strong>线程映射到<strong>一个内核级</strong>线程</li>
+<li>优点<ul>
+<li>线程管理在用户空间进行，<strong>效率较高</strong></li>
+</ul>
+</li>
+<li>缺点<ul>
+<li><strong>一个</strong>线程在使用内核服务时被<strong>阻塞</strong>，<strong>整个</strong>进程都会被<strong>阻塞</strong></li>
+<li>多个线程<strong>不能并行</strong>地运行在多处理机上</li>
+</ul>
+</li>
+</ul>
+<h4 id="一对一"><a href="#一对一" class="headerlink" title="一对一"></a>一对一</h4><ul>
+<li><strong>一个用户级</strong>线程映射到<strong>一个内核级</strong>线程</li>
+<li>优点<ul>
+<li><strong>一个</strong>线程被阻塞，允许另一个线程继续执行，<strong>并发能力强</strong></li>
+</ul>
+</li>
+<li>缺点<ul>
+<li>这样<strong>创建线程</strong>，<strong>开销较大</strong>，<strong>影响程序性能</strong></li>
+</ul>
+</li>
+</ul>
+<h4 id="多对多"><a href="#多对多" class="headerlink" title="多对多"></a>多对多</h4><ul>
+<li><strong>n</strong> 个用户级线程映射到 <strong>m</strong> 个内核级线程（m ≤ n）</li>
+<li>对比前两者，可谓<strong>集两者之所长，补两者之所短</strong></li>
+</ul>
+<h1 id="3．调度与死锁"><a href="#3．调度与死锁" class="headerlink" title="3．调度与死锁"></a>3．调度与死锁</h1><h2 id="调度的概念"><a href="#调度的概念" class="headerlink" title="调度的概念"></a>调度的概念</h2><h2 id="调度队列模型"><a href="#调度队列模型" class="headerlink" title="调度队列模型"></a>调度队列模型</h2><h2 id="调度的基本准则与方式"><a href="#调度的基本准则与方式" class="headerlink" title="调度的基本准则与方式"></a>调度的基本准则与方式</h2><h2 id="各种调度算法及其评价"><a href="#各种调度算法及其评价" class="headerlink" title="各种调度算法及其评价"></a>各种调度算法及其评价</h2><h2 id="死锁问题及其处理方法，包括死锁的概念和原因，产生死锁的必要条件，死锁处理策略，死锁的预防、避免、以及检测和解除。"><a href="#死锁问题及其处理方法，包括死锁的概念和原因，产生死锁的必要条件，死锁处理策略，死锁的预防、避免、以及检测和解除。" class="headerlink" title="死锁问题及其处理方法，包括死锁的概念和原因，产生死锁的必要条件，死锁处理策略，死锁的预防、避免、以及检测和解除。"></a>死锁问题及其处理方法，包括死锁的概念和原因，产生死锁的必要条件，死锁处理策略，死锁的预防、避免、以及检测和解除。</h2><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ol>
+<li>计算机操作系统.汤小丹等</li>
+<li>2020年操作系统考研复习指导.王道论坛</li>
+</ol>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/qrcode.jpg" alt="CosmosNing wechat" style="width: 200px; max-width: 100%;"/>
+    <div>打开微信扫一扫，关注我的微信公众号。</div>
+</div>
+
+      </div>
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>CosmosNing</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://cosmosning.github.io/2019/09/04/操作系统复习笔记2-进程管理/" title="操作系统复习笔记2-进程管理">https://cosmosning.github.io/2019/09/04/操作系统复习笔记2-进程管理/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/操作系统/" rel="tag"># 操作系统</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/09/04/操作系统复习笔记1-概述/" rel="next" title="操作系统复习笔记1-概述">
+                <i class="fa fa-chevron-left"></i> 操作系统复习笔记1-概述
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zOTkzMi8xNjQ1OQ=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="CosmosNing" />
+            
+              <p class="site-author-name" itemprop="name">CosmosNing</p>
+              <p class="site-description motion-element" itemprop="description">编程·学习·生活</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">27</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/CosmosNing" target="_blank" title="GitHub" rel="external nofollow"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.linkedin.com/in/%E5%AE%81%E5%81%A5-%E6%9D%8E-86a45b135/" target="_blank" title="Linkedin" rel="external nofollow"><i class="fa fa-fw fa-linkedin"></i>Linkedin</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:llnnjjxxx@gmail.com" target="_blank" title="E-Mail" rel="external nofollow"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="/atom.xml" target="_blank" title="Rss" rel="external nofollow"><i class="fa fa-fw fa-rss"></i>Rss</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://steamcommunity.com/profiles/76561198328448195/" target="_blank" title="Steam" rel="external nofollow"><i class="fa fa-fw fa-steam"></i>Steam</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#2．进程管理"><span class="nav-number">1.</span> <span class="nav-text">2．进程管理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#前驱图以及程序顺序执行和并发执行的特点"><span class="nav-number">1.1.</span> <span class="nav-text">前驱图以及程序顺序执行和并发执行的特点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#前驱图"><span class="nav-number">1.1.1.</span> <span class="nav-text">前驱图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#顺序执行的特点"><span class="nav-number">1.1.2.</span> <span class="nav-text">顺序执行的特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#并发执行的特点"><span class="nav-number">1.1.3.</span> <span class="nav-text">并发执行的特点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进程的基本概念和思想"><span class="nav-number">1.2.</span> <span class="nav-text">进程的基本概念和思想</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进程的状态与转换"><span class="nav-number">1.3.</span> <span class="nav-text">进程的状态与转换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进程控制块及其作用"><span class="nav-number">1.4.</span> <span class="nav-text">进程控制块及其作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进程组织"><span class="nav-number">1.5.</span> <span class="nav-text">进程组织</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进程同步（★★★★★★★★）"><span class="nav-number">1.6.</span> <span class="nav-text">进程同步（★★★★★★★★）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#进程同步的概念和同步原则"><span class="nav-number">1.6.1.</span> <span class="nav-text">进程同步的概念和同步原则</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#概念"><span class="nav-number">1.6.1.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#原则（★★★）"><span class="nav-number">1.6.1.2.</span> <span class="nav-text">原则（★★★）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#临街资源和临界区的概念"><span class="nav-number">1.6.2.</span> <span class="nav-text">临街资源和临界区的概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#信号量及其应用（★★★★★★）"><span class="nav-number">1.6.3.</span> <span class="nav-text">信号量及其应用（★★★★★★）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#常见信号量的描述"><span class="nav-number">1.6.3.1.</span> <span class="nav-text">常见信号量的描述</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#整型"><span class="nav-number">1.6.3.1.1.</span> <span class="nav-text">整型</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#记录型"><span class="nav-number">1.6.3.1.2.</span> <span class="nav-text">记录型</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#应用"><span class="nav-number">1.6.3.2.</span> <span class="nav-text">应用</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#实现同步"><span class="nav-number">1.6.3.2.1.</span> <span class="nav-text">实现同步</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#实现互斥"><span class="nav-number">1.6.3.2.2.</span> <span class="nav-text">实现互斥</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#实现前驱图关系"><span class="nav-number">1.6.3.2.3.</span> <span class="nav-text">实现前驱图关系</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#【TBD】问题：信号量如何初始化？？？？？"><span class="nav-number">1.6.4.</span> <span class="nav-text">【TBD】问题：信号量如何初始化？？？？？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#【TBD】经典进程同步问题（★★★★★★★★）"><span class="nav-number">1.6.5.</span> <span class="nav-text">【TBD】经典进程同步问题（★★★★★★★★）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进程通信的基本概念和方法"><span class="nav-number">1.7.</span> <span class="nav-text">进程通信的基本概念和方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#概念-1"><span class="nav-number">1.7.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法"><span class="nav-number">1.7.2.</span> <span class="nav-text">方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#低级"><span class="nav-number">1.7.2.1.</span> <span class="nav-text">低级</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#高级"><span class="nav-number">1.7.2.2.</span> <span class="nav-text">高级</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线程的概念和多线程模型"><span class="nav-number">1.8.</span> <span class="nav-text">线程的概念和多线程模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#线程概念"><span class="nav-number">1.8.1.</span> <span class="nav-text">线程概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多线程模型"><span class="nav-number">1.8.2.</span> <span class="nav-text">多线程模型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#多对一"><span class="nav-number">1.8.2.1.</span> <span class="nav-text">多对一</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#一对一"><span class="nav-number">1.8.2.2.</span> <span class="nav-text">一对一</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多对多"><span class="nav-number">1.8.2.3.</span> <span class="nav-text">多对多</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3．调度与死锁"><span class="nav-number">2.</span> <span class="nav-text">3．调度与死锁</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#调度的概念"><span class="nav-number">2.1.</span> <span class="nav-text">调度的概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#调度队列模型"><span class="nav-number">2.2.</span> <span class="nav-text">调度队列模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#调度的基本准则与方式"><span class="nav-number">2.3.</span> <span class="nav-text">调度的基本准则与方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#各种调度算法及其评价"><span class="nav-number">2.4.</span> <span class="nav-text">各种调度算法及其评价</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#死锁问题及其处理方法，包括死锁的概念和原因，产生死锁的必要条件，死锁处理策略，死锁的预防、避免、以及检测和解除。"><span class="nav-number">2.5.</span> <span class="nav-text">死锁问题及其处理方法，包括死锁的概念和原因，产生死锁的必要条件，死锁处理策略，死锁的预防、避免、以及检测和解除。</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">3.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CosmosNing</span>
+
+  
+
+  
+</div>
+
+
+  
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" rel="external nofollow" href="https://theme-next.org">NexT.Gemini</a> v6.4.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.4.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.4.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.1"></script>
+
+
+
+  
+
+
+
+  
+    <script type="text/javascript">
+      window.livereOptions = {
+        refer: '2019/09/04/操作系统复习笔记2-进程管理/'
+      };
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      },
+      TeX: {equationNumbers: { autoNumber: "AMS" }}
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+  
+
+
+  
+  
+
+  
+
+  
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=6.4.1"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=6.4.1"></script>
+
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap')
+      $(e).after($wrap)
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text()
+        }).toArray().join('\n')
+        var ta = document.createElement('textarea')
+        document.body.appendChild(ta)
+        ta.style.position = 'absolute'
+        ta.style.top = '0px'
+        ta.style.left = '0px'
+        ta.value = code
+        ta.select()
+        ta.focus()
+        var result = document.execCommand('copy')
+        document.body.removeChild(ta)
+        
+          if(result)$(this).text('复制成功')
+          else $(this).text('复制失败')
+        
+        $(this).blur()
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn')
+        setTimeout(function () {
+          $b.text('复制')
+        }, 300)
+      }).append(e)
+    })
+  </script>
+
+
+</body>
+</html>
