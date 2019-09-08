@@ -118,7 +118,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/09/04/Five-State-of-Process.png?raw=true">
 <meta property="og:image" content="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/09/04/Three-Levels-of-Scheduling.png?raw=true">
-<meta property="og:updated_time" content="2019-09-08T16:15:57.054Z">
+<meta property="og:updated_time" content="2019-09-08T16:17:45.130Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="操作系统复习笔记2-进程管理">
 <meta name="twitter:description" content="整理一下操作系统中进程管理的知识">
@@ -384,7 +384,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-09-09 00:15:57" itemprop="dateModified" datetime="2019-09-09T00:15:57+08:00">2019-09-09</time>
+                <time title="修改时间：2019-09-09 00:17:45" itemprop="dateModified" datetime="2019-09-09T00:17:45+08:00">2019-09-09</time>
               
             
           </span>
@@ -707,13 +707,33 @@
 <ul>
 <li><p>依据调度算法画出运行过程中的甘特图，再依据甘特图计算。</p>
 <ul>
-<li>注意画甘特图时最好列出下表（特别要标注好，当前时刻未完成的进程的<strong>剩余时间</strong>），做好判断<br>| 时刻 | 进程名（剩余时间） | 进程名（剩余时间） | ···  |<br>| —— | ————————— | ————————— | —— |<br>|      |                    |                    |      |</li>
+<li>注意画甘特图时最好列出下表（特别要标注好，当前时刻未完成的进程的<strong>剩余时间</strong>），做好判断</li>
 </ul>
 </li>
 </ul>
 </li>
-<li><p>（★★★★★）有关信号量大小的实际意义</p>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>时刻</th>
+<th>进程名（剩余时间）</th>
+<th>进程名（剩余时间）</th>
+<th>···</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
 <ul>
+<li>（★★★★★）有关信号量大小的实际意义<ul>
 <li>S.value &gt; 0，表示某类资源<strong>可用的数量</strong>。</li>
 <li>S.value &lt;= 0，表示某类资源已经没有，或者说还有因请求该资源而被阻塞的进程。</li>
 <li>S.value &lt;= 0时的<strong>绝对值</strong>，<strong>表示等待进程数目</strong>。</li>
