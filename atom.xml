@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://cosmosning.github.io/"/>
-  <updated>2019-09-08T16:17:45.130Z</updated>
+  <updated>2019-09-10T15:40:43.551Z</updated>
   <id>https://cosmosning.github.io/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>操作系统复习笔记3-内存管理</title>
+    <link href="https://cosmosning.github.io/2019/09/10/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B03-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/"/>
+    <id>https://cosmosning.github.io/2019/09/10/操作系统复习笔记3-内存管理/</id>
+    <published>2019-09-10T14:51:48.000Z</published>
+    <updated>2019-09-10T15:40:43.551Z</updated>
+    
+    <summary type="html">
+    
+      整理一下操作系统中内存管理的知识
+    
+    </summary>
+    
+      <category term="笔记" scheme="https://cosmosning.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="操作系统" scheme="https://cosmosning.github.io/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    
+  </entry>
   
   <entry>
     <title>操作系统复习笔记2-进程管理</title>
@@ -186,26 +206,6 @@
     <summary type="html">
     
       整理一下栈和队列的知识
-    
-    </summary>
-    
-      <category term="笔记" scheme="https://cosmosning.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
-    
-    
-      <category term="数据结构" scheme="https://cosmosning.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>数据结构复习笔记1-绪论及线性表</title>
-    <link href="https://cosmosning.github.io/2019/07/11/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B01-%E7%BB%AA%E8%AE%BA%E5%8F%8A%E7%BA%BF%E6%80%A7%E8%A1%A8/"/>
-    <id>https://cosmosning.github.io/2019/07/11/数据结构复习笔记1-绪论及线性表/</id>
-    <published>2019-07-11T15:29:16.000Z</published>
-    <updated>2019-07-15T08:49:54.593Z</updated>
-    
-    <summary type="html">
-    
-      整理一下数据结构基本概念和线性表的知识
     
     </summary>
     
