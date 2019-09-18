@@ -116,11 +116,17 @@
 <meta property="og:site_name" content="CosmosNing的个人博客">
 <meta property="og:description" content="整理一下操作系统中设备管理的知识">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-09-16T16:29:22.467Z">
+<meta property="og:image" content="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/09/15/Continuous.png?raw=true">
+<meta property="og:image" content="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/09/15/Linked.png?raw=true">
+<meta property="og:image" content="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/09/15/Index.png?raw=true">
+<meta property="og:updated_time" content="2019-09-18T14:56:42.679Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="操作系统复习笔记5-磁盘与文件系统">
 <meta name="twitter:description" content="整理一下操作系统中设备管理的知识">
+<meta name="twitter:image" content="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/09/15/Continuous.png?raw=true">
 
+
+  
 
 
   <link rel="alternate" href="/atom.xml" title="CosmosNing的个人博客" type="application/atom+xml" />
@@ -381,7 +387,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-09-17 00:29:22" itemprop="dateModified" datetime="2019-09-17T00:29:22+08:00">2019-09-17</time>
+                <time title="修改时间：2019-09-18 22:56:42" itemprop="dateModified" datetime="2019-09-18T22:56:42+08:00">2019-09-18</time>
               
             
           </span>
@@ -499,15 +505,18 @@ T_a=T_s+\frac{1}{2r}+\frac{b}{rN}</script><h3 id="调度算法（★★★★★
 </table>
 </div>
 <h2 id="磁盘的性能改善和容错"><a href="#磁盘的性能改善和容错" class="headerlink" title="磁盘的性能改善和容错"></a>磁盘的性能改善和容错</h2><p>（见教材 8.4 8.5节）</p>
-<h2 id="外存分配方法与物理文件组织"><a href="#外存分配方法与物理文件组织" class="headerlink" title="外存分配方法与物理文件组织"></a>外存分配方法与物理文件组织</h2><h3 id="连续分配（TODO：示意图）"><a href="#连续分配（TODO：示意图）" class="headerlink" title="连续分配（TODO：示意图）"></a>连续分配（TODO：示意图）</h3><ul>
+<h2 id="外存分配方法与物理文件组织"><a href="#外存分配方法与物理文件组织" class="headerlink" title="外存分配方法与物理文件组织"></a>外存分配方法与物理文件组织</h2><h3 id="连续分配"><a href="#连续分配" class="headerlink" title="连续分配"></a>连续分配</h3><ul>
 <li>每个文件在磁盘上占有一组<strong>连续</strong>的块</li>
 </ul>
+<p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/09/15/Continuous.png?raw=true" alt="连续分配"></p>
 <h3 id="链接分配（TODO：示意图）"><a href="#链接分配（TODO：示意图）" class="headerlink" title="链接分配（TODO：示意图）"></a>链接分配（TODO：示意图）</h3><ul>
 <li>每个文件散落在磁盘的各个碎片区域，每一块都存有指向下一块的指针</li>
 </ul>
+<p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/09/15/Linked.png?raw=true" alt="链接分配"></p>
 <h3 id="索引分配（TODO：示意图）"><a href="#索引分配（TODO：示意图）" class="headerlink" title="索引分配（TODO：示意图）"></a>索引分配（TODO：示意图）</h3><ul>
 <li>单独使用一块来存储文件各块存储位置，构成索引块</li>
 </ul>
+<p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/09/15/Index.png?raw=true" alt="索引分配"></p>
 <h2 id="文件存储空间的管理"><a href="#文件存储空间的管理" class="headerlink" title="文件存储空间的管理"></a>文件存储空间的管理</h2><h3 id="空闲表法"><a href="#空闲表法" class="headerlink" title="空闲表法"></a>空闲表法</h3><ul>
 <li>类似内存中的动态分配（回看内存管理）</li>
 </ul>
@@ -792,7 +801,7 @@ T_a=T_s+\frac{1}{2r}+\frac{b}{rN}</script><h3 id="调度算法（★★★★★
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#6．磁盘与文件系统"><span class="nav-number">1.</span> <span class="nav-text">6．磁盘与文件系统</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#磁盘的结构和基本概念"><span class="nav-number">1.1.</span> <span class="nav-text">磁盘的结构和基本概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#磁盘的调度（★★★★★）"><span class="nav-number">1.2.</span> <span class="nav-text">磁盘的调度（★★★★★）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#存取时间的计算"><span class="nav-number">1.2.1.</span> <span class="nav-text">存取时间的计算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#调度算法（★★★★★）"><span class="nav-number">1.2.2.</span> <span class="nav-text">调度算法（★★★★★）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#磁盘的性能改善和容错"><span class="nav-number">1.3.</span> <span class="nav-text">磁盘的性能改善和容错</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#外存分配方法与物理文件组织"><span class="nav-number">1.4.</span> <span class="nav-text">外存分配方法与物理文件组织</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#连续分配（TODO：示意图）"><span class="nav-number">1.4.1.</span> <span class="nav-text">连续分配（TODO：示意图）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#链接分配（TODO：示意图）"><span class="nav-number">1.4.2.</span> <span class="nav-text">链接分配（TODO：示意图）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#索引分配（TODO：示意图）"><span class="nav-number">1.4.3.</span> <span class="nav-text">索引分配（TODO：示意图）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件存储空间的管理"><span class="nav-number">1.5.</span> <span class="nav-text">文件存储空间的管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#空闲表法"><span class="nav-number">1.5.1.</span> <span class="nav-text">空闲表法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#空闲链表法"><span class="nav-number">1.5.2.</span> <span class="nav-text">空闲链表法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#位示图法（★）"><span class="nav-number">1.5.3.</span> <span class="nav-text">位示图法（★）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#成组链接法"><span class="nav-number">1.5.4.</span> <span class="nav-text">成组链接法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#逻辑文件组织"><span class="nav-number">1.6.</span> <span class="nav-text">逻辑文件组织</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件的基本操作"><span class="nav-number">1.7.</span> <span class="nav-text">文件的基本操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件目录及其管理"><span class="nav-number">1.8.</span> <span class="nav-text">文件目录及其管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件共享和保护"><span class="nav-number">1.9.</span> <span class="nav-text">文件共享和保护</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">2.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#6．磁盘与文件系统"><span class="nav-number">1.</span> <span class="nav-text">6．磁盘与文件系统</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#磁盘的结构和基本概念"><span class="nav-number">1.1.</span> <span class="nav-text">磁盘的结构和基本概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#磁盘的调度（★★★★★）"><span class="nav-number">1.2.</span> <span class="nav-text">磁盘的调度（★★★★★）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#存取时间的计算"><span class="nav-number">1.2.1.</span> <span class="nav-text">存取时间的计算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#调度算法（★★★★★）"><span class="nav-number">1.2.2.</span> <span class="nav-text">调度算法（★★★★★）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#磁盘的性能改善和容错"><span class="nav-number">1.3.</span> <span class="nav-text">磁盘的性能改善和容错</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#外存分配方法与物理文件组织"><span class="nav-number">1.4.</span> <span class="nav-text">外存分配方法与物理文件组织</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#连续分配"><span class="nav-number">1.4.1.</span> <span class="nav-text">连续分配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#链接分配（TODO：示意图）"><span class="nav-number">1.4.2.</span> <span class="nav-text">链接分配（TODO：示意图）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#索引分配（TODO：示意图）"><span class="nav-number">1.4.3.</span> <span class="nav-text">索引分配（TODO：示意图）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件存储空间的管理"><span class="nav-number">1.5.</span> <span class="nav-text">文件存储空间的管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#空闲表法"><span class="nav-number">1.5.1.</span> <span class="nav-text">空闲表法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#空闲链表法"><span class="nav-number">1.5.2.</span> <span class="nav-text">空闲链表法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#位示图法（★）"><span class="nav-number">1.5.3.</span> <span class="nav-text">位示图法（★）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#成组链接法"><span class="nav-number">1.5.4.</span> <span class="nav-text">成组链接法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#逻辑文件组织"><span class="nav-number">1.6.</span> <span class="nav-text">逻辑文件组织</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件的基本操作"><span class="nav-number">1.7.</span> <span class="nav-text">文件的基本操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件目录及其管理"><span class="nav-number">1.8.</span> <span class="nav-text">文件目录及其管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件共享和保护"><span class="nav-number">1.9.</span> <span class="nav-text">文件共享和保护</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">2.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
             
 
           </div>
