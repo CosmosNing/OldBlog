@@ -119,7 +119,7 @@
 <meta property="og:image" content="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/09/15/Continuous.png?raw=true">
 <meta property="og:image" content="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/09/15/Linked.png?raw=true">
 <meta property="og:image" content="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/09/15/Index.png?raw=true">
-<meta property="og:updated_time" content="2019-09-18T16:00:36.706Z">
+<meta property="og:updated_time" content="2019-09-19T16:06:27.876Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="操作系统复习笔记5-磁盘与文件系统">
 <meta name="twitter:description" content="整理一下操作系统中设备管理的知识">
@@ -385,7 +385,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-09-19 00:00:36" itemprop="dateModified" datetime="2019-09-19T00:00:36+08:00">2019-09-19</time>
+                <time title="修改时间：2019-09-20 00:06:27" itemprop="dateModified" datetime="2019-09-20T00:06:27+08:00">2019-09-20</time>
               
             
           </span>
@@ -507,11 +507,11 @@ T_a=T_s+\frac{1}{2r}+\frac{b}{rN}</script><h3 id="调度算法（★★★★★
 <li>每个文件在磁盘上占有一组<strong>连续</strong>的块</li>
 </ul>
 <p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/09/15/Continuous.png?raw=true" alt="连续分配"></p>
-<h3 id="链接分配（TODO：示意图）"><a href="#链接分配（TODO：示意图）" class="headerlink" title="链接分配（TODO：示意图）"></a>链接分配（TODO：示意图）</h3><ul>
+<h3 id="链接分配"><a href="#链接分配" class="headerlink" title="链接分配"></a>链接分配</h3><ul>
 <li>每个文件散落在磁盘的各个碎片区域，每一块都存有指向下一块的指针</li>
 </ul>
 <p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/09/15/Linked.png?raw=true" alt="链接分配"></p>
-<h3 id="索引分配（TODO：示意图）"><a href="#索引分配（TODO：示意图）" class="headerlink" title="索引分配（TODO：示意图）"></a>索引分配（TODO：示意图）</h3><ul>
+<h3 id="索引分配"><a href="#索引分配" class="headerlink" title="索引分配"></a>索引分配</h3><ul>
 <li>单独使用一块来存储文件各块存储位置，构成索引块</li>
 </ul>
 <p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/09/15/Index.png?raw=true" alt="索引分配"></p>
@@ -579,7 +579,104 @@ T_a=T_s+\frac{1}{2r}+\frac{b}{rN}</script><h3 id="调度算法（★★★★★
 <li><strong>关闭</strong>：断开上述连接</li>
 <li>“打开”并非真正打开，而是读取文件相关属性；“关闭”并非真正关闭，而是断开连接。</li>
 </ul>
-<h2 id="文件目录及其管理"><a href="#文件目录及其管理" class="headerlink" title="文件目录及其管理"></a>文件目录及其管理</h2><h2 id="文件共享和保护"><a href="#文件共享和保护" class="headerlink" title="文件共享和保护"></a>文件共享和保护</h2><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ol>
+<h2 id="文件目录及其管理"><a href="#文件目录及其管理" class="headerlink" title="文件目录及其管理"></a>文件目录及其管理</h2><ul>
+<li>目录管理的要求<ul>
+<li><strong>实现“按名存取”</strong></li>
+<li><strong>提高目录检索速度</strong></li>
+<li><strong>文件共享</strong></li>
+<li><strong>允许文件重名</strong></li>
+</ul>
+</li>
+</ul>
+<h3 id="文件控制块（FCB）"><a href="#文件控制块（FCB）" class="headerlink" title="文件控制块（FCB）"></a>文件控制块（FCB）</h3><ul>
+<li>作用类似进程管理中的 PCB ，用来存放控制文件需要的各种信息，包括：<ul>
+<li>基本信息：文件名、物理位置、逻辑结构、物理结构等</li>
+<li>存取控制信息：存取权限</li>
+<li>使用信息：创建时间、修改时间</li>
+</ul>
+</li>
+<li>从而实现了<strong>“按名存取”</strong></li>
+<li>FCB 的有序集合成为<strong>文件目录</strong>，一个 FCB 就是一个<strong>文件目录表项</strong></li>
+<li>创建新文件时，也会创建一个对应的 FCB</li>
+</ul>
+<h3 id="索引结点"><a href="#索引结点" class="headerlink" title="索引结点"></a>索引结点</h3><ul>
+<li>为加快按文件名检索目录文件而引入。（无索引时，需依次检索 FCB，但是 FCB 中很多信息对于检索目录是多余的，因此把需要的信息抽出，形成索引【通常包括 <strong>文件名</strong> 、<strong>索引结点编号</strong> 】，从而可以加快检索速度）</li>
+<li>根据索引结点所处位置不同，分为<ul>
+<li>磁盘索引结点</li>
+<li>内存索引结点</li>
+</ul>
+</li>
+</ul>
+<h3 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h3><h4 id="单级目录结构"><a href="#单级目录结构" class="headerlink" title="单级目录结构"></a>单级目录结构</h4><ul>
+<li>目录表类似一维数组，存储目录表项</li>
+<li>评价<ul>
+<li>简单，实现了“按名存取”</li>
+<li>查找速度慢</li>
+<li>不允许重名</li>
+<li>不便于共享</li>
+<li>只适用于<strong>单用户</strong></li>
+</ul>
+</li>
+</ul>
+<h3 id="两级目录结构"><a href="#两级目录结构" class="headerlink" title="两级目录结构"></a>两级目录结构</h3><ul>
+<li>顶级目录表类似二维数组，第一维为用户名、第二维存储指向用户目录表的指针</li>
+<li>二级目录表存储对应用户的目录表项</li>
+<li>评价<ul>
+<li>能满足目录管理的四个要求</li>
+</ul>
+</li>
+</ul>
+<h3 id="树形（多级）目录结构（★★★）"><a href="#树形（多级）目录结构（★★★）" class="headerlink" title="树形（多级）目录结构（★★★）"></a>树形（多级）目录结构（★★★）</h3><ul>
+<li>对二级的推广，现代 OS 常用</li>
+<li>包括以下<strong>目录操作</strong><ul>
+<li>创建目录</li>
+<li>删除目录</li>
+<li>改变目录</li>
+<li>移动目录</li>
+<li>链接操作</li>
+<li>查找</li>
+</ul>
+</li>
+</ul>
+<h4 id="目录查询技术"><a href="#目录查询技术" class="headerlink" title="目录查询技术"></a>目录查询技术</h4><h5 id="线性检索法（★★★）"><a href="#线性检索法（★★★）" class="headerlink" title="线性检索法（★★★）"></a>线性检索法（★★★）</h5><ul>
+<li>单级目录情况<ul>
+<li>类似顺序查找算法流程</li>
+</ul>
+</li>
+<li>树形目录情况<ul>
+<li>读入第一个文件分量（文件分量即文件路径中被 “/” 分隔的字符串），在第一级目录表中，顺序查找，找到匹配，得到下一级目录表的块号</li>
+<li>读入下一个文件分量，在对应级目录表中，顺序查找，找到匹配，得到下一级目录表的块号</li>
+<li>以此类推，直至目录中所有文件分量都已处理完毕或者是未找到退出</li>
+</ul>
+</li>
+</ul>
+<h5 id="Hash-方法"><a href="#Hash-方法" class="headerlink" title="Hash 方法"></a>Hash 方法</h5><ul>
+<li>利用 Hash 函数完成从<strong>文件名</strong>到<strong>索引值</strong>的映射，之后再用得到的索引值找到目录</li>
+</ul>
+<h2 id="文件共享和保护"><a href="#文件共享和保护" class="headerlink" title="文件共享和保护"></a>文件共享和保护</h2><h3 id="文件共享"><a href="#文件共享" class="headerlink" title="文件共享"></a>文件共享</h3><h4 id="基于有向无循环图"><a href="#基于有向无循环图" class="headerlink" title="基于有向无循环图"></a>基于有向无循环图</h4><h3 id="利用索引结点（硬链接）（★★★）"><a href="#利用索引结点（硬链接）（★★★）" class="headerlink" title="利用索引结点（硬链接）（★★★）"></a>利用索引结点（硬链接）（★★★）</h3><ul>
+<li>在用户目录表中，其表项只包括<strong>文件名</strong>和<strong>指向索引结点的指针</strong>，其他的相关信息放在索引结点中</li>
+</ul>
+<h1 id="不同用户对共享文件创建、删除操作中的链接计数（TODO：图）"><a href="#不同用户对共享文件创建、删除操作中的链接计数（TODO：图）" class="headerlink" title="不同用户对共享文件创建、删除操作中的链接计数（TODO：图）"></a>不同用户对共享文件创建、删除操作中的链接计数（TODO：图）</h1><h4 id="利用符号链接（软链接）（★★★）"><a href="#利用符号链接（软链接）（★★★）" class="headerlink" title="利用符号链接（软链接）（★★★）"></a>利用符号链接（软链接）（★★★）</h4><ul>
+<li>共享时，会新建一个 LINK 文件，这个 LINK 文件中<strong>只含有被链接文件的路径</strong></li>
+</ul>
+<p><strong>硬链接查找较快</strong></p>
+<h3 id="文件保护"><a href="#文件保护" class="headerlink" title="文件保护"></a>文件保护</h3><ul>
+<li>有<strong>口令保护</strong>、<strong>加密保护</strong>、<strong>访问控制</strong>等方法</li>
+<li>访问控制<ul>
+<li>类型<ul>
+<li>读</li>
+<li>写</li>
+<li>执行</li>
+<li>添加</li>
+<li>删除</li>
+<li>列表清单</li>
+</ul>
+</li>
+<li>根据用户身份进行控制，为文件和目录添加一个<strong>访问控制表</strong>，<strong>规定每个用户名及其所允许访问的类型</strong></li>
+</ul>
+</li>
+</ul>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ol>
 <li>计算机操作系统.汤小丹等</li>
 <li>2020年操作系统考研复习指导.王道论坛</li>
 </ol>
@@ -841,7 +938,7 @@ T_a=T_s+\frac{1}{2r}+\frac{b}{rN}</script><h3 id="调度算法（★★★★★
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#6．磁盘与文件系统"><span class="nav-number">1.</span> <span class="nav-text">6．磁盘与文件系统</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#磁盘的结构和基本概念"><span class="nav-number">1.1.</span> <span class="nav-text">磁盘的结构和基本概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#磁盘的调度（★★★★★）"><span class="nav-number">1.2.</span> <span class="nav-text">磁盘的调度（★★★★★）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#存取时间的计算"><span class="nav-number">1.2.1.</span> <span class="nav-text">存取时间的计算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#调度算法（★★★★★）"><span class="nav-number">1.2.2.</span> <span class="nav-text">调度算法（★★★★★）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#磁盘的性能改善和容错"><span class="nav-number">1.3.</span> <span class="nav-text">磁盘的性能改善和容错</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#外存分配方法与物理文件组织"><span class="nav-number">1.4.</span> <span class="nav-text">外存分配方法与物理文件组织</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#连续分配"><span class="nav-number">1.4.1.</span> <span class="nav-text">连续分配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#链接分配（TODO：示意图）"><span class="nav-number">1.4.2.</span> <span class="nav-text">链接分配（TODO：示意图）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#索引分配（TODO：示意图）"><span class="nav-number">1.4.3.</span> <span class="nav-text">索引分配（TODO：示意图）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件存储空间的管理"><span class="nav-number">1.5.</span> <span class="nav-text">文件存储空间的管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#空闲表法"><span class="nav-number">1.5.1.</span> <span class="nav-text">空闲表法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#空闲链表法"><span class="nav-number">1.5.2.</span> <span class="nav-text">空闲链表法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#位示图法（★）"><span class="nav-number">1.5.3.</span> <span class="nav-text">位示图法（★）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#成组链接法"><span class="nav-number">1.5.4.</span> <span class="nav-text">成组链接法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#逻辑文件组织"><span class="nav-number">1.6.</span> <span class="nav-text">逻辑文件组织</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#无结构文件（流式文件）"><span class="nav-number">1.6.1.</span> <span class="nav-text">无结构文件（流式文件）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#有结构文件（记录式文件）"><span class="nav-number">1.6.2.</span> <span class="nav-text">有结构文件（记录式文件）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#顺序文件"><span class="nav-number">1.6.2.1.</span> <span class="nav-text">顺序文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#索引文件"><span class="nav-number">1.6.2.2.</span> <span class="nav-text">索引文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#索引顺序文件"><span class="nav-number">1.6.2.3.</span> <span class="nav-text">索引顺序文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#直接文件（散列文件）"><span class="nav-number">1.6.2.4.</span> <span class="nav-text">直接文件（散列文件）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件的基本操作"><span class="nav-number">1.7.</span> <span class="nav-text">文件的基本操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本操作"><span class="nav-number">1.7.1.</span> <span class="nav-text">基本操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#“打开”和“”关闭“”（★★★★）"><span class="nav-number">1.7.2.</span> <span class="nav-text">“打开”和“”关闭“”（★★★★）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件目录及其管理"><span class="nav-number">1.8.</span> <span class="nav-text">文件目录及其管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件共享和保护"><span class="nav-number">1.9.</span> <span class="nav-text">文件共享和保护</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">2.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#6．磁盘与文件系统"><span class="nav-number">1.</span> <span class="nav-text">6．磁盘与文件系统</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#磁盘的结构和基本概念"><span class="nav-number">1.1.</span> <span class="nav-text">磁盘的结构和基本概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#磁盘的调度（★★★★★）"><span class="nav-number">1.2.</span> <span class="nav-text">磁盘的调度（★★★★★）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#存取时间的计算"><span class="nav-number">1.2.1.</span> <span class="nav-text">存取时间的计算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#调度算法（★★★★★）"><span class="nav-number">1.2.2.</span> <span class="nav-text">调度算法（★★★★★）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#磁盘的性能改善和容错"><span class="nav-number">1.3.</span> <span class="nav-text">磁盘的性能改善和容错</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#外存分配方法与物理文件组织"><span class="nav-number">1.4.</span> <span class="nav-text">外存分配方法与物理文件组织</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#连续分配"><span class="nav-number">1.4.1.</span> <span class="nav-text">连续分配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#链接分配"><span class="nav-number">1.4.2.</span> <span class="nav-text">链接分配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#索引分配"><span class="nav-number">1.4.3.</span> <span class="nav-text">索引分配</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件存储空间的管理"><span class="nav-number">1.5.</span> <span class="nav-text">文件存储空间的管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#空闲表法"><span class="nav-number">1.5.1.</span> <span class="nav-text">空闲表法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#空闲链表法"><span class="nav-number">1.5.2.</span> <span class="nav-text">空闲链表法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#位示图法（★）"><span class="nav-number">1.5.3.</span> <span class="nav-text">位示图法（★）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#成组链接法"><span class="nav-number">1.5.4.</span> <span class="nav-text">成组链接法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#逻辑文件组织"><span class="nav-number">1.6.</span> <span class="nav-text">逻辑文件组织</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#无结构文件（流式文件）"><span class="nav-number">1.6.1.</span> <span class="nav-text">无结构文件（流式文件）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#有结构文件（记录式文件）"><span class="nav-number">1.6.2.</span> <span class="nav-text">有结构文件（记录式文件）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#顺序文件"><span class="nav-number">1.6.2.1.</span> <span class="nav-text">顺序文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#索引文件"><span class="nav-number">1.6.2.2.</span> <span class="nav-text">索引文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#索引顺序文件"><span class="nav-number">1.6.2.3.</span> <span class="nav-text">索引顺序文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#直接文件（散列文件）"><span class="nav-number">1.6.2.4.</span> <span class="nav-text">直接文件（散列文件）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件的基本操作"><span class="nav-number">1.7.</span> <span class="nav-text">文件的基本操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本操作"><span class="nav-number">1.7.1.</span> <span class="nav-text">基本操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#“打开”和“”关闭“”（★★★★）"><span class="nav-number">1.7.2.</span> <span class="nav-text">“打开”和“”关闭“”（★★★★）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件目录及其管理"><span class="nav-number">1.8.</span> <span class="nav-text">文件目录及其管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#文件控制块（FCB）"><span class="nav-number">1.8.1.</span> <span class="nav-text">文件控制块（FCB）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#索引结点"><span class="nav-number">1.8.2.</span> <span class="nav-text">索引结点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#目录结构"><span class="nav-number">1.8.3.</span> <span class="nav-text">目录结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#单级目录结构"><span class="nav-number">1.8.3.1.</span> <span class="nav-text">单级目录结构</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#两级目录结构"><span class="nav-number">1.8.4.</span> <span class="nav-text">两级目录结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#树形（多级）目录结构（★★★）"><span class="nav-number">1.8.5.</span> <span class="nav-text">树形（多级）目录结构（★★★）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#目录查询技术"><span class="nav-number">1.8.5.1.</span> <span class="nav-text">目录查询技术</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#线性检索法（★★★）"><span class="nav-number">1.8.5.1.1.</span> <span class="nav-text">线性检索法（★★★）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Hash-方法"><span class="nav-number">1.8.5.1.2.</span> <span class="nav-text">Hash 方法</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件共享和保护"><span class="nav-number">1.9.</span> <span class="nav-text">文件共享和保护</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#文件共享"><span class="nav-number">1.9.1.</span> <span class="nav-text">文件共享</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基于有向无循环图"><span class="nav-number">1.9.1.1.</span> <span class="nav-text">基于有向无循环图</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#利用索引结点（硬链接）（★★★）"><span class="nav-number">1.9.2.</span> <span class="nav-text">利用索引结点（硬链接）（★★★）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#不同用户对共享文件创建、删除操作中的链接计数（TODO：图）"><span class="nav-number">2.</span> <span class="nav-text">不同用户对共享文件创建、删除操作中的链接计数（TODO：图）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#利用符号链接（软链接）（★★★）"><span class="nav-number">2.0.0.1.</span> <span class="nav-text">利用符号链接（软链接）（★★★）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文件保护"><span class="nav-number">2.0.1.</span> <span class="nav-text">文件保护</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">3.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
             
 
           </div>
