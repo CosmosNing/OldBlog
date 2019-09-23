@@ -120,7 +120,7 @@
 <meta property="og:image" content="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/09/15/Linked.png?raw=true">
 <meta property="og:image" content="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/09/15/Index.png?raw=true">
 <meta property="og:image" content="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/09/15/Count-Of-File-Sharing.png?raw=true">
-<meta property="og:updated_time" content="2019-09-21T16:19:52.432Z">
+<meta property="og:updated_time" content="2019-09-23T15:55:46.857Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="操作系统复习笔记5-磁盘与文件系统">
 <meta name="twitter:description" content="整理一下操作系统中设备管理的知识">
@@ -386,7 +386,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-09-22 00:19:52" itemprop="dateModified" datetime="2019-09-22T00:19:52+08:00">2019-09-22</time>
+                <time title="修改时间：2019-09-23 23:55:46" itemprop="dateModified" datetime="2019-09-23T23:55:46+08:00">2019-09-23</time>
               
             
           </span>
@@ -560,8 +560,8 @@ T_a=T_s+\frac{1}{2r}+\frac{b}{rN}</script><h3 id="调度算法（★★★★★
 <li>为每个文件建立索引表，将记录分组，只为<strong>每组的第一条记录建立索引表项</strong></li>
 <li>可以有<strong>一级、二级、多级</strong>索引顺序文件</li>
 <li>查找效率比较（假设文件所含有的记录数为 <em>N</em> ，为检索到指定含有关键字的记录）<ul>
-<li>顺序文件：平均需要查找 $\frac{N}{2}$</li>
-<li>索引顺序文件：平均需要查找 $\sqrt{N}$ </li>
+<li>顺序文件：<strong>平均需要查找 $\frac{N}{2}$</strong></li>
+<li>索引顺序文件：<strong>平均需要查找 $\sqrt{N}$ </strong></li>
 </ul>
 </li>
 </ul>
@@ -698,7 +698,8 @@ T_a=T_s+\frac{1}{2r}+\frac{b}{rN}</script><h3 id="调度算法（★★★★★
 </li>
 </ul>
 </li>
-<li>混合索引中的计算<ul>
+<li><p>混合索引中的计算</p>
+<ul>
 <li>相关概念<ul>
 <li><strong>文件索引结点</strong>：存储索引地址。<strong>索引地址类型</strong>又分为<ul>
 <li><strong>直接地址</strong>：此地址<strong>直接指向磁盘数据块</strong>。<ul>
@@ -714,6 +715,88 @@ T_a=T_s+\frac{1}{2r}+\frac{b}{rN}</script><h3 id="调度算法（★★★★★
 </ul>
 </li>
 <li><strong>n 级间接地址索引</strong>，以此类推有$磁盘数据块的块数 = 磁盘索引块地址项的项数^n=(\frac{磁盘索引块大小}{地址项大小})^n$</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>典型例题<ul>
+<li>（2010·408）文件索引结点 7 个地址项，其中 4 个直接地址、2个一级间接地址索引、 1 个 2 级间接地址索引，每个地址项大小为 4 B，磁盘索引块和磁盘数据块大小均为 256 B，则可表示的单个文件最大长度是<ul>
+<li>分析：<ul>
+<li>4 个 直接地址：4 × 256 B</li>
+<li>2 个一级间接：2 × (256/4) × 256 B</li>
+<li>1 个二级间接：1 × (256/4) × (256/4) × 256 B</li>
+<li>总计：上述三项之和</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>文件系统二级索引分配，磁盘块大小 1KB，每个盘块号占 4B，单个文件最大长度为<ul>
+<li>分析：<ul>
+<li>依题意知，共有 1KB / 4B = 256 个 索引项</li>
+<li>由于是二级索引，故最大文件长度为 256 × 256 × 1KB = 64 MB</li>
+</ul>
+</li>
+<li>总结<ul>
+<li>（公式补充）<ul>
+<li>$索引项个数 =\frac{磁盘块大小}{盘块号大小}$</li>
+<li>$文件长度= 索引项个数^{索引级数}\times 磁盘块大小$</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>文件系统中， FCB 占 64 B，一个盘块大小为 1 KB，一级目录，设文件目录中有 3200 个目录项，则查找一个文件平均需要访问几次磁盘<ul>
+<li>分析<ul>
+<li>依题意知，共有 3200 × 64 B / 1 KB = 200 个盘块</li>
+<li>一级目录，平均访问磁盘为 200 / 2 = 100 次</li>
+</ul>
+</li>
+<li>总结：<ul>
+<li>（公式补充）<ul>
+<li>$目录项盘块数 = \frac{目录项项数\times FCB大小}​$</li>
+<li>一级目录：$平均访问磁盘次数=\frac{目录项盘块数}{2}$（类似文件的顺序查找）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>（2015·408）文件索引结点中，10 个 直接、1个一级、1个二级，磁盘块大小 1 KB，索引指针大小 4 B 。若文件索引结点已经读入内存，则把该文件偏移量（按字节编址）为 1234 和 307400 处所在的磁盘块读入内存，需访问的盘块数分别是<ul>
+<li>分析<ul>
+<li>10 个 直接地址：10 × 1 KB = 10 KB</li>
+<li>1 个一级间接：1 × ( 1 KB / 4 B ) × 1 KB = 256 KB</li>
+<li>1 个二级间接：1 × ( 1 KB / 4 B ) × ( 1 KB / 4 B ) × 1 KB = 64 KB</li>
+<li>1234 B &lt; 10 KB，地址可以直接得到，只需再访问 1 次磁盘，获取该地址的数据即可</li>
+<li>10 KB + 256 KB &lt; 1234 B &lt; 64 MB，可知该文件内容在二级索引指针所指向的某个磁盘块中。访问 2 次磁盘，获得地址；再依此地址访问 1 次磁盘，获得数据。共需要 3 次</li>
+</ul>
+</li>
+<li>总结<ul>
+<li><strong>磁盘访问次数 = 索引级数</strong>（为了找到地址。P.S.直接地址当作 0  级）<strong>+ 1</strong>（为了找到数据：依地址，取数据）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>设有一记录文件，采用链接分配方式，逻辑记录的固定长度为 100 B，在磁盘上存储时采用记录成组分解技术，盘块长度 为 512 B。若该文件的目录项已经读入内存，则对 22 个 逻辑记录完成修改后，共启动磁盘多少次<ul>
+<li>分析<ul>
+<li>第 22 条记录 的地址为 22 × 100 B = 2200 B</li>
+<li>2200 B / 512 B = 4 还有剩余，故在第 5 个盘快上。</li>
+<li>链接分配，要找到第五个盘块的地址，需要从第一个开始，依次寻找，需要 5 次此盘启动，才能拿到 第 22 个 逻辑记录的物理地址。之后依据这个物理地址，访存修改，还需要启动 1 次磁盘。所以共需 6 次</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>位示图相关</p>
+<ul>
+<li>（2015·408）文件系统中用位示图，位图位于 32 ~ 127 号块中，每个盘块占 1024 B，盘块和块内字节均从 0 号开始编号。假设要释放 盘块号为 409612 ，则位图中要修改的位所在的盘块号和块内字节序号分别是<ul>
+<li>分析：<ul>
+<li>$盘块号=起始块号+\lfloor\frac{盘块号}{盘块大小\times 8}\rfloor​$</li>
+<li>$块内字节号 =\lfloor 盘块号\ mod\ (盘块大小\times 8)/8\rfloor $</li>
+<li>数据带入公式，即可</li>
 </ul>
 </li>
 </ul>
