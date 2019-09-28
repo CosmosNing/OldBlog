@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://cosmosning.github.io/"/>
-  <updated>2019-09-24T15:48:41.264Z</updated>
+  <updated>2019-09-28T16:08:29.108Z</updated>
   <id>https://cosmosning.github.io/</id>
   
   <author>
@@ -17,11 +17,31 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>计算机组成原理复习笔记2-运算方法与运算部件</title>
+    <link href="https://cosmosning.github.io/2019/09/28/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B02-%E8%BF%90%E7%AE%97%E6%96%B9%E6%B3%95%E4%B8%8E%E8%BF%90%E7%AE%97%E9%83%A8%E4%BB%B6/"/>
+    <id>https://cosmosning.github.io/2019/09/28/计算机组成原理复习笔记2-运算方法与运算部件/</id>
+    <published>2019-09-28T15:36:08.000Z</published>
+    <updated>2019-09-28T16:08:29.108Z</updated>
+    
+    <summary type="html">
+    
+      整理一下计算机组成原理中运算方法和运算部件的知识
+    
+    </summary>
+    
+      <category term="笔记" scheme="https://cosmosning.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="计算机组成原理" scheme="https://cosmosning.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/"/>
+    
+  </entry>
+  
+  <entry>
     <title>计算机组成原理复习笔记1-概述</title>
     <link href="https://cosmosning.github.io/2019/09/24/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B01-%E6%A6%82%E8%BF%B0/"/>
     <id>https://cosmosning.github.io/2019/09/24/计算机组成原理复习笔记1-概述/</id>
     <published>2019-09-24T14:47:03.000Z</published>
-    <updated>2019-09-24T15:48:41.264Z</updated>
+    <updated>2019-09-28T16:08:54.642Z</updated>
     
     <summary type="html">
     
@@ -186,26 +206,6 @@
     <summary type="html">
     
       整理一下查找的知识
-    
-    </summary>
-    
-      <category term="笔记" scheme="https://cosmosning.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
-    
-    
-      <category term="数据结构" scheme="https://cosmosning.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>数据结构复习笔记6-图</title>
-    <link href="https://cosmosning.github.io/2019/08/06/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B06-%E5%9B%BE/"/>
-    <id>https://cosmosning.github.io/2019/08/06/数据结构复习笔记6-图/</id>
-    <published>2019-08-06T15:30:42.000Z</published>
-    <updated>2019-08-20T15:53:42.503Z</updated>
-    
-    <summary type="html">
-    
-      整理一下图的知识
     
     </summary>
     
