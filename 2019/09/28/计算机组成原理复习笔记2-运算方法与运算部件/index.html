@@ -120,7 +120,7 @@
 <meta property="og:image" content="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/09/28/Two-s-Complement-Code-Mul.png?raw=true">
 <meta property="og:image" content="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/09/28/True-Code-Div.png?raw=true">
 <meta property="og:image" content="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/09/28/Two-s-Complement-Code-Div.png?raw=true">
-<meta property="og:updated_time" content="2019-09-30T16:15:30.708Z">
+<meta property="og:updated_time" content="2019-10-01T16:02:41.031Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="计算机组成原理复习笔记2-运算方法与运算部件">
 <meta name="twitter:description" content="整理一下计算机组成原理中运算方法和运算部件的知识">
@@ -386,7 +386,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-10-01 00:15:30" itemprop="dateModified" datetime="2019-10-01T00:15:30+08:00">2019-10-01</time>
+                <time title="修改时间：2019-10-02 00:02:41" itemprop="dateModified" datetime="2019-10-02T00:02:41+08:00">2019-10-02</time>
               
             
           </span>
@@ -542,7 +542,18 @@
 <p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/09/28/True-Code-Mul.png?raw=true" alt="原码一位乘"></p>
 <p>注：最后结果要加上符号位：符号位 <strong>1 异或 0 = 1</strong> ，最终得 x 乘 y = -0.10001111</p>
 <h4 id="补码一位乘"><a href="#补码一位乘" class="headerlink" title="补码一位乘"></a>补码一位乘</h4><ul>
-<li>Booth 算法的移位规则</li>
+<li><p>步骤：</p>
+<ol>
+<li>符号位参与运算，运算的数均以补码表示</li>
+<li><strong>被乘数</strong>一般取<strong>双符号位</strong>，<strong>部分积</strong>取<strong>双符号位</strong>，初值为 0 ，<strong>乘数</strong>可取<strong>单符号位</strong></li>
+<li><strong>乘数末位增设附加位 $y_{n+1}$ ，且初值为 0</strong> </li>
+<li>对应下面的表格，进行相关操作</li>
+<li>移位按补码右移规则进行</li>
+<li>循环上述操作</li>
+</ol>
+</li>
+<li><p>Booth 算法的移位规则</p>
+</li>
 </ul>
 <div class="table-container">
 <table>
@@ -579,11 +590,26 @@
 </div>
 <p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/09/28/Two-s-Complement-Code-Mul.png?raw=true" alt="补码一位乘"></p>
 <h4 id="原码除法（不恢复余数法）"><a href="#原码除法（不恢复余数法）" class="headerlink" title="原码除法（不恢复余数法）"></a>原码除法（不恢复余数法）</h4><ul>
-<li>步骤</li>
+<li>步骤：<ol>
+<li>符号位不参与运算，结果符号位为操作数符号位两者的异或</li>
+<li>用被除数减去乘数<ol>
+<li>若余数为<strong>正</strong>，商上 <strong>1</strong> ，左移一位，再减去除数</li>
+<li>若余数为<strong>负</strong>，商上 <strong>0</strong> ，左移一位，再加上除数</li>
+</ol>
+</li>
+<li>当最后一步，余数为负（上商 0 ），需要加上除数，得到正确的余数</li>
+</ol>
+</li>
 </ul>
 <p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/09/28/True-Code-Div.png?raw=true" alt="原码不恢复余数法"></p>
 <h4 id="补码除法（加减交替法）"><a href="#补码除法（加减交替法）" class="headerlink" title="补码除法（加减交替法）"></a>补码除法（加减交替法）</h4><ul>
-<li>步骤</li>
+<li>步骤：<ol>
+<li>符号位参与运算，运算的数均以补码表示</li>
+<li>若被除数与除数<strong>同号</strong>，则被除数<strong>减去</strong>除数；若被除数与除数<strong>异号</strong>，则被除数<strong>加上</strong>除数（<strong>同号相减，异号相加</strong>）</li>
+<li>若余数与除数<strong>同号</strong>，则商上 <strong>1</strong> ，左移一位，<strong>减去</strong>除数；若余数与除数<strong>异号</strong>，则商上 <strong>0</strong> ，左移一位，<strong>加上</strong>除数（<strong>同号商 1 左移减，异号商 0 左移加</strong>）</li>
+<li>重复 3</li>
+</ol>
+</li>
 </ul>
 <p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/09/28/Two-s-Complement-Code-Div.png?raw=true" alt="补码加减交替法"></p>
 <h3 id="溢出概念和判别方法"><a href="#溢出概念和判别方法" class="headerlink" title="溢出概念和判别方法"></a>溢出概念和判别方法</h3><h4 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h4><ul>
