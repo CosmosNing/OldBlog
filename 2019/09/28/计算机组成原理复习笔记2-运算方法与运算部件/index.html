@@ -120,7 +120,8 @@
 <meta property="og:image" content="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/09/28/Two-s-Complement-Code-Mul.png?raw=true">
 <meta property="og:image" content="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/09/28/True-Code-Div.png?raw=true">
 <meta property="og:image" content="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/09/28/Two-s-Complement-Code-Div.png?raw=true">
-<meta property="og:updated_time" content="2019-10-01T16:02:41.031Z">
+<meta property="og:image" content="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/09/28/Cyclic-Shift.png?raw=true">
+<meta property="og:updated_time" content="2019-10-02T15:15:28.258Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="计算机组成原理复习笔记2-运算方法与运算部件">
 <meta name="twitter:description" content="整理一下计算机组成原理中运算方法和运算部件的知识">
@@ -386,7 +387,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-10-02 00:02:41" itemprop="dateModified" datetime="2019-10-02T00:02:41+08:00">2019-10-02</time>
+                <time title="修改时间：2019-10-02 23:15:28" itemprop="dateModified" datetime="2019-10-02T23:15:28+08:00">2019-10-02</time>
               
             
           </span>
@@ -622,7 +623,141 @@
 <li>运算结果<strong>双符号位相同</strong>，表示未<strong>溢出</strong></li>
 <li>运算结果<strong>双符号位不同</strong>，表示<strong>溢出</strong>，符号位最高位决定正负</li>
 </ul>
-<h3 id="移位运算（TODO）"><a href="#移位运算（TODO）" class="headerlink" title="移位运算（TODO）"></a>移位运算（TODO）</h3><h4 id="算术移位"><a href="#算术移位" class="headerlink" title="算术移位"></a>算术移位</h4><h4 id="逻辑移位"><a href="#逻辑移位" class="headerlink" title="逻辑移位"></a>逻辑移位</h4><h4 id="循环移位"><a href="#循环移位" class="headerlink" title="循环移位"></a>循环移位</h4><h2 id="（★★）浮点数的表示与运算"><a href="#（★★）浮点数的表示与运算" class="headerlink" title="（★★）浮点数的表示与运算"></a>（★★）浮点数的表示与运算</h2><h3 id="浮点数的表示"><a href="#浮点数的表示" class="headerlink" title="浮点数的表示"></a>浮点数的表示</h3><h3 id="IEEE754标准"><a href="#IEEE754标准" class="headerlink" title="IEEE754标准"></a>IEEE754标准</h3><h3 id="浮点数的加减运算"><a href="#浮点数的加减运算" class="headerlink" title="浮点数的加减运算"></a>浮点数的加减运算</h3><h3 id="浮点数规格化"><a href="#浮点数规格化" class="headerlink" title="浮点数规格化"></a>浮点数规格化</h3><h2 id="（★）ALU的功能与结构"><a href="#（★）ALU的功能与结构" class="headerlink" title="（★）ALU的功能与结构"></a>（★）ALU的功能与结构</h2><h3 id="补码加减运算器的实现"><a href="#补码加减运算器的实现" class="headerlink" title="补码加减运算器的实现"></a>补码加减运算器的实现</h3><h3 id="典型指令完成设计与实现"><a href="#典型指令完成设计与实现" class="headerlink" title="典型指令完成设计与实现"></a>典型指令完成设计与实现</h3><h2 id="（★★）掌握不同层次程序员看到的运算"><a href="#（★★）掌握不同层次程序员看到的运算" class="headerlink" title="（★★）掌握不同层次程序员看到的运算"></a>（★★）掌握不同层次程序员看到的运算</h2><h3 id="高级语言以C语言为例"><a href="#高级语言以C语言为例" class="headerlink" title="高级语言以C语言为例"></a>高级语言以C语言为例</h3><h3 id="ISA层面则以MIPS32为例"><a href="#ISA层面则以MIPS32为例" class="headerlink" title="ISA层面则以MIPS32为例"></a>ISA层面则以MIPS32为例</h3><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ol>
+<h3 id="移位运算（TODO）"><a href="#移位运算（TODO）" class="headerlink" title="移位运算（TODO）"></a>移位运算（TODO）</h3><h4 id="算术移位"><a href="#算术移位" class="headerlink" title="算术移位"></a>算术移位</h4><ul>
+<li>针对有符号数，移位过程中符号位不变</li>
+<li>（★★★★）移位后填补空位原则如下表</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">码制</th>
+<th style="text-align:center">添补代码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">正数</td>
+<td style="text-align:center">原码、补码、反码</td>
+<td style="text-align:center">0</td>
+</tr>
+<tr>
+<td style="text-align:center">负数</td>
+<td style="text-align:center">原码</td>
+<td style="text-align:center">0</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">补码</td>
+<td style="text-align:center">左移添 0</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">右移添 1</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">反码</td>
+<td style="text-align:center">1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="逻辑移位"><a href="#逻辑移位" class="headerlink" title="逻辑移位"></a>逻辑移位</h4><ul>
+<li>针对无符号数（或者说把该机器数当成无符号数）</li>
+<li>移位规则<ul>
+<li>左移和右移，空位都添 0</li>
+</ul>
+</li>
+</ul>
+<h4 id="循环移位"><a href="#循环移位" class="headerlink" title="循环移位"></a>循环移位</h4><p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/09/28/Cyclic-Shift.png?raw=true" alt="循环移位"></p>
+<h2 id="（★★）浮点数的表示与运算"><a href="#（★★）浮点数的表示与运算" class="headerlink" title="（★★）浮点数的表示与运算"></a>（★★）浮点数的表示与运算</h2><h3 id="浮点数的表示"><a href="#浮点数的表示" class="headerlink" title="浮点数的表示"></a>浮点数的表示</h3><ul>
+<li>$N=r^E\times M$</li>
+<li>其中，<em>r</em> 为阶码的底（隐含，在计算机中 <em>r</em> = 2），<em>E</em> 为阶码，<em>M</em> 为尾数</li>
+</ul>
+<h3 id="IEEE754标准"><a href="#IEEE754标准" class="headerlink" title="IEEE754标准"></a>IEEE754标准</h3><ul>
+<li>统一数据格式如下表</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">$m_s$</th>
+<th style="text-align:center">$E$</th>
+<th style="text-align:center">$M$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">数符</td>
+<td style="text-align:center">阶码（<strong>移码</strong>表示）</td>
+<td style="text-align:center">尾数（<strong>原码</strong>表示）</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>不同类型浮点数数位安排</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">类型</th>
+<th style="text-align:center">数符</th>
+<th style="text-align:center">阶码</th>
+<th style="text-align:center">尾数数值</th>
+<th style="text-align:center">总位数</th>
+<th style="text-align:center">偏置值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">短浮点数(float)</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">8</td>
+<td style="text-align:center">23</td>
+<td style="text-align:center">32</td>
+<td style="text-align:center">127（7FH）</td>
+</tr>
+<tr>
+<td style="text-align:center">长浮点数(double)</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">11</td>
+<td style="text-align:center">52</td>
+<td style="text-align:center">64</td>
+<td style="text-align:center">1023（3FFH）</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>注<ul>
+<li>由于规格化后，尾数最高位总为 1 ，可将此位隐含，故尾数实际可多存一位（还原此浮点数时，需要补上最高位的 1）</li>
+<li>以短浮点数为例<ul>
+<li>偏置值为 127 （而非 128 ），因为要用<strong>全1</strong>表示<strong>无穷大</strong></li>
+<li>阶码范围为 1~254，因为<strong>全1</strong>表示<strong>非规格化数</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="浮点数的加减运算"><a href="#浮点数的加减运算" class="headerlink" title="浮点数的加减运算"></a>浮点数的加减运算</h3><ul>
+<li>步骤<ul>
+<li>对阶<ul>
+<li>小阶向大阶看齐：小阶右移，阶增加，直至阶码相等</li>
+</ul>
+</li>
+<li>尾数求和</li>
+<li>规格化</li>
+<li>舍入</li>
+<li>溢出判断</li>
+</ul>
+</li>
+</ul>
+<h3 id="浮点数规格化"><a href="#浮点数规格化" class="headerlink" title="浮点数规格化"></a>浮点数规格化</h3><h2 id="（★）ALU的功能与结构"><a href="#（★）ALU的功能与结构" class="headerlink" title="（★）ALU的功能与结构"></a>（★）ALU的功能与结构</h2><h3 id="补码加减运算器的实现"><a href="#补码加减运算器的实现" class="headerlink" title="补码加减运算器的实现"></a>补码加减运算器的实现</h3><h3 id="典型指令完成设计与实现"><a href="#典型指令完成设计与实现" class="headerlink" title="典型指令完成设计与实现"></a>典型指令完成设计与实现</h3><h2 id="（★★）掌握不同层次程序员看到的运算"><a href="#（★★）掌握不同层次程序员看到的运算" class="headerlink" title="（★★）掌握不同层次程序员看到的运算"></a>（★★）掌握不同层次程序员看到的运算</h2><h3 id="高级语言以C语言为例"><a href="#高级语言以C语言为例" class="headerlink" title="高级语言以C语言为例"></a>高级语言以C语言为例</h3><h3 id="ISA层面则以MIPS32为例"><a href="#ISA层面则以MIPS32为例" class="headerlink" title="ISA层面则以MIPS32为例"></a>ISA层面则以MIPS32为例</h3><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ol>
 <li>计算机组成与系统结构.袁春风等</li>
 <li>2020年计算机组成原理考研复习指导.王道论坛</li>
 </ol>
