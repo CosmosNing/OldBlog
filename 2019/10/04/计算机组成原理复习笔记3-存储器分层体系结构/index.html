@@ -108,21 +108,18 @@
 
 
 
-  <meta name="description" content="当今是一个互联网时代，很多人为了赶上时代的步伐，开始自学编程。其数量之多，夸张到让人不禁感叹“这真是一个全民编程的时代”。 如果你到大街上，随便找几个人问问“你是否会编程”，他们大多数都会回答“我会，我会xx语言、xx语言”等。他们可以很快地给你写出一个“Hello World”或是对数据简单的处理程序。 但是，他们真的会编程吗？你试试让他们编一个链表、或是一些排序、查找算法，他们或许会变得力不">
-<meta name="keywords" content="算法,Grokking Algorithms">
+  <meta name="description" content="整理一下计算机组成原理中存储器分层体系结构的知识">
+<meta name="keywords" content="计算机组成原理">
 <meta property="og:type" content="article">
-<meta property="og:title" content="你真的会编程吗">
-<meta property="og:url" content="https://cosmosning.github.io/2018/07/30/你真的会编程吗/index.html">
+<meta property="og:title" content="计算机组成原理复习笔记3-存储器分层体系结构">
+<meta property="og:url" content="https://cosmosning.github.io/2019/10/04/计算机组成原理复习笔记3-存储器分层体系结构/index.html">
 <meta property="og:site_name" content="CosmosNing的个人博客">
-<meta property="og:description" content="当今是一个互联网时代，很多人为了赶上时代的步伐，开始自学编程。其数量之多，夸张到让人不禁感叹“这真是一个全民编程的时代”。 如果你到大街上，随便找几个人问问“你是否会编程”，他们大多数都会回答“我会，我会xx语言、xx语言”等。他们可以很快地给你写出一个“Hello World”或是对数据简单的处理程序。 但是，他们真的会编程吗？你试试让他们编一个链表、或是一些排序、查找算法，他们或许会变得力不">
+<meta property="og:description" content="整理一下计算机组成原理中存储器分层体系结构的知识">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2018/07/30/cover.jpg?raw=true">
-<meta property="og:image" content="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2018/07/30/book.jpg?raw=true">
-<meta property="og:updated_time" content="2018-09-25T04:31:14.985Z">
+<meta property="og:updated_time" content="2019-10-04T16:28:11.138Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="你真的会编程吗">
-<meta name="twitter:description" content="当今是一个互联网时代，很多人为了赶上时代的步伐，开始自学编程。其数量之多，夸张到让人不禁感叹“这真是一个全民编程的时代”。 如果你到大街上，随便找几个人问问“你是否会编程”，他们大多数都会回答“我会，我会xx语言、xx语言”等。他们可以很快地给你写出一个“Hello World”或是对数据简单的处理程序。 但是，他们真的会编程吗？你试试让他们编一个链表、或是一些排序、查找算法，他们或许会变得力不">
-<meta name="twitter:image" content="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2018/07/30/cover.jpg?raw=true">
+<meta name="twitter:title" content="计算机组成原理复习笔记3-存储器分层体系结构">
+<meta name="twitter:description" content="整理一下计算机组成原理中存储器分层体系结构的知识">
 
 
 
@@ -131,7 +128,7 @@
 
 
 
-  <link rel="canonical" href="https://cosmosning.github.io/2018/07/30/你真的会编程吗/"/>
+  <link rel="canonical" href="https://cosmosning.github.io/2019/10/04/计算机组成原理复习笔记3-存储器分层体系结构/"/>
 
 
 
@@ -141,7 +138,7 @@
   };
 </script>
 
-  <title>你真的会编程吗 | CosmosNing的个人博客</title>
+  <title>计算机组成原理复习笔记3-存储器分层体系结构 | CosmosNing的个人博客</title>
   
 
 
@@ -325,7 +322,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://cosmosning.github.io/2018/07/30/你真的会编程吗/">
+    <link itemprop="mainEntityOfPage" href="https://cosmosning.github.io/2019/10/04/计算机组成原理复习笔记3-存储器分层体系结构/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="CosmosNing">
@@ -342,7 +339,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">你真的会编程吗
+          <h2 class="post-title" itemprop="name headline">计算机组成原理复习笔记3-存储器分层体系结构
               
             
           </h2>
@@ -367,7 +364,7 @@
                 
               
 
-              <time title="创建时间：2018-07-30 22:49:31" itemprop="dateCreated datePublished" datetime="2018-07-30T22:49:31+08:00">2018-07-30</time>
+              <time title="创建时间：2019-10-04 22:25:24" itemprop="dateCreated datePublished" datetime="2019-10-04T22:25:24+08:00">2019-10-04</time>
             
 
             
@@ -384,7 +381,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-09-25 12:31:14" itemprop="dateModified" datetime="2018-09-25T12:31:14+08:00">2018-09-25</time>
+                <time title="修改时间：2019-10-05 00:28:11" itemprop="dateModified" datetime="2019-10-05T00:28:11+08:00">2019-10-05</time>
               
             
           </span>
@@ -401,7 +398,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/一起读/" itemprop="url" rel="index"><span itemprop="name">一起读</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/笔记/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a></span>
 
                 
                 
@@ -421,6 +418,8 @@
           
 
           
+              <div class="post-description">整理一下计算机组成原理中存储器分层体系结构的知识</div>
+          
 
         </div>
       </header>
@@ -435,26 +434,162 @@
       
 
       
-        <p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2018/07/30/cover.jpg?raw=true" alt="cover"></p>
-<p>当今是一个互联网时代，很多人为了赶上时代的步伐，开始自学编程。其数量之多，夸张到让人不禁感叹“这真是一个全民编程的时代”。</p>
-<p>如果你到大街上，随便找几个人问问“你是否会编程”，他们大多数都会回答“我会，我会xx语言、xx语言”等。他们可以很快地给你写出一个“Hello World”或是对数据简单的处理程序。</p>
-<p>但是，他们真的会编程吗？你试试让他们编一个链表、或是一些排序、查找算法，他们或许会变得力不从心了。</p>
-<p>当下，大多数人对编程的理解便是这样：将编程的学习简化为语言的学习，将掌握语言与掌握编程对等。这种拘泥于语言形式的编程学习，在短时间内确实可以提高个人的编程水平，但从长期来看，容易遇到个人思维的瓶颈。</p>
-<p>在我看来，编程并不应该只局限于某一种或是某几种语言的具体形式，而更应该关注逻辑思维的培养。逻辑思维，说得简单一点，其实就是一种思考问题和解决问题的一些套路。如果你掌握了这些套路，并能够将他们组合应用，那么我恭喜你，你已经比大多数人强了。这些套路，在编程中，我们给了它一个比较高端的名字，便是“算法”。</p>
-<p>说到这里，一定有很多同学对算法产生了兴趣。这很棒！接下来的一段时间里，我会以《Grokking Algorithms －An illustrated guide for programmers and other curious people》这本书为参考，给大家分享一些常见的算法原理，以及它对应的实现。</p>
-<p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2018/07/30/book.jpg?raw=true" alt="book"></p>
-<p>看到这儿，你肯定会有个疑问：为什么选择这本书呢？</p>
-<p>当今市面上有很多算法书，但是它们的侧重点不尽相同。</p>
-<p>比如，《算法导论》这本书比较侧重严谨性和全面性，说白了就是会劝退一些新手和小白。</p>
-<p>又如，《算法设计与分析基础》这本书侧重于课堂教学，是一本不错的算法入门教材。但是，课堂教学书籍却免不了会对一些问题和知识进行一些留白。为了鼓励学生自行探索研究，这样的教材编写目的的初衷是好的，但是没有对应的老师进行答疑，这对于一些没有解决相关问题经验或者缺少前置知识的人会很头疼。我想，如果是你，你也不会希望利用自己宝贵的“碎片化”时间来和这种书较劲。</p>
-<p>除此以外，还有一些算法书，专注于一些竞赛，主要涉及一些竞赛技巧。这对于竞赛来说，是一剂速成药水；但对于长远的逻辑思维培养来说，会使自己的知识体系不够全面，思维逻辑存在漏洞。</p>
-<p>我所推荐的这本书，即《Grokking Algorithms －An illustrated guide for programmers and other curious people》，在文字方面，没有使用过多的专业术语，而是结合大量的实际例子来引出并解释算法的原理。就我个人而言，读起来很轻松。轻松的阅读体验仅仅依靠文字可不够，因而作者在本书中，利用手绘的方式绘制了大量的算法原理图。我想，在你阅读这本书，绞尽脑汁理解算法原理的时候，突然蹦出一个手绘原理图，想必会扑哧一笑吧。:)</p>
-<p>这本书除了有趣，易于阅读，在内容安排上也非常用心。</p>
-<p>在第一章，作者会做一个简单的引入，解释一下有关算法的一些基础概念。（比如对算法含义的描述、用于评价算法效率的大O理论解释等）</p>
-<p>随后会介绍一些基础的数据结构（数组、链表等）、常见的排序算法（选择排序、快速排序等）、查找算法（二分查找、哈希查找等）、递归编程思想。</p>
-<p>在这些基础数据结构和算法之后，会有一些更复杂一点的数据结构（图等）、配套的算法（宽度优先搜索、Dijkstra’s 算法等）和它的经典应用。</p>
-<p>最后本书会进一步深入，介绍一些有趣并且有用的算法（贪婪算法、动态编程【Dynamic programming】、K-近邻算法、并行算法、SHA算法等）</p>
-<p>各位同学们，准备好了吗？准备好了的话，请关注，点赞，时刻关注我的更新。:)</p>
+        <h1 id="3．存储器分层体系结构"><a href="#3．存储器分层体系结构" class="headerlink" title="3．存储器分层体系结构"></a>3．存储器分层体系结构</h1><h2 id="（★★）存储器的分层结构及存储硬件概述"><a href="#（★★）存储器的分层结构及存储硬件概述" class="headerlink" title="（★★）存储器的分层结构及存储硬件概述"></a>（★★）存储器的分层结构及存储硬件概述</h2><h3 id="存储系统的分层"><a href="#存储系统的分层" class="headerlink" title="存储系统的分层"></a>存储系统的分层</h3><ul>
+<li>寄存器</li>
+<li>Cache</li>
+<li>主存</li>
+<li>辅存（外存）</li>
+</ul>
+<p>注：从上到下，速度变慢，容量变大，成本变低</p>
+<h3 id="半导体随机访问存储器的组织"><a href="#半导体随机访问存储器的组织" class="headerlink" title="半导体随机访问存储器的组织"></a>半导体随机访问存储器的组织</h3><ul>
+<li>基本结构（详见教材）</li>
+<li>支持<strong>随机存取</strong>，<strong>掉电数据丢失</strong></li>
+<li>分为 SRAM 和 DRAM</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">特点</th>
+<th style="text-align:center">SRAM</th>
+<th style="text-align:center">DRAM</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">存储信息</td>
+<td style="text-align:center">触发器</td>
+<td style="text-align:center">电容</td>
+</tr>
+<tr>
+<td style="text-align:center">破坏性读出</td>
+<td style="text-align:center">非</td>
+<td style="text-align:center">是</td>
+</tr>
+<tr>
+<td style="text-align:center">需要刷新</td>
+<td style="text-align:center">不要</td>
+<td style="text-align:center">要</td>
+</tr>
+<tr>
+<td style="text-align:center">送行列地址</td>
+<td style="text-align:center">同时送</td>
+<td style="text-align:center">分两次</td>
+</tr>
+<tr>
+<td style="text-align:center">运行速度</td>
+<td style="text-align:center">快</td>
+<td style="text-align:center">慢</td>
+</tr>
+<tr>
+<td style="text-align:center">集成度</td>
+<td style="text-align:center">低</td>
+<td style="text-align:center">高</td>
+</tr>
+<tr>
+<td style="text-align:center">发热量（功耗）</td>
+<td style="text-align:center">大</td>
+<td style="text-align:center">小</td>
+</tr>
+<tr>
+<td style="text-align:center">存储成本</td>
+<td style="text-align:center">高</td>
+<td style="text-align:center">低</td>
+</tr>
+<tr>
+<td style="text-align:center">主要用途</td>
+<td style="text-align:center">高速缓存</td>
+<td style="text-align:center">主机内存</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="只读存储器及主存的主要技术指标"><a href="#只读存储器及主存的主要技术指标" class="headerlink" title="只读存储器及主存的主要技术指标"></a>只读存储器及主存的主要技术指标</h3><ul>
+<li>支持<strong>随机存取</strong>，<strong>掉电非易失</strong></li>
+<li>分为<ul>
+<li>MROM：内容出厂前写入，无法后期改动</li>
+<li>PROM：一次可改</li>
+<li>EPROM：可多次擦除，多次写入</li>
+<li>Flash Memory（闪存，如 <strong>U 盘</strong>）</li>
+<li>SSD</li>
+</ul>
+</li>
+<li>性能指标（★★★）<ul>
+<li>$存储容量=存储字数\times 字长$ ，<strong>存储字数</strong>表示存储器<strong>地址空间大小</strong>，<strong>字长</strong>表示一次存储操作的<strong>数据</strong>量</li>
+<li>$存储速度=\frac{数据的宽度}{存储周期}$<ul>
+<li>其中存储周期中包括两个部分，一个是<strong>存取时间</strong>，另一个是<strong>恢复时间</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="存储器芯片与CPU的连接"><a href="#存储器芯片与CPU的连接" class="headerlink" title="存储器芯片与CPU的连接"></a>存储器芯片与CPU的连接</h3><ul>
+<li>主存与 CPU 之间有三条线相连，分别是<ul>
+<li>数据线（双向）</li>
+<li>控制信号线（CPU $\rightarrow​$ 主存）</li>
+<li>地址线（CPU $\rightarrow$ 主存）</li>
+</ul>
+</li>
+<li>主存容量扩展（★★★★）<ul>
+<li>位扩展<ul>
+<li>用多个芯片对字长进行扩充（如 8 片 8K × 1 位芯片位扩展后，得到 8K × 8 位）</li>
+<li>连接方式<ul>
+<li><ul>
+<li>[ ] 图【TODO】</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>字扩展<ul>
+<li>用多个芯片对字的数量进行扩充（如 8 片 8K × 1 位芯片位扩展后，得到 64K × 1 位）</li>
+<li>连接方式<ul>
+<li><ul>
+<li>[ ] 图【TODO】</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>字位同时扩展<ul>
+<li>同时扩充字和位，组合上述两种扩展</li>
+<li>连接方式<ul>
+<li><ul>
+<li>[ ] 图【TODO】</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="多模块存储器的交叉存储"><a href="#多模块存储器的交叉存储" class="headerlink" title="多模块存储器的交叉存储"></a>多模块存储器的交叉存储</h3><ul>
+<li>交叉编址：每个模块按 <strong>“模 m”</strong> 交叉编址。（即 0，m，···，( k - 1 )m，···存储在第一个单元，其他以此类推）</li>
+<li><ul>
+<li>[ ] 图【TODO】</li>
+</ul>
+</li>
+<li><p>一些公式（★★）</p>
+<ul>
+<li>设模块字长等于数据总线宽度，模块存取一个字的周期为 <em>T</em>，总线传送周期为 <em>r</em>， 为实现流水线方式存取，存储器交叉模块数应<strong>大于等于</strong><ul>
+<li>$m=\frac{T}{r}$ （<em>m</em> 称为<strong>交叉存取度</strong>）</li>
+</ul>
+</li>
+<li>连续存储 <em>m</em> 个字的时间为<ul>
+<li>$t=T+(m-1)r$</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="（★★）Cache"><a href="#（★★）Cache" class="headerlink" title="（★★）Cache"></a>（★★）Cache</h2><h3 id="高速缓冲存储器的CPU基本访存过程"><a href="#高速缓冲存储器的CPU基本访存过程" class="headerlink" title="高速缓冲存储器的CPU基本访存过程"></a>高速缓冲存储器的CPU基本访存过程</h3><h3 id="Cache和主存之间的映射方式"><a href="#Cache和主存之间的映射方式" class="headerlink" title="Cache和主存之间的映射方式"></a>Cache和主存之间的映射方式</h3><h3 id="程序访问的局部性原理对编程的影响及Cache-friendly的程序"><a href="#程序访问的局部性原理对编程的影响及Cache-friendly的程序" class="headerlink" title="程序访问的局部性原理对编程的影响及Cache-friendly的程序"></a>程序访问的局部性原理对编程的影响及Cache-friendly的程序</h3><h3 id="Cache替换算法和Cache写策略"><a href="#Cache替换算法和Cache写策略" class="headerlink" title="Cache替换算法和Cache写策略"></a>Cache替换算法和Cache写策略</h3><h2 id="（★★）虚拟存储器"><a href="#（★★）虚拟存储器" class="headerlink" title="（★★）虚拟存储器"></a>（★★）虚拟存储器</h2><h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><h3 id="三种实现方案"><a href="#三种实现方案" class="headerlink" title="三种实现方案"></a>三种实现方案</h3><h3 id="缺页的处理及快表的工作原理（重点：虚拟地址和物理地址的转换问题、查段表和页表）"><a href="#缺页的处理及快表的工作原理（重点：虚拟地址和物理地址的转换问题、查段表和页表）" class="headerlink" title="缺页的处理及快表的工作原理（重点：虚拟地址和物理地址的转换问题、查段表和页表）"></a>缺页的处理及快表的工作原理（重点：虚拟地址和物理地址的转换问题、查段表和页表）</h3><h3 id="TLB的原理和作用"><a href="#TLB的原理和作用" class="headerlink" title="TLB的原理和作用"></a>TLB的原理和作用</h3><h3 id="平均访问时间的计算"><a href="#平均访问时间的计算" class="headerlink" title="平均访问时间的计算"></a>平均访问时间的计算</h3><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ol>
+<li>计算机组成与系统结构.袁春风等</li>
+<li>2020年计算机组成原理考研复习指导.王道论坛</li>
+</ol>
 
       
     </div>
@@ -484,7 +619,7 @@
     <strong>本文作者： </strong>CosmosNing</li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://cosmosning.github.io/2018/07/30/你真的会编程吗/" title="你真的会编程吗">https://cosmosning.github.io/2018/07/30/你真的会编程吗/</a>
+    <a href="https://cosmosning.github.io/2019/10/04/计算机组成原理复习笔记3-存储器分层体系结构/" title="计算机组成原理复习笔记3-存储器分层体系结构">https://cosmosning.github.io/2019/10/04/计算机组成原理复习笔记3-存储器分层体系结构/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！</li>
@@ -497,9 +632,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/算法/" rel="tag"># 算法</a>
-          
-            <a href="/tags/Grokking-Algorithms/" rel="tag"># Grokking Algorithms</a>
+            <a href="/tags/计算机组成原理/" rel="tag"># 计算机组成原理</a>
           
         </div>
       
@@ -512,15 +645,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2019/09/28/计算机组成原理复习笔记2-运算方法与运算部件/" rel="next" title="计算机组成原理复习笔记2-运算方法与运算部件">
+                <i class="fa fa-chevron-left"></i> 计算机组成原理复习笔记2-运算方法与运算部件
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/08/02/算法趣解之二分查找/" rel="prev" title="算法趣解之二分查找">
-                算法趣解之二分查找 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -570,8 +703,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -698,6 +840,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#3．存储器分层体系结构"><span class="nav-number">1.</span> <span class="nav-text">3．存储器分层体系结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#（★★）存储器的分层结构及存储硬件概述"><span class="nav-number">1.1.</span> <span class="nav-text">（★★）存储器的分层结构及存储硬件概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#存储系统的分层"><span class="nav-number">1.1.1.</span> <span class="nav-text">存储系统的分层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#半导体随机访问存储器的组织"><span class="nav-number">1.1.2.</span> <span class="nav-text">半导体随机访问存储器的组织</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#只读存储器及主存的主要技术指标"><span class="nav-number">1.1.3.</span> <span class="nav-text">只读存储器及主存的主要技术指标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#存储器芯片与CPU的连接"><span class="nav-number">1.1.4.</span> <span class="nav-text">存储器芯片与CPU的连接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多模块存储器的交叉存储"><span class="nav-number">1.1.5.</span> <span class="nav-text">多模块存储器的交叉存储</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#（★★）Cache"><span class="nav-number">1.2.</span> <span class="nav-text">（★★）Cache</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#高速缓冲存储器的CPU基本访存过程"><span class="nav-number">1.2.1.</span> <span class="nav-text">高速缓冲存储器的CPU基本访存过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cache和主存之间的映射方式"><span class="nav-number">1.2.2.</span> <span class="nav-text">Cache和主存之间的映射方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#程序访问的局部性原理对编程的影响及Cache-friendly的程序"><span class="nav-number">1.2.3.</span> <span class="nav-text">程序访问的局部性原理对编程的影响及Cache-friendly的程序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cache替换算法和Cache写策略"><span class="nav-number">1.2.4.</span> <span class="nav-text">Cache替换算法和Cache写策略</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#（★★）虚拟存储器"><span class="nav-number">1.3.</span> <span class="nav-text">（★★）虚拟存储器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本概念"><span class="nav-number">1.3.1.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三种实现方案"><span class="nav-number">1.3.2.</span> <span class="nav-text">三种实现方案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缺页的处理及快表的工作原理（重点：虚拟地址和物理地址的转换问题、查段表和页表）"><span class="nav-number">1.3.3.</span> <span class="nav-text">缺页的处理及快表的工作原理（重点：虚拟地址和物理地址的转换问题、查段表和页表）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TLB的原理和作用"><span class="nav-number">1.3.4.</span> <span class="nav-text">TLB的原理和作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#平均访问时间的计算"><span class="nav-number">1.3.5.</span> <span class="nav-text">平均访问时间的计算</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">2.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -858,7 +1016,7 @@
   
     <script type="text/javascript">
       window.livereOptions = {
-        refer: '2018/07/30/你真的会编程吗/'
+        refer: '2019/10/04/计算机组成原理复习笔记3-存储器分层体系结构/'
       };
       (function(d, s) {
         var j, e = d.getElementsByTagName(s)[0];
@@ -898,6 +1056,30 @@
   
   
 
+  
+    
+      <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      },
+      TeX: {equationNumbers: { autoNumber: "AMS" }}
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
   
 
 
