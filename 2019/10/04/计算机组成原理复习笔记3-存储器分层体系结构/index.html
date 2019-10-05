@@ -116,10 +116,16 @@
 <meta property="og:site_name" content="CosmosNing的个人博客">
 <meta property="og:description" content="整理一下计算机组成原理中存储器分层体系结构的知识">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-04T16:28:11.138Z">
+<meta property="og:image" content="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/10/04/Bit.png?raw=true">
+<meta property="og:image" content="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/10/04/Word.png?raw=true">
+<meta property="og:image" content="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/10/04/Bit-Word.png?raw=true">
+<meta property="og:image" content="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/10/04/Cross.png?raw=true">
+<meta property="og:image" content="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/10/04/Cache.png?raw=true">
+<meta property="og:updated_time" content="2019-10-05T14:51:51.586Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="计算机组成原理复习笔记3-存储器分层体系结构">
 <meta name="twitter:description" content="整理一下计算机组成原理中存储器分层体系结构的知识">
+<meta name="twitter:image" content="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/10/04/Bit.png?raw=true">
 
 
 
@@ -381,7 +387,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-10-05 00:28:11" itemprop="dateModified" datetime="2019-10-05T00:28:11+08:00">2019-10-05</time>
+                <time title="修改时间：2019-10-05 22:51:51" itemprop="dateModified" datetime="2019-10-05T22:51:51+08:00">2019-10-05</time>
               
             
           </span>
@@ -526,7 +532,7 @@
 <h3 id="存储器芯片与CPU的连接"><a href="#存储器芯片与CPU的连接" class="headerlink" title="存储器芯片与CPU的连接"></a>存储器芯片与CPU的连接</h3><ul>
 <li>主存与 CPU 之间有三条线相连，分别是<ul>
 <li>数据线（双向）</li>
-<li>控制信号线（CPU $\rightarrow​$ 主存）</li>
+<li>控制信号线（CPU $\rightarrow$ 主存）</li>
 <li>地址线（CPU $\rightarrow$ 主存）</li>
 </ul>
 </li>
@@ -534,10 +540,7 @@
 <li>位扩展<ul>
 <li>用多个芯片对字长进行扩充（如 8 片 8K × 1 位芯片位扩展后，得到 8K × 8 位）</li>
 <li>连接方式<ul>
-<li><ul>
-<li>[ ] 图【TODO】</li>
-</ul>
-</li>
+<li><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/10/04/Bit.png?raw=true" alt="位扩展"></li>
 </ul>
 </li>
 </ul>
@@ -545,10 +548,7 @@
 <li>字扩展<ul>
 <li>用多个芯片对字的数量进行扩充（如 8 片 8K × 1 位芯片位扩展后，得到 64K × 1 位）</li>
 <li>连接方式<ul>
-<li><ul>
-<li>[ ] 图【TODO】</li>
-</ul>
-</li>
+<li><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/10/04/Word.png?raw=true" alt="字扩展"></li>
 </ul>
 </li>
 </ul>
@@ -556,10 +556,7 @@
 <li>字位同时扩展<ul>
 <li>同时扩充字和位，组合上述两种扩展</li>
 <li>连接方式<ul>
-<li><ul>
-<li>[ ] 图【TODO】</li>
-</ul>
-</li>
+<li><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/10/04/Bit-Word.png?raw=true" alt="字位同时扩展"></li>
 </ul>
 </li>
 </ul>
@@ -568,10 +565,7 @@
 </li>
 </ul>
 <h3 id="多模块存储器的交叉存储"><a href="#多模块存储器的交叉存储" class="headerlink" title="多模块存储器的交叉存储"></a>多模块存储器的交叉存储</h3><ul>
-<li>交叉编址：每个模块按 <strong>“模 m”</strong> 交叉编址。（即 0，m，···，( k - 1 )m，···存储在第一个单元，其他以此类推）</li>
-<li><ul>
-<li>[ ] 图【TODO】</li>
-</ul>
+<li><p>交叉编址：每个模块按 <strong>“模 m”</strong> 交叉编址。（即 0，m，···，( k - 1 )m，···存储在第一个单元，其他以此类推）<br><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/10/04/Cross.png?raw=true" alt="多模块存储器的交叉存储"></p>
 </li>
 <li><p>一些公式（★★）</p>
 <ul>
@@ -586,7 +580,8 @@
 </ul>
 </li>
 </ul>
-<h2 id="（★★）Cache"><a href="#（★★）Cache" class="headerlink" title="（★★）Cache"></a>（★★）Cache</h2><h3 id="高速缓冲存储器的CPU基本访存过程"><a href="#高速缓冲存储器的CPU基本访存过程" class="headerlink" title="高速缓冲存储器的CPU基本访存过程"></a>高速缓冲存储器的CPU基本访存过程</h3><h3 id="Cache和主存之间的映射方式"><a href="#Cache和主存之间的映射方式" class="headerlink" title="Cache和主存之间的映射方式"></a>Cache和主存之间的映射方式</h3><h3 id="程序访问的局部性原理对编程的影响及Cache-friendly的程序"><a href="#程序访问的局部性原理对编程的影响及Cache-friendly的程序" class="headerlink" title="程序访问的局部性原理对编程的影响及Cache-friendly的程序"></a>程序访问的局部性原理对编程的影响及Cache-friendly的程序</h3><h3 id="Cache替换算法和Cache写策略"><a href="#Cache替换算法和Cache写策略" class="headerlink" title="Cache替换算法和Cache写策略"></a>Cache替换算法和Cache写策略</h3><h2 id="（★★）虚拟存储器"><a href="#（★★）虚拟存储器" class="headerlink" title="（★★）虚拟存储器"></a>（★★）虚拟存储器</h2><h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><h3 id="三种实现方案"><a href="#三种实现方案" class="headerlink" title="三种实现方案"></a>三种实现方案</h3><h3 id="缺页的处理及快表的工作原理（重点：虚拟地址和物理地址的转换问题、查段表和页表）"><a href="#缺页的处理及快表的工作原理（重点：虚拟地址和物理地址的转换问题、查段表和页表）" class="headerlink" title="缺页的处理及快表的工作原理（重点：虚拟地址和物理地址的转换问题、查段表和页表）"></a>缺页的处理及快表的工作原理（重点：虚拟地址和物理地址的转换问题、查段表和页表）</h3><h3 id="TLB的原理和作用"><a href="#TLB的原理和作用" class="headerlink" title="TLB的原理和作用"></a>TLB的原理和作用</h3><h3 id="平均访问时间的计算"><a href="#平均访问时间的计算" class="headerlink" title="平均访问时间的计算"></a>平均访问时间的计算</h3><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ol>
+<h2 id="（★★）Cache"><a href="#（★★）Cache" class="headerlink" title="（★★）Cache"></a>（★★）Cache</h2><h3 id="高速缓冲存储器的CPU基本访存过程"><a href="#高速缓冲存储器的CPU基本访存过程" class="headerlink" title="高速缓冲存储器的CPU基本访存过程"></a>高速缓冲存储器的CPU基本访存过程</h3><p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/10/04/Cache.png?raw=true" alt="带Cache的CPU基本访存过程"></p>
+<h3 id="Cache和主存之间的映射方式"><a href="#Cache和主存之间的映射方式" class="headerlink" title="Cache和主存之间的映射方式"></a>Cache和主存之间的映射方式</h3><h3 id="程序访问的局部性原理对编程的影响及Cache-friendly的程序"><a href="#程序访问的局部性原理对编程的影响及Cache-friendly的程序" class="headerlink" title="程序访问的局部性原理对编程的影响及Cache-friendly的程序"></a>程序访问的局部性原理对编程的影响及Cache-friendly的程序</h3><h3 id="Cache替换算法和Cache写策略"><a href="#Cache替换算法和Cache写策略" class="headerlink" title="Cache替换算法和Cache写策略"></a>Cache替换算法和Cache写策略</h3><h2 id="（★★）虚拟存储器"><a href="#（★★）虚拟存储器" class="headerlink" title="（★★）虚拟存储器"></a>（★★）虚拟存储器</h2><h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><h3 id="三种实现方案"><a href="#三种实现方案" class="headerlink" title="三种实现方案"></a>三种实现方案</h3><h3 id="缺页的处理及快表的工作原理（重点：虚拟地址和物理地址的转换问题、查段表和页表）"><a href="#缺页的处理及快表的工作原理（重点：虚拟地址和物理地址的转换问题、查段表和页表）" class="headerlink" title="缺页的处理及快表的工作原理（重点：虚拟地址和物理地址的转换问题、查段表和页表）"></a>缺页的处理及快表的工作原理（重点：虚拟地址和物理地址的转换问题、查段表和页表）</h3><h3 id="TLB的原理和作用"><a href="#TLB的原理和作用" class="headerlink" title="TLB的原理和作用"></a>TLB的原理和作用</h3><h3 id="平均访问时间的计算"><a href="#平均访问时间的计算" class="headerlink" title="平均访问时间的计算"></a>平均访问时间的计算</h3><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ol>
 <li>计算机组成与系统结构.袁春风等</li>
 <li>2020年计算机组成原理考研复习指导.王道论坛</li>
 </ol>
