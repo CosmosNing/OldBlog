@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://cosmosning.github.io/"/>
-  <updated>2019-10-09T14:59:37.184Z</updated>
+  <updated>2019-10-10T13:18:34.328Z</updated>
   <id>https://cosmosning.github.io/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>计算机组成原理复习笔记4-指令系统</title>
+    <link href="https://cosmosning.github.io/2019/10/10/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B04-%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/"/>
+    <id>https://cosmosning.github.io/2019/10/10/计算机组成原理复习笔记4-指令系统/</id>
+    <published>2019-10-10T11:03:35.000Z</published>
+    <updated>2019-10-10T13:18:34.328Z</updated>
+    
+    <summary type="html">
+    
+      整理一下计算机组成原理中指令系统的知识
+    
+    </summary>
+    
+      <category term="笔记" scheme="https://cosmosning.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="计算机组成原理" scheme="https://cosmosning.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/"/>
+    
+  </entry>
   
   <entry>
     <title>计算机组成原理复习笔记3-存储器分层体系结构</title>
@@ -193,26 +213,6 @@
     
     
       <category term="操作系统" scheme="https://cosmosning.github.io/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>数据结构复习笔记8-排序</title>
-    <link href="https://cosmosning.github.io/2019/08/29/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B08-%E6%8E%92%E5%BA%8F/"/>
-    <id>https://cosmosning.github.io/2019/08/29/数据结构复习笔记8-排序/</id>
-    <published>2019-08-29T15:11:14.000Z</published>
-    <updated>2019-09-03T16:44:36.869Z</updated>
-    
-    <summary type="html">
-    
-      整理一下排序的知识
-    
-    </summary>
-    
-      <category term="笔记" scheme="https://cosmosning.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
-    
-    
-      <category term="数据结构" scheme="https://cosmosning.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
     
   </entry>
   
