@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://cosmosning.github.io/"/>
-  <updated>2019-10-10T13:18:34.328Z</updated>
+  <updated>2019-10-11T15:46:07.664Z</updated>
   <id>https://cosmosning.github.io/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>计算机组成原理复习笔记5-中央处理器</title>
+    <link href="https://cosmosning.github.io/2019/10/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B05-%E4%B8%AD%E5%A4%AE%E5%A4%84%E7%90%86%E5%99%A8/"/>
+    <id>https://cosmosning.github.io/2019/10/11/计算机组成原理复习笔记5-中央处理器/</id>
+    <published>2019-10-11T14:22:27.000Z</published>
+    <updated>2019-10-11T15:46:07.664Z</updated>
+    
+    <summary type="html">
+    
+      整理一下计算机组成原理中中央处理器的知识
+    
+    </summary>
+    
+      <category term="笔记" scheme="https://cosmosning.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="计算机组成原理" scheme="https://cosmosning.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/"/>
+    
+  </entry>
   
   <entry>
     <title>计算机组成原理复习笔记4-指令系统</title>
@@ -186,26 +206,6 @@
     <summary type="html">
     
       整理一下操作系统中进程管理的知识
-    
-    </summary>
-    
-      <category term="笔记" scheme="https://cosmosning.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
-    
-    
-      <category term="操作系统" scheme="https://cosmosning.github.io/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>操作系统复习笔记1-概述</title>
-    <link href="https://cosmosning.github.io/2019/09/04/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B01-%E6%A6%82%E8%BF%B0/"/>
-    <id>https://cosmosning.github.io/2019/09/04/操作系统复习笔记1-概述/</id>
-    <published>2019-09-04T14:24:39.000Z</published>
-    <updated>2019-09-04T16:53:05.872Z</updated>
-    
-    <summary type="html">
-    
-      整理一下操作系统中概述知识
     
     </summary>
     
