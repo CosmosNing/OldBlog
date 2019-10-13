@@ -116,7 +116,7 @@
 <meta property="og:site_name" content="CosmosNing的个人博客">
 <meta property="og:description" content="整理一下计算机组成原理中中央处理器的知识">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-11T15:46:07.664Z">
+<meta property="og:updated_time" content="2019-10-13T13:47:46.682Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="计算机组成原理复习笔记5-中央处理器">
 <meta name="twitter:description" content="整理一下计算机组成原理中中央处理器的知识">
@@ -364,12 +364,24 @@
                 
               
 
-              <time title="创建时间：2019-10-11 22:22:27 / 修改时间：23:46:07" itemprop="dateCreated datePublished" datetime="2019-10-11T22:22:27+08:00">2019-10-11</time>
+              <time title="创建时间：2019-10-11 22:22:27" itemprop="dateCreated datePublished" datetime="2019-10-11T22:22:27+08:00">2019-10-11</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-10-13 21:47:46" itemprop="dateModified" datetime="2019-10-13T21:47:46+08:00">2019-10-13</time>
               
             
           </span>
@@ -618,8 +630,93 @@
 </tbody>
 </table>
 </div>
-<h2 id="（★★）数据通路及控制器"><a href="#（★★）数据通路及控制器" class="headerlink" title="（★★）数据通路及控制器"></a>（★★）数据通路及控制器</h2><p>掌握CPU数据通路的功能及结构，掌握控制器的功能和设计，并能为MIPS32的典型指令完成相应的CPU设计，包括单周期及流水体系结构的设计；</p>
-<h2 id="（★★）异常与中断"><a href="#（★★）异常与中断" class="headerlink" title="（★★）异常与中断"></a>（★★）异常与中断</h2><p>掌握异常与中断的处理机制及相应的设计与实现；</p>
+<h2 id="（★★）数据通路及控制器"><a href="#（★★）数据通路及控制器" class="headerlink" title="（★★）数据通路及控制器"></a>（★★）数据通路及控制器</h2><p>（详见教材）</p>
+<h2 id="（★★）异常与中断"><a href="#（★★）异常与中断" class="headerlink" title="（★★）异常与中断"></a>（★★）异常与中断</h2><p>（详见教材）</p>
+<h1 id="解题技巧及重要结论"><a href="#解题技巧及重要结论" class="headerlink" title="解题技巧及重要结论"></a>解题技巧及重要结论</h1><ul>
+<li>几个概念的关系<ul>
+<li>指令与微程序<strong>一一对应</strong></li>
+<li>微程序由<strong>多条</strong>微指令</li>
+<li>每条微指令中又有<strong>多条</strong>微操作</li>
+</ul>
+</li>
+<li>若指令系统中，具有 <strong>n</strong> 种机器指令，则控制存储器中的微程序数量至少为 <strong>n + 2</strong> （ 2 的含义：1 条公共取指，1 条处理中断）</li>
+<li>指令流水线中的计算<ul>
+<li>吞吐率<ul>
+<li>基本公式<ul>
+<li>$TP=\frac{n}{T_k}$ ，<ul>
+<li>$n$ 为任务数，$T_k$ 是完成 $n$ 个任务所花费的时间</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>当流水线各段处理时间相等时，进一步有<ul>
+<li>$TP=\frac{n}{(k+n-1)\Delta t}​$<ul>
+<li>k 级流水线，$\Delta t$ 为时钟周期</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>加速比<ul>
+<li>基本公式<ul>
+<li>$S=\frac{T_0}{T_k}$</li>
+</ul>
+</li>
+<li>当流水线各段处理时间相等时，进一步有<ul>
+<li>$S=\frac{kn\Delta t}{(k+n-1)\Delta t}=\frac{kn}{k+n-1}$</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>流水线效率<ul>
+<li>$E=\frac{T_0}{kT_k}$<ul>
+<li>$T_0$ 为顺序执行 $n$ 个任务所用的总时间</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>依据各段指令的时间，确定时钟周期：选各段指令的时间<strong>最大的</strong></li>
+<li>超标量流水线的含义：指的是 CPU 中存在<strong>一条以上</strong>的流水线，在<strong>每个时钟周期</strong>内可以完成<strong>一条以上</strong>的指令（空间换时间）</li>
+<li>单流水线处理机（度为 1 ）和超标量流水线（度为 d）的多条指令连续执行的时间计算问题<ul>
+<li>利用公式 $T_k=(k+n-1)\Delta t$ ，其中 k 级流水线，n 为指令条数， $\Delta t$ 为时钟周期</li>
+<li>注意：超标量中<strong>指令条数要除以度数</strong>，再带入公式计算</li>
+</ul>
+</li>
+<li>影响流水线的因素<ul>
+<li>结构相关（资源冲突）<ul>
+<li>多条指令同一时间竞争统一资源</li>
+<li>解决方案<ul>
+<li>前一条使用时，后一条等待一个时钟周期</li>
+<li>设置更多的相关资源</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>数据相关（数据冲突）<ul>
+<li>后一条指令需要前一条指令执行完毕才能执行（比如说后一条指令需要前一条指令计算的结果）</li>
+<li>解决方案<ul>
+<li>后一条指令中插入 NOP 操作，等待前一条指令执行完成</li>
+<li>设置数据旁路</li>
+<li>编译优化，调整指令顺序</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>控制相关（控制冲突）<ul>
+<li>指令跳转时，导致流水线断流</li>
+<li>解决方案<ul>
+<li>分支预测</li>
+<li>等</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ol>
 <li>计算机组成与系统结构.袁春风等</li>
 <li>2020年计算机组成原理考研复习指导.王道论坛</li>
@@ -884,7 +981,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#5．中央处理器"><span class="nav-number">1.</span> <span class="nav-text">5．中央处理器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#（★★★）指令的执行过程"><span class="nav-number">1.1.</span> <span class="nav-text">（★★★）指令的执行过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#指令周期"><span class="nav-number">1.1.1.</span> <span class="nav-text">指令周期</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#指令周期的数据流及对应微操作"><span class="nav-number">1.1.2.</span> <span class="nav-text">指令周期的数据流及对应微操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#取指周期"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">取指周期</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#间址周期"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">间址周期</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#执行周期"><span class="nav-number">1.1.2.3.</span> <span class="nav-text">执行周期</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#中断周期"><span class="nav-number">1.1.2.4.</span> <span class="nav-text">中断周期</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#（★★）数据通路及控制器"><span class="nav-number">1.2.</span> <span class="nav-text">（★★）数据通路及控制器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#（★★）异常与中断"><span class="nav-number">1.3.</span> <span class="nav-text">（★★）异常与中断</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">2.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#5．中央处理器"><span class="nav-number">1.</span> <span class="nav-text">5．中央处理器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#（★★★）指令的执行过程"><span class="nav-number">1.1.</span> <span class="nav-text">（★★★）指令的执行过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#指令周期"><span class="nav-number">1.1.1.</span> <span class="nav-text">指令周期</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#指令周期的数据流及对应微操作"><span class="nav-number">1.1.2.</span> <span class="nav-text">指令周期的数据流及对应微操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#取指周期"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">取指周期</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#间址周期"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">间址周期</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#执行周期"><span class="nav-number">1.1.2.3.</span> <span class="nav-text">执行周期</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#中断周期"><span class="nav-number">1.1.2.4.</span> <span class="nav-text">中断周期</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#（★★）数据通路及控制器"><span class="nav-number">1.2.</span> <span class="nav-text">（★★）数据通路及控制器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#（★★）异常与中断"><span class="nav-number">1.3.</span> <span class="nav-text">（★★）异常与中断</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#解题技巧及重要结论"><span class="nav-number">2.</span> <span class="nav-text">解题技巧及重要结论</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">3.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
             
 
           </div>
