@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://cosmosning.github.io/"/>
-  <updated>2019-12-15T15:08:16.384Z</updated>
+  <updated>2019-12-26T03:18:21.980Z</updated>
   <id>https://cosmosning.github.io/</id>
   
   <author>
@@ -17,11 +17,39 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>小程序开发1-第一个小程序</title>
+    <link href="https://cosmosning.github.io/2019/12/26/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%911-%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
+    <id>https://cosmosning.github.io/2019/12/26/小程序开发1-第一个小程序/</id>
+    <published>2019-12-26T02:37:30.000Z</published>
+    <updated>2019-12-26T03:18:21.980Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;第一个小程序&quot;&gt;&lt;a href=&quot;#第一个小程序&quot; class=&quot;headerlink&quot; title=&quot;第一个小程序&quot;&gt;&lt;/a&gt;第一个小程序&lt;/h1&gt;&lt;h2 id=&quot;小程序代码结构&quot;&gt;&lt;a href=&quot;#小程序代码结构&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="笔记" scheme="https://cosmosning.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="前端" scheme="https://cosmosning.github.io/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+      <category term="微信小程序" scheme="https://cosmosning.github.io/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
+    
+  </entry>
+  
+  <entry>
     <title>MIPS指令系统简易入门</title>
     <link href="https://cosmosning.github.io/2019/11/12/MIPS%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F%E7%AE%80%E6%98%93%E5%85%A5%E9%97%A8/"/>
     <id>https://cosmosning.github.io/2019/11/12/MIPS指令系统简易入门/</id>
     <published>2019-11-12T08:05:11.000Z</published>
-    <updated>2019-12-15T15:08:16.384Z</updated>
+    <updated>2019-12-15T15:11:14.029Z</updated>
     
     <summary type="html">
     
@@ -188,26 +216,6 @@
     <id>https://cosmosning.github.io/2019/09/24/操作系统复习笔记6-操作系统接口/</id>
     <published>2019-09-24T14:39:01.000Z</published>
     <updated>2019-09-24T14:45:46.375Z</updated>
-    
-    <summary type="html">
-    
-      整理一下操作系统中设备管理的知识
-    
-    </summary>
-    
-      <category term="笔记" scheme="https://cosmosning.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
-    
-    
-      <category term="操作系统" scheme="https://cosmosning.github.io/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>操作系统复习笔记5-磁盘与文件系统</title>
-    <link href="https://cosmosning.github.io/2019/09/15/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B05-%E7%A3%81%E7%9B%98%E4%B8%8E%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/"/>
-    <id>https://cosmosning.github.io/2019/09/15/操作系统复习笔记5-磁盘与文件系统/</id>
-    <published>2019-09-15T15:17:15.000Z</published>
-    <updated>2019-09-23T15:55:46.857Z</updated>
     
     <summary type="html">
     
