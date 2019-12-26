@@ -116,7 +116,7 @@
 <meta property="og:site_name" content="CosmosNing的个人博客">
 <meta property="og:description" content="小程序开发框架简述">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-26T11:27:57.969Z">
+<meta property="og:updated_time" content="2019-12-26T11:30:30.660Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="小程序开发2-小程序开发框架">
 <meta name="twitter:description" content="小程序开发框架简述">
@@ -364,7 +364,7 @@
                 
               
 
-              <time title="创建时间：2019-12-26 15:31:58 / 修改时间：19:27:57" itemprop="dateCreated datePublished" datetime="2019-12-26T15:31:58+08:00">2019-12-26</time>
+              <time title="创建时间：2019-12-26 15:31:58 / 修改时间：19:30:30" itemprop="dateCreated datePublished" datetime="2019-12-26T15:31:58+08:00">2019-12-26</time>
             
 
             
@@ -673,12 +673,19 @@
 </tr>
 <tr>
 <td style="text-align:center">Tab 切换</td>
-<td style="text-align:center">调用 API <code>wx.switchTab</code> 或使用组件 <code>&lt;navigator open-type=&quot;switchTab&quot;/&gt;</code>或</td>
+<td style="text-align:center">调用 API <code>wx.switchTab</code> 或使用组件 <code>&lt;navigator open-type=&quot;switchTab&quot;/&gt;</code>或用户切换 Tab</td>
+<td style="text-align:center">无</td>
+<td style="text-align:center">具体情况具体分析</td>
+</tr>
+<tr>
+<td style="text-align:center">重启动</td>
+<td style="text-align:center">调用 API <code>wx.reLaunch</code> 或使用组件 <code>&lt;navigator open-type=&quot;reLaunch&quot;/&gt;</code></td>
+<td style="text-align:center">onUnload</td>
+<td style="text-align:center">onLoad, onShow</td>
 </tr>
 </tbody>
 </table>
 </div>
-<p>用户切换 Tab |     无     | 具体情况具体分析 |<br>|   重启动   | 调用 API <code>wx.reLaunch</code> 或使用组件 <code>&lt;navigator open-type=&quot;reLaunch&quot;/&gt;</code> |  onUnload  |  onLoad, onShow  |</p>
 <h2 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h2><ul>
 <li><p>例 1（基本写法）</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--index.wxml--&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">view</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"btn"</span> <span class="attr">bindtap</span>=<span class="string">"clickMe"</span>&gt;</span></span><br><span class="line">        点击我</span><br><span class="line">    <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br></pre></td></tr></table></figure>
