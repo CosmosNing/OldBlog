@@ -108,18 +108,18 @@
 
 
 
-  <meta name="description" content="MIPS 指令系统应知必会">
-<meta name="keywords" content="计算机组成原理">
+  <meta name="description" content="Git 基础入门">
+<meta name="keywords" content="工具,版本控制,git">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MIPS指令系统简易入门">
-<meta property="og:url" content="https://cosmosning.github.io/2019/11/12/MIPS指令系统简易入门/index.html">
+<meta property="og:title" content="Git基础入门">
+<meta property="og:url" content="https://cosmosning.github.io/2019/12/30/Git基础入门/index.html">
 <meta property="og:site_name" content="CosmosNing的个人博客">
-<meta property="og:description" content="MIPS 指令系统应知必会">
+<meta property="og:description" content="Git 基础入门">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-26T03:22:31.286Z">
+<meta property="og:updated_time" content="2019-12-30T15:11:55.077Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="MIPS指令系统简易入门">
-<meta name="twitter:description" content="MIPS 指令系统应知必会">
+<meta name="twitter:title" content="Git基础入门">
+<meta name="twitter:description" content="Git 基础入门">
 
 
 
@@ -128,7 +128,7 @@
 
 
 
-  <link rel="canonical" href="https://cosmosning.github.io/2019/11/12/MIPS指令系统简易入门/"/>
+  <link rel="canonical" href="https://cosmosning.github.io/2019/12/30/Git基础入门/"/>
 
 
 
@@ -138,7 +138,7 @@
   };
 </script>
 
-  <title>MIPS指令系统简易入门 | CosmosNing的个人博客</title>
+  <title>Git基础入门 | CosmosNing的个人博客</title>
   
 
 
@@ -322,7 +322,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://cosmosning.github.io/2019/11/12/MIPS指令系统简易入门/">
+    <link itemprop="mainEntityOfPage" href="https://cosmosning.github.io/2019/12/30/Git基础入门/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="CosmosNing">
@@ -339,7 +339,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">MIPS指令系统简易入门
+          <h2 class="post-title" itemprop="name headline">Git基础入门
               
             
           </h2>
@@ -364,24 +364,12 @@
                 
               
 
-              <time title="创建时间：2019-11-12 16:05:11" itemprop="dateCreated datePublished" datetime="2019-11-12T16:05:11+08:00">2019-11-12</time>
+              <time title="创建时间：2019-12-30 19:32:05 / 修改时间：23:11:55" itemprop="dateCreated datePublished" datetime="2019-12-30T19:32:05+08:00">2019-12-30</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-12-26 11:22:31" itemprop="dateModified" datetime="2019-12-26T11:22:31+08:00">2019-12-26</time>
               
             
           </span>
@@ -418,7 +406,7 @@
           
 
           
-              <div class="post-description">MIPS 指令系统应知必会</div>
+              <div class="post-description">Git 基础入门</div>
           
 
         </div>
@@ -434,227 +422,145 @@
       
 
       
-        <h1 id="MIPS-指令系统"><a href="#MIPS-指令系统" class="headerlink" title="MIPS 指令系统"></a>MIPS 指令系统</h1><h2 id="MIPS指令中数据的表示"><a href="#MIPS指令中数据的表示" class="headerlink" title="MIPS指令中数据的表示"></a>MIPS指令中数据的表示</h2><ul>
-<li>提供 32 个通用寄存器</li>
-<li>大端存储</li>
-<li>只能通过 Load / Store 指令访问存储器数据</li>
+        <h1 id="Git-基础入门"><a href="#Git-基础入门" class="headerlink" title="Git 基础入门"></a>Git 基础入门</h1><h2 id="下载与安装"><a href="#下载与安装" class="headerlink" title="下载与安装"></a>下载与安装</h2><p><a href="https://git-scm.com/downloads" target="_blank" rel="noopener">https://git-scm.com/downloads</a></p>
+<h2 id="最小配置"><a href="#最小配置" class="headerlink" title="最小配置"></a>最小配置</h2><h3 id="配置-user-name-和-user-email"><a href="#配置-user-name-和-user-email" class="headerlink" title="配置 user.name 和 user.email"></a>配置 <code>user.name</code> 和 <code>user.email</code></h3><ul>
+<li><code>git config</code> 命令</li>
 </ul>
-<h2 id="MIPS-指令格式和寻址方式"><a href="#MIPS-指令格式和寻址方式" class="headerlink" title="MIPS 指令格式和寻址方式"></a>MIPS 指令格式和寻址方式</h2><h3 id="指令格式"><a href="#指令格式" class="headerlink" title="指令格式"></a>指令格式</h3><ul>
-<li>所有指令都是 32 位宽，需按字地址对齐，字地址为 4 的倍数</li>
-<li>R- Type（RR 型指令）<ul>
-<li>寻址方式：<strong>寄存器寻址</strong></li>
-<li>若是双目运算类指令，则 rs 和 rt 的内容分别作为第一和第二源操作数，结果送 rd；</li>
-<li>若是移位指令，则对 rt 的内容进行移位，结果送 rd ，所移位数由 shamt 字段给出</li>
-<li>指令格式如下：</li>
-</ul>
-</li>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name '&lt;用户名&gt;'</span><br><span class="line">git config --global user.email '&lt;电子邮件&gt;'</span><br></pre></td></tr></table></figure>
+<ul>
+<li>参数简析</li>
 </ul>
 <div class="table-container">
 <table>
 <thead>
 <tr>
-<th style="text-align:center">OP</th>
-<th style="text-align:center">rs</th>
-<th style="text-align:center">rt</th>
-<th style="text-align:center">rd</th>
-<th style="text-align:center">shamt</th>
-<th style="text-align:center">func</th>
+<th style="text-align:center">—local</th>
+<th style="text-align:center">—global</th>
+<th style="text-align:center">—system</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:center">操作码：000000（6 个 0）（31-26：<strong>6位</strong>）</td>
-<td style="text-align:center">第一源操作数（25-21：<strong>5位</strong>）</td>
-<td style="text-align:center">第二源操作数（20-16：<strong>5位</strong>）</td>
-<td style="text-align:center">存储结果（15-11：<strong>5位</strong>）</td>
-<td style="text-align:center">移位指令位移量（10-6：<strong>5位</strong>）</td>
-<td style="text-align:center">操作类型（如 sub add等）（5-0：<strong>6位</strong>）</td>
+<td style="text-align:center">仅对<strong>某个仓库</strong>有效</td>
+<td style="text-align:center">对<strong>当前用户</strong>所有仓库有效</td>
+<td style="text-align:center">对<strong>系统</strong>所有登录的用户有效</td>
 </tr>
 </tbody>
 </table>
 </div>
 <ul>
-<li>I-Type（立即数型指令）<ul>
-<li>寻址方式：寄存器寻址、立即数寻址、相对寻址、基址寻址、变址寻址</li>
-<li>若是双目运算类指令，则将 rs 的内容和立即数分别作为第一和第二源操作数，结果送 rt</li>
-<li>若是 Load/Store 指令，则将 rs 的内容和立即数符号扩展后的内容相加作为内存单元地址，Load 指令将内存单元内容送 rt， Store 指令将 rt 内容送内存</li>
-<li>若是条件转移（分支）指令，则对 rs 和 rt 内容进行指定运算，根据运算结果决定是否转到转移目标地址处执行。（转移目标地址通过相对寻址方式得到，即将 PC 的内容和立即数符号扩展后的内容相加得到）</li>
-<li>指令格式如下</li>
+<li>显示 <code>config</code> 配置，加上 <code>--list</code>, 如</li>
 </ul>
-</li>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --list -- global</span><br></pre></td></tr></table></figure>
+<h2 id="创建仓库"><a href="#创建仓库" class="headerlink" title="创建仓库"></a>创建仓库</h2><h3 id="已有项目纳入-Git-管理"><a href="#已有项目纳入-Git-管理" class="headerlink" title="已有项目纳入 Git 管理"></a>已有项目纳入 Git 管理</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd &lt;项目根目录&gt;</span><br><span class="line">git init</span><br></pre></td></tr></table></figure>
+<h3 id="新建项目用-Git-管理"><a href="#新建项目用-Git-管理" class="headerlink" title="新建项目用 Git 管理"></a>新建项目用 Git 管理</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd &lt;某个文件夹&gt;</span><br><span class="line">git init &lt;项目名&gt; # git 会创建与项目名同名的文件夹</span><br><span class="line">cd &lt;项目名&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="（可选）配置-local-用户信息"><a href="#（可选）配置-local-用户信息" class="headerlink" title="（可选）配置 local 用户信息"></a>（可选）配置 local 用户信息</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --local user.name '用户名'</span><br><span class="line">git config --local user.email '电子邮件'</span><br></pre></td></tr></table></figure>
+<h2 id="暂存、提交"><a href="#暂存、提交" class="headerlink" title="暂存、提交"></a>暂存、提交</h2><h3 id="暂存"><a href="#暂存" class="headerlink" title="暂存"></a>暂存</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add &lt;待提交的文件&gt;...</span><br></pre></td></tr></table></figure>
+<ul>
+<li>参数简析</li>
 </ul>
 <div class="table-container">
 <table>
 <thead>
 <tr>
-<th style="text-align:center">OP</th>
-<th style="text-align:center">rs</th>
-<th style="text-align:center">rt</th>
-<th style="text-align:center">立即数</th>
+<th style="text-align:center">-u</th>
+<th style="text-align:center">-A</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:center">操作码（31-26：<strong>6位</strong>）</td>
-<td style="text-align:center">第一源操作数（25-21：<strong>5 位</strong>）</td>
-<td style="text-align:center">存储结果（20-16：<strong>5 位</strong>）</td>
-<td style="text-align:center">第二源操作数（15-0：<strong>16位</strong>）</td>
+<td style="text-align:center">语义为 update，即将已经跟踪的文件添加到暂存区</td>
+<td style="text-align:center">语义为 all，即将所有的文件添加到暂存区</td>
 </tr>
 </tbody>
 </table>
 </div>
+<h3 id="提交"><a href="#提交" class="headerlink" title="提交"></a>提交</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -m '&lt;提交信息&gt;'</span><br></pre></td></tr></table></figure>
+<h3 id="其他常用的命令"><a href="#其他常用的命令" class="headerlink" title="其他常用的命令"></a>其他常用的命令</h3><ul>
+<li><p><code>git status</code>：git 管理文件状态</p>
+</li>
+<li><p><code>git log</code>：查看提交记录</p>
 <ul>
-<li>J-Type（无条件跳转指令）<ul>
-<li>寻址方式：变通的直接寻址</li>
-<li>将当前 PC 的高 4 位拼上 26 位直接地址，最后添上两个 0 ，即得到 32 位的跳转目标地址</li>
-<li>指令格式如下</li>
-</ul>
+<li><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git log               # 默认命令（仅显示当前分支）</span><br><span class="line">git log --oneline     # 仅显示历史提交信息</span><br><span class="line">git log -n&lt;数字&gt;       # 显示最近几次提交历史（次数由数字决定）</span><br><span class="line">git log --all         # 查看所有分支log</span><br><span class="line">git log --graph       # 图形化方式显示（log前会有线，分析多分支版本关系常用）</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th style="text-align:center">OP</th>
-<th style="text-align:center">直接地址</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">操作码：000010 或 000011（31-26：<strong>6 位</strong>）</td>
-<td style="text-align:center">（25-0：<strong>26 位</strong>）</td>
-</tr>
-</tbody>
-</table>
-</div>
+</li>
+<li><p><code>gitk</code>：图形化查看提交记录</p>
+</li>
+<li><p><code>git reset --hard</code>：清空暂存区所有修改</p>
+</li>
+<li><p><code>git cat-file</code></p>
 <ul>
-<li>注： <strong>MIPS 中寻址方式由指令格式来确定，而指令格式由 op 来确定</strong>（6 位全 0 为 R 型；6 位 低三位为 010 或 011 为 J 型；剩余为 I 型）</li>
+<li><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git cat-file -t &lt;哈希值&gt;   # 查看对应 哈希值 对应的类型</span><br></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git cat-file -p &lt;哈希值&gt;   # 查看对应 哈希值 对应的内容</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
-<h2 id="MIPS-汇编语言"><a href="#MIPS-汇编语言" class="headerlink" title="MIPS 汇编语言"></a>MIPS 汇编语言</h2><div class="table-container">
-<table>
-<thead>
-<tr>
-<th style="text-align:center">类别</th>
-<th style="text-align:center">指令名称</th>
-<th style="text-align:center">汇编举例</th>
-<th style="text-align:center">含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center"><strong>算数运算</strong></td>
-<td style="text-align:center">add</td>
-<td style="text-align:center">add s1, s2, s3</td>
-<td style="text-align:center">s1 = s2 + s3</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center">subtract</td>
-<td style="text-align:center">subtract s1, s2, s3</td>
-<td style="text-align:center">s1 = s2 - s3</td>
-</tr>
-<tr>
-<td style="text-align:center"><strong>存储访问</strong></td>
-<td style="text-align:center">load word</td>
-<td style="text-align:center">lw s1, 100( 2 )</td>
-<td style="text-align:center">s1 = Memory[s2 + 100]</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center">store word</td>
-<td style="text-align:center">sw s1, 100( 2 )</td>
-<td style="text-align:center">Memory[s2 + 100] = s1</td>
-</tr>
-<tr>
-<td style="text-align:center"><strong>逻辑运算</strong></td>
-<td style="text-align:center">and</td>
-<td style="text-align:center">and s1, s2, s3</td>
-<td style="text-align:center">s1 = s2 &amp; s3</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center">or</td>
-<td style="text-align:center">or s1, s2, s3</td>
-<td style="text-align:center">s1 = s2 $</td>
-<td>$ s3</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center">nor</td>
-<td style="text-align:center">nor s1, s2, s3</td>
-<td style="text-align:center">s1 = ~(s2 $</td>
-<td>$ s3)</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center">and immediate</td>
-<td style="text-align:center">andi s1, s2, 100</td>
-<td style="text-align:center">s1 = s2 &amp; 100</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center">or immediate</td>
-<td style="text-align:center">ori s1, s2, 100</td>
-<td style="text-align:center">s1 = s2 $</td>
-<td>$ 100</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center">shift left logical</td>
-<td style="text-align:center">sll s1, s2, 10</td>
-<td style="text-align:center">s1 = s2 &lt;&lt; 10</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center">shift right logical</td>
-<td style="text-align:center">srl s1, s2, 10</td>
-<td style="text-align:center">s1 = s2 &gt;&gt; 10</td>
-</tr>
-<tr>
-<td style="text-align:center"><strong>条件分支</strong></td>
-<td style="text-align:center">branch on equal</td>
-<td style="text-align:center">beq s1, s2, L</td>
-<td style="text-align:center">if(s1 == s2)    goto L</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center">branch on not equal</td>
-<td style="text-align:center">bne s1, s2, L</td>
-<td style="text-align:center">if(s1 != s2)    goto L</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center">set on less than</td>
-<td style="text-align:center">slt s1, s2, s3</td>
-<td style="text-align:center">if(s2 &lt; s3)    s1 = 1;     else    s1 = 0</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center">set on less than immediate</td>
-<td style="text-align:center">slti s1, s2, 100</td>
-<td style="text-align:center">if(s2 &lt; 100)    s1 = 1;     else    s1 = 0</td>
-</tr>
-<tr>
-<td style="text-align:center"><strong>无条件跳转</strong></td>
-<td style="text-align:center">jump</td>
-<td style="text-align:center">j L</td>
-<td style="text-align:center">goto L</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center">jump register</td>
-<td style="text-align:center">j ra</td>
-<td style="text-align:center">goto ra</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center">jump and link</td>
-<td style="text-align:center">jal L</td>
-<td style="text-align:center">ra = PC + 4; goto L（为什么加 4 因为每条指令 32 位【4 个字节】）</td>
-</tr>
-</tbody>
-</table>
-</div>
+</li>
+<li><p><code>git chekout</code></p>
+<ul>
+<li><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git checkout &lt;与当前分支不同的已存在的分支名&gt; # 切换分支</span><br><span class="line">git checkout -b &lt;新分支名&gt; &lt;commitid&gt;     # 检出对应版本，并创建新分支管理</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p><code>git branch</code></p>
+<ul>
+<li><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>####显示命令#####</span><br><span class="line"><span class="meta">#</span> 默认命令，显示所有分支，并注明当前处于哪个分支</span><br><span class="line">git branch</span><br><span class="line"><span class="meta">#</span> 除了默认显示信息，加入了最近一次提交信息</span><br><span class="line">git branch -v</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>####创建命令#####</span><br><span class="line"><span class="meta">#</span> 基于当前最新版本，创建新分支</span><br><span class="line">git branch &lt;新分支名&gt;</span><br><span class="line"><span class="meta">#</span> 基于commitid 或 tag，创建新分支</span><br><span class="line">git branch &lt;新分支名&gt; &lt; commitid | tag &gt;</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>####创建命令#####</span><br><span class="line"><span class="meta">#</span> 删除对应分支</span><br><span class="line">git branch -d &lt;已存在的分支名&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p><code>git diff</code></p>
+<ul>
+<li><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git diff &lt;commitid1&gt; &lt;commitid2&gt; # 显示两个提交之间的差异</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li></li>
+</ul>
+<h2 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h2><h3 id="给文件重命名"><a href="#给文件重命名" class="headerlink" title="给文件重命名"></a>给文件重命名</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git mv &lt;原文件名&gt; &lt;新文件名&gt;</span><br><span class="line">git commit -m '提交信息'            # 可直接提交，不需通过 add 加入暂存区</span><br></pre></td></tr></table></figure>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><h3 id="git-目录解析"><a href="#git-目录解析" class="headerlink" title=".git 目录解析"></a>.git 目录解析</h3><h4 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd .git</span><br><span class="line">ls</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 目录结构（初始）</span><br><span class="line">├─hooks</span><br><span class="line">├─info</span><br><span class="line">├─objects</span><br><span class="line">│  ├─info</span><br><span class="line">│  └─pack</span><br><span class="line">└─refs</span><br><span class="line">    ├─heads</span><br><span class="line">    └─tags</span><br><span class="line"><span class="meta">#</span> 目录结构（有提交后）</span><br><span class="line">├─hooks</span><br><span class="line">├─info</span><br><span class="line">├─logs</span><br><span class="line">│  └─refs</span><br><span class="line">│      └─heads</span><br><span class="line">├─objects</span><br><span class="line">│  ├─1b</span><br><span class="line">│  ├─c8</span><br><span class="line">│  ├─dc</span><br><span class="line">│  ├─info</span><br><span class="line">│  └─pack</span><br><span class="line">└─refs</span><br><span class="line">    ├─heads</span><br><span class="line">    └─tags</span><br></pre></td></tr></table></figure>
+<h4 id="含义"><a href="#含义" class="headerlink" title="含义"></a>含义</h4><ul>
+<li><code>HEAD</code> 文件，存储了当前指向哪个分支</li>
+<li><code>config</code> 文件：当前项目的配置信息</li>
+<li><code>refs/heads</code> 文件夹：存储分支信息<ul>
+<li>其中的文件，存储了各分支最新的 <code>commitid</code></li>
+</ul>
+</li>
+<li><code>refs/tags</code> 文件夹：存储标签信息（用于如 <strong>里程碑</strong> 设置）<ul>
+<li>其中的文件，存储了各标签对应的 <code>commitid</code></li>
+</ul>
+</li>
+<li><code>objects</code> 文件夹：无含义的文件夹名和对应文件夹下的文件名拼接，形成哈希值，利用  <code>git cat-file</code> 可查看对应的信息。</li>
+</ul>
+<h3 id="commit、tree、blob-对象之间的关系"><a href="#commit、tree、blob-对象之间的关系" class="headerlink" title="commit、tree、blob 对象之间的关系"></a>commit、tree、blob 对象之间的关系</h3><ul>
+<li>每个 <strong>commit</strong> 对应一颗 <strong>tree</strong></li>
+<li><strong>tree</strong> 指明了当前 <strong>commit</strong> 的文件目录结构。 <strong>tree</strong> 中可包含 <strong>tree</strong> 和 <strong>blob</strong></li>
+<li><strong>blob</strong> 代表文件</li>
+</ul>
+<h3 id="潜在错误：分离头指针"><a href="#潜在错误：分离头指针" class="headerlink" title="潜在错误：分离头指针"></a>潜在错误：分离头指针</h3><ul>
+<li><p>输入如下命令</p>
+<ul>
+<li><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout &lt;哈希值&gt;    # 分离头指针（这个分支没有被 git 管理）</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>如果在这个基础上 <code>commit</code> ，之后切换分支时，这些 <code>commit</code> 会丢失。</p>
+</li>
+<li><p>补救措施</p>
+<ul>
+<li><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch &lt;新分支名&gt; &lt;commitid&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>建议：检出某个版本时，推荐用新的分支管理</p>
+<ul>
+<li><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b &lt;新分支名&gt; &lt;commitid&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li></li>
+</ul>
 
       
     </div>
@@ -684,7 +590,7 @@
     <strong>本文作者： </strong>CosmosNing</li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://cosmosning.github.io/2019/11/12/MIPS指令系统简易入门/" title="MIPS指令系统简易入门">https://cosmosning.github.io/2019/11/12/MIPS指令系统简易入门/</a>
+    <a href="https://cosmosning.github.io/2019/12/30/Git基础入门/" title="Git基础入门">https://cosmosning.github.io/2019/12/30/Git基础入门/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！</li>
@@ -697,7 +603,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/计算机组成原理/" rel="tag"># 计算机组成原理</a>
+            <a href="/tags/工具/" rel="tag"># 工具</a>
+          
+            <a href="/tags/版本控制/" rel="tag"># 版本控制</a>
+          
+            <a href="/tags/git/" rel="tag"># git</a>
           
         </div>
       
@@ -710,8 +620,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/10/15/计算机组成原理复习笔记7-输入输出组织/" rel="next" title="计算机组成原理复习笔记7-输入输出组织">
-                <i class="fa fa-chevron-left"></i> 计算机组成原理复习笔记7-输入输出组织
+              <a href="/2019/12/28/小程序开发4-小程序原生API/" rel="next" title="小程序开发4-小程序原生API">
+                <i class="fa fa-chevron-left"></i> 小程序开发4-小程序原生API
               </a>
             
           </div>
@@ -719,10 +629,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/12/26/小程序开发1-第一个小程序/" rel="prev" title="小程序开发1-第一个小程序">
-                小程序开发1-第一个小程序 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -929,7 +835,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#MIPS-指令系统"><span class="nav-number">1.</span> <span class="nav-text">MIPS 指令系统</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#MIPS指令中数据的表示"><span class="nav-number">1.1.</span> <span class="nav-text">MIPS指令中数据的表示</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MIPS-指令格式和寻址方式"><span class="nav-number">1.2.</span> <span class="nav-text">MIPS 指令格式和寻址方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#指令格式"><span class="nav-number">1.2.1.</span> <span class="nav-text">指令格式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MIPS-汇编语言"><span class="nav-number">1.3.</span> <span class="nav-text">MIPS 汇编语言</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Git-基础入门"><span class="nav-number">1.</span> <span class="nav-text">Git 基础入门</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#下载与安装"><span class="nav-number">1.1.</span> <span class="nav-text">下载与安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最小配置"><span class="nav-number">1.2.</span> <span class="nav-text">最小配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#配置-user-name-和-user-email"><span class="nav-number">1.2.1.</span> <span class="nav-text">配置 user.name 和 user.email</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建仓库"><span class="nav-number">1.3.</span> <span class="nav-text">创建仓库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#已有项目纳入-Git-管理"><span class="nav-number">1.3.1.</span> <span class="nav-text">已有项目纳入 Git 管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#新建项目用-Git-管理"><span class="nav-number">1.3.2.</span> <span class="nav-text">新建项目用 Git 管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#（可选）配置-local-用户信息"><span class="nav-number">1.3.3.</span> <span class="nav-text">（可选）配置 local 用户信息</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#暂存、提交"><span class="nav-number">1.4.</span> <span class="nav-text">暂存、提交</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#暂存"><span class="nav-number">1.4.1.</span> <span class="nav-text">暂存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#提交"><span class="nav-number">1.4.2.</span> <span class="nav-text">提交</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他常用的命令"><span class="nav-number">1.4.3.</span> <span class="nav-text">其他常用的命令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#应用"><span class="nav-number">1.5.</span> <span class="nav-text">应用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#给文件重命名"><span class="nav-number">1.5.1.</span> <span class="nav-text">给文件重命名</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他"><span class="nav-number">1.6.</span> <span class="nav-text">其他</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#git-目录解析"><span class="nav-number">1.6.1.</span> <span class="nav-text">.git 目录解析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#目录结构"><span class="nav-number">1.6.1.1.</span> <span class="nav-text">目录结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#含义"><span class="nav-number">1.6.1.2.</span> <span class="nav-text">含义</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#commit、tree、blob-对象之间的关系"><span class="nav-number">1.6.2.</span> <span class="nav-text">commit、tree、blob 对象之间的关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#潜在错误：分离头指针"><span class="nav-number">1.6.3.</span> <span class="nav-text">潜在错误：分离头指针</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -1095,7 +1001,7 @@
   
     <script type="text/javascript">
       window.livereOptions = {
-        refer: '2019/11/12/MIPS指令系统简易入门/'
+        refer: '2019/12/30/Git基础入门/'
       };
       (function(d, s) {
         var j, e = d.getElementsByTagName(s)[0];
