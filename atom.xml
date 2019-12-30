@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://cosmosning.github.io/"/>
-  <updated>2019-12-27T13:36:47.800Z</updated>
+  <updated>2019-12-28T11:30:59.286Z</updated>
   <id>https://cosmosning.github.io/</id>
   
   <author>
@@ -17,11 +17,33 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>小程序开发4-小程序原生API</title>
+    <link href="https://cosmosning.github.io/2019/12/28/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%914-%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%8E%9F%E7%94%9FAPI/"/>
+    <id>https://cosmosning.github.io/2019/12/28/小程序开发4-小程序原生API/</id>
+    <published>2019-12-28T10:29:11.000Z</published>
+    <updated>2019-12-28T11:30:59.286Z</updated>
+    
+    <summary type="html">
+    
+      小程序原生 API 的介绍
+    
+    </summary>
+    
+      <category term="笔记" scheme="https://cosmosning.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="前端" scheme="https://cosmosning.github.io/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+      <category term="微信小程序" scheme="https://cosmosning.github.io/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
+    
+  </entry>
+  
+  <entry>
     <title>小程序开发3-小程序原生组件</title>
     <link href="https://cosmosning.github.io/2019/12/27/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%913-%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%8E%9F%E7%94%9F%E7%BB%84%E4%BB%B6/"/>
     <id>https://cosmosning.github.io/2019/12/27/小程序开发3-小程序原生组件/</id>
     <published>2019-12-27T02:19:46.000Z</published>
-    <updated>2019-12-27T13:36:47.800Z</updated>
+    <updated>2019-12-28T13:40:05.331Z</updated>
     
     <summary type="html">
     
@@ -192,26 +214,6 @@
     <summary type="html">
     
       整理一下计算机组成原理中存储器分层体系结构的知识
-    
-    </summary>
-    
-      <category term="笔记" scheme="https://cosmosning.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
-    
-    
-      <category term="计算机组成原理" scheme="https://cosmosning.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>计算机组成原理复习笔记2-运算方法与运算部件</title>
-    <link href="https://cosmosning.github.io/2019/09/28/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B02-%E8%BF%90%E7%AE%97%E6%96%B9%E6%B3%95%E4%B8%8E%E8%BF%90%E7%AE%97%E9%83%A8%E4%BB%B6/"/>
-    <id>https://cosmosning.github.io/2019/09/28/计算机组成原理复习笔记2-运算方法与运算部件/</id>
-    <published>2019-09-28T15:36:08.000Z</published>
-    <updated>2019-10-03T15:45:20.529Z</updated>
-    
-    <summary type="html">
-    
-      整理一下计算机组成原理中运算方法和运算部件的知识
     
     </summary>
     
