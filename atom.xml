@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://cosmosning.github.io/"/>
-  <updated>2019-12-31T00:43:29.237Z</updated>
+  <updated>2020-02-08T13:47:45.495Z</updated>
   <id>https://cosmosning.github.io/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>WindowsTerminal下载、安装及配置</title>
+    <link href="https://cosmosning.github.io/2020/02/08/WindowsTerminal%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%8F%8A%E9%85%8D%E7%BD%AE/"/>
+    <id>https://cosmosning.github.io/2020/02/08/WindowsTerminal下载、安装及配置/</id>
+    <published>2020-02-08T13:28:59.000Z</published>
+    <updated>2020-02-08T13:47:45.495Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;下载与安装&quot;&gt;&lt;a href=&quot;#下载与安装&quot; class=&quot;headerlink&quot; title=&quot;下载与安装&quot;&gt;&lt;/a&gt;下载与安装&lt;/h1&gt;&lt;h2 id=&quot;Microsoft-Store&quot;&gt;&lt;a href=&quot;#Microsoft-Store&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="指南" scheme="https://cosmosning.github.io/categories/%E6%8C%87%E5%8D%97/"/>
+    
+    
+      <category term="工具" scheme="https://cosmosning.github.io/tags/%E5%B7%A5%E5%85%B7/"/>
+    
+      <category term="Terminal" scheme="https://cosmosning.github.io/tags/Terminal/"/>
+    
+      <category term="Windows" scheme="https://cosmosning.github.io/tags/Windows/"/>
+    
+  </entry>
   
   <entry>
     <title>Vue初探</title>
@@ -202,26 +232,6 @@
     <summary type="html">
     
       整理一下计算机组成原理中系统总线的知识
-    
-    </summary>
-    
-      <category term="笔记" scheme="https://cosmosning.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
-    
-    
-      <category term="计算机组成原理" scheme="https://cosmosning.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>计算机组成原理复习笔记5-中央处理器</title>
-    <link href="https://cosmosning.github.io/2019/10/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B05-%E4%B8%AD%E5%A4%AE%E5%A4%84%E7%90%86%E5%99%A8/"/>
-    <id>https://cosmosning.github.io/2019/10/11/计算机组成原理复习笔记5-中央处理器/</id>
-    <published>2019-10-11T14:22:27.000Z</published>
-    <updated>2019-10-13T13:47:46.682Z</updated>
-    
-    <summary type="html">
-    
-      整理一下计算机组成原理中中央处理器的知识
     
     </summary>
     
