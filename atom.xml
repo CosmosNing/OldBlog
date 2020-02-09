@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://cosmosning.github.io/"/>
-  <updated>2020-02-08T14:01:36.438Z</updated>
+  <updated>2020-02-09T02:33:10.748Z</updated>
   <id>https://cosmosning.github.io/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Leetcode.283.move-zeroes</title>
+    <link href="https://cosmosning.github.io/2020/02/09/Leetcode-283-move-zeroes/"/>
+    <id>https://cosmosning.github.io/2020/02/09/Leetcode-283-move-zeroes/</id>
+    <published>2020-02-09T01:47:36.000Z</published>
+    <updated>2020-02-09T02:33:10.748Z</updated>
+    
+    <summary type="html">
+    
+      本篇文章带来有关 Leetcode.283.move-zeroes 我的求解过程
+    
+    </summary>
+    
+      <category term="LeetCode" scheme="https://cosmosning.github.io/categories/LeetCode/"/>
+    
+    
+      <category term="线性表" scheme="https://cosmosning.github.io/tags/%E7%BA%BF%E6%80%A7%E8%A1%A8/"/>
+    
+      <category term="数组" scheme="https://cosmosning.github.io/tags/%E6%95%B0%E7%BB%84/"/>
+    
+  </entry>
   
   <entry>
     <title>WindowsTerminal下载、安装及配置</title>
@@ -206,26 +228,6 @@
     <summary type="html">
     
       整理一下计算机组成原理中输入输出组织的知识
-    
-    </summary>
-    
-      <category term="笔记" scheme="https://cosmosning.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
-    
-    
-      <category term="计算机组成原理" scheme="https://cosmosning.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>计算机组成原理复习笔记6-系统总线</title>
-    <link href="https://cosmosning.github.io/2019/10/13/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B06-%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/"/>
-    <id>https://cosmosning.github.io/2019/10/13/计算机组成原理复习笔记6-系统总线/</id>
-    <published>2019-10-13T13:57:11.000Z</published>
-    <updated>2019-10-15T04:15:33.100Z</updated>
-    
-    <summary type="html">
-    
-      整理一下计算机组成原理中系统总线的知识
     
     </summary>
     
