@@ -116,7 +116,7 @@
 <meta property="og:site_name" content="CosmosNing的个人博客">
 <meta property="og:description" content="Windows Terminal 带来了类 Linux 的终端体验，本篇文章介绍它的安装与配置">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-02-09T12:27:23.857Z">
+<meta property="og:updated_time" content="2020-02-09T12:30:58.168Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="WindowsTerminal下载、安装及配置">
 <meta name="twitter:description" content="Windows Terminal 带来了类 Linux 的终端体验，本篇文章介绍它的安装与配置">
@@ -381,7 +381,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-02-09 20:27:23" itemprop="dateModified" datetime="2020-02-09T20:27:23+08:00">2020-02-09</time>
+                <time title="修改时间：2020-02-09 20:30:58" itemprop="dateModified" datetime="2020-02-09T20:30:58+08:00">2020-02-09</time>
               
             
           </span>
@@ -455,7 +455,7 @@
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 下载安装 Scoop</span></span><br><span class="line">$ <span class="built_in">set-executionpolicy</span> remotesigned -scope currentuser</span><br><span class="line">iex (<span class="built_in">new-object</span> net.webclient).downloadstring(<span class="string">'https://get.scoop.sh'</span>)</span><br><span class="line"><span class="comment"># 搜索 conemu</span></span><br><span class="line">$ scoop search conemu</span><br></pre></td></tr></table></figure>
 <p>此时返回结果</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 返回结果</span></span><br><span class="line">Results from other known buckets...</span><br><span class="line">(add them using <span class="string">'scoop bucket add &lt;name&gt;'</span>)</span><br><span class="line"></span><br><span class="line">    bucket/conemu-color-themes</span><br><span class="line">    bucket/conemu</span><br></pre></td></tr></table></figure>
-<p>在安装前，要运行如下命令（感觉是第一次，需要初始化）</p>
+<p>在安装前，要运行如下命令（感觉是第一次，需要初始化）（<a href="https://github.com/lukesampson/scoop/wiki/Buckets#installing-from-other-buckets" target="_blank" rel="noopener">参考</a>）</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ scoop bucket add extras</span><br></pre></td></tr></table></figure>
 <p>再安装</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ scoop install conemu</span><br></pre></td></tr></table></figure>
