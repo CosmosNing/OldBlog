@@ -108,20 +108,18 @@
 
 
 
-  <meta name="description" content="整理一下计算机组成原理中系统总线的知识">
-<meta name="keywords" content="计算机组成原理">
+  <meta name="description" content="本篇文章带来有关 &quot;Leetcode-11-container-with-most-water&quot; 我的求解过程">
+<meta name="keywords" content="数组,双指针,左右夹逼">
 <meta property="og:type" content="article">
-<meta property="og:title" content="计算机组成原理复习笔记6-系统总线">
-<meta property="og:url" content="https://cosmosning.github.io/2019/10/13/计算机组成原理复习笔记6-系统总线/index.html">
+<meta property="og:title" content="Leetcode-11-container-with-most-water">
+<meta property="og:url" content="https://cosmosning.github.io/2020/02/13/Leetcode-11-container-with-most-water/index.html">
 <meta property="og:site_name" content="CosmosNing的个人博客">
-<meta property="og:description" content="整理一下计算机组成原理中系统总线的知识">
+<meta property="og:description" content="本篇文章带来有关 &quot;Leetcode-11-container-with-most-water&quot; 我的求解过程">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/10/13/Bus-Timing.png?raw=true">
-<meta property="og:updated_time" content="2019-10-15T04:15:33.100Z">
+<meta property="og:updated_time" content="2020-02-13T14:23:44.920Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="计算机组成原理复习笔记6-系统总线">
-<meta name="twitter:description" content="整理一下计算机组成原理中系统总线的知识">
-<meta name="twitter:image" content="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/10/13/Bus-Timing.png?raw=true">
+<meta name="twitter:title" content="Leetcode-11-container-with-most-water">
+<meta name="twitter:description" content="本篇文章带来有关 &quot;Leetcode-11-container-with-most-water&quot; 我的求解过程">
 
 
 
@@ -130,7 +128,7 @@
 
 
 
-  <link rel="canonical" href="https://cosmosning.github.io/2019/10/13/计算机组成原理复习笔记6-系统总线/"/>
+  <link rel="canonical" href="https://cosmosning.github.io/2020/02/13/Leetcode-11-container-with-most-water/"/>
 
 
 
@@ -140,7 +138,7 @@
   };
 </script>
 
-  <title>计算机组成原理复习笔记6-系统总线 | CosmosNing的个人博客</title>
+  <title>Leetcode-11-container-with-most-water | CosmosNing的个人博客</title>
   
 
 
@@ -324,7 +322,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://cosmosning.github.io/2019/10/13/计算机组成原理复习笔记6-系统总线/">
+    <link itemprop="mainEntityOfPage" href="https://cosmosning.github.io/2020/02/13/Leetcode-11-container-with-most-water/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="CosmosNing">
@@ -341,7 +339,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">计算机组成原理复习笔记6-系统总线
+          <h2 class="post-title" itemprop="name headline">Leetcode-11-container-with-most-water
               
             
           </h2>
@@ -366,24 +364,12 @@
                 
               
 
-              <time title="创建时间：2019-10-13 21:57:11" itemprop="dateCreated datePublished" datetime="2019-10-13T21:57:11+08:00">2019-10-13</time>
+              <time title="创建时间：2020-02-13 22:03:05 / 修改时间：22:23:44" itemprop="dateCreated datePublished" datetime="2020-02-13T22:03:05+08:00">2020-02-13</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-10-15 12:15:33" itemprop="dateModified" datetime="2019-10-15T12:15:33+08:00">2019-10-15</time>
               
             
           </span>
@@ -400,7 +386,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/笔记/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/LeetCode/" itemprop="url" rel="index"><span itemprop="name">LeetCode</span></a></span>
 
                 
                 
@@ -420,7 +406,7 @@
           
 
           
-              <div class="post-description">整理一下计算机组成原理中系统总线的知识</div>
+              <div class="post-description">本篇文章带来有关 "Leetcode-11-container-with-most-water" 我的求解过程</div>
           
 
         </div>
@@ -436,93 +422,45 @@
       
 
       
-        <h1 id="6．-系统总线"><a href="#6．-系统总线" class="headerlink" title="6． 系统总线"></a>6． 系统总线</h1><h2 id="（×）总线概述：识记总线的基本概念，分类，总线的组成及性能指标；"><a href="#（×）总线概述：识记总线的基本概念，分类，总线的组成及性能指标；" class="headerlink" title="（×）总线概述：识记总线的基本概念，分类，总线的组成及性能指标；"></a>（×）总线概述：识记总线的基本概念，分类，总线的组成及性能指标；</h2><p>（详见教材）</p>
-<h2 id="（★★）总线仲裁的仲裁方式以及各自的工作原理；"><a href="#（★★）总线仲裁的仲裁方式以及各自的工作原理；" class="headerlink" title="（★★）总线仲裁的仲裁方式以及各自的工作原理；"></a>（★★）总线仲裁的仲裁方式以及各自的工作原理；</h2><h3 id="集中仲裁"><a href="#集中仲裁" class="headerlink" title="集中仲裁"></a>集中仲裁</h3><div class="table-container">
-<table>
-<thead>
-<tr>
-<th style="text-align:center">对比项目</th>
-<th style="text-align:center">链式查询</th>
-<th style="text-align:center">计数器定时查询</th>
-<th style="text-align:center">独立请求</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">工作原理</td>
-<td style="text-align:center">离总线控制部件距离越近，优先级越高</td>
-<td style="text-align:center">优先级由计数器设置</td>
-<td style="text-align:center">每个设备都有一条连接总线控制部件的请求线</td>
-</tr>
-<tr>
-<td style="text-align:center">控制线数</td>
-<td style="text-align:center"><strong>3</strong>（总线请求 <strong>BR</strong> ：1；总线忙 <strong>BS</strong> ：1；总线允许 <strong>BG</strong> ：1）</td>
-<td style="text-align:center">$\lceil log_2n\rceil+2$（总线请求 <strong>BR</strong> ：1；总线忙 <strong>BS</strong> ：1；总线允许 <strong>BG</strong> ：$\lceil log_2n\rceil$）</td>
-<td style="text-align:center"><strong>2n+1</strong>（总线请求 <strong>BR</strong> ：n；总线忙 <strong>BS</strong> ：n；总线允许 <strong>BG</strong> ：1）</td>
-</tr>
-<tr>
-<td style="text-align:center">优点</td>
-<td style="text-align:center">优先级固定；结构简单；扩充容易</td>
-<td style="text-align:center">优先级灵活</td>
-<td style="text-align:center">响应速度块；优先级灵活</td>
-</tr>
-<tr>
-<td style="text-align:center">缺点</td>
-<td style="text-align:center">对电路故障敏感，优先级不灵活</td>
-<td style="text-align:center">控制线多；控制复杂</td>
-<td style="text-align:center">控制线多；控制复杂</td>
-</tr>
-</tbody>
-</table>
-</div>
-<h3 id="分布仲裁"><a href="#分布仲裁" class="headerlink" title="分布仲裁"></a>分布仲裁</h3><p>（详见王道）</p>
-<h2 id="（★★）总线操作和定时方式以及原理；"><a href="#（★★）总线操作和定时方式以及原理；" class="headerlink" title="（★★）总线操作和定时方式以及原理；"></a>（★★）总线操作和定时方式以及原理；</h2><h3 id="总线周期的-4-个阶段"><a href="#总线周期的-4-个阶段" class="headerlink" title="总线周期的 4 个阶段"></a>总线周期的 4 个阶段</h3><h3 id="定时方式"><a href="#定时方式" class="headerlink" title="定时方式"></a>定时方式</h3><ul>
-<li>同步<ul>
-<li>采用<strong>统一的时钟信号</strong>来协调发送和接收双方传送定时关系</li>
+        <h1 id="刷题标记"><a href="#刷题标记" class="headerlink" title="刷题标记"></a>刷题标记</h1><ul>
+<li>[x] 第一遍</li>
+<li>[ ] 第二遍</li>
+<li>[ ] 第三遍</li>
+<li>[ ] 第四遍</li>
+<li>[ ] 第五遍</li>
 </ul>
-</li>
-<li>异步<ul>
-<li>不互锁</li>
-<li>半互锁</li>
-<li>全互锁</li>
-</ul>
-</li>
-</ul>
-<p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/10/13/Bus-Timing.png?raw=true" alt="异步请求回答信号的互锁"></p>
-<h2 id="（×）总线标准，常用标准所规定的机械结构、功能结构和电气规范；"><a href="#（×）总线标准，常用标准所规定的机械结构、功能结构和电气规范；" class="headerlink" title="（×）总线标准，常用标准所规定的机械结构、功能结构和电气规范；"></a>（×）总线标准，常用标准所规定的机械结构、功能结构和电气规范；</h2><p>（详见教材）</p>
-<h1 id="解题技巧及重要结论"><a href="#解题技巧及重要结论" class="headerlink" title="解题技巧及重要结论"></a>解题技巧及重要结论</h1><ul>
-<li>有关总线性能的一些概念<ul>
-<li>总线的<strong>时间周期</strong>：即<strong>机器的时钟周期</strong>。</li>
-<li>总线的<strong>工作频率</strong>：总线周期的倒数。指<strong>1秒内传送几次数据</strong>。<ul>
-<li>若$总线时间周期=N个时钟周期$，那么总线的工作频率为 $\frac{时钟频率}{N}$</li>
-</ul>
-</li>
-<li><strong>总线宽度</strong>：又称<strong>总线位宽</strong>，它是总线上同时能够传输的数据位数，通常指<strong>数据总线的根数</strong></li>
-<li>总线<strong>带宽</strong>：总线的数据传输率，单位时间内总线上可传输数据的位数。<ul>
-<li>公式：$总线带宽=\frac{总线周期中传输的数据量(单位：B)}{总线周期(单位：s)}=总线工作频率\times \frac{总线宽度}{8}$</li>
-<li>单位：B/s、KB/s 等</li>
-</ul>
-</li>
-<li>例题：<ul>
-<li>（2012 · 408）某同步总线的时钟频率为 100 MHz ，宽度为 32 位，地址/数据线复用，每传输一个地址或数据占用一个时钟周期。若该总线支持突发传输方式，则一次“主存写”总线事务传输 128 位数据所需要的时间至少是</li>
-<li>分析：<ul>
-<li>这里计算的时间包括两个部分：<strong>传输地址</strong>的时间和<strong>传输数据的时间</strong></li>
-<li>带宽为 100 M × 32 bit = 3200 Mbit/s</li>
-<li>所以，</li>
-<li>传输 32 位地址需要 10 ns （32 / (3200 M)）</li>
-<li>传输 128 位数据需要 40 ns （128/ (3200 M)）</li>
-<li>总时间为 50 ns</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ol>
-<li>计算机组成与系统结构.袁春风等</li>
-<li>2020年计算机组成原理考研复习指导.王道论坛</li>
+<h1 id="求解过程"><a href="#求解过程" class="headerlink" title="求解过程"></a>求解过程</h1><blockquote>
+<p>给定 n 个非负整数 a1，a2，…，an，每个数代表坐标中的一个点 (i, ai) 。在坐标内画 n 条垂直线，垂直线 i 的两个端点分别为 (i, ai) 和 (i, 0)。找出其中的两条线，使得它们与 x 轴共同构成的容器可以容纳最多的水。</p>
+<p>说明：你不能倾斜容器，且 n 的值至少为 2。</p>
+<p>图中垂直线代表输入数组 [1,8,6,2,5,4,8,3,7]。在此情况下，容器能够容纳水（表示为蓝色部分）的最大值为 49。</p>
+<p>示例:</p>
+<p>输入: [1,8,6,2,5,4,8,3,7]<br>输出: 49</p>
+<p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode-cn.com/problems/container-with-most-water" target="_blank" rel="noopener">https://leetcode-cn.com/problems/container-with-most-water</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
+<p>编写 <code>public int maxArea(int[] height)</code> 函数</p>
+</blockquote>
+<h2 id="思路：暴力解法"><a href="#思路：暴力解法" class="headerlink" title="思路：暴力解法"></a>思路：暴力解法</h2><p>很自然的一种暴力思路就是枚举每一种可能，计算题意中的面积；并且，在枚举过程中，不断比较，得到最大值。</p>
+<h2 id="Java-实现"><a href="#Java-实现" class="headerlink" title="Java 实现"></a>Java 实现</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxArea</span><span class="params">(<span class="keyword">int</span>[] height)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> result = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">// 思路：二重循环</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; height.length - <span class="number">1</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = i + <span class="number">1</span>; j &lt; height.length; j++) &#123;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">int</span> minIndex = height[i] &gt; height[j] ? j : i;</span><br><span class="line">            <span class="keyword">int</span> area = height[minIndex] * (j - i);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (area &gt; result) &#123;</span><br><span class="line">                result = area;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>由代码可知，程序包含二重循环，因而<strong>时间复杂度</strong>为 $O(n^2)$ </p>
+<h1 id="高手方案"><a href="#高手方案" class="headerlink" title="高手方案"></a>高手方案</h1><p>上述方案比较费时，来看一看高手的解法。</p>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><ol>
+<li>利用<strong>双指针</strong>，分别初始在<strong>起始</strong>和<strong>末尾</strong>。</li>
+<li>依题意，计算所围的面积</li>
+<li>将<strong>高度较短</strong>的指针向中心移动，然后回到 2 </li>
 </ol>
+<p>P.S. 为什么是移动高度较短的指针？因为移动较高的指针，只会使得面积变小；而移动较低指针，可能会遇到较高指针（基于此假设，面积可能会变大）。</p>
+<h3 id="Java-实现-1"><a href="#Java-实现-1" class="headerlink" title="Java 实现"></a>Java 实现</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxArea</span><span class="params">(<span class="keyword">int</span>[] height)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 作者：LeetCode</span></span><br><span class="line">    <span class="comment">// 链接：https://leetcode-cn.com/problems/container-with-most-water/solution/sheng-zui-duo-shui-de-rong-qi-by-leetcode/</span></span><br><span class="line">    <span class="keyword">int</span> maxarea = <span class="number">0</span>, l = <span class="number">0</span>, r = height.length - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (l &lt; r) &#123;</span><br><span class="line">        maxarea = Math.max(maxarea, Math.min(height[l], height[r]) * (r - l));</span><br><span class="line">        <span class="keyword">if</span> (height[l] &lt; height[r])</span><br><span class="line">            l++;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            r--;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> maxarea;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>由代码可知，<strong>时间复杂度</strong>为 $O(n)$ </p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><ul>
+<li>解题小套路<ul>
+<li>遇到较难的题目<ul>
+<li>先想<strong>能否暴力解决</strong>，在此之后再优化，或者看别人思路。</li>
+<li>暴力无法解决，找找<strong>解的规律</strong>，即从基本情况开始，寻找其是否有<strong>重复子问题</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>双指针</strong>在数组遍历中是一个常见套路，需要多多注意。</li>
+</ul>
 
       
     </div>
@@ -552,7 +490,7 @@
     <strong>本文作者： </strong>CosmosNing</li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://cosmosning.github.io/2019/10/13/计算机组成原理复习笔记6-系统总线/" title="计算机组成原理复习笔记6-系统总线">https://cosmosning.github.io/2019/10/13/计算机组成原理复习笔记6-系统总线/</a>
+    <a href="https://cosmosning.github.io/2020/02/13/Leetcode-11-container-with-most-water/" title="Leetcode-11-container-with-most-water">https://cosmosning.github.io/2020/02/13/Leetcode-11-container-with-most-water/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！</li>
@@ -565,7 +503,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/计算机组成原理/" rel="tag"># 计算机组成原理</a>
+            <a href="/tags/数组/" rel="tag"># 数组</a>
+          
+            <a href="/tags/双指针/" rel="tag"># 双指针</a>
+          
+            <a href="/tags/左右夹逼/" rel="tag"># 左右夹逼</a>
           
         </div>
       
@@ -578,8 +520,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/10/11/计算机组成原理复习笔记5-中央处理器/" rel="next" title="计算机组成原理复习笔记5-中央处理器">
-                <i class="fa fa-chevron-left"></i> 计算机组成原理复习笔记5-中央处理器
+              <a href="/2020/02/12/Leetcode-141-linked-list-cycle/" rel="next" title="Leetcode-141-linked-list-cycle">
+                <i class="fa fa-chevron-left"></i> Leetcode-141-linked-list-cycle
               </a>
             
           </div>
@@ -587,10 +529,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/10/15/计算机组成原理复习笔记7-输入输出组织/" rel="prev" title="计算机组成原理复习笔记7-输入输出组织">
-                计算机组成原理复习笔记7-输入输出组织 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -825,7 +763,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#6．-系统总线"><span class="nav-number">1.</span> <span class="nav-text">6． 系统总线</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#（×）总线概述：识记总线的基本概念，分类，总线的组成及性能指标；"><span class="nav-number">1.1.</span> <span class="nav-text">（×）总线概述：识记总线的基本概念，分类，总线的组成及性能指标；</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#（★★）总线仲裁的仲裁方式以及各自的工作原理；"><span class="nav-number">1.2.</span> <span class="nav-text">（★★）总线仲裁的仲裁方式以及各自的工作原理；</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#集中仲裁"><span class="nav-number">1.2.1.</span> <span class="nav-text">集中仲裁</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分布仲裁"><span class="nav-number">1.2.2.</span> <span class="nav-text">分布仲裁</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#（★★）总线操作和定时方式以及原理；"><span class="nav-number">1.3.</span> <span class="nav-text">（★★）总线操作和定时方式以及原理；</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#总线周期的-4-个阶段"><span class="nav-number">1.3.1.</span> <span class="nav-text">总线周期的 4 个阶段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定时方式"><span class="nav-number">1.3.2.</span> <span class="nav-text">定时方式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#（×）总线标准，常用标准所规定的机械结构、功能结构和电气规范；"><span class="nav-number">1.4.</span> <span class="nav-text">（×）总线标准，常用标准所规定的机械结构、功能结构和电气规范；</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#解题技巧及重要结论"><span class="nav-number">2.</span> <span class="nav-text">解题技巧及重要结论</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">3.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#刷题标记"><span class="nav-number">1.</span> <span class="nav-text">刷题标记</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#求解过程"><span class="nav-number">2.</span> <span class="nav-text">求解过程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#思路：暴力解法"><span class="nav-number">2.1.</span> <span class="nav-text">思路：暴力解法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java-实现"><span class="nav-number">2.2.</span> <span class="nav-text">Java 实现</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#高手方案"><span class="nav-number">3.</span> <span class="nav-text">高手方案</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#思路"><span class="nav-number">3.0.1.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java-实现-1"><span class="nav-number">3.0.2.</span> <span class="nav-text">Java 实现</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
 
           </div>
@@ -991,7 +929,7 @@
   
     <script type="text/javascript">
       window.livereOptions = {
-        refer: '2019/10/13/计算机组成原理复习笔记6-系统总线/'
+        refer: '2020/02/13/Leetcode-11-container-with-most-water/'
       };
       (function(d, s) {
         var j, e = d.getElementsByTagName(s)[0];
