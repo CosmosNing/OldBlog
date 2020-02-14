@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://cosmosning.github.io/"/>
-  <updated>2020-02-13T14:49:14.317Z</updated>
+  <updated>2020-02-14T15:08:28.467Z</updated>
   <id>https://cosmosning.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Queue及PriorityQueue源码浅析-Java</title>
+    <link href="https://cosmosning.github.io/2020/02/14/Queue%E5%8F%8APriorityQueue%E6%BA%90%E7%A0%81%E6%B5%85%E6%9E%90-Java/"/>
+    <id>https://cosmosning.github.io/2020/02/14/Queue及PriorityQueue源码浅析-Java/</id>
+    <published>2020-02-14T14:28:16.000Z</published>
+    <updated>2020-02-14T15:08:28.467Z</updated>
+    
+    <summary type="html">
+    
+      本文简述阅读 Queue 和 PriorityQueue 源码的体会和感悟
+    
+    </summary>
+    
+      <category term="源码历险记" scheme="https://cosmosning.github.io/categories/%E6%BA%90%E7%A0%81%E5%8E%86%E9%99%A9%E8%AE%B0/"/>
+    
+    
+      <category term="Java" scheme="https://cosmosning.github.io/tags/Java/"/>
+    
+      <category term="源码" scheme="https://cosmosning.github.io/tags/%E6%BA%90%E7%A0%81/"/>
+    
+      <category term="Queue" scheme="https://cosmosning.github.io/tags/Queue/"/>
+    
+      <category term="PriorityQueue" scheme="https://cosmosning.github.io/tags/PriorityQueue/"/>
+    
+  </entry>
   
   <entry>
     <title>Leetcode-11-container-with-most-water</title>
@@ -102,9 +128,9 @@
       <category term="LeetCode" scheme="https://cosmosning.github.io/categories/LeetCode/"/>
     
     
-      <category term="数组" scheme="https://cosmosning.github.io/tags/%E6%95%B0%E7%BB%84/"/>
-    
       <category term="线性表" scheme="https://cosmosning.github.io/tags/%E7%BA%BF%E6%80%A7%E8%A1%A8/"/>
+    
+      <category term="数组" scheme="https://cosmosning.github.io/tags/%E6%95%B0%E7%BB%84/"/>
     
   </entry>
   
@@ -212,28 +238,6 @@
     <summary type="html">
     
       介绍一下小程序原生组件
-    
-    </summary>
-    
-      <category term="笔记" scheme="https://cosmosning.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
-    
-    
-      <category term="前端" scheme="https://cosmosning.github.io/tags/%E5%89%8D%E7%AB%AF/"/>
-    
-      <category term="微信小程序" scheme="https://cosmosning.github.io/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>小程序开发2-小程序开发框架</title>
-    <link href="https://cosmosning.github.io/2019/12/26/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%912-%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/"/>
-    <id>https://cosmosning.github.io/2019/12/26/小程序开发2-小程序开发框架/</id>
-    <published>2019-12-26T07:31:58.000Z</published>
-    <updated>2019-12-26T11:30:30.660Z</updated>
-    
-    <summary type="html">
-    
-      小程序开发框架简述
     
     </summary>
     
