@@ -108,18 +108,18 @@
 
 
 
-  <meta name="description" content="编程·学习·生活">
-<meta name="keywords" content="个人博客;编程;学习;生活">
-<meta property="og:type" content="website">
-<meta property="og:title" content="分类">
-<meta property="og:url" content="https://cosmosning.github.io/categories/index.html">
+  <meta name="description" content="本篇文章带来有关 &quot;LeetCode-11-container-with-most-water&quot; 我的求解过程">
+<meta name="keywords" content="数组,双指针,左右夹逼">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Leetcode-11-container-with-most-water">
+<meta property="og:url" content="https://cosmosning.github.io/2020/02/13/leetcode-11-container-with-most-water/index.html">
 <meta property="og:site_name" content="CosmosNing的个人博客">
-<meta property="og:description" content="编程·学习·生活">
+<meta property="og:description" content="本篇文章带来有关 &quot;LeetCode-11-container-with-most-water&quot; 我的求解过程">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-03-02T07:23:27.719Z">
+<meta property="og:updated_time" content="2020-02-17T06:25:51.379Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="分类">
-<meta name="twitter:description" content="编程·学习·生活">
+<meta name="twitter:title" content="Leetcode-11-container-with-most-water">
+<meta name="twitter:description" content="本篇文章带来有关 &quot;LeetCode-11-container-with-most-water&quot; 我的求解过程">
 
 
 
@@ -128,7 +128,7 @@
 
 
 
-  <link rel="canonical" href="https://cosmosning.github.io/categories/"/>
+  <link rel="canonical" href="https://cosmosning.github.io/2020/02/13/leetcode-11-container-with-most-water/"/>
 
 
 
@@ -138,7 +138,7 @@
   };
 </script>
 
-  <title>分类 | CosmosNing的个人博客</title>
+  <title>Leetcode-11-container-with-most-water | CosmosNing的个人博客</title>
   
 
 
@@ -250,7 +250,7 @@
         
         
           
-          <li class="menu-item menu-item-categories menu-item-active">
+          <li class="menu-item menu-item-categories">
     <a href="/categories/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类<span class="badge">5</span></a>
   </li>
@@ -333,105 +333,306 @@
           
             
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
           
           <div id="content" class="content">
             
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://cosmosning.github.io/2020/02/13/leetcode-11-container-with-most-water/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CosmosNing">
+      <meta itemprop="description" content="编程·学习·生活">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CosmosNing的个人博客">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-<h2 class="post-title" itemprop="name headline">分类</h2>
-
-<div class="post-meta">
-  
-  
-
-
-
-</div>
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <div class="category-all-page">
-            <div class="category-all-title">
+          <h2 class="post-title" itemprop="name headline">Leetcode-11-container-with-most-water
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-02-13 22:03:05" itemprop="dateCreated datePublished" datetime="2020-02-13T22:03:05+08:00">2020-02-13</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-02-17 14:25:51" itemprop="dateModified" datetime="2020-02-17T14:25:51+08:00">2020-02-17</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/LeetCode/" itemprop="url" rel="index"><span itemprop="name">LeetCode</span></a></span>
+
                 
                 
-                  
-                    
-                  
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
                 
-                  
-                    
-                  
+                  <span class="post-meta-item-text">本文字数：</span>
                 
-                  
-                    
-                  
+                <span title="本文字数">6k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
                 
-                  
-                    
-                  
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                  
-                    
-                  
-                
-                目前共计 5 个分类
+                <span title="阅读时长">10 分钟</span>
+              
             </div>
-            <div class="category-all">
-              <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/LeetCode/">LeetCode</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/一起读/">一起读</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/指南/">指南</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/源码历险记/">源码历险记</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/笔记/">笔记</a><span class="category-list-count">28</span></li></ul>
-            </div>
-          </div>
-        
-      </div>
+          
+
+          
+              <div class="post-description">本篇文章带来有关 "LeetCode-11-container-with-most-water" 我的求解过程</div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <h1 id="刷题标记"><a href="#刷题标记" class="headerlink" title="刷题标记"></a>刷题标记</h1><ul>
+<li>[x] 第一遍</li>
+<li>[ ] 第二遍</li>
+<li>[ ] 第三遍</li>
+<li>[ ] 第四遍</li>
+<li>[ ] 第五遍</li>
+</ul>
+<h1 id="求解过程"><a href="#求解过程" class="headerlink" title="求解过程"></a>求解过程</h1><blockquote>
+<p>给定 n 个非负整数 a1，a2，…，an，每个数代表坐标中的一个点 (i, ai) 。在坐标内画 n 条垂直线，垂直线 i 的两个端点分别为 (i, ai) 和 (i, 0)。找出其中的两条线，使得它们与 x 轴共同构成的容器可以容纳最多的水。</p>
+<p>说明：你不能倾斜容器，且 n 的值至少为 2。</p>
+<p>图中垂直线代表输入数组 [1,8,6,2,5,4,8,3,7]。在此情况下，容器能够容纳水（表示为蓝色部分）的最大值为 49。</p>
+<p>示例:</p>
+<p>输入: [1,8,6,2,5,4,8,3,7]<br>输出: 49</p>
+<p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode-cn.com/problems/container-with-most-water" target="_blank" rel="noopener">https://leetcode-cn.com/problems/container-with-most-water</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
+<p>编写 <code>public int maxArea(int[] height)</code> 函数</p>
+</blockquote>
+<h2 id="思路：暴力解法"><a href="#思路：暴力解法" class="headerlink" title="思路：暴力解法"></a>思路：暴力解法</h2><p>很自然的一种暴力思路就是枚举每一种可能，计算题意中的面积；并且，在枚举过程中，不断比较，得到最大值。</p>
+<h2 id="Java-实现"><a href="#Java-实现" class="headerlink" title="Java 实现"></a>Java 实现</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxArea</span><span class="params">(<span class="keyword">int</span>[] height)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> result = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">// 思路：二重循环</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; height.length - <span class="number">1</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = i + <span class="number">1</span>; j &lt; height.length; j++) &#123;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">int</span> minIndex = height[i] &gt; height[j] ? j : i;</span><br><span class="line">            <span class="keyword">int</span> area = height[minIndex] * (j - i);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (area &gt; result) &#123;</span><br><span class="line">                result = area;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>由代码可知，程序包含二重循环，因而<strong>时间复杂度</strong>为 $O(n^2)$ </p>
+<h1 id="高手方案"><a href="#高手方案" class="headerlink" title="高手方案"></a>高手方案</h1><p>上述方案比较费时，来看一看高手的解法。</p>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><ul>
+<li>利用<strong>双指针</strong>，分别初始在<strong>起始</strong>和<strong>末尾</strong>。</li>
+<li>依题意，计算所围的面积</li>
+<li>将<strong>高度较短</strong>的指针向中心移动，然后回到第 2 步 </li>
+</ul>
+<p>P.S. 为什么是移动高度较短的指针？因为移动较高的指针，只会使得面积变小；而移动较低指针，可能会遇到较高指针（基于此假设，面积可能会变大）。</p>
+<h3 id="Java-实现-1"><a href="#Java-实现-1" class="headerlink" title="Java 实现"></a>Java 实现</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxArea</span><span class="params">(<span class="keyword">int</span>[] height)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 作者：LeetCode</span></span><br><span class="line">    <span class="comment">// 链接：https://leetcode-cn.com/problems/container-with-most-water/solution/sheng-zui-duo-shui-de-rong-qi-by-leetcode/</span></span><br><span class="line">    <span class="keyword">int</span> maxarea = <span class="number">0</span>, l = <span class="number">0</span>, r = height.length - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (l &lt; r) &#123;</span><br><span class="line">        maxarea = Math.max(maxarea, Math.min(height[l], height[r]) * (r - l));</span><br><span class="line">        <span class="keyword">if</span> (height[l] &lt; height[r])</span><br><span class="line">            l++;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            r--;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> maxarea;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>由代码可知，<strong>时间复杂度</strong>为 $O(n)$ ，这是一个极大的优化</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><ul>
+<li>解题小套路<ul>
+<li>遇到较难的题目<ul>
+<li>先想<strong>能否暴力解决</strong>，在此之后再优化，或者看别人思路。</li>
+<li>暴力无法解决，找找<strong>解的规律</strong>，即从基本情况开始，寻找其是否有<strong>重复子问题</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>双指针</strong>在数组遍历中是一个常见套路，需要多多注意。</li>
+</ul>
+
       
     </div>
-    
-
-
 
     
+
     
     
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/qrcode.jpg" alt="CosmosNing wechat" style="width: 200px; max-width: 100%;"/>
+    <div>打开微信扫一扫，关注我的微信公众号。</div>
+</div>
+
+      </div>
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>CosmosNing</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://cosmosning.github.io/2020/02/13/leetcode-11-container-with-most-water/" title="Leetcode-11-container-with-most-water">https://cosmosning.github.io/2020/02/13/leetcode-11-container-with-most-water/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/数组/" rel="tag"># 数组</a>
+          
+            <a href="/tags/双指针/" rel="tag"># 双指针</a>
+          
+            <a href="/tags/左右夹逼/" rel="tag"># 左右夹逼</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/02/12/leetcode-141-linked-list-cycle/" rel="next" title="Leetcode-141-linked-list-cycle">
+                <i class="fa fa-chevron-left"></i> Leetcode-141-linked-list-cycle
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/02/14/queue-ji-priorityqueue-yuan-ma-qian-xi-java/" rel="prev" title="Queue及PriorityQueue源码浅析-Java">
+                Queue及PriorityQueue源码浅析-Java <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
   </div>
 
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zOTkzMi8xNjQ1OQ=="></div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -452,8 +653,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -637,6 +847,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#刷题标记"><span class="nav-number">1.</span> <span class="nav-text">刷题标记</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#求解过程"><span class="nav-number">2.</span> <span class="nav-text">求解过程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#思路：暴力解法"><span class="nav-number">2.1.</span> <span class="nav-text">思路：暴力解法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java-实现"><span class="nav-number">2.2.</span> <span class="nav-text">Java 实现</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#高手方案"><span class="nav-number">3.</span> <span class="nav-text">高手方案</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#思路"><span class="nav-number">3.0.1.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java-实现-1"><span class="nav-number">3.0.2.</span> <span class="nav-text">Java 实现</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
         <div class="back-to-top">
@@ -811,6 +1037,20 @@
 
 
 
+  
+    <script type="text/javascript">
+      window.livereOptions = {
+        refer: '2020/02/13/leetcode-11-container-with-most-water/'
+      };
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
   
 
 
@@ -1160,6 +1400,30 @@
   
   
 
+  
+    
+      <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      },
+      TeX: {equationNumbers: { autoNumber: "AMS" }}
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
   
 
 
