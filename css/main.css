@@ -2025,7 +2025,7 @@ iframe {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #04ac3e;
+  background: #99330d;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3377,4 +3377,22 @@ code {
   font-weight: bold;
   line-height: 1;
   padding: 5px 7px 2px 7px;
+}
+span.tag {
+  color: #997;
+}
+span.name {
+  color: #7df46a;
+}
+span.attr {
+  color: #7575e4;
+}
+span.string {
+  color: #d26b6b;
+}
+span.attribute {
+  color: #7575e4;
+}
+span.selector-class {
+  color: #7df46a;
 }

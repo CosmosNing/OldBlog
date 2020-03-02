@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://cosmosning.github.io/"/>
-  <updated>2020-02-17T10:50:08.489Z</updated>
+  <updated>2020-03-02T12:59:51.150Z</updated>
   <id>https://cosmosning.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>译文-程序员是如何排版简历的</title>
+    <link href="https://cosmosning.github.io/2020/03/02/yi-wen-cheng-xu-yuan-shi-ru-he-pai-ban-jian-li-de/"/>
+    <id>https://cosmosning.github.io/2020/03/02/yi-wen-cheng-xu-yuan-shi-ru-he-pai-ban-jian-li-de/</id>
+    <published>2020-03-02T09:30:09.000Z</published>
+    <updated>2020-03-02T12:59:51.150Z</updated>
+    
+    <summary type="html">
+    
+      用 Word 排版很难受？试试程序员的方式！
+    
+    </summary>
+    
+      <category term="前端" scheme="https://cosmosning.github.io/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="简历" scheme="https://cosmosning.github.io/tags/%E7%AE%80%E5%8E%86/"/>
+    
+      <category term="CSS" scheme="https://cosmosning.github.io/tags/CSS/"/>
+    
+      <category term="排版" scheme="https://cosmosning.github.io/tags/%E6%8E%92%E7%89%88/"/>
+    
+      <category term="Grid" scheme="https://cosmosning.github.io/tags/Grid/"/>
+    
+  </entry>
   
   <entry>
     <title>LeetCode-66-plus-one</title>
@@ -221,28 +247,6 @@
       <category term="动态规划" scheme="https://cosmosning.github.io/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
     
       <category term="斐波那契数列" scheme="https://cosmosning.github.io/tags/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>LeetCode.283.move-zeroes</title>
-    <link href="https://cosmosning.github.io/2020/02/09/leetcode-283-move-zeroes/"/>
-    <id>https://cosmosning.github.io/2020/02/09/leetcode-283-move-zeroes/</id>
-    <published>2020-02-09T01:47:36.000Z</published>
-    <updated>2020-03-02T08:06:45.160Z</updated>
-    
-    <summary type="html">
-    
-      本篇文章带来有关 LeetCode.283.move-zeroes 我的求解过程
-    
-    </summary>
-    
-      <category term="LeetCode" scheme="https://cosmosning.github.io/categories/LeetCode/"/>
-    
-    
-      <category term="数组" scheme="https://cosmosning.github.io/tags/%E6%95%B0%E7%BB%84/"/>
-    
-      <category term="双指针" scheme="https://cosmosning.github.io/tags/%E5%8F%8C%E6%8C%87%E9%92%88/"/>
     
   </entry>
   
