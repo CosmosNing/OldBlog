@@ -1,0 +1,1710 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.1" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/avatar-180.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/avatar-32.ico?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/avatar-16.ico?v=6.4.1">
+
+
+  <link rel="mask-icon" href="/images/avatar.svg?v=6.4.1" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.4.1',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="整理一下查找的知识">
+<meta name="keywords" content="数据结构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构复习笔记7-查找">
+<meta property="og:url" content="https://cosmosning.github.io/2019/08/21/shu-ju-jie-gou-fu-xi-bi-ji-7-cha-zhao/index.html">
+<meta property="og:site_name" content="CosmosNing的个人博客">
+<meta property="og:description" content="整理一下查找的知识">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/08/21/RightEmpty.jpg?raw=true">
+<meta property="og:image" content="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/08/21/LeftEmpty.jpg?raw=true">
+<meta property="og:image" content="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/08/21/NotNULL.jpg?raw=true">
+<meta property="og:image" content="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/08/21/LL.jpg?raw=true">
+<meta property="og:image" content="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/08/21/RR.jpg?raw=true">
+<meta property="og:image" content="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/08/21/LR.jpg?raw=true">
+<meta property="og:image" content="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/08/21/RL.jpg?raw=true">
+<meta property="og:image" content="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/08/21/Divide.jpg?raw=true">
+<meta property="og:image" content="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/08/21/Merge.jpg?raw=true">
+<meta property="og:image" content="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/08/21/EndPoint.jpg?raw=true">
+<meta property="og:updated_time" content="2019-08-29T15:09:52.040Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数据结构复习笔记7-查找">
+<meta name="twitter:description" content="整理一下查找的知识">
+<meta name="twitter:image" content="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/08/21/RightEmpty.jpg?raw=true">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="CosmosNing的个人博客" type="application/atom+xml" />
+
+
+
+
+  <link rel="canonical" href="https://cosmosning.github.io/2019/08/21/shu-ju-jie-gou-fu-xi-bi-ji-7-cha-zhao/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>数据结构复习笔记7-查找 | CosmosNing的个人博客</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">CosmosNing的个人博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">探索·好奇</h1>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签<span class="badge">33</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类<span class="badge">5</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档<span class="badge">56</span></a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+  
+  
+  
+    
+      
+    
+    <a href="https://github.com/CosmosNing" class="github-corner" target="_blank" title="Follow me on GitHub" aria-label="Follow me on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#222; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg>
+    
+      </a>
+    
+
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://cosmosning.github.io/2019/08/21/shu-ju-jie-gou-fu-xi-bi-ji-7-cha-zhao/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CosmosNing">
+      <meta itemprop="description" content="编程·学习·生活">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CosmosNing的个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">数据结构复习笔记7-查找
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-08-21 22:17:09" itemprop="dateCreated datePublished" datetime="2019-08-21T22:17:09+08:00">2019-08-21</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-08-29 23:09:52" itemprop="dateModified" datetime="2019-08-29T23:09:52+08:00">2019-08-29</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/笔记/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">27k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">45 分钟</span>
+              
+            </div>
+          
+
+          
+              <div class="post-description">整理一下查找的知识</div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="8．查找"><a href="#8．查找" class="headerlink" title="8．查找"></a>8．查找</h1><h2 id="顺序表查找；有序表查找；索引顺序表查找"><a href="#顺序表查找；有序表查找；索引顺序表查找" class="headerlink" title="顺序表查找；有序表查找；索引顺序表查找"></a>顺序表查找；有序表查找；索引顺序表查找</h2><h3 id="顺序表查找"><a href="#顺序表查找" class="headerlink" title="顺序表查找"></a>顺序表查找</h3><hr>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 算法 9.1</span></span><br><span class="line"><span class="comment">// 在顺序表 ST 中顺序查找其关键字等于 key 的数据元素。若找到，</span></span><br><span class="line"><span class="comment">// 则函数值为该元素在表中的位置，否则为 0</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Search_Seq</span><span class="params">(SSTable ST, KeyType key)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ST.elem[<span class="number">0</span>].key = key;      <span class="comment">// “哨兵”</span></span><br><span class="line">                               <span class="comment">// 从后往前找</span></span><br><span class="line">    <span class="keyword">for</span>(i - ST.length; !EQ(ST.elem[i].key, key); --i);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> i;                  <span class="comment">// 找不到时， i 为 0</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="有序表查找"><a href="#有序表查找" class="headerlink" title="有序表查找"></a>有序表查找</h3><hr>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 算法 9.2</span></span><br><span class="line"><span class="comment">// 在有序表 ST 中折半查找其关键字等于 key 的数据元素。若找到，</span></span><br><span class="line"><span class="comment">// 则函数值为该元素在表中的位置，否则为 0 </span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Search_Bin</span><span class="params">(SSTable ST, KeyType key)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    low = <span class="number">1</span>; high = ST.length;            <span class="comment">// 置区间初值</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span>(low &lt;= high)</span><br><span class="line">    &#123;</span><br><span class="line">        mid = (low + high) / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span>(EQ(key, ST.elem[mid],key))</span><br><span class="line">            <span class="keyword">return</span> mid;                   <span class="comment">// 找到待查元素</span></span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(LT(key, ST.elem[mid].key))<span class="comment">// 在前半部分找</span></span><br><span class="line">            high = mid - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">else</span>                              <span class="comment">// 在后半部分找</span></span><br><span class="line">            low = mid + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="索引顺序表查找"><a href="#索引顺序表查找" class="headerlink" title="索引顺序表查找"></a>索引顺序表查找</h3><ul>
+<li>存储结构：原表 + 索引表<ul>
+<li>索引表的建立：对表进行从前到到后按原来的顺序分块，每块找出<strong>最大值</strong>（作为索引表的关键字），和块在表中的范围（如<strong>块起始地址</strong>）一起存储在另一个表中（这个表便叫做<strong>索引表</strong>）。对索引表按关键字排序，则可使得原表分块有序。</li>
+</ul>
+</li>
+<li>查找流程：<ol>
+<li>先在索引表中查找（顺序、二分均可），根据待查关键字和索引的比较，确定下一步在原表中查找范围。</li>
+<li>然后在上一步得到的范围基础上在原表对应位置区间顺序查找。</li>
+</ol>
+</li>
+</ul>
+<h2 id="二叉排序树；平衡二叉树；B-树"><a href="#二叉排序树；平衡二叉树；B-树" class="headerlink" title="二叉排序树；平衡二叉树；B-树"></a>二叉排序树；平衡二叉树；B-树</h2><h3 id="二叉排序树"><a href="#二叉排序树" class="headerlink" title="二叉排序树"></a>二叉排序树</h3><h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><ul>
+<li>定义：二叉排序树或者是一棵空树，或者是一棵具有下列特性的非空二叉树：<ul>
+<li>若左子树非空，则左子树上所有结点的关键字值均<strong>小于</strong>根节点的关键字值</li>
+<li>若右子树非空，则右子树上所有结点的关键字值均<strong>大于</strong>根节点的关键字值</li>
+<li>左、右子树本身也分别是一棵二叉排序树</li>
+</ul>
+</li>
+<li>重要结论（★★★）：对二叉排序树进行<strong>中序遍历</strong>，可得到一个<strong>递增有序</strong>的序列</li>
+</ul>
+<h4 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h4><hr>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">BiTree <span class="title">SearchBST</span><span class="params">(BiTree T,KeyType key)</span></span></span><br><span class="line"><span class="function"></span>&#123;   <span class="comment">/* 在根指针T所指二叉排序树中递归地查找某关键字等于key的数据元素， */</span></span><br><span class="line">    <span class="comment">/* 若查找成功，则返回指向该数据元素结点的指针,否则返回空指针。算法9.5(a) */</span></span><br><span class="line">    <span class="keyword">if</span>((!T)||EQ(key,T-&gt;data.key))</span><br><span class="line">        <span class="keyword">return</span> T; <span class="comment">/* 查找结束 */</span></span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> LT(key,T-&gt;data.key) <span class="comment">/* 在左子树中继续查找 */</span></span><br><span class="line">        <span class="keyword">return</span> SearchBST(T-&gt;lchild,key);</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">return</span> SearchBST(T-&gt;rchild,key); <span class="comment">/* 在右子树中继续查找 */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h4 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h4><hr>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">SearchBST1</span><span class="params">(BiTree *T,KeyType key,BiTree f,BiTree *p,Status *flag)</span> <span class="comment">/* 算法9.5(b)改 */</span></span></span><br><span class="line"><span class="function"></span>&#123;   <span class="comment">/* 在根指针T所指二叉排序树中递归地查找其关键字等于key的数据元素，若查找 */</span></span><br><span class="line">    <span class="comment">/* 成功，则指针p指向该数据元素结点，并返回TRUE，否则指针p指向查找路径上 */</span></span><br><span class="line">    <span class="comment">/* 访问的最后一个结点并返回FALSE,指针f指向T的双亲，其初始调用值为NULL */</span></span><br><span class="line">    <span class="keyword">if</span>(!*T) <span class="comment">/* 查找不成功 */</span></span><br><span class="line">    &#123;</span><br><span class="line">        *p=f;</span><br><span class="line">        *flag=FALSE;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> EQ(key,(*T)-&gt;data.key) <span class="comment">/*  查找成功 */</span></span><br><span class="line">    &#123;</span><br><span class="line">        *p=*T;</span><br><span class="line">        *flag=TRUE;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> LT(key,(*T)-&gt;data.key)</span><br><span class="line">        SearchBST1(&amp;(*T)-&gt;lchild,key,*T,p,flag); <span class="comment">/* 在左子树中继续查找 */</span></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        SearchBST1(&amp;(*T)-&gt;rchild,key,*T,p,flag); <span class="comment">/*  在右子树中继续查找 */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Status <span class="title">InsertBST</span><span class="params">(BiTree *T, ElemType e)</span></span></span><br><span class="line"><span class="function"></span>&#123;   <span class="comment">/* 当二叉排序树T中不存在关键字等于e.key的数据元素时，插入e并返回TRUE， */</span></span><br><span class="line">    <span class="comment">/* 否则返回FALSE。算法9.6(改) */</span></span><br><span class="line">    BiTree p,s;</span><br><span class="line">    Status flag;</span><br><span class="line">    SearchBST1(T,e.key,<span class="literal">NULL</span>,&amp;p,&amp;flag);</span><br><span class="line">    <span class="keyword">if</span>(!flag) <span class="comment">/* 查找不成功 */</span></span><br><span class="line">    &#123;</span><br><span class="line">        s=(BiTree)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(BiTNode));</span><br><span class="line">        s-&gt;data=e;</span><br><span class="line">        s-&gt;lchild=s-&gt;rchild=<span class="literal">NULL</span>;</span><br><span class="line">        <span class="keyword">if</span>(!p)</span><br><span class="line">            *T=s; <span class="comment">/* 被插结点*s为新的根结点 */</span></span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> LT(e.key,p-&gt;data.key)</span><br><span class="line">            p-&gt;lchild=s; <span class="comment">/* 被插结点*s为左孩子 */</span></span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            p-&gt;rchild=s; <span class="comment">/* 被插结点*s为右孩子 */</span></span><br><span class="line">        <span class="keyword">return</span> TRUE;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">return</span> FALSE; <span class="comment">/* 树中已有关键字相同的结点，不再插入 */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h4 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h4><hr>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Delete</span><span class="params">(BiTree *p)</span></span></span><br><span class="line"><span class="function"></span>&#123;   <span class="comment">/* 从二叉排序树中删除结点p，并重接它的左或右子树。算法9.8 */</span></span><br><span class="line">    BiTree q,s;</span><br><span class="line">    <span class="keyword">if</span>(!(*p)-&gt;rchild) <span class="comment">/* 右子树空则只需重接它的左子树（待删结点是叶子也走此分支） */</span></span><br><span class="line">    &#123;</span><br><span class="line">        q=*p;</span><br><span class="line">        *p=(*p)-&gt;lchild;</span><br><span class="line">        <span class="built_in">free</span>(q);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(!(*p)-&gt;lchild) <span class="comment">/* 只需重接它的右子树 */</span></span><br><span class="line">    &#123;</span><br><span class="line">        q=*p;</span><br><span class="line">        *p=(*p)-&gt;rchild;</span><br><span class="line">        <span class="built_in">free</span>(q);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="comment">/* 左右子树均不空 */</span></span><br><span class="line">    &#123;</span><br><span class="line">        q=*p;</span><br><span class="line">        s=(*p)-&gt;lchild;</span><br><span class="line">        <span class="keyword">while</span>(s-&gt;rchild) <span class="comment">/* 转左，然后向右到尽头（找待删结点的前驱） */</span></span><br><span class="line">        &#123;</span><br><span class="line">            q=s;</span><br><span class="line">            s=s-&gt;rchild;</span><br><span class="line">        &#125;</span><br><span class="line">        (*p)-&gt;data=s-&gt;data; <span class="comment">/* s指向被删结点的＂前驱＂（将被删结点前驱的值取代被删结点的值） */</span></span><br><span class="line">        <span class="keyword">if</span>(q!=*p)</span><br><span class="line">            q-&gt;rchild=s-&gt;lchild; <span class="comment">/* 重接*q的右子树 */</span></span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            q-&gt;lchild=s-&gt;lchild; <span class="comment">/* 重接*q的左子树 */</span></span><br><span class="line">        <span class="built_in">free</span>(s);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Status <span class="title">DeleteBST</span><span class="params">(BiTree *T,KeyType key)</span></span></span><br><span class="line"><span class="function"></span>&#123;   <span class="comment">/* 若二叉排序树T中存在关键字等于key的数据元素时，则删除该数据元素结点， */</span></span><br><span class="line">    <span class="comment">/* 并返回TRUE；否则返回FALSE。算法9.7 */</span></span><br><span class="line">    <span class="keyword">if</span>(!*T) <span class="comment">/* 不存在关键字等于key的数据元素 */</span></span><br><span class="line">        <span class="keyword">return</span> FALSE;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> EQ(key,(*T)-&gt;data.key) <span class="comment">/* 找到关键字等于key的数据元素 */</span></span><br><span class="line">            Delete(T);</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> LT(key,(*T)-&gt;data.key)</span><br><span class="line">            DeleteBST(&amp;(*T)-&gt;lchild,key);</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            DeleteBST(&amp;(*T)-&gt;rchild,key);</span><br><span class="line">        <span class="keyword">return</span> TRUE;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/08/21/RightEmpty.jpg?raw=true" alt="右子树空"></p>
+<p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/08/21/LeftEmpty.jpg?raw=true" alt="左子树空"></p>
+<p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/08/21/NotNULL.jpg?raw=true" alt="左右均不空"></p>
+<h3 id="平衡二叉树（AVL）"><a href="#平衡二叉树（AVL）" class="headerlink" title="平衡二叉树（AVL）"></a>平衡二叉树（AVL）</h3><h4 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h4><ul>
+<li>任意节点的左、右子树高度差的绝对值不超过 1 的排序二叉树。</li>
+</ul>
+<h4 id="插入-1"><a href="#插入-1" class="headerlink" title="插入"></a>插入</h4><ul>
+<li><p>插入流程类似排序二叉树，但插入过程中需要保证其平衡，所以可能需要对树进行旋转。下面列举了各种旋转的情况：</p>
+<ol>
+<li><p>LL 平衡旋转</p>
+<p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/08/21/LL.jpg?raw=true" alt="LL平衡旋转"></p>
+</li>
+<li><p>RR 平衡旋转</p>
+<p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/08/21/RR.jpg?raw=true" alt="RR平衡旋转"></p>
+</li>
+<li><p>LR 平衡旋转</p>
+<p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/08/21/LR.jpg?raw=true" alt="LR平衡旋转"></p>
+</li>
+<li><p>RL 平衡旋转</p>
+<p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/08/21/RL.jpg?raw=true" alt="RL平衡旋转"></p>
+</li>
+</ol>
+</li>
+</ul>
+<h4 id="查找-1"><a href="#查找-1" class="headerlink" title="查找"></a>查找</h4><ul>
+<li>查找过程与排序查找树类似</li>
+<li>（★★★★★）重要结论 1 ：假设以 $n_h$ 表示深度为 $h$ 的平衡树中含有的<strong>最少结点数</strong>，则有</li>
+</ul>
+<script type="math/tex; mode=display">
+n_0 = 0,n_1 = 1,n_2 =2</script><p>并且</p>
+<script type="math/tex; mode=display">
+n_h=n_{h-1}+n_{h-2}+1</script><ul>
+<li>（★★★★★）重要结论 2 ：含有 $n$ 个结点的平衡二叉树的最大深度为 $O(log_2n)$ </li>
+</ul>
+<h3 id="B-树（部分书上写成-B-树）"><a href="#B-树（部分书上写成-B-树）" class="headerlink" title="B-树（部分书上写成 B 树）"></a>B-树（部分书上写成 B 树）</h3><h4 id="定义-2"><a href="#定义-2" class="headerlink" title="定义"></a>定义</h4><ul>
+<li>一棵 m 阶 B 树或为空树，或为满足如下特性的 m 叉树<ol>
+<li>树的每个结点至多有 m 棵子树（即<strong>至多有 m-1 个关键字</strong>）</li>
+<li>若<strong>根</strong>结点不是终端结点，则<strong>至少有两棵子树</strong>（即<strong>至少有 1 个关键字</strong>）</li>
+<li>除<strong>根结点</strong>外的所有非叶子结点至少有 $\lceil \frac{m}{2}\rceil$ 棵子树（即<strong>至少有 $\lceil \frac{m}{2}\rceil -1$ 个关键字</strong>）</li>
+<li>所有非叶子结点结构如下：</li>
+</ol>
+</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">n</th>
+<th style="text-align:center">$P_0$</th>
+<th style="text-align:center">$K_1$</th>
+<th style="text-align:center">$P_1$</th>
+<th style="text-align:center">$K_2$</th>
+<th style="text-align:center">$P_2$</th>
+<th style="text-align:center">$\cdots$</th>
+<th style="text-align:center">$P_n$</th>
+<th style="text-align:center">$K_n$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">关键字个数</td>
+<td style="text-align:center">指向子树的根结点指针 0</td>
+<td style="text-align:center">关键字 1</td>
+<td style="text-align:center">指向子树的根结点指针 1</td>
+<td style="text-align:center">关键字 2</td>
+<td style="text-align:center">指向子树的根结点指针 2</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">指向子树的根结点指针 n</td>
+<td style="text-align:center">关键字 n</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>其中 $K_i&lt;K_j, 当i&lt;j​$ </p>
+<p>$P_{i-1}$ 所指子树中的所有结点的关键字均<strong>小于</strong> $K_i$ </p>
+<p>$P_i​$ 所指子树中的所有结点的关键字均<strong>大于</strong> $K_i​$ </p>
+<p>（★★★★★）$\lceil \frac{m}{2}\rceil -1\le n\le  m-1​$</p>
+<h4 id="高度"><a href="#高度" class="headerlink" title="高度"></a>高度</h4><ul>
+<li><strong>不包括</strong>最后的不带任何信息的叶结点所处的那一层</li>
+<li>（★★★★★）取值范围</li>
+</ul>
+<script type="math/tex; mode=display">
+log_m(n+1)\le h \le log_{\lceil \frac{m}{2}\rceil}(\frac{n+1}{2})+1</script><h4 id="查找-2"><a href="#查找-2" class="headerlink" title="查找"></a>查找</h4><ul>
+<li>类似二叉查找树，只不过有多路分支</li>
+</ul>
+<h4 id="（★★★★★）插入"><a href="#（★★★★★）插入" class="headerlink" title="（★★★★★）插入"></a>（★★★★★）插入</h4><ul>
+<li>插入流程<ul>
+<li>定位：找到利用查找算法找到插入位置</li>
+<li>插入<ul>
+<li>若插入后<strong>结点关键字个数 &lt; m</strong>，可直接插入</li>
+<li>若插入后<strong>结点关键字个数 &gt; m - 1</strong>，则需<strong>分裂</strong><ul>
+<li>（★★★★★）分裂方法<ul>
+<li>在插入位置处新建一个兄弟节点，从中间位置($\lceil \frac{m}{2}\rceil$) 将关键字分为左右部分</li>
+<li>左部分放在原结点，右部分放在新结点，中间的结点放在父结点</li>
+<li>若此时使得父结点关键字也超过了上限，那么以此类推，直至传到根结点。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/08/21/Divide.jpg?raw=true" alt="分裂"></p>
+<h4 id="（★★★★★）删除"><a href="#（★★★★★）删除" class="headerlink" title="（★★★★★）删除"></a>（★★★★★）删除</h4><ul>
+<li>当所删除的关键字 <em>k</em> 不在终端结点（这里的终端结点指最底层非叶子结点，下同）<ol>
+<li>若<strong>小于</strong> <em>k</em> 的子树中关键字个数 &gt; $\lceil \frac{m}{2}\rceil -1​$ ，则找出（中序）<strong>前驱值</strong> <em>k’</em> ，并用 <em>k’</em> 取代 <em>k</em> ，再递归地删除 <em>k’</em> 即可</li>
+<li>若<strong>大于</strong> <em>k</em> 的子树中关键字个数 &gt; $\lceil \frac{m}{2}\rceil -1$ ，则找出（中序）<strong>后继值</strong> <em>k’</em> ，并用 <em>k’</em> 取代 <em>k</em> ，再递归地删除 <em>k’</em> 即可（前两点貌似与二叉排序树中的删除类似）</li>
+<li>若前后两个子树中关键字个数 均为 $\lceil \frac{m}{2}\rceil -1$ ，则直接将两个子结点合并，再直接删除 <em>k</em> 即可（如下图）</li>
+</ol>
+</li>
+</ul>
+<p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/08/21/Merge.jpg?raw=true" alt="非终端合并"></p>
+<ul>
+<li>当所删除的关键字 <em>k</em> 在终端结点<ol>
+<li>若被删除关键字所在结点的关键字个数 &gt; $\lceil \frac{m}{2}\rceil -1$ ，则直接删除</li>
+<li>兄弟够借（如下图）</li>
+<li>兄弟不够借（如下图）</li>
+</ol>
+</li>
+</ul>
+<p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/08/21/EndPoint.jpg?raw=true" alt="终端兄弟借"></p>
+<h2 id="哈希表的构造和冲突处理方法"><a href="#哈希表的构造和冲突处理方法" class="headerlink" title="哈希表的构造和冲突处理方法"></a>哈希表的构造和冲突处理方法</h2><h3 id="哈希表的构造"><a href="#哈希表的构造" class="headerlink" title="哈希表的构造"></a>哈希表的构造</h3><ul>
+<li>这里的构造通常指哈希函数的构造。下面是几种构造方法<ol>
+<li><strong>直接定址法</strong>：取关键字或关键字的某个线性函数值为哈希地址</li>
+<li><strong>数字分析法</strong>：设关键字是 <em>r</em> 进制数，而 <em>r</em> 个数码在各位上出现的频率不一定相同。此时应该选取数码<strong>分布较为均匀的若干位</strong>作为散列地址。此法适用于<strong>已知关键字集合</strong>的情况。若换了关键字，则需重新构造散列函数</li>
+<li><strong>平方取中法</strong>：取关键字<strong>平方后的中间几位</strong>为哈希地址</li>
+<li><strong>折叠法</strong>：将关键字分割成位数相同的几部分，然后取这几个部分的叠加和（舍去进位）作为哈希地址。这种方法适用于<strong>关键字位数很多、而且关键字中每一位上数字分布大致均匀</strong>的情况</li>
+<li><strong>除留余数法</strong>：取<strong>关键字被某个不大于哈希表长的 p 除后所得余数</strong>作为哈希地址</li>
+<li><strong>随机数法</strong></li>
+</ol>
+</li>
+</ul>
+<h3 id="哈希冲突处理方法"><a href="#哈希冲突处理方法" class="headerlink" title="哈希冲突处理方法"></a>哈希冲突处理方法</h3><ol>
+<li><strong>开放定址法</strong> $H_i=(H(key)+d_i)%m$<ol>
+<li>$d_i=0，1，2，\cdots$时，称为<strong>线性探测法</strong></li>
+<li>$d_i=0^2,1^2,-1^2,2^2,-2^2，\cdots$时，称为<strong>平方探测法</strong></li>
+<li>$d_i=Hash_2(key)$ 时，称为<strong>再散列</strong>，此时 $H_i=(H(key)+i\times Hash_2(key )%m$</li>
+<li>$d_i$ 为伪随机数序列时，称为<strong>伪随机序列法</strong></li>
+</ol>
+</li>
+<li><strong>拉链法</strong><ul>
+<li>即把冲突的同义词连成一个链表。链表表头构成一个数组</li>
+</ul>
+</li>
+</ol>
+<h1 id="解题技巧小结及结论补充"><a href="#解题技巧小结及结论补充" class="headerlink" title="解题技巧小结及结论补充"></a>解题技巧小结及结论补充</h1><ul>
+<li>折半查找<strong>在查找不成功</strong>和<strong>给定值进行关键字的比较次数最多</strong>这两种情况，都是在求<strong>树的高度</strong>，即$\lceil log_2(n+1)\rceil$ </li>
+<li>折半查找中平局查找长度的计算（画<strong>判定树</strong>求解）<ul>
+<li>查找<strong>成功</strong>的平均查找长度<ul>
+<li>$ASL=\frac{\sum每层结点数\times 当前层数(从1取)}{总判定树结点数}​$</li>
+</ul>
+</li>
+<li>查找<strong>失败</strong>的平均查找长度<ul>
+<li>$ASL=\frac{\sum 判定失败的结点数\times 当前层数}{总判定失败结点数}​$</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>（★★★★★）顺序查找<strong>成功</strong>的平均查找长度公式<ul>
+<li>$ASL=\frac{n+1}{2}$ ，其中 <em>n</em> 为元素个数</li>
+</ul>
+</li>
+<li><em>n</em> 个记录的索引顺序表最理想的块长为 $\sqrt{n}$ </li>
+<li>索引顺序表的平均查找长度的计算<ul>
+<li>$ASL= 块间顺序查找+快内顺序查找$ </li>
+<li>根据上述公式，将对应部分的元素个数带入公式即可</li>
+</ul>
+</li>
+<li>如何判定序列满足<strong>折半查找</strong>或者<strong>二叉排序树</strong>序列？<ul>
+<li>注意到两者的序列都可以表示成对一棵树的从根结点沿着某一路径一直访问到叶子结点。</li>
+<li>其中，这棵树满足<strong>任一节点大于</strong>其<strong>左子树</strong>的任意一个结点，<strong>小于</strong>其<strong>右子树</strong>的任意一个结点。</li>
+<li>根据序列<strong>第一个元素</strong>，确定<strong>根结点</strong>；根据下一个元素和当前位置的<strong>大小关系</strong>，确定下一个元素相对于当前元素的位置（<strong>左子树</strong>还是<strong>右子树</strong>）。确定位置后，注意检查，是否满足树的要求（即上述第二点的性质）</li>
+</ul>
+</li>
+<li>对 <em>B-</em> 树的正确理解<ul>
+<li>5 阶 <em>B-</em> 树中各个结点包含的关键字为 2 时，也满足要求（不要误以为要至少存在一个含关键字 4 [ $5-1$ ] 个的结点才满足）。也就是每个结点的个数在 $\lceil \frac{m}{2}\rceil -1\le n\le  m-1$ 范围内即可（其中，<em>m</em> 为阶数）</li>
+</ul>
+</li>
+<li>在开址法中散列到同一地址二引起的“堆积”问题是由于<strong>同义词之间或非同义词之间发生冲突</strong>引起的（<strong>非同义词</strong>！！！）</li>
+<li>在开放定址法解决冲突的散列表查找中，发生聚集的原因主要是<strong>解决冲突的方法选择不当</strong></li>
+<li>在散列表中，<strong>平局查找长度</strong>与<strong>装填因子</strong> $\alpha$ 直接相关，不依赖于已有表项数或表长。若散列表中存放的都是某个地址的同义词，则平均查找长度为 $O(n)$ </li>
+<li>用逐点法插入构造二叉树时，若先后插入的关键字<strong>有序</strong>，则二叉排序树<strong>深度最大</strong>。</li>
+</ul>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ol>
+<li>数据结构（C语言版）.严蔚敏等</li>
+<li>2020年数据结构考研复习指导.王道论坛</li>
+</ol>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/qrcode.jpg" alt="CosmosNing wechat" style="width: 200px; max-width: 100%;"/>
+    <div>打开微信扫一扫，关注我的微信公众号。</div>
+</div>
+
+      </div>
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>CosmosNing</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://cosmosning.github.io/2019/08/21/shu-ju-jie-gou-fu-xi-bi-ji-7-cha-zhao/" title="数据结构复习笔记7-查找">https://cosmosning.github.io/2019/08/21/shu-ju-jie-gou-fu-xi-bi-ji-7-cha-zhao/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/数据结构/" rel="tag"># 数据结构</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/06/shu-ju-jie-gou-fu-xi-bi-ji-6-tu/" rel="next" title="数据结构复习笔记6-图">
+                <i class="fa fa-chevron-left"></i> 数据结构复习笔记6-图
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/08/29/shu-ju-jie-gou-fu-xi-bi-ji-8-pai-xu/" rel="prev" title="数据结构复习笔记8-排序">
+                数据结构复习笔记8-排序 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zOTkzMi8xNjQ1OQ=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="CosmosNing" />
+            
+              <p class="site-author-name" itemprop="name">CosmosNing</p>
+              <p class="site-description motion-element" itemprop="description">编程·学习·生活</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">56</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">33</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/CosmosNing" target="_blank" title="GitHub" rel="external nofollow"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.linkedin.com/in/%E5%AE%81%E5%81%A5-%E6%9D%8E-86a45b135/" target="_blank" title="Linkedin" rel="external nofollow"><i class="fa fa-fw fa-linkedin"></i>Linkedin</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:cosmosning@gmail.com" target="_blank" title="E-Mail" rel="external nofollow"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="/atom.xml" target="_blank" title="Rss" rel="external nofollow"><i class="fa fa-fw fa-rss"></i>Rss</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://steamcommunity.com/profiles/76561198328448195/" target="_blank" title="Steam" rel="external nofollow"><i class="fa fa-fw fa-steam"></i>Steam</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#8．查找"><span class="nav-number">1.</span> <span class="nav-text">8．查找</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#顺序表查找；有序表查找；索引顺序表查找"><span class="nav-number">1.1.</span> <span class="nav-text">顺序表查找；有序表查找；索引顺序表查找</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#顺序表查找"><span class="nav-number">1.1.1.</span> <span class="nav-text">顺序表查找</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#有序表查找"><span class="nav-number">1.1.2.</span> <span class="nav-text">有序表查找</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#索引顺序表查找"><span class="nav-number">1.1.3.</span> <span class="nav-text">索引顺序表查找</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二叉排序树；平衡二叉树；B-树"><span class="nav-number">1.2.</span> <span class="nav-text">二叉排序树；平衡二叉树；B-树</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#二叉排序树"><span class="nav-number">1.2.1.</span> <span class="nav-text">二叉排序树</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#定义"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查找"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">查找</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#插入"><span class="nav-number">1.2.1.3.</span> <span class="nav-text">插入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除"><span class="nav-number">1.2.1.4.</span> <span class="nav-text">删除</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#平衡二叉树（AVL）"><span class="nav-number">1.2.2.</span> <span class="nav-text">平衡二叉树（AVL）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#定义-1"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#插入-1"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">插入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查找-1"><span class="nav-number">1.2.2.3.</span> <span class="nav-text">查找</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#B-树（部分书上写成-B-树）"><span class="nav-number">1.2.3.</span> <span class="nav-text">B-树（部分书上写成 B 树）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#定义-2"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#高度"><span class="nav-number">1.2.3.2.</span> <span class="nav-text">高度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查找-2"><span class="nav-number">1.2.3.3.</span> <span class="nav-text">查找</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#（★★★★★）插入"><span class="nav-number">1.2.3.4.</span> <span class="nav-text">（★★★★★）插入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#（★★★★★）删除"><span class="nav-number">1.2.3.5.</span> <span class="nav-text">（★★★★★）删除</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#哈希表的构造和冲突处理方法"><span class="nav-number">1.3.</span> <span class="nav-text">哈希表的构造和冲突处理方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#哈希表的构造"><span class="nav-number">1.3.1.</span> <span class="nav-text">哈希表的构造</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#哈希冲突处理方法"><span class="nav-number">1.3.2.</span> <span class="nav-text">哈希冲突处理方法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#解题技巧小结及结论补充"><span class="nav-number">2.</span> <span class="nav-text">解题技巧小结及结论补充</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">3.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CosmosNing</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">站点总字数：</span>
+    
+    <span title="站点总字数">220k</span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    
+    <span title="站点阅读时长">6:07</span>
+  
+</div>
+
+
+  
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" rel="external nofollow" href="https://theme-next.org">NexT.Gemini</a> v6.4.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.4.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.4.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.1"></script>
+
+
+
+  
+
+
+
+  
+    <script type="text/javascript">
+      window.livereOptions = {
+        refer: '2019/08/21/shu-ju-jie-gou-fu-xi-bi-ji-7-cha-zhao/'
+      };
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      },
+      TeX: {equationNumbers: { autoNumber: "AMS" }}
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+  
+
+
+  
+  
+
+  
+
+  
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=6.4.1"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=6.4.1"></script>
+
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap')
+      $(e).after($wrap)
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text()
+        }).toArray().join('\n')
+        var ta = document.createElement('textarea')
+        document.body.appendChild(ta)
+        ta.style.position = 'absolute'
+        ta.style.top = '0px'
+        ta.style.left = '0px'
+        ta.value = code
+        ta.select()
+        ta.focus()
+        var result = document.execCommand('copy')
+        document.body.removeChild(ta)
+        
+          if(result)$(this).text('复制成功')
+          else $(this).text('复制失败')
+        
+        $(this).blur()
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn')
+        setTimeout(function () {
+          $b.text('复制')
+        }, 300)
+      }).append(e)
+    })
+  </script>
+
+
+</body>
+</html>

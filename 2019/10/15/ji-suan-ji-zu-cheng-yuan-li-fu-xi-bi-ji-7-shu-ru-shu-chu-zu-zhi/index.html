@@ -1,0 +1,1587 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.1" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/avatar-180.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/avatar-32.ico?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/avatar-16.ico?v=6.4.1">
+
+
+  <link rel="mask-icon" href="/images/avatar.svg?v=6.4.1" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.4.1',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="整理一下计算机组成原理中输入输出组织的知识">
+<meta name="keywords" content="计算机组成原理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机组成原理复习笔记7-输入输出组织">
+<meta property="og:url" content="https://cosmosning.github.io/2019/10/15/ji-suan-ji-zu-cheng-yuan-li-fu-xi-bi-ji-7-shu-ru-shu-chu-zu-zhi/index.html">
+<meta property="og:site_name" content="CosmosNing的个人博客">
+<meta property="og:description" content="整理一下计算机组成原理中输入输出组织的知识">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/10/15/IO-Interface.png?raw=true">
+<meta property="og:image" content="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/10/15/Prog-Query.png?raw=true">
+<meta property="og:image" content="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/10/15/DMA-Controller.png?raw=true">
+<meta property="og:updated_time" content="2019-10-15T15:23:10.387Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="计算机组成原理复习笔记7-输入输出组织">
+<meta name="twitter:description" content="整理一下计算机组成原理中输入输出组织的知识">
+<meta name="twitter:image" content="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/10/15/IO-Interface.png?raw=true">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="CosmosNing的个人博客" type="application/atom+xml" />
+
+
+
+
+  <link rel="canonical" href="https://cosmosning.github.io/2019/10/15/ji-suan-ji-zu-cheng-yuan-li-fu-xi-bi-ji-7-shu-ru-shu-chu-zu-zhi/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>计算机组成原理复习笔记7-输入输出组织 | CosmosNing的个人博客</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">CosmosNing的个人博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">探索·好奇</h1>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签<span class="badge">33</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类<span class="badge">5</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档<span class="badge">56</span></a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+  
+  
+  
+    
+      
+    
+    <a href="https://github.com/CosmosNing" class="github-corner" target="_blank" title="Follow me on GitHub" aria-label="Follow me on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#222; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg>
+    
+      </a>
+    
+
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://cosmosning.github.io/2019/10/15/ji-suan-ji-zu-cheng-yuan-li-fu-xi-bi-ji-7-shu-ru-shu-chu-zu-zhi/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CosmosNing">
+      <meta itemprop="description" content="编程·学习·生活">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CosmosNing的个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">计算机组成原理复习笔记7-输入输出组织
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-10-15 12:17:34 / 修改时间：23:23:10" itemprop="dateCreated datePublished" datetime="2019-10-15T12:17:34+08:00">2019-10-15</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/笔记/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">5.4k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">9 分钟</span>
+              
+            </div>
+          
+
+          
+              <div class="post-description">整理一下计算机组成原理中输入输出组织的知识</div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="7．输入输出组织"><a href="#7．输入输出组织" class="headerlink" title="7．输入输出组织"></a>7．输入输出组织</h1><h2 id="（×）I-O系统基本概念"><a href="#（×）I-O系统基本概念" class="headerlink" title="（×）I/O系统基本概念"></a>（×）I/O系统基本概念</h2><p>（详见教材） </p>
+<h2 id="（★）常见外部设备"><a href="#（★）常见外部设备" class="headerlink" title="（★）常见外部设备"></a>（★）常见外部设备</h2><h3 id="常见外部设备及其工作原理"><a href="#常见外部设备及其工作原理" class="headerlink" title="常见外部设备及其工作原理"></a>常见外部设备及其工作原理</h3><p>（详见教材）</p>
+<h3 id="部分外部设备的性能指标"><a href="#部分外部设备的性能指标" class="headerlink" title="部分外部设备的性能指标"></a>部分外部设备的性能指标</h3><h4 id="显示器"><a href="#显示器" class="headerlink" title="显示器"></a>显示器</h4><ul>
+<li>$VRAM\ 容量 = 分辨率\times 灰度级位数$</li>
+<li>$VRAM\ 带宽 =分辨率\times 灰度级位数\times 帧频$</li>
+</ul>
+<h4 id="磁盘"><a href="#磁盘" class="headerlink" title="磁盘"></a>磁盘</h4><ul>
+<li><p>外存容量：$面数\times 磁道数\times 道容量$</p>
+<ul>
+<li>其中，<ul>
+<li>$面数=2n-2$ ，n 为磁盘片数</li>
+<li>$磁道数=\frac{道密度\times (D外-D内)}{2}$ ，D 为直径</li>
+<li>$道容量=\pi D\times 位密度$</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>（★★★★★★）存取速度（数据传输率）：$v=道容量\times 转速$</p>
+</li>
+<li>（★★★★★★）存取时间<ul>
+<li>$T存取时间=T找道+T找扇区+T数据传输​$<script type="math/tex; mode=display">
+T_{找道}=\frac{T_{max}-T_{min}}{2}\\ T_{max}为最长找道时间，T_{min}为最短找道时间</script></li>
+</ul>
+</li>
+</ul>
+<script type="math/tex; mode=display">
+T_{找扇区}=\frac{0+\frac{1}{n}}{2}\\ n为转速</script><script type="math/tex; mode=display">
+T_{数据传输时间}=L\times \frac{1}{v}\\ L为数据量大小，v为数据传输率</script><h2 id="（★）I-O-接口"><a href="#（★）I-O-接口" class="headerlink" title="（★）I/O 接口"></a>（★）I/O 接口</h2><h3 id="功能及基本结构"><a href="#功能及基本结构" class="headerlink" title="功能及基本结构"></a>功能及基本结构</h3><ul>
+<li><p>功能</p>
+<ul>
+<li>实现<strong>主机和外设的通信</strong>联络控制</li>
+<li>进行<strong>地址译码</strong>和<strong>设备选择</strong></li>
+<li><strong>数据缓冲</strong></li>
+<li><strong>信号格式转换</strong>（如串并转换）</li>
+<li><strong>传送控制命令和状态信息</strong></li>
+</ul>
+</li>
+<li><p>基本结构</p>
+<p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/10/15/IO-Interface.png?raw=true" alt="I/O接口基本结构"></p>
+</li>
+</ul>
+<h3 id="I-O-端口及其编址"><a href="#I-O-端口及其编址" class="headerlink" title="I/O 端口及其编址"></a>I/O 端口及其编址</h3><ul>
+<li><strong>I/O 端口</strong>是指接口电路中可被 CPU 直接访问的<strong>寄存器</strong>，主要有<strong>数据端口</strong>、<strong>状态端口</strong>和<strong>控制端口</strong></li>
+<li><strong>I/O 端口</strong>和<strong>I/O 接口</strong>的关系：$I/O\ 端口 + 相应控制逻辑电路\overset{组成}{=} I/O\ 接口$</li>
+<li>I/O 端口编址方式<ul>
+<li>统一编址</li>
+<li>独立编址</li>
+</ul>
+</li>
+</ul>
+<h2 id="（★★★）I-O的三种控制方式"><a href="#（★★★）I-O的三种控制方式" class="headerlink" title="（★★★）I/O的三种控制方式"></a>（★★★）I/O的三种控制方式</h2><p><a href="https://cosmosning.github.io/2019/09/14/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B04-%E8%AE%BE%E5%A4%87%E7%AE%A1%E7%90%86/">回看操作系统相关知识</a></p>
+<h3 id="程序查询方式"><a href="#程序查询方式" class="headerlink" title="程序查询方式"></a>程序查询方式</h3><p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/10/15/Prog-Query.png?raw=true" alt="I/O接口基本结构"></p>
+<h3 id="中断方式"><a href="#中断方式" class="headerlink" title="中断方式"></a>中断方式</h3><h4 id="中断的基本概念"><a href="#中断的基本概念" class="headerlink" title="中断的基本概念"></a>中断的基本概念</h4><p>（详见教材）</p>
+<h4 id="中断工作流程"><a href="#中断工作流程" class="headerlink" title="中断工作流程"></a>中断工作流程</h4><h5 id="中断响应（中断隐指令，硬件完成）"><a href="#中断响应（中断隐指令，硬件完成）" class="headerlink" title="中断响应（中断隐指令，硬件完成）"></a>中断响应（中断隐指令，硬件完成）</h5><ul>
+<li>响应中断的 3 个条件<ol>
+<li>CPU 处于 “开中断” 状态</li>
+<li>至少要有一个未被屏蔽的中断请求</li>
+<li>当前指令执行完</li>
+</ol>
+</li>
+<li>中断响应周期中完成以下几个操作<ol>
+<li><strong>关中断</strong>（将中断允许标志为“禁止”）</li>
+<li><strong>保存断点</strong></li>
+<li><strong>识别中断源并转中断服务程序</strong></li>
+</ol>
+</li>
+</ul>
+<h5 id="中断执行（中断程序完成）"><a href="#中断执行（中断程序完成）" class="headerlink" title="中断执行（中断程序完成）"></a>中断执行（中断程序完成）</h5><ul>
+<li>接着中断响应周期的操作<ol>
+<li><strong>保存现场和屏蔽字</strong></li>
+<li><strong>开中断</strong></li>
+<li><strong>执行中断服务程序</strong></li>
+<li><strong>关中断</strong></li>
+<li><strong>恢复现场和屏蔽字</strong></li>
+<li><strong>开中断、中断返回</strong></li>
+</ol>
+</li>
+</ul>
+<h4 id="多重中断和中断屏蔽"><a href="#多重中断和中断屏蔽" class="headerlink" title="多重中断和中断屏蔽"></a>多重中断和中断屏蔽</h4><ul>
+<li>多重中断：中断内可以嵌套中断</li>
+<li>中断屏蔽（见后解题技巧及重要结论中的总结）</li>
+</ul>
+<h3 id="DMA-方式"><a href="#DMA-方式" class="headerlink" title="DMA 方式"></a>DMA 方式</h3><h4 id="DMA-控制器的组成"><a href="#DMA-控制器的组成" class="headerlink" title="DMA 控制器的组成"></a>DMA 控制器的组成</h4><p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/10/15/DMA-Controller.png?raw=true" alt="I/O接口基本结构"></p>
+<h4 id="DMA-的传送过程"><a href="#DMA-的传送过程" class="headerlink" title="DMA 的传送过程"></a>DMA 的传送过程</h4><p>DMA 传送过程主要分为三步</p>
+<ol>
+<li>预处理<ul>
+<li>准备内存区</li>
+<li>设置传送参数</li>
+<li>发送“启动 DMA ”命令，然后调度 CPU 执行其他进程</li>
+</ul>
+</li>
+<li>数据传送<ul>
+<li>整个数据传送过程由 DMA 单独完成</li>
+</ul>
+</li>
+<li>后处理<ul>
+<li>数据传输完成后，DMA 发出“ DMA 结束”给 CPU，转入中断服务程序，做一些数据校验等后处理工作</li>
+</ul>
+</li>
+</ol>
+<h1 id="解题技巧及重要结论"><a href="#解题技巧及重要结论" class="headerlink" title="解题技巧及重要结论"></a>解题技巧及重要结论</h1><ul>
+<li><p>显示器中的相关计算公式补充</p>
+<ul>
+<li>$n=log_2(m)$ ，其中，m 为颜色数，n 为刷新存储器中存储单元的字长</li>
+</ul>
+</li>
+<li><p>磁盘相关计算公式补充</p>
+<ul>
+<li>$数据传输率=转速(单位：*/s)\times 每个磁道的扇区数\times每个扇区上的数据量$</li>
+</ul>
+</li>
+<li><p>中断优先级和屏蔽字的相互确定</p>
+<ul>
+<li>依据优先级确定屏蔽字：依据优先级，某一级中断只能<strong>屏蔽自己及比自己低优先级</strong>的中断，故中断屏蔽字对应位数取 1 ，其他位取 0 。</li>
+<li>依据屏蔽字确定优先级：<strong>比</strong>屏蔽字的<strong>二进制数据大小</strong>，大的优先级高</li>
+</ul>
+</li>
+</ul>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ol>
+<li>计算机组成与系统结构.袁春风等</li>
+<li>2020年计算机组成原理考研复习指导.王道论坛</li>
+</ol>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/qrcode.jpg" alt="CosmosNing wechat" style="width: 200px; max-width: 100%;"/>
+    <div>打开微信扫一扫，关注我的微信公众号。</div>
+</div>
+
+      </div>
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>CosmosNing</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://cosmosning.github.io/2019/10/15/ji-suan-ji-zu-cheng-yuan-li-fu-xi-bi-ji-7-shu-ru-shu-chu-zu-zhi/" title="计算机组成原理复习笔记7-输入输出组织">https://cosmosning.github.io/2019/10/15/ji-suan-ji-zu-cheng-yuan-li-fu-xi-bi-ji-7-shu-ru-shu-chu-zu-zhi/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/计算机组成原理/" rel="tag"># 计算机组成原理</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/10/13/ji-suan-ji-zu-cheng-yuan-li-fu-xi-bi-ji-6-xi-tong-zong-xian/" rel="next" title="计算机组成原理复习笔记6-系统总线">
+                <i class="fa fa-chevron-left"></i> 计算机组成原理复习笔记6-系统总线
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/11/12/mips-zhi-ling-xi-tong-jian-yi-ru-men/" rel="prev" title="MIPS指令系统简易入门">
+                MIPS指令系统简易入门 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zOTkzMi8xNjQ1OQ=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="CosmosNing" />
+            
+              <p class="site-author-name" itemprop="name">CosmosNing</p>
+              <p class="site-description motion-element" itemprop="description">编程·学习·生活</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">56</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">33</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/CosmosNing" target="_blank" title="GitHub" rel="external nofollow"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.linkedin.com/in/%E5%AE%81%E5%81%A5-%E6%9D%8E-86a45b135/" target="_blank" title="Linkedin" rel="external nofollow"><i class="fa fa-fw fa-linkedin"></i>Linkedin</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:cosmosning@gmail.com" target="_blank" title="E-Mail" rel="external nofollow"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="/atom.xml" target="_blank" title="Rss" rel="external nofollow"><i class="fa fa-fw fa-rss"></i>Rss</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://steamcommunity.com/profiles/76561198328448195/" target="_blank" title="Steam" rel="external nofollow"><i class="fa fa-fw fa-steam"></i>Steam</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#7．输入输出组织"><span class="nav-number">1.</span> <span class="nav-text">7．输入输出组织</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#（×）I-O系统基本概念"><span class="nav-number">1.1.</span> <span class="nav-text">（×）I/O系统基本概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#（★）常见外部设备"><span class="nav-number">1.2.</span> <span class="nav-text">（★）常见外部设备</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常见外部设备及其工作原理"><span class="nav-number">1.2.1.</span> <span class="nav-text">常见外部设备及其工作原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#部分外部设备的性能指标"><span class="nav-number">1.2.2.</span> <span class="nav-text">部分外部设备的性能指标</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#显示器"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">显示器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#磁盘"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">磁盘</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#（★）I-O-接口"><span class="nav-number">1.3.</span> <span class="nav-text">（★）I/O 接口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#功能及基本结构"><span class="nav-number">1.3.1.</span> <span class="nav-text">功能及基本结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#I-O-端口及其编址"><span class="nav-number">1.3.2.</span> <span class="nav-text">I/O 端口及其编址</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#（★★★）I-O的三种控制方式"><span class="nav-number">1.4.</span> <span class="nav-text">（★★★）I/O的三种控制方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#程序查询方式"><span class="nav-number">1.4.1.</span> <span class="nav-text">程序查询方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#中断方式"><span class="nav-number">1.4.2.</span> <span class="nav-text">中断方式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#中断的基本概念"><span class="nav-number">1.4.2.1.</span> <span class="nav-text">中断的基本概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#中断工作流程"><span class="nav-number">1.4.2.2.</span> <span class="nav-text">中断工作流程</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#中断响应（中断隐指令，硬件完成）"><span class="nav-number">1.4.2.2.1.</span> <span class="nav-text">中断响应（中断隐指令，硬件完成）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#中断执行（中断程序完成）"><span class="nav-number">1.4.2.2.2.</span> <span class="nav-text">中断执行（中断程序完成）</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多重中断和中断屏蔽"><span class="nav-number">1.4.2.3.</span> <span class="nav-text">多重中断和中断屏蔽</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DMA-方式"><span class="nav-number">1.4.3.</span> <span class="nav-text">DMA 方式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#DMA-控制器的组成"><span class="nav-number">1.4.3.1.</span> <span class="nav-text">DMA 控制器的组成</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DMA-的传送过程"><span class="nav-number">1.4.3.2.</span> <span class="nav-text">DMA 的传送过程</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#解题技巧及重要结论"><span class="nav-number">2.</span> <span class="nav-text">解题技巧及重要结论</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">3.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CosmosNing</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">站点总字数：</span>
+    
+    <span title="站点总字数">220k</span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    
+    <span title="站点阅读时长">6:07</span>
+  
+</div>
+
+
+  
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" rel="external nofollow" href="https://theme-next.org">NexT.Gemini</a> v6.4.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.4.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.4.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.1"></script>
+
+
+
+  
+
+
+
+  
+    <script type="text/javascript">
+      window.livereOptions = {
+        refer: '2019/10/15/ji-suan-ji-zu-cheng-yuan-li-fu-xi-bi-ji-7-shu-ru-shu-chu-zu-zhi/'
+      };
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      },
+      TeX: {equationNumbers: { autoNumber: "AMS" }}
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+  
+
+
+  
+  
+
+  
+
+  
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=6.4.1"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=6.4.1"></script>
+
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap')
+      $(e).after($wrap)
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text()
+        }).toArray().join('\n')
+        var ta = document.createElement('textarea')
+        document.body.appendChild(ta)
+        ta.style.position = 'absolute'
+        ta.style.top = '0px'
+        ta.style.left = '0px'
+        ta.value = code
+        ta.select()
+        ta.focus()
+        var result = document.execCommand('copy')
+        document.body.removeChild(ta)
+        
+          if(result)$(this).text('复制成功')
+          else $(this).text('复制失败')
+        
+        $(this).blur()
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn')
+        setTimeout(function () {
+          $b.text('复制')
+        }, 300)
+      }).append(e)
+    })
+  </script>
+
+
+</body>
+</html>

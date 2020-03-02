@@ -1,0 +1,1507 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.1" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/avatar-180.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/avatar-32.ico?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/avatar-16.ico?v=6.4.1">
+
+
+  <link rel="mask-icon" href="/images/avatar.svg?v=6.4.1" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.4.1',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="什么是分治？分治思想下的排序效率究竟有多高？快来和我一探究竟！">
+<meta name="keywords" content="算法,Grokking Algorithms">
+<meta property="og:type" content="article">
+<meta property="og:title" content="分治思想下的高效排序算法">
+<meta property="og:url" content="https://cosmosning.github.io/2018/08/30/fen-zhi-si-xiang-xia-de-gao-xiao-pai-xu-suan-fa/index.html">
+<meta property="og:site_name" content="CosmosNing的个人博客">
+<meta property="og:description" content="什么是分治？分治思想下的排序效率究竟有多高？快来和我一探究竟！">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2018/08/30/cover.jpg?raw=true">
+<meta property="og:updated_time" content="2019-07-14T15:57:06.121Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="分治思想下的高效排序算法">
+<meta name="twitter:description" content="什么是分治？分治思想下的排序效率究竟有多高？快来和我一探究竟！">
+<meta name="twitter:image" content="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2018/08/30/cover.jpg?raw=true">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="CosmosNing的个人博客" type="application/atom+xml" />
+
+
+
+
+  <link rel="canonical" href="https://cosmosning.github.io/2018/08/30/fen-zhi-si-xiang-xia-de-gao-xiao-pai-xu-suan-fa/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>分治思想下的高效排序算法 | CosmosNing的个人博客</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">CosmosNing的个人博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">探索·好奇</h1>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签<span class="badge">33</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类<span class="badge">5</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档<span class="badge">56</span></a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+  
+  
+  
+    
+      
+    
+    <a href="https://github.com/CosmosNing" class="github-corner" target="_blank" title="Follow me on GitHub" aria-label="Follow me on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#222; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg>
+    
+      </a>
+    
+
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://cosmosning.github.io/2018/08/30/fen-zhi-si-xiang-xia-de-gao-xiao-pai-xu-suan-fa/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CosmosNing">
+      <meta itemprop="description" content="编程·学习·生活">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CosmosNing的个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">分治思想下的高效排序算法
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-08-30 11:35:35" itemprop="dateCreated datePublished" datetime="2018-08-30T11:35:35+08:00">2018-08-30</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-07-14 23:57:06" itemprop="dateModified" datetime="2019-07-14T23:57:06+08:00">2019-07-14</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/一起读/" itemprop="url" rel="index"><span itemprop="name">一起读</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">14k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">24 分钟</span>
+              
+            </div>
+          
+
+          
+              <div class="post-description">什么是分治？分治思想下的排序效率究竟有多高？快来和我一探究竟！</div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2018/08/30/cover.jpg?raw=true" alt="cover"></p>
+<p>什么是分治？这是一种解决问题的方法。别看它名字高大上，其实我们在日常生活学习中经常用到它。我相信，你看完下面的例子后就可以明白分治的内涵了。</p>
+<p>还记得你小学是如何计算多个数连续相加吗？我想，一般的解决办法应该是这样的：</p>
+<p>从左到右，让第一个数和第二个数相加，所得的结果和后续的式子相加构成新的式子。此时，新得到的式子比原式更简单，更容易解决（因为要相加的数的个数变少了）。接着，让新的式子中的第一个数和第二个数相加，所得结果和后续剩下的式子构成另一个新的式子···如此进行下去，原式会不断的被化简，最终只剩下一个数，而这个数，正是原式的结果。</p>
+<p>这里用来化简多个数相加的方法其实就是“分治”的实际应用。仔细观察上述过程，我们可以总结概括利用分治解决问题的两大步骤：</p>
+<p>第一，   化简原问题。我们要找到能够将原问题化简为相似的、更小的、更易解决的子问题的方法。在上述连续的加法计算中，不断地将式子中第一个数字和第二个数字相加，所得结果和剩下的式子构成新式子，供下一步化简使用。这个过程便是不断化简问题的过程。</p>
+<p>第二，   找到答案显而易见的基础案例。我们要找到一个非常简单的一个案例和该案例发生时的条件（这个案例要尽可能地简单，从而通过常识即可给出案例对应的答案）。这也指明了化简的终点。对应上面加法的例子，它的基础案例便是当化简到一个数时，化简终止。</p>
+<p>上述对于分治方法的描述是不是有些熟悉？对了！它解决问题的过程和递归十分相似。基于这一点特质，我们可以利用递归程序来实现分治。</p>
+<p>分治思想在算法中有很多应用，要说其中最基础的、最实用的，我想应该是以下要介绍的两种高效排序算法：一是归并排序，二是快速排序。</p>
+<p>下面，我们来看一看这两个高效的排序算法是如何工作的。</p>
+<p>首先是归并排序。它的算法流程描述如下：</p>
+<p>假设待排序的数据序列中有n个数据， 可以先将序列看成是由n个长度为1 的有序子序列组成</p>
+<p>n 然后再两两子序列合并， 得到一个n/2个长度为2或1 （当序列中数据为奇数时会有一个子序列长度为1 ） 的有序子序列，</p>
+<p>n 再两两子序列合并， 如此重复， 直到得到一个长度为n的有序序列为止</p>
+<p>为了更清晰地理解归并排序的流程，我们来看一个例子。</p>
+<p>我们来看看利用归并排序算法排序83，84，87，88，61，50，70，60，80，99这10个数的流程：（注：以下分号分割每一组数据，逗号分割组内数据）</p>
+<p>首先，进行2个数合并排序，得到：83，84 ；87，88；50，61；60，70；80，99；</p>
+<p>其次，进行4个数合并排序，得到：83，84，87，88；50，60，61，70；80，99；</p>
+<p>接着，进行8个数合并排序，得到：50，60，61，70，83，84，87，88；80，99；</p>
+<p>最后，将剩下的2个子序列合并排序，得到：50, 60, 61, 70, 80, 83, 84, 87, 88, 99。</p>
+<p>那么，这样的排序流程如何用代码来实现呢？</p>
+<p>这个过程与递归相似，但不完全一致，所以需要通过一定的转化，才能利用递归实现归并排序算法。</p>
+<p>递归程序，无非要找两个东西。一是初始条件，二是能够将原问题化为更小子问题的递推公式。在归并排序中，这两个东西对应着什么呢？</p>
+<p>仔细观察上述归并排序的过程，我们发现这个过程是一个不断合并的过程，所以我们可以先写一个函数，来实现合并两个内部已经有序的数据序列。有了这个函数的支持，我们下一步就需要将原问题化为更小的子问题。这里，一种解决方案是将原数据序列不断划分为左一半和右一半，然后再利用合并函数将它们合并即可。那么什么时候到达划分的终点呢？根据排序这个问题，我们很容易发现，当数据序列中的元素只有一个时，便达到划分的终点。</p>
+<p>根据上述讨论，简单总结一下便是：对原序列划分成左半部和右半部后再合并，是归并排序的原问题化简的方法；数据序列中只剩下一个元素时，划分到达终点，这也是该递归程序的初始条件。</p>
+<p>了解了这些，代码也就很容易写了。</p>
+<p>它的代码实现如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">merge</span><span class="params">(lst1,lst2)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    merge:</span></span><br><span class="line"><span class="string">     对于内部已经从小到大排序的两个列表，把它们合并成一个从小到大排序的列表</span></span><br><span class="line"><span class="string">    参数：</span></span><br><span class="line"><span class="string">     lst1：内部已经从小到大排序的数据列表1</span></span><br><span class="line"><span class="string">     lst2：内部已经从小到大排序的数据列表2</span></span><br><span class="line"><span class="string">    返回：</span></span><br><span class="line"><span class="string">     两个列表的合并结果（结果从小到大排序）</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    lst = lst1<span class="comment">#合并后的lst</span></span><br><span class="line">    <span class="keyword">while</span> len(lst2) != <span class="number">0</span>:</span><br><span class="line">        a = lst2.pop(<span class="number">0</span>)<span class="comment">#取出lst2中第一个元素，并且将它从lst2中删除</span></span><br><span class="line">        place = len(lst)<span class="comment">#记录元素a插入结果lst的位置</span></span><br><span class="line">        lst.append(a)<span class="comment">#将a插入到lst末尾</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(lst1)<span class="number">-1</span>,<span class="number">-1</span>,<span class="number">-1</span>):<span class="comment">#寻找大小顺序合适的位置插入元素a，保证lst从小到大排列</span></span><br><span class="line">            <span class="keyword">if</span> a &lt; lst[i]:</span><br><span class="line">                lst[i+<span class="number">1</span>] = lst[i]</span><br><span class="line">                place = i</span><br><span class="line">        lst[place] = a</span><br><span class="line">    <span class="keyword">return</span> lst</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">merge_sort</span><span class="params">(lst)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    merge_sort:</span></span><br><span class="line"><span class="string">     利用归并排序使得列表中的数据从小到大排列</span></span><br><span class="line"><span class="string">    参数：</span></span><br><span class="line"><span class="string">     lst：待排序的数据列表</span></span><br><span class="line"><span class="string">    返回：</span></span><br><span class="line"><span class="string">     从小到大排序的数据列表</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="keyword">if</span> len(lst) == <span class="number">1</span>:<span class="comment">#当数据列表中只有一个元素时，这个列表已经有序，直接返回该列表</span></span><br><span class="line">        <span class="keyword">return</span> lst</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="comment">#分解子问题，对原lst排序，相当于对当前lst的左一半和右一半做排序</span></span><br><span class="line">        lst1 = merge_sort(lst[:len(lst)//<span class="number">2</span>])<span class="comment">#左一半的有序数据列表</span></span><br><span class="line">        lst2 = merge_sort(lst[len(lst)//<span class="number">2</span>:])<span class="comment">#右一半的有序数据列表</span></span><br><span class="line">        <span class="keyword">return</span> merge(lst1,lst2)<span class="comment">#将两个有序列表合并</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 测试用例</span></span><br><span class="line">print(merge_sort([<span class="number">83</span>,<span class="number">84</span>,<span class="number">87</span>,<span class="number">88</span>,<span class="number">61</span>,<span class="number">50</span>,<span class="number">70</span>,<span class="number">60</span>,<span class="number">80</span>,<span class="number">99</span>]))</span><br><span class="line"></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">输出结果:</span></span><br><span class="line"><span class="string">[50, 60, 61, 70, 80, 83, 84, 87, 88, 99]</span></span><br><span class="line"><span class="string">"""</span></span><br></pre></td></tr></table></figure>
+<p>接着，我们来看一看快速排序。</p>
+<p>快速排序的中的分治思想也是将原数据序列做划分，但是它在排序过程中又与归并排序有些不同。归并排序首先让每一个子序列内部有序，但外部整体无序；然后再通过合并子序列，使得整体有序。快速排序则是首先让数据外部整体有序，但内部无序；之后利用同样的方法使得子序列内部有序，再将它们按照外部整体有序时的顺序合并即可。</p>
+<p>那么快速排序算法是怎样实现外部整体有序的呢？快速排序每次选择一个枢轴（ $pivot$ ）元素，将当前数据序列中剩下的所有比枢轴元素小的组成一个新的数据序列（假设名字为 $l$ ）、所有比枢轴元素大的组成一个新的数据序列（假设名字为 $g$ ），那么 $l$ ， $pivot$ ， $g$ 三个子序列在外部便已经有序。如何解决 $l$ 、 $g$ 两个子序列内部无序的的问题呢？对子序列利用快速排序的思想即可。比如在 $l$ 中选择枢轴元素，将 $l$ 划分成 $ll$ （比 $ppivot$ 小的）、 $ppivot$ （枢轴元素）、 $gg$ （比 $ppivot$ 大的）三部分···经过不断的划分，最终我们会使得序列中的元素个数小于2个，这也就是我们划分的终点。</p>
+<p>有了上述的讨论，我想下面的代码也会很容易理解吧。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">quick_sort</span><span class="params">(lst)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    quick_sort:</span></span><br><span class="line"><span class="string">     利用快速排序使得列表中的数据从小到大排列</span></span><br><span class="line"><span class="string">    参数：</span></span><br><span class="line"><span class="string">     lst：待排序的数据列表</span></span><br><span class="line"><span class="string">    返回：</span></span><br><span class="line"><span class="string">     从小到大排序的数据列表</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="comment">#如果列表元素只有1个或者没有，</span></span><br><span class="line">    <span class="comment">#那么其本身已经有序，不需要任何额外操作，</span></span><br><span class="line">    <span class="comment">#直接返回即可</span></span><br><span class="line">    <span class="keyword">if</span> len(lst) == <span class="number">1</span> <span class="keyword">or</span> len(lst) == <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> lst</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        pivot = lst[<span class="number">0</span>]<span class="comment">#选定当前lst的第一个元素为枢轴元素（基准）</span></span><br><span class="line">        lst_l = [i <span class="keyword">for</span> i <span class="keyword">in</span> lst[<span class="number">1</span>:] <span class="keyword">if</span> i &lt; pivot]<span class="comment">#在lst中抽取所有比枢轴元素小的元素构成列表lst_l</span></span><br><span class="line">        lst_g = [i <span class="keyword">for</span> i <span class="keyword">in</span> lst[<span class="number">1</span>:] <span class="keyword">if</span> i &gt; pivot]<span class="comment">#在lst中抽取所有比枢轴元素大的元素构成列表lst_g</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">#lst_l、pivot、lst_g已经相对有序，但是lst_l、lst_g内部无序，</span></span><br><span class="line">        <span class="comment">#所以需要分别对lst_l、lst_g执行快速排序，使其有序</span></span><br><span class="line">        <span class="comment">#最后将结果合并即可</span></span><br><span class="line">        <span class="keyword">return</span> quick_sort(lst_l) + [pivot] + quick_sort(lst_g)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 测试用例</span></span><br><span class="line">print(quick_sort([<span class="number">83</span>,<span class="number">84</span>,<span class="number">87</span>,<span class="number">88</span>,<span class="number">61</span>,<span class="number">50</span>,<span class="number">70</span>,<span class="number">60</span>,<span class="number">80</span>,<span class="number">99</span>]))</span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">输出结果:</span></span><br><span class="line"><span class="string">[50, 60, 61, 70, 80, 83, 84, 87, 88, 99]</span></span><br><span class="line"><span class="string">"""</span></span><br></pre></td></tr></table></figure>
+<p>归并排序和快速排序在排序算法中是比较高效的算法。它们究竟有多快呢？我们来一起分析一下他们呢的时间复杂度。</p>
+<p>首先假设问题规模为 $N$ ，所需要的执行步骤为 $T ( N )$ 。在归并排序中，程序第36行和37行将问题分解为左右一半，第38行的合并相当于将两个子序列都遍历了一遍（每个子列的规模为 $\frac{N}{2}$ ），所以有如下递推公式：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+T(N) &= 2T(N/2) + N / 2 + N / 2\\
+         &=2T(N/2) + N
+\end{aligned}</script><p>进一步递推可得， $T(N) = N\cdot T(1) + k\cdot N$ ，其中 $k = log<em>{2}(N)$ 。当数据规模为1时，解决问题的步骤显然只需一步，所以 $T(N) = N + N\cdot log</em>{2}(N)$，所以归并排序的时间复杂度为 $O( N\cdot log( N ) )$ 。</p>
+<p>快速排序中，子序列的划分并不像归并排序那么确定（因为枢轴元素的选取会影响快速排序中子列的划分），同时快速排序的时间复杂度也有多种情况。最好的情况，枢轴元素恰巧是该序列的中数（也就是排序后，该数的位置在序列的中间），第一层快速排序会使得枢轴元素两端的子序列的个数相差不大。这种情况就相当于把原序列对半划分，和归并排序十分类似。分析一下，这种情况下快速排序的时间复杂度和归并排序一样，为 $O( N\cdot log( N ) )$ ；最坏的情况，枢轴元素是原序列中最小的元素或者是最大的元素，他将原序列划分为两个十分不平衡的子序列，一边没有元素，而另一边含有所有剩下的元素。对于这种情况，我们有如下递推公式：</p>
+<script type="math/tex; mode=display">
+T(N) = T(N-1) + N\\
+其中,T(N-1)为解决子问题的时间，N为合并时间</script><p>递推下去，可得 $T(N) = T(1) + N\times N = N^{2} + 1$ ，所以时间复杂度为 $O( N^{2} )$ 。平均情况下，枢轴元素的选取不会总是最坏情况，大多数情况下都是 $O( N\cdot log( N ) )$ 。</p>
+<p>文章的最后，我们简单总结一下本文的内容：</p>
+<ol>
+<li><strong>分治是一种解决问题的方法，他通过不断将原问题分解成相似的、更小的、更以解决的子问题，并通过可以直接看出结果的子问题的答案，逐层回代解决原问题。</strong></li>
+<li><strong>分治解决问题的一般步骤：找到显而易见的子问题的解；分解原问题到子问题，通过子问题的解解决原问题。</strong></li>
+<li><strong>分治的方法可以利用递归程序实现。</strong></li>
+<li><strong>分治思想下有两种十分高效的排序算法：一是归并排序，二是快速排序。</strong></li>
+<li><strong>归并排序的流程：将原序列不断对半划分，直至其中元素只剩1个返回，然后逐层将左右子序列合并即可。</strong></li>
+<li><strong>快速排序的流程：将原序列利用枢轴元素划分，比枢轴元素小的为一个子序列，比枢轴元素大的为另一个子序列，直至其中元素只剩1个返回，然后将这些子序列逐层合并即可。</strong></li>
+<li><strong>归并排序的时间复杂度为 $O( N\cdot log( N ) )$ 。</strong></li>
+<li><strong>快速排序的最好时间复杂度为 $O( N\cdot log( N ) )$ ，最坏时间复杂度为 $O( N^{2} )$ ，平均时间复杂度为 $O( N\cdot log( N ) )$ 。</strong></li>
+</ol>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/qrcode.jpg" alt="CosmosNing wechat" style="width: 200px; max-width: 100%;"/>
+    <div>打开微信扫一扫，关注我的微信公众号。</div>
+</div>
+
+      </div>
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>CosmosNing</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://cosmosning.github.io/2018/08/30/fen-zhi-si-xiang-xia-de-gao-xiao-pai-xu-suan-fa/" title="分治思想下的高效排序算法">https://cosmosning.github.io/2018/08/30/fen-zhi-si-xiang-xia-de-gao-xiao-pai-xu-suan-fa/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/算法/" rel="tag"># 算法</a>
+          
+            <a href="/tags/Grokking-Algorithms/" rel="tag"># Grokking Algorithms</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/25/suan-fa-qu-jie-zhi-di-gui-si-xiang/" rel="next" title="算法趣解之递归思想">
+                <i class="fa fa-chevron-left"></i> 算法趣解之递归思想
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/09/07/gao-xiao-de-shu-ju-jie-gou-ha-xi-biao/" rel="prev" title="高效的数据结构——哈希表">
+                高效的数据结构——哈希表 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zOTkzMi8xNjQ1OQ=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="CosmosNing" />
+            
+              <p class="site-author-name" itemprop="name">CosmosNing</p>
+              <p class="site-description motion-element" itemprop="description">编程·学习·生活</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">56</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">33</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/CosmosNing" target="_blank" title="GitHub" rel="external nofollow"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.linkedin.com/in/%E5%AE%81%E5%81%A5-%E6%9D%8E-86a45b135/" target="_blank" title="Linkedin" rel="external nofollow"><i class="fa fa-fw fa-linkedin"></i>Linkedin</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:cosmosning@gmail.com" target="_blank" title="E-Mail" rel="external nofollow"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="/atom.xml" target="_blank" title="Rss" rel="external nofollow"><i class="fa fa-fw fa-rss"></i>Rss</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://steamcommunity.com/profiles/76561198328448195/" target="_blank" title="Steam" rel="external nofollow"><i class="fa fa-fw fa-steam"></i>Steam</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CosmosNing</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">站点总字数：</span>
+    
+    <span title="站点总字数">220k</span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    
+    <span title="站点阅读时长">6:07</span>
+  
+</div>
+
+
+  
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" rel="external nofollow" href="https://theme-next.org">NexT.Gemini</a> v6.4.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.4.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.4.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.1"></script>
+
+
+
+  
+
+
+
+  
+    <script type="text/javascript">
+      window.livereOptions = {
+        refer: '2018/08/30/fen-zhi-si-xiang-xia-de-gao-xiao-pai-xu-suan-fa/'
+      };
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      },
+      TeX: {equationNumbers: { autoNumber: "AMS" }}
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+  
+
+
+  
+  
+
+  
+
+  
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=6.4.1"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=6.4.1"></script>
+
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap')
+      $(e).after($wrap)
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text()
+        }).toArray().join('\n')
+        var ta = document.createElement('textarea')
+        document.body.appendChild(ta)
+        ta.style.position = 'absolute'
+        ta.style.top = '0px'
+        ta.style.left = '0px'
+        ta.value = code
+        ta.select()
+        ta.focus()
+        var result = document.execCommand('copy')
+        document.body.removeChild(ta)
+        
+          if(result)$(this).text('复制成功')
+          else $(this).text('复制失败')
+        
+        $(this).blur()
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn')
+        setTimeout(function () {
+          $b.text('复制')
+        }, 300)
+      }).append(e)
+    })
+  </script>
+
+
+</body>
+</html>
