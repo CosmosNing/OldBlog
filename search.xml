@@ -193,7 +193,7 @@
       </tags>
   </entry>
   <entry>
-    <title>Leetcode-189-rotate-array</title>
+    <title>LeetCode-189-rotate-array</title>
     <url>/2020/02/17/leetcode-189-rotate-array/</url>
     <content><![CDATA[<h1 id="刷题标记"><a href="#刷题标记" class="headerlink" title="刷题标记"></a>刷题标记</h1><ul>
 <li>[x] 第一遍</li>
@@ -251,7 +251,7 @@
       </tags>
   </entry>
   <entry>
-    <title>Leetcode-26-remove-duplicates-from-sorted-array</title>
+    <title>LeetCode-26-remove-duplicates-from-sorted-array</title>
     <url>/2020/02/17/leetcode-26-remove-duplicates-from-sorted-array/</url>
     <content><![CDATA[<h1 id="刷题标记"><a href="#刷题标记" class="headerlink" title="刷题标记"></a>刷题标记</h1><ul>
 <li>[x] 第一遍</li>
@@ -361,7 +361,7 @@
       </tags>
   </entry>
   <entry>
-    <title>Leetcode-11-container-with-most-water</title>
+    <title>LeetCode-11-container-with-most-water</title>
     <url>/2020/02/13/leetcode-11-container-with-most-water/</url>
     <content><![CDATA[<h1 id="刷题标记"><a href="#刷题标记" class="headerlink" title="刷题标记"></a>刷题标记</h1><ul>
 <li>[x] 第一遍</li>
@@ -413,7 +413,7 @@
       </tags>
   </entry>
   <entry>
-    <title>Leetcode-141-linked-list-cycle</title>
+    <title>LeetCode-141-linked-list-cycle</title>
     <url>/2020/02/12/leetcode-141-linked-list-cycle/</url>
     <content><![CDATA[<h1 id="刷题标记"><a href="#刷题标记" class="headerlink" title="刷题标记"></a>刷题标记</h1><ul>
 <li>[x] 第一遍</li>
@@ -453,13 +453,13 @@
       </categories>
       <tags>
         <tag>双指针</tag>
-        <tag>快慢指针</tag>
         <tag>遍历</tag>
         <tag>链表</tag>
+        <tag>快慢指针</tag>
       </tags>
   </entry>
   <entry>
-    <title>Leetcode-70-climbing-stairs</title>
+    <title>LeetCode-70-climbing-stairs</title>
     <url>/2020/02/11/leetcode-70-climbing-stairs/</url>
     <content><![CDATA[<h1 id="刷题标记"><a href="#刷题标记" class="headerlink" title="刷题标记"></a>刷题标记</h1><ul>
 <li>[x] 第一遍</li>
@@ -531,7 +531,7 @@ climbStairs(i) = climbStairs( i - 1 ) + climbStairs( i - 1 )</script><p>这个�
       </tags>
   </entry>
   <entry>
-    <title>Leetcode.283.move-zeroes</title>
+    <title>LeetCode.283.move-zeroes</title>
     <url>/2020/02/09/leetcode-283-move-zeroes/</url>
     <content><![CDATA[<h1 id="刷题标记"><a href="#刷题标记" class="headerlink" title="刷题标记"></a>刷题标记</h1><ul>
 <li>[x] 第一遍</li>
