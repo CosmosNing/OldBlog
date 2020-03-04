@@ -46,7 +46,7 @@
 <p>通过设置 A4 纸张大小的边界，我们可以清晰的看到内容尺寸是否太小，亦或者是内容超出边界（这意味着它会被打印到第二页）。</p>
 <p>你可以告诉 CSS 在打印时将一些不必要的东西隐藏，比如浏览器会插入的像时间和页数等信息。</p>
 <figure class="highlight css"><table><tr><td class="code"><pre><span class="line">@<span class="keyword">media</span> print &#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@<span class="keyword">page</span> &#123;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">0cm</span>;</span><br><span class="line">  <span class="attribute">size</span>: A4 portrait;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>需要注意的一件事是，不同的浏览器可能会使用大小略有不同的不同字体来呈现简历。 如果你想要非常精确的打印简历，另一种选择是将其另存为PDF，并在您的站点上提供下载链接。</p>
+<p>需要注意的一件事是，不同的浏览器可能会使用大小略有不同的不同字体来呈现简历。 如果你想要非常精确的打印简历，另一种选择是将其另存为PDF，并在你的站点上提供下载链接。</p>
 <h1 id="浏览器支持"><a href="#浏览器支持" class="headerlink" title="浏览器支持"></a>浏览器支持</h1><p>CSS Grid 在现代浏览器中具有良好的支持。</p>
 <p>Internet Explorer（IE）支持使用前缀的 CSS Grid 规范的较旧版本。 例如，<code>grid-template-columns</code> 被编写为 <code>-ms-grid-columns</code> 。 通过 Autoprefixer 运行代码可以帮助添加这些前缀，但是由于在旧规范中某些属性的行为有所不同，而导致某些属性不存在，因此将需要进行手动更改和全面测试。 丹尼尔·托农（Daniel Tonon）的<a href="https://css-tricks.com/css-grid-in-ie-css-grid-and-the-new-autoprefixer/" target="_blank" rel="noopener">文章</a>值得一看，其中介绍了如何配置 Autoprefixer 以使事情尽可能正常地工作。</p>
 <p>自动前缀的另一种方法是<a href="https://www.smashingmagazine.com/2017/11/css-grid-supporting-browsers-without-grid/" target="_blank" rel="noopener">提供回退</a>，例如通过使用 float 布局。 无法识别 CSS 网格属性的浏览器将使用此显示。 不管你是否需要支持IE，回退都是明智的，因为它确保了不支持 CSS Grid 的浏览器仍然正确显示你的内容。</p>
@@ -514,9 +514,9 @@
       </categories>
       <tags>
         <tag>双指针</tag>
+        <tag>快慢指针</tag>
         <tag>遍历</tag>
         <tag>链表</tag>
-        <tag>快慢指针</tag>
       </tags>
   </entry>
   <entry>
